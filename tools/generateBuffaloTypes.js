@@ -60,7 +60,7 @@ function outEnumValues(calf, name) {
     if (!isEmpty(calf.values)) {
         out(`readonly ${name} : {\n`, +1)
 
-        for (const name in calf.values) 
+        for (const {name} of calf.values)
             out(`readonly ${name}: unique symbol\n`)
 
         out('}\n', -1)
