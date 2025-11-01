@@ -1,0 +1,157 @@
+const {SmartBuffer} = require("smart-buffer");
+const {schemaTypeIndices} = require("./buffaloTypes");
+
+/**
+ *
+ * @param {Field|number} field
+ * @param {SmartBuffer} packet
+ * @returns {any}
+ */
+function readPropertyIfNotConstant(field, packet) {
+    if (typeof field === 'object')
+        return readProperty(field, packet)
+
+    return field
+}
+
+/**
+ *
+ * @param {Field|number} field
+ * @param {SmartBuffer} packet
+ * @returns {any}
+ */
+function readProperty(field, packet) {
+    if (typeof field === 'number') {
+        const value = packet.readUInt32LE()
+        if (value !== field) throw new Error(`Packet was not encoded with the same schema version.`)
+        return undefined;
+    }
+
+    if (typeof field !== 'object')
+        throw new Error('Invalid field format')
+
+    if (field.dimensions.length > 0) {
+        const dimensionField = field.dimensions.at(-1)
+        const length = readPropertyIfNotConstant(dimensionField, packet);
+
+        const array = [];
+        for (let i = 0; i < length; i++) {
+            array.push(readProperty({
+                ...field,
+                dimensions: field.dimensions.slice(0, -1),
+            }, packet))
+        }
+
+        return array
+    }
+
+    if (typeof field.base === 'number') {
+        // Built-in type
+        switch(field.base) {
+            case schemaTypeIndices.String:
+                return packet.readStringNT()
+            case schemaTypeIndices.Boolean:
+                return !!packet.readUInt8()
+            case schemaTypeIndices.Byte:
+                return packet.readInt8()
+            case schemaTypeIndices.Short:
+                return packet.readInt16LE()
+            case schemaTypeIndices.Int:
+                return packet.readInt32LE()
+            case schemaTypeIndices.Long:
+                return packet.readBigInt64LE()
+            case schemaTypeIndices.Float:
+                return packet.readFloatLE()
+            case schemaTypeIndices.Double:
+                return packet.readDoubleLE()
+            case schemaTypeIndices.UByte:
+                return packet.readUInt8()
+            case schemaTypeIndices.UShort:
+                return packet.readUInt16LE()
+            case schemaTypeIndices.UInt:
+                return packet.readUInt32LE()
+            case schemaTypeIndices.ULong:
+                return packet.readBigUInt64LE()
+            case schemaTypeIndices.IntArray:
+                return new Int32Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Int32Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.ShortArray:
+                return new Int16Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Int16Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.ByteArray:
+                return new Int8Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Int8Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.LongArray:
+                return new BigInt64Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * BigInt64Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.FloatArray:
+                return new Float32Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Float32Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.DoubleArray:
+                return new Float64Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Float64Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.UByteArray:
+                return new Uint8Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Uint8Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.UShortArray:
+                return new Uint16Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Uint16Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.UIntArray:
+                return new Uint32Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Uint32Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.ULongArray:
+                return new BigUint64Array(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * BigUint64Array.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.BooleanArray:
+                return new Uint8ClampedArray(packet.readBuffer(
+                    readPropertyIfNotConstant(field.size, packet) * Uint8ClampedArray.BYTES_PER_ELEMENT))
+            case schemaTypeIndices.Buffer:
+                return packet.readBuffer(readPropertyIfNotConstant(field.size, packet))
+            default:
+                throw new Error(`Invalid built-in type with index ${field.base}`)
+        }
+    } else if (typeof field.base === 'object') {
+        const calf = field.base
+        if (calf.type === "enum")
+            return calf.values[packet.readUInt8()]
+        else {
+            const object = {}
+            readProperties(calf, object, packet)
+            return object;
+        }
+    } else {
+        // Invalid type
+        throw new Error('Invalid field base type format')
+    }
+}
+
+function readProperties(calf, object, packet) {
+    const subtypeKey = calf.subtypeKey
+    if (subtypeKey != null) {
+        const typeIndex = packet.readUInt8()
+        const subtype = calf.subtypes[typeIndex];
+        object[subtypeKey] = subtype
+        readProperties(subtype, object, packet, )
+    }
+
+    for (const fieldName in calf.fields) {
+        const value = readProperty(calf.fields[fieldName], packet);
+        if (value === undefined) continue;
+
+        object[fieldName] = value;
+    }
+}
+
+/**
+ * @template T
+ * @param {T} calf
+ * @param {Buffer} buffer
+ * @returns {T["_objectType"]}
+ */
+function deserializeBuffalo(calf, buffer) {
+    const object = {}
+    readProperties(calf, object, SmartBuffer.fromBuffer(buffer))
+    return object
+}
+
+module.exports = deserializeBuffalo

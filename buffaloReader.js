@@ -1,4 +1,5 @@
 const fs = require("node:fs")
+const util = require("node:util")
 const yaml = require('yaml')
 const Ajv = require("ajv");
 
@@ -57,10 +58,14 @@ function linkDataDefinition(buffalo, calf, path, fieldScope = {}) {
     for (const childName in calf) {
         const child = calf[childName]
         if (typeof child === 'object') {
-            linkDataDefinition(buffalo, child, `${path}/${childName}`, {...fieldScope})
+            linkDataDefinition(buffalo, child, `${path}.${childName}`, {...fieldScope})
 
             child.name = childName
             child.index = subtypes.length
+            child[util.inspect.custom] = function() {
+                return `<${path}.${this.name}>`
+            }
+
             subtypes.push(child)
         } else {
             if (childName in fieldScope) {
@@ -90,21 +95,27 @@ function linkDataDefinition(buffalo, calf, path, fieldScope = {}) {
     calf.fields = fields;
 }
 
-function parseEnum(calf, name) {
-    const values = {};
+function parseEnum(calf, enumName) {
+    const parsed = {};
     for (let i = 0; i < calf.length; i++) {
-        const value = calf[i];
-        if (value in values)
-            throw new Error(`Duplicate enum value '${value}' at '${name}'.`)
+        const name = calf[i];
+        if (name in parsed)
+            throw new Error(`Duplicate enum value '${name}' at '${enumName}'.`)
 
-        values[value] = { index: i, name: value }
+        parsed[name] = {
+            index: i,
+            name: name,
+            [util.inspect.custom]() {
+                return `<${enumName}.${this.name}>`
+            }
+        }
     }
 
-    values.values = calf.map((name) => values[name])
-    values.type = "enum"
-    values.typeName = name
+    parsed.values = calf.map((name) => parsed[name])
+    parsed.type = "enum"
+    parsed.typeName = enumName
 
-    return Object.freeze(values);
+    return Object.freeze(parsed);
 }
 
 function readBuffalo(path) {

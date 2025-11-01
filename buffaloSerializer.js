@@ -113,8 +113,11 @@ function writeProperty(field, value, packet) {
             throw new Error(`Invalid built-in type with index ${field.base}`)
         }
     } else if (typeof field.base === 'object') {
-        // Referenced type
-        writeProperties(field.base, value, packet)
+        const calf = field.base
+        if (calf.type === "enum")
+            packet.writeUInt8(value.index)
+        else
+            writeProperties(calf, value, packet)
     } else {
         // Invalid type
         throw new Error('Invalid field base type format')
@@ -123,11 +126,6 @@ function writeProperty(field, value, packet) {
 
 function writeProperties(calf, object, packet) {
     // console.log("Writing", calf.typeName ?? calf.name)
-
-    if (calf.type === "enum") {
-        packet.writeUInt8(object.index)
-        return
-    }
 
     const subtypeKey = calf.subtypeKey
     if (subtypeKey != null) {
