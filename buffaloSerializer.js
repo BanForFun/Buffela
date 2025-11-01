@@ -38,11 +38,14 @@ function writeProperty(field, value, packet) {
         throw new Error('Invalid field format')
 
     if (field.dimensions.length > 0) {
-        const dimensionField = field.dimensions.pop()
+        const dimensionField = field.dimensions.at(-1)
         writePropertyIfNotConstant(dimensionField, value.length, packet);
         
         for (const item of value)
-            writeProperty(field, item, packet)
+            writeProperty({
+                ...field,
+                dimensions: field.dimensions.slice(0, -1),
+            }, item, packet)
 
         return
     }
