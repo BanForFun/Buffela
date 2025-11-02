@@ -1,13 +1,13 @@
 const { performance } = require('node:perf_hooks');
 
-const readBuffalo = require('./buffaloReader')
-const serializeBuffalo = require('./buffaloSerializer')
-const deserializeBuffalo = require('./buffaloDeserializer')
+const readBuffalo = require('./js/buffaloReader')
+const serializeBuffalo = require('./js/buffaloSerializer')
+const deserializeBuffalo = require('./js/buffaloDeserializer')
 
 /**
  * @type {import('./testBuffalo.d.ts').testBuffalo}
  */
-const testBuffalo = readBuffalo('testBuffalo.yaml')
+const testBuffalo = readBuffalo('buffalo.yaml')
 
 const testData = {
     expiration: Date.now(),

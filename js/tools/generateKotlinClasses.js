@@ -65,7 +65,7 @@ function outDataType(calf, name, superName, inheritedFields) {
 
         out('}\n', -1)
     } else {
-        out(`class ${name}(`, +1)
+        out(`class ${name} (`, +1)
 
         if (!isEmpty(inheritedFields) || !isEmpty(calf.fields)) out('\n')
 
