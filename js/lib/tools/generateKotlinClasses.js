@@ -31,7 +31,7 @@ function outEnumValues(calf, name) {
     }
 }
 
-function resolveFieldType(field) {
+function nativeType(field) {
     const { base, dimensions } = field;
     const resolvedType = typeof base === 'number' ? nativeTypes[base].kt : base.typeName
     const arrayPrefix = dimensions.map(() => "List<").join("")
@@ -40,7 +40,28 @@ function resolveFieldType(field) {
     return arrayPrefix + resolvedType + arraySuffix
 }
 
-function outDataType(calf, name, superName, inheritedFields) {
+function sizeAnnotation(field) {
+    if (typeof field === "number")
+        return `FieldSize(size = ${field}U)`
+
+    return `FieldSize(type = ${nativeType(field)}::class)`
+}
+
+function dimensionAnnotation(dimensions) {
+    return `FieldDimensions(${dimensions.map(sizeAnnotation).join(", ")})`
+}
+
+function outVariableAnnotations(field) {
+    const { dimensions, size } = field;
+
+    if (size != null)
+        out(`@${sizeAnnotation(size)}\n`)
+
+    if (dimensions.length > 0)
+        out(`@${dimensionAnnotation(dimensions)}\n`)
+}
+
+function outDataType(calf, name, superName, superVars, header) {
     out('\n')
 
     const isAbstract = calf.subtypes.length > 0
@@ -50,41 +71,40 @@ function outDataType(calf, name, superName, inheritedFields) {
         else
             out(`sealed interface ${name} {`, +1)
 
-        if (!isEmpty(calf.fields)) out('\n')
+        if (!isEmpty(calf.variables)) out('\n')
 
-        for (const fieldName in calf.fields) {
-            const field = calf.fields[fieldName];
-            if (typeof field !== "object") continue;
-
-            out(`val ${fieldName}: ${resolveFieldType(field)}\n`)
+        for (const varName in calf.variables) {
+            const field = calf.variables[varName];
+            out(`val ${varName}: ${nativeType(field)}\n`)
         }
 
         for (const subtype of calf.subtypes) {
-            outDataType(subtype, subtype.name, name, { ...inheritedFields, ...calf.fields })
+            outDataType(
+                subtype, subtype.name, name,
+                { ...calf.variables, ...superVars }, //Ordering matters
+                [...header, ...Object.values(subtype.constants), subtype.index]
+            )
         }
 
         out('}\n', -1)
     } else {
+        if (header.length > 0)
+            out(`@PacketHeader(${header.map(b => b + "u").join(", ")})\n`)
+
         out(`class ${name} (`, +1)
 
-        if (!isEmpty(inheritedFields) || !isEmpty(calf.fields)) out('\n')
+        if (!isEmpty(superVars) || !isEmpty(calf.variables)) out('\n')
 
-        for (const fieldName in inheritedFields) {
-            const field = inheritedFields[fieldName];
-            if (typeof field !== "object") continue;
-
-            out(`override val ${fieldName}: ${resolveFieldType(field)},\n`)
+        for (const varName in calf.variables) {
+            const field = calf.variables[varName];
+            outVariableAnnotations(field)
+            out(`val ${varName}: ${nativeType(field)},\n`)
         }
 
-        for (const fieldName in calf.fields) {
-            const field = calf.fields[fieldName];
-            if (typeof field !== "object") continue;
-
-            out(`val ${fieldName}: ${resolveFieldType(field)},\n`)
-        }
-
-        for (const subtype of calf.subtypes) {
-            outDataType(subtype, subtype.name, name, { ...inheritedFields, ...calf.fields })
+        for (const superVarName in superVars) {
+            const field = superVars[superVarName];
+            outVariableAnnotations(field)
+            out(`override val ${superVarName}: ${nativeType(field)},\n`)
         }
 
         if (superName)
@@ -94,13 +114,15 @@ function outDataType(calf, name, superName, inheritedFields) {
     }
 }
 
+out("import gr.elaevents.buffalo.schema.*\n")
+
 for (const calfName in buffalo) {
     const calf = buffalo[calfName]
 
     if (calf.type === "enum") {
         outEnumValues(calf, calfName)
     } else if (calf.type === "data") {
-        outDataType(calf, calfName, null, {})
+        outDataType(calf, calfName, null, {}, Object.values(calf.constants))
     } else {
         throw new Error(`Unknown definition type '${calf.type}' at '${calf.name}'`)
     }

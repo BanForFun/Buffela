@@ -13,7 +13,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="testBuffalo.yaml" />
+                    <option name="path" value="buffalo.yaml" />
                   </Item>
                 </list>
               </option>
