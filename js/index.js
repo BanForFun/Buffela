@@ -7,7 +7,7 @@ const deserializeBuffalo = require('./lib/buffaloDeserializer')
 /**
  * @type {import('./buffalo').buffalo}
  */
-const testBuffalo = readBuffalo('buffalo.yaml')
+const buffalo = readBuffalo('buffalo.yaml')
 
 const testData = {
     expiration: Date.now(),
@@ -15,24 +15,24 @@ const testData = {
     payload: {
         userId: Buffer.alloc(16),
 
-        role: testBuffalo.TokenPayload.Registered,
-        gender: testBuffalo.Gender.FEMALE,
+        role: buffalo.TokenPayload.Registered,
+        gender: buffalo.Gender.FEMALE,
         hobbies: ["coffee", "going out"],
 
-        with: testBuffalo.TokenPayload.Registered.Phone,
+        with: buffalo.TokenPayload.Registered.Phone,
         phone: "This is my phone"
     }
 }
 
 const serializationStartTime = performance.now()
-const buffer = serializeBuffalo(testBuffalo.Token, testData)
+const buffer = serializeBuffalo(buffalo.Token, testData)
 const serializationEndTime = performance.now()
 
 console.log(buffer.toString('hex').match(/../g).join(' '))
 console.log('Serialized', buffer.byteLength, 'bytes in', serializationEndTime - serializationStartTime, 'milliseconds')
 
 const deserializationStartTime = performance.now()
-const deserialized = deserializeBuffalo(testBuffalo.Token, buffer)
+const deserialized = deserializeBuffalo(buffalo.Token, buffer)
 const deserializationEndTime = performance.now()
 
 console.log(deserialized)

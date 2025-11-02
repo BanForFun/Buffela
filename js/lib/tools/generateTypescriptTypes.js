@@ -71,8 +71,6 @@ for (const calfName in buffalo) {
 out('}\n\n', -1)
 
 function resolveFieldType(field) {
-    if (typeof field !== "object") return "never";
-
     const { base, dimensions } = field;
     const resolvedType = typeof base === 'number' ? nativeTypes[base].ts : base.typeName
     const arrayNotation = dimensions.map(() => "[]").join("")
@@ -86,11 +84,14 @@ function outDataType(calf, path, subtypeKey) {
         out('{\n', +1)
 
         if (subtypeKey != null)
-            out(`"${subtypeKey}": ${typeOf(...path)},\n`)
+            out(`${subtypeKey}: ${typeOf(...path)},\n`)
 
         for (const fieldName in calf.fields) {
             const field = calf.fields[fieldName];
-            out(`"${fieldName}": ${resolveFieldType(field)},\n`)
+            if (typeof field !== "object")
+                out(`${fieldName}?: never,\n`)
+            else
+                out(`${fieldName}: ${resolveFieldType(field)},\n`)
         }
 
         out('}', -1)
