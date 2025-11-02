@@ -5,21 +5,19 @@ const {schemaTypeIndices} = require("./buffaloTypes");
  *
  * @param {Field|number} field
  * @param {SmartBuffer} packet
+ * @param {number|undefined} dimension
  * @returns {any}
  */
-function readProperty(field, packet) {
+function readProperty(field, packet, dimension = field.dimensions?.length) {
     if (typeof field !== 'object') return field; // Constant
 
-    if (field.dimensions.length > 0) {
-        const dimensionField = field.dimensions.at(-1)
+    if (dimension > 0) {
+        const dimensionField = field.dimensions[dimension - 1]
         const length = readProperty(dimensionField, packet);
 
         const array = [];
         for (let i = 0; i < length; i++) {
-            array.push(readProperty({
-                ...field,
-                dimensions: field.dimensions.slice(0, -1),
-            }, packet))
+            array.push(readProperty(field, packet, dimension - 1))
         }
 
         return array

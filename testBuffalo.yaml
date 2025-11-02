@@ -20,6 +20,7 @@ TokenPayload:
       email: String
 
 Token:
+  version: 1
   expiration: Double
   signature: Buffer(32)
   payload: TokenPayload

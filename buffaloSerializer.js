@@ -4,7 +4,7 @@ const { schemaTypeIndices} = require('./buffaloTypes')
 
 /**
  * @typedef {object} Field
- * @property {object|number|string} base
+ * @property {object|number} base
  * @property {Field[]} dimensions
  * @property {Field?} size
  */
@@ -14,20 +14,18 @@ const { schemaTypeIndices} = require('./buffaloTypes')
  * @param {Field|number} field
  * @param {any} value 
  * @param {SmartBuffer} packet
+ * @param {number|undefined} dimension
  * @returns 
  */
-function writeProperty(field, value, packet) {
+function writeProperty(field, value, packet, dimension = field.dimensions?.length) {
     if (typeof field !== 'object') return; // Is constant
 
-    if (field.dimensions.length > 0) {
-        const dimensionField = field.dimensions.at(-1)
+    if (dimension > 0) {
+        const dimensionField = field.dimensions[dimension - 1]
         writeProperty(dimensionField, value.length, packet);
         
         for (const item of value)
-            writeProperty({
-                ...field,
-                dimensions: field.dimensions.slice(0, -1),
-            }, item, packet)
+            writeProperty(field, item, packet, dimension - 1)
 
         return
     }
