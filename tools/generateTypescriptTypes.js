@@ -4,18 +4,19 @@ const readBuffalo = require('../buffaloReader')
 const { typescriptTypes } = require('../buffaloTypes')
 const Printer = require('./models/Printer')
 const { isEmpty } = require('./utils/objectUtils')
+const {getOutputStream} = require("./utils/fileUtils");
 
-if (process.argv.length < 3) {
-    console.error("Usage: node generateTypescriptTypes.js BUFFALO_FILE")
+if (process.argv.length < 3 || process.argv.length > 4) {
+    console.error("Usage: node generateTypescriptTypes.js BUFFALO_FILE [OUTPUT_FILE_OR_DIRECTORY]")
     process.exit(1)
 }
 
 const inputPath = process.argv[2]
 const buffalo = readBuffalo(inputPath)
-
-const { out } = new Printer(process.stdout)
-
 const objectName = path.basename(inputPath, ".yaml")
+
+const outputStream = getOutputStream(process.argv[3], objectName + ".d.ts")
+const { out } = new Printer(outputStream)
 
 function typeOf(...path) {
     return `${objectName}${path.map(p => `["${p}"]`).join("")}`
