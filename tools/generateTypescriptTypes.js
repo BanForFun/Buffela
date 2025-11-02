@@ -2,45 +2,23 @@ const process = require('node:process')
 const path = require('node:path')
 const readBuffalo = require('../buffaloReader')
 const { typescriptTypes } = require('../buffaloTypes')
-
-function isEmpty(object) {
-    for (let _ in object) {
-        return false;
-    }
-
-    return true;
-}
+const Printer = require('./models/Printer')
+const { isEmpty } = require('./utils/objectUtils')
 
 if (process.argv.length < 3) {
-    console.error("Usage: node generateBuffaloTypes.js BUFFALO_FILE")
+    console.error("Usage: node generateTypescriptTypes.js BUFFALO_FILE")
     process.exit(1)
 }
 
 const inputPath = process.argv[2]
 const buffalo = readBuffalo(inputPath)
 
+const { out } = new Printer(process.stdout)
+
 const objectName = path.basename(inputPath, ".yaml")
 
 function typeOf(...path) {
     return `${objectName}${path.map(p => `["${p}"]`).join("")}`
-}
-
-let indent = 0;
-let isNewLine = true;
-
-function out(string, indentOffset = 0) {
-    if (indentOffset < 0)
-        indent += indentOffset
-
-    const space = isNewLine ? "".padEnd(indent * 2) : ""
-    const output = space + string
-
-    if (indentOffset > 0)
-        indent += indentOffset
-
-    process.stdout.write(output)
-
-    isNewLine = output.endsWith("\n")
 }
 
 out(`type ValueOf<T extends object> = T[keyof T]\n\n`)
