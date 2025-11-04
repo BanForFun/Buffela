@@ -100,6 +100,7 @@ function linkDataDefinition(buffalo, leafTypes, type, path, fieldScope = {}, ) {
 
     if (!isAbstract) {
         type.leafIndex = leafTypes.length
+
         fullPath.shift() //Remove root from start
         leafTypes.push(fullPath)
     }

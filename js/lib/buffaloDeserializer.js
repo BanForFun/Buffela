@@ -129,13 +129,13 @@ function readCalf(calf, object, packet) {
     const leafTypeIndex = hasLeafTypeIndex ? packet.readUInt8() : 0
     const subtypePath = calf.leafTypes[leafTypeIndex]
 
-    for (let i = 0; i < subtypePath.length; i++) {
-        validateOwnConstants(subtypePath[i], packet)
+    for (const type of subtypePath) {
+        validateOwnConstants(type, packet)
     }
 
     readOwnVariables(calf, object, packet)
-    for (let i = 0; i < subtypePath.length; i++) {
-        readOwnVariables(subtypePath[i], object, packet)
+    for (const type of subtypePath) {
+        readOwnVariables(type, object, packet)
     }
 }
 

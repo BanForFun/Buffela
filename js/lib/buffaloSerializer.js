@@ -104,6 +104,14 @@ function writeField(field, value, packet, dimension = field.dimensions?.length) 
     }
 }
 
+function findLeafTypeIndex(type, object) {
+    while (type.leafIndex == null) {
+        type = object[type.subtypeKey]
+    }
+
+    return type.leafIndex
+}
+
 function writeOwnConstants(type, packet) {
     for (const constName in type.constants) {
         const field = type.constants[constName]
@@ -115,17 +123,6 @@ function writeOwnConstants(type, packet) {
     }
 }
 
-function writeSubtypeConstants(type, object, packet) {
-    const subtypeKey = type.subtypeKey
-    if (subtypeKey != null)
-        writeTypeConstants(object[subtypeKey], object, packet)
-}
-
-function writeTypeConstants(type, object, packet) {
-    writeOwnConstants(type, packet)
-    writeSubtypeConstants(type, object, packet)
-}
-
 function writeOwnVariables(type, object, packet) {
     for (const varName in type.variables) {
         const field = type.variables[varName]
@@ -133,33 +130,23 @@ function writeOwnVariables(type, object, packet) {
     }
 }
 
-function writeSubtypeVariables(type, object, packet) {
-    const subtypeKey = type.subtypeKey
-    if (subtypeKey != null)
-        return writeTypeVariables(object[subtypeKey], object, packet)
-
-    return type.leafIndex
-}
-
-function writeTypeVariables(type, object, packet) {
-    writeOwnVariables(type, object, packet)
-    return writeSubtypeVariables(type, object, packet)
-}
-
 function writeCalf(calf, object, packet) {
+    const leafTypeIndex = findLeafTypeIndex(calf, object)
+    const subtypeType = calf.leafTypes[leafTypeIndex]
+
     writeOwnConstants(calf, packet)
 
-    const leafTypeIndexOffset = packet.writeOffset
-    const writeLeafTypeIndex = calf.leafTypes.length > 1
-    if (writeLeafTypeIndex) {
-        packet.writeUInt8(0) //Will get replaced
+    if (calf.leafTypes.length > 1)
+        packet.writeUInt8(leafTypeIndex) //Will get replaced
+
+    for (const type of subtypeType) {
+        writeOwnConstants(type, packet)
     }
 
-    writeSubtypeConstants(calf, object, packet)
+    writeOwnVariables(calf, object, packet)
 
-    const leafTypeIndex = writeTypeVariables(calf, object, packet)
-    if (writeLeafTypeIndex) {
-        packet.writeUInt8(leafTypeIndex, leafTypeIndexOffset)
+    for (const type of subtypeType) {
+        writeOwnVariables(type, object, packet)
     }
 }
 
