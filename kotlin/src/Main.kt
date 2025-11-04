@@ -17,14 +17,12 @@ fun main() {
     )
 
 
+    val buffer: Buffer
     val time = measureTime {
-        serializeBuffalo(token)
+        buffer = serializeBuffalo(token)
     }
 
-    val start = System.nanoTime()
-    val snapshot = serializeBuffalo(token).readByteArray()
-    val end = System.nanoTime()
-    println(snapshot.joinToString(" ") { "%02X".format(it) })
-
-    println("Serialized ${snapshot.size} bytes in $time")
+    val bytes = buffer.readByteArray()
+    println(bytes.joinToString(" ") { "%02X".format(it) })
+    println("Serialized ${bytes.size} bytes in $time")
 }
