@@ -3,10 +3,10 @@ const path = require("node:path");
 const readBuffalo = require("../buffaloReader");
 const Printer = require("./models/Printer");
 const {getOutputStream} = require("./utils/fileUtils");
-const {printEnumTypeClass} = require("./kotlinGeneration/enumTypes");
-const {printDataTypeClass} = require("./kotlinGeneration/dataTypes");
-const {printSerializerImports} = require("./kotlinGeneration/fieldSerializer");
-const {printDeserializerImports} = require("./kotlinGeneration/fieldDeserializer");
+const {printEnumTypeClass} = require("./kotlinGenerator/enumTypes");
+const {printDataTypeClass} = require("./kotlinGenerator/dataTypes");
+const {printSerializerImports} = require("./kotlinGenerator/fieldSerializer");
+const {printDeserializerImports} = require("./kotlinGenerator/fieldDeserializer");
 
 if (process.argv.length < 3 || process.argv.length > 4) {
     console.error("Usage: node generateKotlinClasses.js BUFFALO_FILE [OUTPUT_FILE_OR_DIRECTORY]")
