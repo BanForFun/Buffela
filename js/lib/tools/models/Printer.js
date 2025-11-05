@@ -6,8 +6,12 @@ function Printer(stream) {
         stream.write(string)
     }
 
-    function printIndented(string) {
+    function printIndent() {
         print("".padEnd(indent * 4))
+    }
+
+    function printIndented(string) {
+        printIndent()
         print(string)
     }
 
@@ -24,8 +28,9 @@ function Printer(stream) {
         if (isBlockEmpty) print('\n')
 
         for (let i = 0; i < lines.length; i++) {
+            printIndent()
             if (i > 0) print(separator)
-            printIndented(lines[i])
+            print(lines[i])
             print('\n')
         }
 
