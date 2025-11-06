@@ -1,0 +1,36 @@
+{
+  "name": "@buffela/tools-types",
+  "version": "1.0.0",
+  "description": "Type definition generator for the buffela wire protocol",
+  "bin": {
+    "buffela-to-types": "buffela-to-types.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BanForFun/Buffela.git"
+  },
+  "keywords": [
+    "buffela",
+    "wire",
+    "protocol",
+    "types",
+    "typescript",
+    "definitions",
+    "devtools",
+    "developer",
+    "tools"
+  ],
+  "author": "BanForFun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BanForFun/Buffela/issues"
+  },
+  "homepage": "https://github.com/BanForFun/Buffela#readme",
+  "dependencies": {
+    "@buffela/parser": "*",
+    "@buffela/tools-common": "*"
+  }
+}

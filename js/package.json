@@ -1,20 +1,21 @@
 {
-  "name": "buffalo",
+  "name": "buffela",
   "version": "1.0.0",
   "description": "",
+  "private": "true",
   "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "ajv": "^8.17.1",
-    "smart-buffer": "^4.2.0",
-    "yaml": "^2.8.1"
-  },
   "devDependencies": {
-    "@types/node": "^24.9.2"
+    "@types/node": "^24.9.2",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3"
   }
 }

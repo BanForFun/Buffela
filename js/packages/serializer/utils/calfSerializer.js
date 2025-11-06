@@ -1,0 +1,165 @@
+const { SmartBuffer } = require('smart-buffer')
+
+const { typeMap } = require('@buffela/parser')
+
+/**
+ * @typedef {object} Field
+ * @property {object|number} base
+ * @property {Field[]} dimensions
+ * @property {Field?} size
+ */
+
+/**
+ * 
+ * @param {Field|number} field
+ * @param {any} value 
+ * @param {SmartBuffer} packet
+ * @param {number|undefined} dimension
+ * @returns 
+ */
+function writeField(field, value, packet, dimension = field.dimensions?.length) {
+    if (typeof field !== 'object') return; // Is constant
+
+    if (dimension > 0) {
+        const dimensionField = field.dimensions[dimension - 1]
+        writeField(dimensionField, value.length, packet);
+        
+        for (const item of value)
+            writeField(field, item, packet, dimension - 1)
+
+        return
+    }
+
+    if (typeof field.base === 'number') {
+        // console.log("Writing field", schemaTypes[field.base], "at", packet.writeOffset)
+
+        // Built-in type
+        switch(field.base) {
+        case typeMap.String.index:
+            packet.writeStringNT(value)
+            break;
+        case typeMap.Boolean.index:
+            packet.writeUInt8(value ? 1 : 0)
+            break;
+        case typeMap.Byte.index:
+            packet.writeInt8(value)
+            break;
+        case typeMap.Short.index:
+            packet.writeInt16LE(value)
+            break;
+        case typeMap.Int.index:
+            packet.writeInt32LE(value)
+            break;
+        case typeMap.Long.index:
+            packet.writeBigInt64LE(value)
+            break;
+        case typeMap.Float.index:
+            packet.writeFloatLE(value)
+            break;
+        case typeMap.Double.index:
+            packet.writeDoubleLE(value)
+            break;
+        case typeMap.UByte.index:
+            packet.writeUInt8(value)
+            break;
+        case typeMap.UShort.index:
+            packet.writeUInt16LE(value)
+            break;
+        case typeMap.UInt.index:
+            packet.writeUInt32LE(value)
+            break;
+        case typeMap.ULong.index:
+            packet.writeBigUInt64LE(value)
+            break;
+        case typeMap.IntArray.index:
+        case typeMap.ShortArray.index:
+        case typeMap.ByteArray.index:
+        case typeMap.LongArray.index:
+        case typeMap.FloatArray.index:
+        case typeMap.DoubleArray.index:
+        case typeMap.UByteArray.index:
+        case typeMap.UShortArray.index:
+        case typeMap.UIntArray.index:
+        case typeMap.ULongArray.index:
+        case typeMap.BooleanArray.index:
+            writeField(field.size, value.length, packet)
+            packet.writeBuffer(Buffer.from(value))
+            break;
+        case typeMap.Buffer.index:
+            writeField(field.size, value.size, packet)
+            packet.writeBuffer(value)
+            break;
+        default:
+            throw new Error(`Invalid built-in type with index ${field.base}`)
+        }
+    } else if (typeof field.base === 'object') {
+        const calf = field.base
+        if (calf.type === "enum")
+            packet.writeUInt8(value.index)
+        else
+            writeCalf(calf, value, packet)
+    } else {
+        // Invalid type
+        throw new Error('Invalid field base type format')
+    }
+}
+
+function findLeafTypeIndex(type, object) {
+    while (type.leafIndex == null) {
+        type = object[type.subtypeKey]
+    }
+
+    return type.leafIndex
+}
+
+function writeOwnConstants(type, packet) {
+    for (const constName in type.constants) {
+        const field = type.constants[constName]
+        if (typeof field === 'number') {
+            packet.writeUInt8(field) // Writing the field and not the value on purpose
+        } else {
+            throw new Error('Invalid constant type')
+        }
+    }
+}
+
+function writeOwnVariables(type, object, packet) {
+    for (const varName in type.variables) {
+        const field = type.variables[varName]
+        writeField(field, object[varName], packet)
+    }
+}
+
+function writeCalf(calf, object, packet) {
+    const leafTypeIndex = findLeafTypeIndex(calf, object)
+    const leafTypePath = calf.leafTypes[leafTypeIndex]
+
+    writeOwnConstants(calf, packet)
+
+    if (calf.leafTypes.length > 1)
+        packet.writeUInt8(leafTypeIndex) //Will get replaced
+
+    for (const type of leafTypePath) {
+        writeOwnConstants(type, packet)
+    }
+
+    writeOwnVariables(calf, object, packet)
+
+    for (const type of leafTypePath) {
+        writeOwnVariables(type, object, packet)
+    }
+}
+
+/**
+ * @template T
+ * @param {T} calf 
+ * @param {T["_objectType"]} object
+ * @returns {Buffer}
+ */
+function serializeCalf(calf, object) {
+    const packet = new SmartBuffer()
+    writeCalf(calf, object, packet)
+    return packet.toBuffer()
+}
+
+module.exports = serializeCalf

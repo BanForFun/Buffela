@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored folder structure">
+      <change beforePath="$PROJECT_DIR$/../.idea/modules/buffelo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules/buffela.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/.github/workflows/publish.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradlew" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradlew.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/src/commonMain/kotlin/utils/BufferExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/BufferExt.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/src/commonMain/kotlin/utils/Serializable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/Serializable.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+        <option value="tsconfig.json" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="353f5bEYennw5RYhnjMJaqyPM1T" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "22.20.0",
+    "javascript.nodejs.core.library.typings.version": "22.19.0",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.deserializer > build.executor": "Run",
+    "npm.parser > build.executor": "Run",
+    "npm.serializer > build.executor": "Run",
+    "npm.tools-common > build.executor": "Run",
+    "npm.tools-kotlin > build.executor": "Run",
+    "settings.editor.selected.configurable": "JavaScript.Libraries",
+    "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/tools-common" />
+      <recent name="$PROJECT_DIR$/packages/deserializer" />
+      <recent name="$PROJECT_DIR$/packages/serializer" />
+      <recent name="$PROJECT_DIR$/packages/parser" />
+      <recent name="$PROJECT_DIR$/packages/parser/constants" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/deserializer" />
+      <recent name="$PROJECT_DIR$/packages/deserializer/utils" />
+      <recent name="$PROJECT_DIR$/packages/tools-types" />
+      <recent name="$PROJECT_DIR$/packages/tools-kotlin/utils" />
+      <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
+    </key>
+  </component>
+  <component name="RunManager" selected="npm.tools-common &gt; build">
+    <configuration name="deserializer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/deserializer/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="parser &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/parser/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="serializer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/serializer/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="tools-common &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/tools-common/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="tools-kotlin &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/tools-kotlin/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.tools-common &gt; build" />
+        <item itemvalue="npm.tools-kotlin &gt; build" />
+        <item itemvalue="npm.deserializer &gt; build" />
+        <item itemvalue="npm.serializer &gt; build" />
+        <item itemvalue="npm.parser &gt; build" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.27397.92" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="" />
+      <created>1762343494051</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762343494051</updated>
+      <workItem from="1762343495291" duration="28562000" />
+      <workItem from="1762442419387" duration="14970000" />
+      <workItem from="1762462070222" duration="6878000" />
+      <workItem from="1762538053420" duration="9040000" />
+      <workItem from="1762547104988" duration="569000" />
+      <workItem from="1762547684996" duration="35000" />
+      <workItem from="1762547737725" duration="1237000" />
+      <workItem from="1762548987451" duration="109000" />
+      <workItem from="1762549102225" duration="3989000" />
+    </task>
+    <task id="LOCAL-00001" summary="Refactored code">
+      <option name="closed" value="true" />
+      <created>1762367419335</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762367419335</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Fixed Printer.printLines indent">
+      <option name="closed" value="true" />
+      <created>1762367435138</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762367435138</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Refactored kotlin generation code">
+      <option name="closed" value="true" />
+      <created>1762372675014</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1762372675014</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Renamed kotlinGeneration directory">
+      <option name="closed" value="true" />
+      <created>1762376021264</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1762376021264</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Fixed typescript type generator">
+      <option name="closed" value="true" />
+      <created>1762376049323</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1762376049323</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Refactored folder structure">
+      <option name="closed" value="true" />
+      <created>1762462333125</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1762462333125</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Refactored folder structure">
+      <option name="closed" value="true" />
+      <created>1762546326319</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1762546326319</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Refactored folder structure">
+      <option name="closed" value="true" />
+      <created>1762552947421</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1762552947421</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Refactored code" />
+    <MESSAGE value="Fixed Printer.printLines indent" />
+    <MESSAGE value="Refactored kotlin generation code" />
+    <MESSAGE value="Renamed kotlinGeneration directory" />
+    <MESSAGE value="Fixed typescript type generator" />
+    <MESSAGE value="Refactored folder structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored folder structure" />
+  </component>
+</project>

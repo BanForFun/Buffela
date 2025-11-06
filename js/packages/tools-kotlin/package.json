@@ -1,0 +1,36 @@
+{
+  "name": "@buffela/tools-kotlin",
+  "version": "1.0.0",
+  "description": "Kotlin developer tools for the buffela wire protocol",
+  "bin": {
+    "buffela-to-kotlin": "buffela-to-kotlin.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup buffela-to-kotlin.js --format cjs,esm --clean --out-dir dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BanForFun/Buffela.git"
+  },
+  "keywords": [
+    "buffela",
+    "wire",
+    "protocol",
+    "kotlin",
+    "tools",
+    "devtools",
+    "developer"
+  ],
+  "author": "BanForFun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BanForFun/Buffela/issues"
+  },
+  "homepage": "https://github.com/BanForFun/Buffela#readme",
+  "dependencies": {
+    "yargs-parser": "^22.0.0",
+    "@buffela/parser": "*",
+    "@buffela/tools-common": "*"
+  }
+}

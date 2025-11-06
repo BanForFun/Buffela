@@ -1,0 +1,60 @@
+#!/usr/bin/env node
+
+const path = require("node:path");
+const process = require("node:process");
+
+const parseArgs = require('yargs-parser')
+
+const { parseBuffela } = require("@buffela/parser")
+const { readBuffelaFile, Printer, fileUtils, objectUtils } = require("@buffela/tools-common");
+
+const {printEnumCalfClass} = require("./utils/enumTypeUtils");
+const {printDataCalfClass} = require("./utils/dataTypeUtils");
+const {printSerializerImports} = require("./utils/fieldSerializationUtils");
+const {printDeserializerImports} = require("./utils/fieldDeserializationUtils");
+
+const {
+    _: [inputPath, outputPath, ...unknownArgs],
+    package: packageName,
+    serializer: serializerEnabled,
+    deserializer: deserializerEnabled,
+    ...unknownOptions
+} = parseArgs(process.argv.slice(2), {
+    string: [ 'package' ],
+    boolean: [ 'serializer', 'deserializer' ],
+    default: { serializer: true, deserializer: true }
+})
+
+if (!inputPath || !objectUtils.isEmpty(unknownArgs) || !objectUtils.isEmpty(unknownOptions)) {
+    console.error("Usage: node buffela-to-kotlin.js BUFFELA_FILE [OUTPUT_FILE_OR_DIRECTORY] [--package=PACKAGE_NAME] [--no-serializer] [--no-deserializer]")
+    process.exit(1)
+}
+
+const buffela = parseBuffela(readBuffelaFile(inputPath))
+const objectName = path.basename(inputPath, ".yaml")
+
+const outputStream = fileUtils.getFileOutputStream(outputPath, objectName + ".kt")
+global.printer = new Printer(outputStream)
+
+global.options = { serializerEnabled, deserializerEnabled }
+
+if (packageName)
+    printer.line(`package ${packageName}`)
+
+if (serializerEnabled)
+    printSerializerImports()
+
+if (deserializerEnabled)
+    printDeserializerImports()
+
+for (const calfName in buffela) {
+    const calf = buffela[calfName]
+
+    if (calf.type === "enum") {
+        printEnumCalfClass(calf)
+    } else if (calf.type === "data") {
+        printDataCalfClass(calf)
+    } else {
+        throw new Error(`Unknown definition type '${calf.type}' at '${calf.name}'`)
+    }
+}

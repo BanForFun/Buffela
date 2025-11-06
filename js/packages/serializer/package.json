@@ -1,0 +1,40 @@
+{
+  "name": "@buffela/serializer",
+  "version": "1.0.0",
+  "description": "Serializer for the buffela wire protocol",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "module": "dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mts",
+      "require": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist && tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BanForFun/Buffela.git"
+  },
+  "keywords": [
+    "buffela",
+    "protobuf",
+    "wire",
+    "protocol",
+    "binary"
+  ],
+  "author": "BanForFun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BanForFun/Buffela/issues"
+  },
+  "homepage": "https://github.com/BanForFun/Buffela#readme",
+  "dependencies": {
+    "smart-buffer": "^4.2.0",
+    "@buffela/parser": "*"
+  }
+}
