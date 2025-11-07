@@ -1,7 +1,7 @@
 const buffelaTypes = require('./constants/buffelaTypes')
-const parseBuffela = require("./utils/buffelaParser")
+const parseBuffelaSchema = require("./utils/buffelaParser")
 
 module.exports = {
     typeMap: buffelaTypes.typeMap,
-    parseBuffela
+    parseBuffelaSchema
 }

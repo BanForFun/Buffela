@@ -1,22 +1,21 @@
 #!/usr/bin/env node
 
 const process = require('node:process')
-const path = require('node:path')
 
-const { typeMap, parseBuffela } = require('@buffela/parser')
+const { typeMap, parseBuffelaSchema } = require('@buffela/parser')
 const { readBuffelaFile, Printer, fileUtils, calfUtils } = require('@buffela/tools-common')
 
 if (process.argv.length < 3 || process.argv.length > 4) {
-    console.error("Usage: node buffela-to-buffelaTypes.js BUFFELA_FILE [OUTPUT_FILE_OR_DIRECTORY]")
+    console.error("Usage: node buffela-to-types.js BUFFELA_FILE [OUTPUT_FILE_OR_DIRECTORY]")
     process.exit(1)
 }
 
 const inputPath = process.argv[2]
-const buffela = parseBuffela(readBuffelaFile(inputPath))
-const objectName = path.basename(inputPath, ".yaml")
+const inputFile = readBuffelaFile(inputPath)
+const buffela = parseBuffelaSchema(inputFile.schema)
 
 const outputPath = process.argv[3]
-const outputStream = fileUtils.getFileOutputStream(outputPath, objectName + ".d.ts")
+const outputStream = fileUtils.getFileOutputStream(outputPath, inputFile.name + ".d.ts")
 const printer = new Printer(outputStream)
 
 const nativeTypes = Object.fromEntries(Object.values(typeMap).map(n => [n.index, n.ts]))
@@ -53,7 +52,7 @@ function printEnumTypeInterface(calf) {
     }
 }
 
-printer.blockStart(`export type ${objectName} = {`)
+printer.blockStart(`export type schema = {`)
 
 for (const calfName in buffela) {
     const calf = buffela[calfName]
@@ -72,7 +71,7 @@ printer.blockEnd('}')
 
 
 function typeOf(...path) {
-    return `${objectName}${path.map(p => `["${p}"]`).join("")}`
+    return `schema${path.map(p => `["${p}"]`).join("")}`
 }
 
 function nativeType(field) {
@@ -120,7 +119,7 @@ for (const calfName in buffela) {
     const calf = buffela[calfName]
 
     if (calf.type === "enum") {
-        printer.line(`export type ${calfName} = ValueOf<${typeOf(calfName)}>\n\n`)
+        printer.line(`export type ${calfName} = ValueOf<${typeOf(calfName)}>`)
     } else if (calf.type === "data") {
         printer.blockStart(`type ${calfName} = {`)
         const isAbstract = printDataTypeObject(calf, [calfName], null)

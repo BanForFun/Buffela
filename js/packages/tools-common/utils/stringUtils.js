@@ -4,8 +4,8 @@
  * @param {number} times
  * @returns {string}
  */
-function repeatString(string, times) {
+function repeat(string, times) {
     return Array(times).fill(string).join("")
 }
 
-module.exports = { repeatString }
+module.exports = { repeat }

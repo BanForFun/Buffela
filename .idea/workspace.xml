@@ -5,32 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e4d54e3f-484f-4df5-b874-fff74bd7f036" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/AndroidProjectSystem.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/migrations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/utils_1_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/utils_1_0_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/utils_jvm_1_0_0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/utils_jvm_1_0_0.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/buffelo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/buffela.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/.github/workflows/publish.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/utils/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/utils/src/commonMain/kotlin/utils/BufferExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/utils/src/commonMain/kotlin/utils/BufferExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/kotlin/buffelo/utils/src/commonMain/kotlin/utils/Serializable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/kotlin/buffela/utils/src/commonMain/kotlin/utils/Serializable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/js/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/js/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/packages/parser/utils/buffelaParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/parser/utils/buffelaParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/packages/tools-common/utils/buffelaReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-common/utils/buffelaReader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/packages/tools-kotlin/buffela-to-kotlin.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-kotlin/buffela-to-kotlin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/js/packages/tools-types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-types/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test-buffelo.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

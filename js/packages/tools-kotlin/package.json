@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "Kotlin developer tools for the buffela wire protocol",
   "bin": {
-    "buffela-to-kotlin": "buffela-to-kotlin.js"
+    "buffela-to-kotlin": "dist/buffela-to-kotlin.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup buffela-to-kotlin.js --format cjs,esm --clean --out-dir dist"
+    "build": "tsup buffela-to-kotlin.js --format cjs --clean --out-dir dist"
   },
   "repository": {
     "type": "git",

@@ -1,12 +1,14 @@
 {
-  "name": "@buffela/tools-types",
+  "name": "@buffela/tools",
   "version": "1.0.0",
   "description": "Type definition generator for the buffela wire protocol",
   "bin": {
-    "buffela-to-types": "buffela-to-types.js"
+    "buffela-to-types": "dist/buffela-to-types.js",
+    "buffela-to-json": "dist/buffela-to-json.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsup buffela-to-types.js buffela-to-json.js --format cjs --clean --out-dir dist"
   },
   "repository": {
     "type": "git",

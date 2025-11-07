@@ -1,11 +1,10 @@
 #!/usr/bin/env node
 
-const path = require("node:path");
 const process = require("node:process");
 
 const parseArgs = require('yargs-parser')
 
-const { parseBuffela } = require("@buffela/parser")
+const { parseBuffelaSchema } = require("@buffela/parser")
 const { readBuffelaFile, Printer, fileUtils, objectUtils } = require("@buffela/tools-common");
 
 const {printEnumCalfClass} = require("./utils/enumTypeUtils");
@@ -30,10 +29,10 @@ if (!inputPath || !objectUtils.isEmpty(unknownArgs) || !objectUtils.isEmpty(unkn
     process.exit(1)
 }
 
-const buffela = parseBuffela(readBuffelaFile(inputPath))
-const objectName = path.basename(inputPath, ".yaml")
+const inputFile = readBuffelaFile(inputPath)
+const buffela = parseBuffelaSchema(inputFile.schema)
 
-const outputStream = fileUtils.getFileOutputStream(outputPath, objectName + ".kt")
+const outputStream = fileUtils.getFileOutputStream(outputPath, inputFile.name + ".kt")
 global.printer = new Printer(outputStream)
 
 global.options = { serializerEnabled, deserializerEnabled }

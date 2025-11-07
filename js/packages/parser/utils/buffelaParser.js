@@ -14,8 +14,8 @@ const parameterPattern = /\(([A-Z][a-zA-Z]+|\d+)\)/y
 const dimensionPattern = /\[([A-Z][a-zA-Z]+|\d+)]/gy
 
 function resolveType(buffela, typeString, path) {
-    const schemaTypeIndex = typeMap[typeString].index
-    if (schemaTypeIndex >= 0) return schemaTypeIndex
+    const schemaType = typeMap[typeString]
+    if (schemaType != null) return schemaType.index
 
     const resolved = buffela[typeString]
     if (!resolved) throw new Error(`Unknown type '${typeString}' at '${path}'.`)
@@ -136,7 +136,7 @@ function parseEnum(calf, enumName) {
  * @param {any} buffela
  * @returns {unknown}
  */
-function parseBuffela(buffela) {
+function parseBuffelaSchema(buffela) {
     if (!validateBuffela(buffela)) {
         console.error(ajv.errors?.reverse())
         throw new Error('Schema validation failed')
@@ -158,4 +158,4 @@ function parseBuffela(buffela) {
     return buffela
 }
 
-module.exports = parseBuffela
+module.exports = parseBuffelaSchema

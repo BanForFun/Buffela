@@ -152,4 +152,4 @@ function deserializeCalf(calf, buffer) {
     return object
 }
 
-module.exports = { deserializeCalf }
+module.exports = deserializeCalf

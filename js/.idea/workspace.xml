@@ -5,23 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored folder structure">
-      <change beforePath="$PROJECT_DIR$/../.idea/modules/buffelo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules/buffela.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools/buffela-to-json.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/.github/workflows/publish.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/.github/workflows/publish.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/LICENSE" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/src/commonMain/kotlin/utils/BufferExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/BufferExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffelo/utils/src/commonMain/kotlin/utils/Serializable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/Serializable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/utils/buffelaParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/utils/buffelaParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/stringUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/stringUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-types/buffela-to-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../test-buffelo.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +62,7 @@
     "git-widget-placeholder": "master",
     "javascript.nodejs.core.library.configured.version": "22.20.0",
     "javascript.nodejs.core.library.typings.version": "22.19.0",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,6 +73,7 @@
     "npm.serializer > build.executor": "Run",
     "npm.tools-common > build.executor": "Run",
     "npm.tools-kotlin > build.executor": "Run",
+    "npm.tools-types > build.executor": "Run",
     "settings.editor.selected.configurable": "JavaScript.Libraries",
     "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
@@ -79,11 +81,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/tools" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/packages/deserializer" />
       <recent name="$PROJECT_DIR$/packages/serializer" />
       <recent name="$PROJECT_DIR$/packages/parser" />
-      <recent name="$PROJECT_DIR$/packages/parser/constants" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/deserializer" />
@@ -93,19 +95,9 @@
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.tools-common &gt; build">
+  <component name="RunManager" selected="npm.tools-types &gt; build">
     <configuration name="deserializer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/packages/deserializer/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="parser &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/parser/package.json" />
       <command value="run" />
       <scripts>
         <script value="build" />
@@ -144,13 +136,23 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="tools-types &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/packages/tools-types/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="npm.tools-common &gt; build" />
+        <item itemvalue="npm.tools-types &gt; build" />
         <item itemvalue="npm.tools-kotlin &gt; build" />
+        <item itemvalue="npm.tools-common &gt; build" />
         <item itemvalue="npm.deserializer &gt; build" />
         <item itemvalue="npm.serializer &gt; build" />
-        <item itemvalue="npm.parser &gt; build" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +178,7 @@
       <workItem from="1762547684996" duration="35000" />
       <workItem from="1762547737725" duration="1237000" />
       <workItem from="1762548987451" duration="109000" />
-      <workItem from="1762549102225" duration="3989000" />
+      <workItem from="1762549102225" duration="7480000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -242,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762552947421</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Refactored folder structure">
+      <option name="closed" value="true" />
+      <created>1762553520289</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1762553520289</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -7,8 +7,8 @@ function nativeType(field, dimensions = field.dimensions.length) {
     const { base } = field;
     const resolvedType = typeof base === 'number' ? nativeTypes[base] : base.name
 
-    const arrayPrefix = stringUtils.repeatString("Array<", dimensions)
-    const arraySuffix = stringUtils.repeatString( ">", dimensions)
+    const arrayPrefix = stringUtils.repeat("Array<", dimensions)
+    const arraySuffix = stringUtils.repeat( ">", dimensions)
 
     return arrayPrefix + resolvedType + arraySuffix
 }

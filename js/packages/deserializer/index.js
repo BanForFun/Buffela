@@ -1,3 +1,3 @@
-const parseBuffela = require('./utils/calfDeserializer')
+const deserializeCalf = require('./utils/calfDeserializer')
 
-module.exports = { parseBuffela }
+module.exports = { deserializeCalf }
