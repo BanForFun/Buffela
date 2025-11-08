@@ -2,19 +2,19 @@
   "name": "@buffela/deserializer",
   "version": "1.0.0",
   "description": "Deserializer for the buffela wire protocol",
+  "types": "types/index.d.ts",
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "module": "dist/index.d.mts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./types/index.d.ts",
       "import": "./dist/index.mts",
       "require": "./dist/index.js"
     }
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup index.js --format cjs,esm --clean --out-dir dist && tsc"
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist"
   },
   "repository": {
     "type": "git",

@@ -4,25 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored folder structure">
-      <change afterPath="$PROJECT_DIR$/packages/tools/buffela-to-json.js" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed deserializer exports, added buffela to json converter">
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/Calf.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/utils/buffelaParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/utils/buffelaParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/stringUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/stringUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-types/buffela-to-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../test-buffelo.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,9 +31,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
         <option value="tsconfig.json" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -62,7 +61,7 @@
     "git-widget-placeholder": "master",
     "javascript.nodejs.core.library.configured.version": "22.20.0",
     "javascript.nodejs.core.library.typings.version": "22.19.0",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/serializer/types",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -81,11 +80,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/serializer/types" />
       <recent name="$PROJECT_DIR$/packages/tools" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/packages/deserializer" />
       <recent name="$PROJECT_DIR$/packages/serializer" />
-      <recent name="$PROJECT_DIR$/packages/parser" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/deserializer" />
@@ -178,7 +177,7 @@
       <workItem from="1762547684996" duration="35000" />
       <workItem from="1762547737725" duration="1237000" />
       <workItem from="1762548987451" duration="109000" />
-      <workItem from="1762549102225" duration="7480000" />
+      <workItem from="1762549102225" duration="13045000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -252,11 +251,38 @@
       <option name="project" value="LOCAL" />
       <updated>1762553520289</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Refactored folder structure">
+      <option name="closed" value="true" />
+      <created>1762556633921</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1762556633921</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fixed deserializer exports, added buffela to json converter">
+      <option name="closed" value="true" />
+      <created>1762556780081</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1762556780081</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Refactored code" />
@@ -265,6 +291,7 @@
     <MESSAGE value="Renamed kotlinGeneration directory" />
     <MESSAGE value="Fixed typescript type generator" />
     <MESSAGE value="Refactored folder structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored folder structure" />
+    <MESSAGE value="Fixed deserializer exports, added buffela to json converter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed deserializer exports, added buffela to json converter" />
   </component>
 </project>

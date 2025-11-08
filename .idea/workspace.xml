@@ -6,15 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="e4d54e3f-484f-4df5-b874-fff74bd7f036" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/js/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/js/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/js/packages/parser/utils/buffelaParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/parser/utils/buffelaParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/packages/tools-common/utils/buffelaReader.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-common/utils/buffelaReader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/packages/tools-kotlin/buffela-to-kotlin.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-kotlin/buffela-to-kotlin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/packages/tools-types/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/js/packages/tools-types/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test-buffelo.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

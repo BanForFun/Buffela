@@ -150,12 +150,6 @@ function writeCalf(calf, object, packet) {
     }
 }
 
-/**
- * @template T
- * @param {T} calf 
- * @param {T["_objectType"]} object
- * @returns {Buffer}
- */
 function serializeCalf(calf, object) {
     const packet = new SmartBuffer()
     writeCalf(calf, object, packet)

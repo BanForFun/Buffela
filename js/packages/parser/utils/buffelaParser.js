@@ -133,8 +133,9 @@ function parseEnum(calf, enumName) {
 }
 
 /**
+ * @template T
  * @param {any} buffela
- * @returns {unknown}
+ * @returns {T}
  */
 function parseBuffelaSchema(buffela) {
     if (!validateBuffela(buffela)) {

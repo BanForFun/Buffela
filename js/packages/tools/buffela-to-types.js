@@ -20,14 +20,15 @@ const printer = new Printer(outputStream)
 
 const nativeTypes = Object.fromEntries(Object.values(typeMap).map(n => [n.index, n.ts]))
 
+printer.line('import type calf from "@buffela/parser/internal/Calf"')
 printer.line(`type ValueOf<T extends object> = T[keyof T]`)
 
 function printDataTypeInterface(type) {
     if (calfUtils.isTypeAbstract(type) || calfUtils.isTypeRoot(type)) {
-        printer.blockStart(`readonly ${type.name} : {`)
-
         if (calfUtils.isTypeRoot(type))
-            printer.line(`readonly _objectType: ${type.name}`)
+            printer.blockStart(`readonly ${type.name} : calf<${type.name}> & {`)
+        else
+            printer.blockStart(`readonly ${type.name} : {`)
 
         for (const subtype of type.subtypes) {
             printDataTypeInterface(subtype)
@@ -52,7 +53,7 @@ function printEnumTypeInterface(calf) {
     }
 }
 
-printer.blockStart(`export type schema = {`)
+printer.blockStart(`type schema = {`)
 
 for (const calfName in buffela) {
     const calf = buffela[calfName]
@@ -67,6 +68,9 @@ for (const calfName in buffela) {
 }
 
 printer.blockEnd('}')
+
+printer.line()
+printer.line("export default schema")
 
 
 
@@ -119,9 +123,10 @@ for (const calfName in buffela) {
     const calf = buffela[calfName]
 
     if (calf.type === "enum") {
+        printer.line()
         printer.line(`export type ${calfName} = ValueOf<${typeOf(calfName)}>`)
     } else if (calf.type === "data") {
-        printer.blockStart(`type ${calfName} = {`)
+        printer.blockStart(`export type ${calfName} = {`)
         const isAbstract = printDataTypeObject(calf, [calfName], null)
         printer.blockEnd(isAbstract ? ')' : '}')
     } else {

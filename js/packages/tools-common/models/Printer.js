@@ -3,7 +3,7 @@ function Printer(stream) {
     let isBlockEmpty = false;
 
     function print(string) {
-        stream.write(string)
+        stream.write(string ?? "")
     }
 
     function printIndent() {

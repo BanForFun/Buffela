@@ -3,11 +3,10 @@ const {SmartBuffer} = require("smart-buffer");
 const {typeMap} = require("@buffela/parser");
 
 /**
- *
  * @param {Field|number} field
  * @param {SmartBuffer} packet
  * @param {number|undefined} dimension
- * @returns {any}
+ * @returns {unknown}
  */
 function readField(field, packet, dimension = field.dimensions?.length) {
     if (typeof field !== 'object') return field; // Constant
@@ -140,12 +139,7 @@ function readCalf(calf, object, packet) {
     }
 }
 
-/**
- * @template T
- * @param {T} calf
- * @param {Buffer} buffer
- * @returns {T["_objectType"]}
- */
+
 function deserializeCalf(calf, buffer) {
     const object = {}
     readCalf(calf, object, SmartBuffer.fromBuffer(buffer))
