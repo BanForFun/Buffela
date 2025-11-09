@@ -4,33 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Replaced _objectType hack with proper type">
-      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../.idea/artifacts/simple_jvm_1_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/parser/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/schema/Serializable.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/AndroidProjectSystem.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/caches/deviceStreaming.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/dictionaries/project.xml" beforeDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added kotlin example and fixed generated namespaces">
+      <change afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/benchmark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/simple.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/SinkExt.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/SourceExt.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/migrations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules/buffela.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/tools/buildSchema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/tools/buildSchemas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/buffela-to-kotlin.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/BufferExt.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/BufferExt.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/utils/Serializable.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/BufferExt.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +62,7 @@
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.20.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/serializer/types&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -89,11 +81,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
       <recent name="$PROJECT_DIR$/packages/tools" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/packages/deserializer" />
-      <recent name="$PROJECT_DIR$/packages/serializer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/deserializer" />
@@ -187,7 +179,8 @@
       <workItem from="1762547737725" duration="1237000" />
       <workItem from="1762548987451" duration="109000" />
       <workItem from="1762549102225" duration="13777000" />
-      <workItem from="1762597387122" duration="6516000" />
+      <workItem from="1762597387122" duration="16243000" />
+      <workItem from="1762713676973" duration="7079000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -285,7 +278,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762562178931</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added kotlin example and fixed generated namespaces">
+      <option name="closed" value="true" />
+      <created>1762630282474</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1762630282474</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -311,6 +312,7 @@
     <MESSAGE value="Refactored folder structure" />
     <MESSAGE value="Fixed deserializer exports, added buffela to json converter" />
     <MESSAGE value="Replaced _objectType hack with proper type" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replaced _objectType hack with proper type" />
+    <MESSAGE value="Added kotlin example and fixed generated namespaces" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added kotlin example and fixed generated namespaces" />
   </component>
 </project>

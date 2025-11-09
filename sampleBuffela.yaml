@@ -2,25 +2,21 @@ Gender:
   - FEMALE
   - MALE
 
-TokenPayload:
-    userId: Buffer(16)
-    role: Type
+User:
+  userId: String
+  gender: Gender
+  hobbies: String[UByte]
+  registeredWith: Type
 
-    Anonymous: {}
-    Registered:
-      gender: Gender
-      hobbies: String[UByte]
-      with: Type
+  RegisteredWithPhone:
+    countryCode: UByte
+    phone: String
 
-      Phone:
-        phone: String
-      Email:
-        email: String
-    Organizer:
-      email: String
+  RegisteredWithEmail:
+    email: String
 
-Token:
+AuthToken:
   version: 1
-  expiration: Double
+  issuedAt: Double
   signature: Buffer(32)
-  payload: TokenPayload
+  user: User

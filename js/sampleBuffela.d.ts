@@ -9,49 +9,36 @@ type schema = {
         readonly MALE: unique symbol
     }
 
-    readonly TokenPayload : calf<TokenPayload> & {
-        readonly Anonymous: unique symbol
-
-        readonly Registered : {
-            readonly Phone: unique symbol
-            readonly Email: unique symbol
-        }
-        readonly Organizer: unique symbol
+    readonly User : calf<User> & {
+        readonly RegisteredWithPhone: unique symbol
+        readonly RegisteredWithEmail: unique symbol
     }
 
-    readonly Token : calf<Token> & {}
+    readonly AuthToken : calf<AuthToken> & {}
 }
 
 export default schema
 
 export type Gender = ValueOf<schema["Gender"]>
 
-export type TokenPayload = {
-    userId: Buffer,
+export type User = {
+    userId: string,
+    gender: Gender,
+    hobbies: string[],
 } & (
     {
-        role: schema["TokenPayload"]["Anonymous"],
+        registeredWith: schema["User"]["RegisteredWithPhone"],
+        countryCode: number,
+        phone: string,
     } | {
-        role: schema["TokenPayload"]["Registered"],
-        gender: Gender,
-        hobbies: string[],
-    } & (
-        {
-            with: schema["TokenPayload"]["Registered"]["Phone"],
-            phone: string,
-        } | {
-            with: schema["TokenPayload"]["Registered"]["Email"],
-            email: string,
-        }
-    ) | {
-        role: schema["TokenPayload"]["Organizer"],
+        registeredWith: schema["User"]["RegisteredWithEmail"],
         email: string,
     }
 )
 
-export type Token = {
-    expiration: number,
+export type AuthToken = {
+    issuedAt: number,
     signature: Buffer,
-    payload: TokenPayload,
+    user: User,
     version?: never,
 }

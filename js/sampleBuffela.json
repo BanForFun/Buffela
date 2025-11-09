@@ -3,29 +3,23 @@
     "FEMALE",
     "MALE"
   ],
-  "TokenPayload": {
+  "User": {
     "userId": "Buffer(16)",
-    "role": "Type",
-    "Anonymous": {},
-    "Registered": {
-      "gender": "Gender",
-      "hobbies": "String[UByte]",
-      "with": "Type",
-      "Phone": {
-        "phone": "String"
-      },
-      "Email": {
-        "email": "String"
-      }
+    "gender": "Gender",
+    "hobbies": "String[UByte]",
+    "registeredWith": "Type",
+    "RegisteredWithPhone": {
+      "countryCode": "UByte",
+      "phone": "String"
     },
-    "Organizer": {
+    "RegisteredWithEmail": {
       "email": "String"
     }
   },
-  "Token": {
+  "AuthToken": {
     "version": 1,
     "expiration": "Double",
     "signature": "Buffer(32)",
-    "payload": "TokenPayload"
+    "user": "User"
   }
 }
