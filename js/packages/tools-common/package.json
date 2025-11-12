@@ -12,9 +12,14 @@
       "require": "./dist/index.js"
     }
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup index.js --format cjs,esm --clean --out-dir dist && tsc"
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist && tsc",
+    "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
     "type": "git",

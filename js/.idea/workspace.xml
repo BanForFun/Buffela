@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added readme and set version">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored code">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/calfUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/calfUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -305,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762795181498</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Refactored code">
+      <option name="closed" value="true" />
+      <created>1762954972918</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1762954972918</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +330,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored code" />
     <MESSAGE value="Fixed Printer.printLines indent" />
     <MESSAGE value="Refactored kotlin generation code" />
     <MESSAGE value="Renamed kotlinGeneration directory" />
@@ -336,6 +342,7 @@
     <MESSAGE value="Changed the kotlin input type to Source and output to Sink" />
     <MESSAGE value="Added readme and set version" />
     <MESSAGE value="Changed subtype ordering in packet" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed subtype ordering in packet" />
+    <MESSAGE value="Refactored code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Refactored code" />
   </component>
 </project>

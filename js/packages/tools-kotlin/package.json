@@ -5,9 +5,14 @@
   "bin": {
     "buffela-to-kotlin": "dist/buffela-to-kotlin.js"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup buffela-to-kotlin.js --format cjs --clean --out-dir dist"
+    "build": "tsup buffela-to-kotlin.js --format cjs --clean --out-dir dist",
+    "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
     "type": "git",

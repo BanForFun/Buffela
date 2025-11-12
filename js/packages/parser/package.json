@@ -15,9 +15,16 @@
       "types": "./types/Calf.d.ts"
     }
   },
+  "files": [
+    "dist",
+    "types",
+    "schemas",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node tools/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist && tsc"
+    "build": "node tools/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist && tsc",
+    "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
     "type": "git",

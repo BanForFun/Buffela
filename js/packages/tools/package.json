@@ -6,9 +6,14 @@
     "buffela-to-types": "dist/buffela-to-types.js",
     "buffela-to-json": "dist/buffela-to-json.js"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup buffela-to-types.js buffela-to-json.js --format cjs --clean --out-dir dist"
+    "build": "tsup buffela-to-types.js buffela-to-json.js --format cjs --clean --out-dir dist",
+    "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
     "type": "git",
