@@ -42,7 +42,7 @@ function printDeserializerObject(type) {
 }
 
 function printDeserializerConstructor(type) {
-    const modifier = calfUtils.typeInternalMemberModifier(type)
+    const modifier = calfUtils.isTypeAbstract(type) ? "protected" : "internal"
     printer.blockStart(`${modifier} constructor(packet: kotlinx.io.Source): super(packet) {`)
 
     if (!calfUtils.isTypeRoot(type))

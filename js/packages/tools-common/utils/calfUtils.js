@@ -14,19 +14,9 @@ function typeClassModifier(type) {
     return isTypeAbstract(type) ? "sealed" : "final"
 }
 
-function typeProtectedMemberModifier(type) {
-    return isTypeAbstract(type) ? "protected" : "private"
-}
-
-function typeInternalMemberModifier(type) {
-    return isTypeAbstract(type) ? "protected" : "internal"
-}
-
 module.exports = {
     isTypeAbstract,
     isTypeRoot,
     isTypeAmbiguousRoot,
-    typeClassModifier,
-    typeProtectedMemberModifier,
-    typeInternalMemberModifier
+    typeClassModifier
 }
