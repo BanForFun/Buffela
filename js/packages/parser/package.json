@@ -1,14 +1,14 @@
 {
   "name": "@buffela/parser",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Parser for the buffela wire protocol",
   "type": "module",
-  "types": "types/index.d.ts",
+  "types": "dist/index.d.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
+      "types": "./dist/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }

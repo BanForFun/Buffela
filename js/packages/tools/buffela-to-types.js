@@ -2,8 +2,8 @@
 
 const process = require('node:process')
 
-const { typeMap, parseBuffelaSchema } = require('@buffela/parser')
-const { readBuffelaFile, Printer, fileUtils, calfUtils } = require('@buffela/tools-common')
+const { typeMap, parseBuffelaSchema, calfUtils } = require('@buffela/parser')
+const { readBuffelaFile, Printer, fileUtils } = require('@buffela/tools-common')
 
 if (process.argv.length < 3 || process.argv.length > 4) {
     console.error("Usage: node buffela-to-types.js BUFFELA_FILE [OUTPUT_FILE_OR_DIRECTORY]")
