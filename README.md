@@ -68,6 +68,12 @@ Ideally, we would support both approaches for all supported languages, but ain't
 
 ### Javascript/Typescript
 
+Install the schema parser
+
+```shell
+npm i @buffela/parser
+```
+
 You want to serialize?
 
 ```shell
@@ -110,15 +116,7 @@ Set up a simple tsconfig.json inside your project folder (don't worry it's for y
 
 ### Kotlin
 
-Install the buffela kotlin code generator through npm:
-
-```shell
-npm i -g @buffela/tools-kotlin
-```
-
-> Don't know what npm is? Bless your innocent soul xD. I recommend installing node through nvm: https://github.com/nvm-sh/nvm
->
-> Install nvm and then run `nvm install --lts`. Now you should have node and npm with it.
+You'll need to install *node* for the code generator. I recommend installing it through nvm. To do so, first install nvm (https://github.com/nvm-sh/nvm) and then run `nvm install --lts`. You should now have node.
 
 You'll also want to install some dependencies required by the generated code in your project:
 
@@ -236,7 +234,7 @@ console.log(authToken)
 Run the kotlin class generator
 
 ```shell
-buffela-to-kotlin YOUR_BUFFELA_SCHEMA DIRECTORY_TO_PUT_THE_CLASSES --package=YOUR_PACKAGE
+npx @buffela/tools-kotlin YOUR_BUFFELA_SCHEMA DIRECTORY_TO_PUT_THE_CLASSES --package=YOUR_PACKAGE
 ```
 
 This will create a .kt file in the specified directory with the same name as your buffela schema
@@ -270,11 +268,7 @@ fun main() {
 
 ### Validation
 
-We provide a json schema for in-editor validation of your buffela schemas. Since we expect you'll be writing schemas in a development environment, the schema is bundled with the parser that you probably already need. To install it run:
-
-```shell
-npm i -D @buffela/parser
-```
+We provide a json schema for in-editor validation of your buffela schemas. Since we expect you'll be writing schemas in a development environment, the schema is bundled with the parser that you probably already need. 
 
 After installing the parser, you can find the schema in `node_modules/@buffela/parser/schemas/buffela.json`
 
@@ -627,7 +621,7 @@ When you serialize a sub calf, buffela needs to write some kind of header contai
 ```yaml
 RootCalf:
   ChildCalf1: (id 1)
-	
+
   ChildCalf2:
     GrandchildCalf1: (id 2)
     GrandchildCalf2: (id 3)

@@ -1,14 +1,14 @@
 {
   "name": "@buffela/serializer",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Serializer for the buffela wire protocol",
   "types": "types/index.d.ts",
   "main": "dist/index.js",
-  "module": "dist/index.d.mts",
+  "module": "dist/index.d.mjs",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/index.mts",
+      "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
   },
