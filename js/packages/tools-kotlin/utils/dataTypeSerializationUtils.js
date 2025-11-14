@@ -1,6 +1,6 @@
 const { calfUtils } = require("@buffela/parser")
 
-const { printWriteField } = require("./fieldSerializationUtils");
+const { printWriteVariable } = require("./fieldSerializationUtils");
 
 function printSerializerVariables(type) {
     if (type.leafIndex != null)
@@ -27,7 +27,7 @@ function printSerializerFunction(type) {
             printer.line(`packet.writeUByte(this._leafIndex)`)
 
         for (const varName in type.variables) {
-            printWriteField(type.variables[varName], `this.${varName}`)
+            printWriteVariable(type.variables[varName], `this.${varName}`)
         }
     } else {
         printer.line(`super.serialize(packet)`)
@@ -35,7 +35,7 @@ function printSerializerFunction(type) {
         printHeaderSerializerCode(Object.values(type.constants))
 
         for (const varName in type.variables) {
-            printWriteField(type.variables[varName], `this.${varName}`)
+            printWriteVariable(type.variables[varName], `this.${varName}`)
         }
     }
 

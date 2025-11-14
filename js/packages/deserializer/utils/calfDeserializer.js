@@ -16,19 +16,65 @@ import {typeMap, calfUtils} from "@buffela/parser";
 /**
  * @param {Field} field
  * @param {SmartBuffer} packet
+ * @returns {number}
+ */
+function readSizeField(field, packet) {
+    if (typeof field === "number") return field
+
+    return readVariable(field, packet)
+}
+
+/**
+ * @param {number} typeIndex
+ * @param {SmartBuffer} packet
+ * @returns {unknown}
+ */
+function readSimpleVariable(typeIndex, packet) {
+    switch(typeIndex) {
+        case typeMap.Boolean.index:
+            return !!packet.readUInt8()
+        case typeMap.Byte.index:
+            return packet.readInt8()
+        case typeMap.Short.index:
+            return packet.readInt16LE()
+        case typeMap.Int.index:
+            return packet.readInt32LE()
+        case typeMap.Long.index:
+            return packet.readBigInt64LE()
+        case typeMap.Float.index:
+            return packet.readFloatLE()
+        case typeMap.Double.index:
+            return packet.readDoubleLE()
+        case typeMap.UByte.index:
+            return packet.readUInt8()
+        case typeMap.UShort.index:
+            return packet.readUInt16LE()
+        case typeMap.UInt.index:
+            return packet.readUInt32LE()
+        case typeMap.ULong.index:
+            return packet.readBigUInt64LE()
+        default:
+            throw new Error(`Invalid type with index ${typeIndex}`)
+    }
+}
+
+/**
+ * @param {Field} field
+ * @param {SmartBuffer} packet
  * @param {number|undefined} dimension
  * @returns {unknown}
  */
-function readField(field, packet, dimension = field.dimensions?.length) {
-    if (typeof field !== 'object') return field; // Constant
+function readVariable(field, packet, dimension = field.dimensions?.length) {
+    if (typeof field !== 'object')
+        throw new Error('Expected a variable')
 
     if (dimension > 0) {
         const dimensionField = field.dimensions[dimension - 1]
-        const length = readField(dimensionField, packet);
+        const length = readSizeField(dimensionField, packet);
 
         const array = [];
         for (let i = 0; i < length; i++) {
-            array.push(readField(field, packet, dimension - 1))
+            array.push(readVariable(field, packet, dimension - 1))
         }
 
         return array
@@ -40,79 +86,63 @@ function readField(field, packet, dimension = field.dimensions?.length) {
             case typeMap.String.index:
                 if (typeof field.size === 'number')
                     return packet.readString(field.size)
-                else
+                else if (field.size === null)
                     return packet.readStringNT()
-            case typeMap.Boolean.index:
-                return !!packet.readUInt8()
-            case typeMap.Byte.index:
-                return packet.readInt8()
-            case typeMap.Short.index:
-                return packet.readInt16LE()
-            case typeMap.Int.index:
-                return packet.readInt32LE()
-            case typeMap.Long.index:
-                return packet.readBigInt64LE()
-            case typeMap.Float.index:
-                return packet.readFloatLE()
-            case typeMap.Double.index:
-                return packet.readDoubleLE()
-            case typeMap.UByte.index:
-                return packet.readUInt8()
-            case typeMap.UShort.index:
-                return packet.readUInt16LE()
-            case typeMap.UInt.index:
-                return packet.readUInt32LE()
-            case typeMap.ULong.index:
-                return packet.readBigUInt64LE()
+                else
+                    throw new Error('Invalid string constant size')
             case typeMap.IntArray.index:
                 return new Int32Array(packet.readBuffer(
-                    readField(field.size, packet) * Int32Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Int32Array.BYTES_PER_ELEMENT))
             case typeMap.ShortArray.index:
                 return new Int16Array(packet.readBuffer(
-                    readField(field.size, packet) * Int16Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Int16Array.BYTES_PER_ELEMENT))
             case typeMap.ByteArray.index:
                 return new Int8Array(packet.readBuffer(
-                    readField(field.size, packet) * Int8Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Int8Array.BYTES_PER_ELEMENT))
             case typeMap.LongArray.index:
                 return new BigInt64Array(packet.readBuffer(
-                    readField(field.size, packet) * BigInt64Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * BigInt64Array.BYTES_PER_ELEMENT))
             case typeMap.FloatArray.index:
                 return new Float32Array(packet.readBuffer(
-                    readField(field.size, packet) * Float32Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Float32Array.BYTES_PER_ELEMENT))
             case typeMap.DoubleArray.index:
                 return new Float64Array(packet.readBuffer(
-                    readField(field.size, packet) * Float64Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Float64Array.BYTES_PER_ELEMENT))
             case typeMap.UByteArray.index:
                 return new Uint8Array(packet.readBuffer(
-                    readField(field.size, packet) * Uint8Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Uint8Array.BYTES_PER_ELEMENT))
             case typeMap.UShortArray.index:
                 return new Uint16Array(packet.readBuffer(
-                    readField(field.size, packet) * Uint16Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Uint16Array.BYTES_PER_ELEMENT))
             case typeMap.UIntArray.index:
                 return new Uint32Array(packet.readBuffer(
-                    readField(field.size, packet) * Uint32Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Uint32Array.BYTES_PER_ELEMENT))
             case typeMap.ULongArray.index:
                 return new BigUint64Array(packet.readBuffer(
-                    readField(field.size, packet) * BigUint64Array.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * BigUint64Array.BYTES_PER_ELEMENT))
             case typeMap.BooleanArray.index:
                 return new Uint8ClampedArray(packet.readBuffer(
-                    readField(field.size, packet) * Uint8ClampedArray.BYTES_PER_ELEMENT))
+                    readSizeField(field.size, packet) * Uint8ClampedArray.BYTES_PER_ELEMENT))
             case typeMap.Buffer.index:
-                return packet.readBuffer(readField(field.size, packet))
+                return packet.readBuffer(readSizeField(field.size, packet))
             default:
-                throw new Error(`Invalid built-in type with index ${field.base}`)
+                if (field.size !== null)
+                    throw new Error('Unexpected size on simple type')
+
+                return readSimpleVariable(field.base, packet)
         }
     } else if (typeof field.base === 'object') {
         const calf = field.base
-        if (calf.type === "enum")
+        if (calf.type === "enum") {
             return calf.values[packet.readUInt8()]
-        else {
+        } else if (calf.type === "data") {
             const object = {}
             readCalf(calf, object, packet)
             return object;
+        } else {
+            throw new Error('Invalid field base calf format')
         }
     } else {
-        // Invalid type
         throw new Error('Invalid field base type format')
     }
 }
@@ -132,7 +162,7 @@ function validateOwnConstants(type, packet) {
 function readOwnVariables(type, data, packet) {
     for (const varName in type.variables) {
         const field = type.variables[varName];
-        data[varName] = readField(field, packet);
+        data[varName] = readVariable(field, packet);
     }
 }
 

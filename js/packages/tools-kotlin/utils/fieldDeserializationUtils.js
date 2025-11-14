@@ -13,7 +13,7 @@ import kotlinx.io.readString
 import gr.elaevents.buffela.internal.utils.readStringNt`)
 }
 
-function readSimpleType(typeIndex) {
+function readSimpleVariable(typeIndex) {
     switch (typeIndex) {
         case typeMap.Boolean.index:
             return `packet.readUByte() > 0u`
@@ -42,8 +42,11 @@ function readSimpleType(typeIndex) {
     }
 }
 
-function readSize(field) {
-    if (typeof field !== "object") return field
+function readSizeField(field) {
+    if (typeof field === "number") return field
+
+    if (typeof field !== "object")
+        throw new Error('Invalid size type')
 
     switch (field.base) {
         case typeMap.UByte.index:
@@ -58,16 +61,19 @@ function readSize(field) {
 }
 
 function readArray(field, typeIndex) {
-    const size = readSize(field.size)
-    return `${typeMap[field.base].kt}(${size}) { _ -> ${readSimpleType(typeIndex)} }`
+    const size = readSizeField(field.size)
+    return `${typeMap[field.base].kt}(${size}) { _ -> ${readSimpleVariable(typeIndex)} }`
 }
 
-function readField(field, dimension = field.dimensions?.length) {
+function readVariable(field, dimension = field.dimensions?.length) {
+    if (typeof field !== 'object')
+        throw new Error('Expected a variable')
+
     if (dimension > 0) {
         const sizeField = field.dimensions[dimension - 1]
-        const size = readSize(sizeField)
+        const size = readSizeField(sizeField)
 
-        return `Array(${size}) { _ -> ${readField(field,dimension - 1)} }`
+        return `Array(${size}) { _ -> ${readVariable(field,dimension - 1)} }`
     }
 
     if (typeof field.base === 'number') {
@@ -76,8 +82,10 @@ function readField(field, dimension = field.dimensions?.length) {
             case typeMap.String.index:
                 if (typeof field.size === 'number')
                     return `packet.readString(${field.size})`
-                else
+                else if (field.size === null)
                     return `packet.readStringNt()`
+                else
+                    throw new Error('Invalid string constant size')
             case typeMap.IntArray.index:
                 return readArray(field, typeMap.Int.index)
             case typeMap.ShortArray.index:
@@ -101,10 +109,13 @@ function readField(field, dimension = field.dimensions?.length) {
             case typeMap.BooleanArray.index:
                 return readArray(field, typeMap.Boolean.index)
             case typeMap.Buffer.index:
-                const size = readSize(field.size)
+                const size = readSizeField(field.size)
                 return `packet.readByteArray(${size})`
             default:
-                return readSimpleType(field.base)
+                if (field.size !== null)
+                    throw new Error('Unexpected size on simple type')
+
+                return readSimpleVariable(field.base)
         }
     } else if (typeof field.base === 'object') {
         const calf = field.base
@@ -113,11 +124,10 @@ function readField(field, dimension = field.dimensions?.length) {
         else if (calf.type === "data")
             return `${calf.name}.deserialize(packet)`
         else
-            throw new Error('Invalid type')
+            throw new Error('Invalid field base calf format')
     } else {
-        // Invalid type
         throw new Error('Invalid field base type format')
     }
 }
 
-module.exports = {printDeserializerImports, readField}
+module.exports = {printDeserializerImports, readVariable}

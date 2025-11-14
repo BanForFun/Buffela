@@ -146,6 +146,10 @@ final class AuthToken: gr.elaevents.buffela.schema.Serializable {
     override fun serialize(packet: kotlinx.io.Sink) {
         packet.writeUByte(1u)
         packet.writeDoubleLe(this.issuedAt)
+
+        if (this.signature.size != 32) {
+            throw IllegalStateException("Expected size '32' got '${this.signature.size}'")
+        }
         packet.write(this.signature)
         this.user.serialize(packet)
     }

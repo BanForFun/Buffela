@@ -12,7 +12,7 @@ import kotlinx.io.writeString
 import gr.elaevents.buffela.internal.utils.writeStringNt`)
 }
 
-function printWriteSimple(typeIndex, name) {
+function printWriteSimpleVariable(typeIndex, name) {
     switch (typeIndex) {
         case typeMap.Boolean.index:
             printer.line(`packet.writeUByte(if (${name}) 1u else 0u)`)
@@ -52,8 +52,17 @@ function printWriteSimple(typeIndex, name) {
     }
 }
 
-function printWriteSize(field, name) {
-    if (typeof field !== "object") return
+function printWriteSizeField(field, name) {
+    if (typeof field === 'number') {
+        printer.blockStart(`if (${name} != ${field}) {`)
+        printer.line(`throw IllegalStateException("Expected size '${field}' got '\${${name}}'")`)
+        printer.blockEnd('}')
+
+        return;
+    }
+
+    if (typeof field !== "object")
+        throw new Error('Invalid size type')
 
     switch (field.base) {
         case typeMap.UByte.index:
@@ -71,21 +80,24 @@ function printWriteSize(field, name) {
 }
 
 function printWriteArray(field, name, typeIndex) {
-    printWriteSize(field.size, `${name}.size`)
+    printWriteSizeField(field.size, `${name}.size`)
     const itemName = `item0`;
     printer.blockStart(`for (${itemName} in ${name}) {`)
-    printWriteSimple(typeIndex, itemName)
+    printWriteSimpleVariable(typeIndex, itemName)
     printer.blockEnd('}')
 }
 
-function printWriteField(field, name, dimension = field.dimensions?.length) {
+function printWriteVariable(field, name, dimension = field.dimensions?.length) {
+    if (typeof field !== 'object')
+        throw new Error('Expected a variable')
+
     if (dimension > 0) {
         const dimensionField = field.dimensions[dimension - 1]
-        printWriteSize(dimensionField, `${name}.size`)
+        printWriteSizeField(dimensionField, `${name}.size`)
 
         const itemName = `item${dimension}`;
         printer.blockStart(`for (${itemName} in ${name}) {`)
-        printWriteField(field, itemName, dimension - 1)
+        printWriteVariable(field, itemName, dimension - 1)
         printer.blockEnd('}')
 
         return
@@ -97,8 +109,10 @@ function printWriteField(field, name, dimension = field.dimensions?.length) {
             case typeMap.String.index:
                 if (typeof field.size === 'number')
                     printer.line(`packet.writeString(${name})`)
-                else
+                else if (field.size === null)
                     printer.line(`packet.writeStringNt(${name})`)
+                else
+                    throw new Error('Invalid string constant size')
 
                 break;
             case typeMap.IntArray.index:
@@ -135,11 +149,14 @@ function printWriteField(field, name, dimension = field.dimensions?.length) {
                 printWriteArray(field, name, typeMap.Boolean.index)
                 break;
             case typeMap.Buffer.index:
-                printWriteSize(field.size, `${name}.size`)
+                printWriteSizeField(field.size, `${name}.size`)
                 printer.line(`packet.write(${name})`)
                 break;
             default:
-                printWriteSimple(field.base, name)
+                if (field.size !== null)
+                    throw new Error('Unexpected size on simple type')
+
+                printWriteSimpleVariable(field.base, name)
         }
     } else if (typeof field.base === 'object') {
         const calf = field.base
@@ -148,11 +165,10 @@ function printWriteField(field, name, dimension = field.dimensions?.length) {
         else if (calf.type === "data")
             printer.line(`${name}.serialize(packet)`)
         else
-            throw new Error('Invalid type')
+            throw new Error('Invalid field base calf format')
     } else {
-        // Invalid type
         throw new Error('Invalid field base type format')
     }
 }
 
-module.exports = { printSerializerImports, printWriteField }
+module.exports = { printSerializerImports, printWriteVariable }

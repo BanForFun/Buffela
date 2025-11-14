@@ -1,6 +1,6 @@
 {
   "name": "@buffela/tools-kotlin",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "description": "Kotlin developer tools for the buffela data format",
   "bin": {
     "buffela-kotlin": "dist/kotlin-tools.js"
@@ -41,8 +41,8 @@
   },
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
-    "@buffela/parser": "2.4.1",
-    "@buffela/tools-common": "2.4.1",
+    "@buffela/parser": "2.4.2",
+    "@buffela/tools-common": "2.4.2",
     "yargs": "^18.0.0"
   },
   "devDependencies": {

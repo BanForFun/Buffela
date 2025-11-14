@@ -14,38 +14,32 @@ import { typeMap, calfUtils } from '@buffela/parser'
  */
 
 /**
- * 
+ *
  * @param {Field} field
- * @param {any} value 
+ * @param {any} value
  * @param {SmartBuffer} packet
- * @param {number|undefined} dimension
- * @returns 
+ * @returns {void}
  */
-function writeField(field, value, packet, dimension = field.dimensions?.length) {
-    if (typeof field !== 'object') return; // Is constant
+function writeSizeField(field, value, packet) {
+    if (typeof field === 'number') {
+        if (field !== value)
+            throw new Error(`Expected size '${field}' got '${value}'`)
 
-    if (dimension > 0) {
-        const dimensionField = field.dimensions[dimension - 1]
-        writeField(dimensionField, value.length, packet);
-        
-        for (const item of value)
-            writeField(field, item, packet, dimension - 1)
-
-        return
+        return;
     }
 
-    if (typeof field.base === 'number') {
-        // console.log("Writing field", schemaTypes[field.base], "at", packet.writeOffset)
+    writeVariable(field, value, packet)
+}
 
-        // Built-in type
-        switch(field.base) {
-        case typeMap.String.index:
-            if (typeof field.size === 'number')
-                packet.writeString(value)
-            else
-                packet.writeStringNT(value)
-
-            break;
+/**
+ *
+ * @param {number} typeIndex
+ * @param {any} value
+ * @param {SmartBuffer} packet
+ * @returns {void}
+ */
+function writeSimpleVariable(typeIndex, value, packet) {
+    switch (typeIndex) {
         case typeMap.Boolean.index:
             packet.writeUInt8(value ? 1 : 0)
             break;
@@ -79,6 +73,47 @@ function writeField(field, value, packet, dimension = field.dimensions?.length) 
         case typeMap.ULong.index:
             packet.writeBigUInt64LE(value)
             break;
+        default:
+            throw new Error(`Invalid type with index ${typeIndex}`)
+    }
+}
+
+/**
+ * 
+ * @param {Field} field
+ * @param {any} value 
+ * @param {SmartBuffer} packet
+ * @param {number|undefined} dimension
+ * @returns {void}
+ */
+function writeVariable(field, value, packet, dimension = field.dimensions?.length) {
+    if (typeof field !== 'object')
+        throw new Error('Expected a variable')
+
+    if (dimension > 0) {
+        const dimensionField = field.dimensions[dimension - 1]
+        writeSizeField(dimensionField, value.length, packet);
+        
+        for (const item of value)
+            writeVariable(field, item, packet, dimension - 1)
+
+        return
+    }
+
+    if (typeof field.base === 'number') {
+        // console.log("Writing field", schemaTypes[field.base], "at", packet.writeOffset)
+
+        // Built-in type
+        switch(field.base) {
+        case typeMap.String.index:
+            if (typeof field.size === 'number')
+                packet.writeString(value)
+            else if (field.size === null)
+                packet.writeStringNT(value)
+            else
+                throw new Error('Invalid string constant size')
+
+            break;
         case typeMap.IntArray.index:
         case typeMap.ShortArray.index:
         case typeMap.ByteArray.index:
@@ -90,24 +125,30 @@ function writeField(field, value, packet, dimension = field.dimensions?.length) 
         case typeMap.UIntArray.index:
         case typeMap.ULongArray.index:
         case typeMap.BooleanArray.index:
-            writeField(field.size, value.length, packet)
+            writeSizeField(field.size, value.length, packet)
             packet.writeBuffer(Buffer.from(value))
             break;
         case typeMap.Buffer.index:
-            writeField(field.size, value.size, packet)
+            writeSizeField(field.size, value.length, packet)
             packet.writeBuffer(value)
             break;
         default:
-            throw new Error(`Invalid built-in type with index ${field.base}`)
+            if (field.size !== null)
+                throw new Error('Unexpected size on simple type')
+
+            writeSimpleVariable(field.base, value, packet)
+            break;
         }
     } else if (typeof field.base === 'object') {
         const calf = field.base
-        if (calf.type === "enum")
+        if (calf.type === "enum") {
             packet.writeUInt8(value.index)
-        else
+        } else if (calf.type === "data") {
             writeCalf(calf, value, packet)
+        } else {
+            throw new Error('Invalid field base calf format')
+        }
     } else {
-        // Invalid type
         throw new Error('Invalid field base type format')
     }
 }
@@ -126,7 +167,7 @@ function writeOwnConstants(type, packet) {
 function writeOwnVariables(type, data, packet) {
     for (const varName in type.variables) {
         const field = type.variables[varName]
-        writeField(field, data[varName], packet)
+        writeVariable(field, data[varName], packet)
     }
 }
 

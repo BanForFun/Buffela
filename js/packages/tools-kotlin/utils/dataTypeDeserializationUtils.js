@@ -1,6 +1,6 @@
 const { calfUtils } = require("@buffela/parser")
 
-const {readField} = require("./fieldDeserializationUtils");
+const {readVariable} = require("./fieldDeserializationUtils");
 
 function printHeaderValidatorCode(values) {
     if (values.length === 0) return;
@@ -49,7 +49,7 @@ function printDeserializerConstructor(type) {
         printHeaderValidatorCode(Object.values(type.constants))
 
     for (const varName in type.variables)
-        printer.line(`this.${varName} = ${readField(type.variables[varName])}`)
+        printer.line(`this.${varName} = ${readVariable(type.variables[varName])}`)
 
     printer.blockEnd('}')
 }
