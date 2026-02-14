@@ -4,11 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Improved error handling">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added string length validation">
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/ajvUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/jsonUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/simple_jvm_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_2_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_2_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_1_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_2_0_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_2_1_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/jsonSchemas.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/constants/buffelaSchema.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/constants/buffelaTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/constants/buffelaTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/tools/buildSchemas.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/tools/buildSchemas.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/objectUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,10 +73,10 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v3&quot;,
     &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.20.0&quot;,
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/common&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/schemas/buffela.json&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -61,25 +89,25 @@
     &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
     &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
     &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;JavaScript.Libraries&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/validator/constants" />
       <recent name="$PROJECT_DIR$/packages/common" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
       <recent name="$PROJECT_DIR$/packages/tools" />
-      <recent name="$PROJECT_DIR$/packages/tools-common" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/tools-common/utils" />
+      <recent name="$PROJECT_DIR$/packages/tools-common" />
+      <recent name="$PROJECT_DIR$/packages/validator" />
       <recent name="$PROJECT_DIR$/packages/parser/utils" />
       <recent name="$PROJECT_DIR$/packages/serializer/utils" />
-      <recent name="$PROJECT_DIR$/packages/common/utils" />
-      <recent name="$PROJECT_DIR$/packages/deserializer" />
-      <recent name="$PROJECT_DIR$/packages/deserializer/utils" />
     </key>
   </component>
   <component name="RunManager" selected="npm.parser &gt; build">
@@ -179,7 +207,14 @@
       <workItem from="1763056216000" duration="13566000" />
       <workItem from="1763112129986" duration="6000" />
       <workItem from="1763112694822" duration="1932000" />
-      <workItem from="1763134531768" duration="5218000" />
+      <workItem from="1763134531768" duration="5498000" />
+      <workItem from="1763140069563" duration="518000" />
+      <workItem from="1763394625633" duration="4000" />
+      <workItem from="1770900370156" duration="32351000" />
+      <workItem from="1770979932955" duration="2868000" />
+      <workItem from="1771011459381" duration="12216000" />
+      <workItem from="1771023693913" duration="8686000" />
+      <workItem from="1771063019678" duration="2571000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -405,7 +440,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763139464499</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added string length validation">
+      <option name="closed" value="true" />
+      <created>1763139808633</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1763139808633</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -447,6 +490,7 @@
     <MESSAGE value="Fixed readme mistakes and added keywords" />
     <MESSAGE value="Rebranded to binary format" />
     <MESSAGE value="Improved error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved error handling" />
+    <MESSAGE value="Added string length validation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added string length validation" />
   </component>
 </project>

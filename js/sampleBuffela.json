@@ -1,13 +1,12 @@
 {
-  "Gender": [
+  "Gender(UByte)": [
     "FEMALE",
     "MALE"
   ],
-  "User": {
+  "User(UByte)": {
     "userId": "String(36)",
     "gender": "Gender",
     "hobbies": "String[UByte]",
-    "registeredWith": "Type",
     "RegisteredWithPhone": {
       "countryCode": "UByte",
       "phone": "String"
@@ -17,9 +16,8 @@
     }
   },
   "AuthToken": {
-    "version": 1,
     "issuedAt": "Double",
-    "signature": "Buffer(32)",
+    "signature": "Buffer(10)",
     "user": "User"
   }
 }

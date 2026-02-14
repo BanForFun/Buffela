@@ -8,11 +8,12 @@
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
               <option name="name" value="buffela" />
-              <option name="relativePathToSchema" value="js/node_modules/@buffela/parser/schemas/buffela.json" />
+              <option name="relativePathToSchema" value="packages/tools-common/schemas/buffela.json" />
+              <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="sampleBuffela.yaml" />
+                    <option name="path" value="file://$PROJECT_DIR$/../sampleBuffela.yaml" />
                   </Item>
                 </list>
               </option>

@@ -4,6 +4,7 @@
  * @returns {boolean}
  */
 function isEmpty(object) {
+    // noinspection LoopStatementThatDoesntLoopJS
     for (let _ in object) {
         return false;
     }
