@@ -20,16 +20,15 @@ function excludePattern(pattern, exclude) {
 }
 
 const reservedTypeNamePattern = enumPattern(...primitiveTypes, ...hybridTypes, ...arrayTypes)
-const specialTypeNamePattern = enumPattern(...hybridTypes, ...arrayTypes)
+const complexTypeNamePattern = enumPattern(...hybridTypes, ...arrayTypes)
 const hybridTypeNamePattern = enumPattern(...hybridTypes)
 const arrayTypeNamePattern = enumPattern(...arrayTypes)
-const sizeTypeNamePattern = enumPattern(...sizeTypes)
 
 const constLengthPattern =  "\\d+"
 const lengthPattern = enumPattern(...sizeTypes, constLengthPattern)
 
+const sizeSuffixPattern = `\\(${enumPattern(...sizeTypes)}\\)`
 const arraySuffixPattern = `(\\[${lengthPattern}\\])*`
-const sizeSuffixPattern = `(\\(${sizeTypeNamePattern}\\))?`
 const lengthSuffixPattern = `\\(${lengthPattern}\\)`
 const hybridSuffixPattern = `(\\(${constLengthPattern}\\))?`
 
@@ -37,6 +36,9 @@ const enumValuePattern = '[A-Z_]+'
 const propertyNamePattern = '[a-z][a-zA-Z]*'
 const subtypeNamePattern = '[A-Z][a-zA-Z]*'
 const typeNamePattern = '[A-Z][a-zA-Z]*'
+
+const globalNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
+const simpleTypeNamePattern = excludePattern(typeNamePattern, complexTypeNamePattern)
 
 // Schemata ============================================================================================================
 
@@ -54,16 +56,18 @@ function fail(message) {
     return { "not": {}, "errorMessage": message }
 }
 
-function buildSchema(propertySchema, calfSchema) {
+function buildSchema(propertySchema, sizedSchema, simpleSchema) {
     return {
         "$defs": {
-            "ObjectDefinition": {
-                "type": "object",
-                "patternProperties": {
-                    [anchoredPattern(propertyNamePattern)]: propertySchema,
-                    [anchoredPattern(subtypeNamePattern, sizeSuffixPattern)]: { "$ref": "#/$defs/ObjectDefinition" },
+            "AliasDefinition": {
+                ...propertySchema,
+                "not": {
+                    "type": "string",
+                    "pattern": anchoredPattern(typeNamePattern)
                 },
-                "additionalProperties": false,
+                "errorMessage": {
+                    "not": "Expected complex type"
+                }
             },
             "EnumDefinition": {
                 "type": "array",
@@ -71,22 +75,35 @@ function buildSchema(propertySchema, calfSchema) {
                     "type": "string",
                     "pattern": anchoredPattern(enumValuePattern)
                 }
+            },
+            "ObjectDefinition": {
+                "type": "object",
+                "patternProperties": {
+                    [anchoredPattern(propertyNamePattern)]: propertySchema,
+                    [anchoredPattern(subtypeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" },
+                    [anchoredPattern(subtypeNamePattern, sizeSuffixPattern)]: { "$ref": "#/$defs/ObjectDefinition" }
+                },
+                "additionalProperties": false,
             }
         },
         "type": "object",
         "patternProperties": {
-            [anchoredPattern(
-                excludePattern(typeNamePattern, reservedTypeNamePattern),
-                sizeSuffixPattern
-            )]: calfSchema,
+            [anchoredPattern(globalNamePattern)]: simpleSchema,
+            [anchoredPattern(globalNamePattern, sizeSuffixPattern)]: sizedSchema
         },
         "additionalProperties": false
     }
 }
 
-const definitionSchemata = [
-    ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" }),
-    ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" })
+const sizedDefinitionSchemata = [
+    ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
+    ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
+]
+
+const simpleDefinitionSchemata = [
+    ifThen({ "type": "string" }, { "$ref": "#/$defs/AliasDefinition" }),
+    ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
+    ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
 ]
 
 function propertySchema(namePattern, suffixPattern, suffixMessage) {
@@ -102,7 +119,7 @@ function propertySchema(namePattern, suffixPattern, suffixMessage) {
 
 const propertySchemata = [
     propertySchema(
-        excludePattern(typeNamePattern, specialTypeNamePattern), arraySuffixPattern,
+        simpleTypeNamePattern, arraySuffixPattern,
         "Expected length e.g. [10] or [UByte]"
     ),
 
@@ -118,8 +135,9 @@ const propertySchemata = [
 ]
 
 const readerSchema = buildSchema(
-    when(propertySchemata, fail("Invalid property type")),
-    when(definitionSchemata,  fail("Invalid definition"))
+    when(propertySchemata, fail("Expected property type")),
+    when(sizedDefinitionSchemata, fail("Expected enum or object definition")),
+    when(simpleDefinitionSchemata, fail("Expected enum, object or alias definition")),
 )
 
 // Some editors *cough* IntelliJ *cough* do not support if/then, we need to simplify the schema
@@ -138,7 +156,9 @@ const editorSchema = buildSchema({
         },
     ]
 }, {
-    "oneOf": definitionSchemata.map(k => k.then),
+    "oneOf": sizedDefinitionSchemata.map(k => k.then),
+}, {
+    "oneOf": simpleDefinitionSchemata.map(k => k.then),
 })
 
 module.exports = {

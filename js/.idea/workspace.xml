@@ -4,38 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added string length validation">
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/ajvUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/jsonUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/simple_jvm_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_2_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_2_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_1_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_2_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/artifacts/utils_jvm_2_1_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/jsonSchemas.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Changed enum and object definition syntax">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/constants/buffelaSchema.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/constants/buffelaTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/constants/buffelaTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/tools/buildSchemas.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/tools/buildSchemas.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/buffelaReader.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/objectUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -103,8 +74,8 @@
       <recent name="$PROJECT_DIR$/packages/tools" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/tools-common/utils" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
+      <recent name="$PROJECT_DIR$/packages/tools-common/utils" />
       <recent name="$PROJECT_DIR$/packages/validator" />
       <recent name="$PROJECT_DIR$/packages/parser/utils" />
       <recent name="$PROJECT_DIR$/packages/serializer/utils" />
@@ -214,7 +185,7 @@
       <workItem from="1770979932955" duration="2868000" />
       <workItem from="1771011459381" duration="12216000" />
       <workItem from="1771023693913" duration="8686000" />
-      <workItem from="1771063019678" duration="2571000" />
+      <workItem from="1771063019678" duration="7029000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -448,7 +419,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763139808633</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Changed enum and object definition syntax">
+      <option name="closed" value="true" />
+      <created>1771065720847</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771065720847</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -466,7 +445,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Printer.printLines indent" />
     <MESSAGE value="Refactored kotlin generation code" />
     <MESSAGE value="Renamed kotlinGeneration directory" />
     <MESSAGE value="Fixed typescript type generator" />
@@ -491,6 +469,7 @@
     <MESSAGE value="Rebranded to binary format" />
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Added string length validation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added string length validation" />
+    <MESSAGE value="Changed enum and object definition syntax" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed enum and object definition syntax" />
   </component>
 </project>
