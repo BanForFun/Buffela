@@ -33,7 +33,7 @@ const lengthSuffixPattern = `\\(${lengthPattern}\\)`
 const hybridSuffixPattern = `(\\(${constLengthPattern}\\))?`
 
 const enumValuePattern = '[A-Z_]+'
-const propertyNamePattern = '[a-z][a-zA-Z]*'
+const fieldNamePattern = '[a-z][a-zA-Z]*'
 const subtypeNamePattern = '[A-Z][a-zA-Z]*'
 const typeNamePattern = '[A-Z][a-zA-Z]*'
 
@@ -56,11 +56,11 @@ function fail(message) {
     return { "not": {}, "errorMessage": message }
 }
 
-function buildSchema(propertySchema, sizedSchema, simpleSchema) {
+function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
     return {
         "$defs": {
             "AliasDefinition": {
-                ...propertySchema,
+                ...fieldSchema,
                 "not": {
                     "type": "string",
                     "pattern": anchoredPattern(typeNamePattern)
@@ -71,6 +71,7 @@ function buildSchema(propertySchema, sizedSchema, simpleSchema) {
             },
             "EnumDefinition": {
                 "type": "array",
+                "uniqueItems": true,
                 "items": {
                     "type": "string",
                     "pattern": anchoredPattern(enumValuePattern)
@@ -79,7 +80,7 @@ function buildSchema(propertySchema, sizedSchema, simpleSchema) {
             "ObjectDefinition": {
                 "type": "object",
                 "patternProperties": {
-                    [anchoredPattern(propertyNamePattern)]: propertySchema,
+                    [anchoredPattern(fieldNamePattern)]: fieldSchema,
                     [anchoredPattern(subtypeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" },
                     [anchoredPattern(subtypeNamePattern, sizeSuffixPattern)]: { "$ref": "#/$defs/ObjectDefinition" }
                 },
@@ -106,7 +107,7 @@ const simpleDefinitionSchemata = [
     ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
 ]
 
-function propertySchema(namePattern, suffixPattern, suffixMessage) {
+function fieldSchema(namePattern, suffixPattern, suffixMessage) {
     return ifThen({
         "type": "string",
         "pattern": `^${namePattern}([^a-zA-Z]|$)`
@@ -117,25 +118,25 @@ function propertySchema(namePattern, suffixPattern, suffixMessage) {
     })
 }
 
-const propertySchemata = [
-    propertySchema(
+const fieldSchemata = [
+    fieldSchema(
         simpleTypeNamePattern, arraySuffixPattern,
         "Expected length e.g. [10] or [UByte]"
     ),
 
-    propertySchema(
+    fieldSchema(
         hybridTypeNamePattern, hybridSuffixPattern + arraySuffixPattern,
         "Expected constant size e.g. (10)"
     ),
 
-    propertySchema(
+    fieldSchema(
         arrayTypeNamePattern, lengthSuffixPattern + arraySuffixPattern,
         "Expected length e.g. (10) or (UByte)"
     )
 ]
 
 const readerSchema = buildSchema(
-    when(propertySchemata, fail("Expected property type")),
+    when(fieldSchemata, fail("Expected field type")),
     when(sizedDefinitionSchemata, fail("Expected enum or object definition")),
     when(simpleDefinitionSchemata, fail("Expected enum, object or alias definition")),
 )
@@ -143,7 +144,7 @@ const readerSchema = buildSchema(
 // Some editors *cough* IntelliJ *cough* do not support if/then, we need to simplify the schema
 const editorSchema = buildSchema({
     "oneOf": [
-        ...propertySchemata.map(k => k.then),
+        ...fieldSchemata.map(k => k.then),
         {
             // For editor suggestions
             "type": "string",

@@ -4,9 +4,44 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Changed enum and object definition syntax">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added alias syntax">
+      <change afterPath="$PROJECT_DIR$/packages/parser/constants/symbols.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/debug.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/EnumType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/FieldType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/Schema.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/Type.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/EnumType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/FieldType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/ObjectType.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/Primitive.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/Schema.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/Type.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/Utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/types/index.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/types/Calf.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/utils/buffelaParser.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/utils/calfUtils.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/objectUtils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/stringUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/stringUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/buffela-to-json.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-json.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/buffela-to-types.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.old.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,51 +72,55 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;v3&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.20.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/schemas/buffela.json&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.debug parser.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "v3",
+    "javascript.nodejs.core.library.configured.version": "22.20.0",
+    "javascript.nodejs.core.library.typings.version": "22.19.0",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/parser/debug.js",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "npm.common > build.executor": "Run",
+    "npm.deserializer > build.executor": "Run",
+    "npm.parser > build.executor": "Run",
+    "npm.serializer > build.executor": "Run",
+    "npm.tools-common > build.executor": "Run",
+    "npm.tools-kotlin > build.executor": "Run",
+    "npm.tools-types > build.executor": "Run",
+    "settings.editor.selected.configurable": "settings.json.schema",
+    "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/parser/types" />
       <recent name="$PROJECT_DIR$/packages/validator/constants" />
       <recent name="$PROJECT_DIR$/packages/common" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
-      <recent name="$PROJECT_DIR$/packages/tools" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/parser/types" />
+      <recent name="$PROJECT_DIR$/packages/parser/types/internal" />
+      <recent name="$PROJECT_DIR$/packages/tools-common/types" />
+      <recent name="$PROJECT_DIR$/packages/tools-kotlin/utils" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
-      <recent name="$PROJECT_DIR$/packages/tools-common/utils" />
-      <recent name="$PROJECT_DIR$/packages/validator" />
-      <recent name="$PROJECT_DIR$/packages/parser/utils" />
-      <recent name="$PROJECT_DIR$/packages/serializer/utils" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.parser &gt; build">
+  <component name="RunManager" selected="Node.js.debug parser">
+    <configuration name="debug parser" type="NodeJSConfigurationType" path-to-js-file="packages/parser/debug.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="common &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/packages/common/package.json" />
       <command value="run" />
@@ -132,6 +171,14 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Node.js.debug parser" />
+      <item itemvalue="npm.common &gt; build" />
+      <item itemvalue="npm.deserializer &gt; build" />
+      <item itemvalue="npm.parser &gt; build" />
+      <item itemvalue="npm.serializer &gt; build" />
+      <item itemvalue="npm.tools-common &gt; build" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.parser &gt; build" />
@@ -185,7 +232,10 @@
       <workItem from="1770979932955" duration="2868000" />
       <workItem from="1771011459381" duration="12216000" />
       <workItem from="1771023693913" duration="8686000" />
-      <workItem from="1771063019678" duration="7029000" />
+      <workItem from="1771063019678" duration="7094000" />
+      <workItem from="1771071498305" duration="21423000" />
+      <workItem from="1771163748955" duration="37378000" />
+      <workItem from="1771242720410" duration="30984000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -427,11 +477,24 @@
       <option name="project" value="LOCAL" />
       <updated>1771065720847</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Added alias syntax">
+      <option name="closed" value="true" />
+      <created>1771070107678</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771070107678</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+    <option name="exactExcludedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/sampleBuffela.d.ts" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -445,7 +508,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored kotlin generation code" />
     <MESSAGE value="Renamed kotlinGeneration directory" />
     <MESSAGE value="Fixed typescript type generator" />
     <MESSAGE value="Refactored folder structure" />
@@ -470,6 +532,7 @@
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Added string length validation" />
     <MESSAGE value="Changed enum and object definition syntax" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed enum and object definition syntax" />
+    <MESSAGE value="Added alias syntax" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added alias syntax" />
   </component>
 </project>

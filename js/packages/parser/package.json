@@ -3,12 +3,12 @@
   "version": "2.4.2",
   "description": "Parser for the buffela data format schema",
   "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "types/index.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./types/index.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
@@ -21,7 +21,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup index.js --format cjs,esm --clean --out-dir dist --dts",
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
@@ -47,6 +47,5 @@
   },
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
-    "ajv": "^8.17.1"
   }
 }

@@ -1,23 +1,32 @@
 {
-  "Gender(UByte)": [
+  "Gender": [
     "FEMALE",
     "MALE"
   ],
-  "User(UByte)": {
+  "User": {
     "userId": "String(36)",
     "gender": "Gender",
     "hobbies": "String[UByte]",
     "RegisteredWithPhone": {
       "countryCode": "UByte",
-      "phone": "String"
+      "Empty": {},
+      "Landline": {
+        "phone": "String"
+      },
+      "Mobile": {
+        "phone": "String"
+      }
     },
     "RegisteredWithEmail": {
       "email": "String"
     }
   },
-  "AuthToken": {
+  "AuthTokenPayload": {
     "issuedAt": "Double",
-    "signature": "Buffer(10)",
     "user": "User"
+  },
+  "AuthToken": {
+    "payload": "AuthTokenPayload",
+    "signature": "Buffer(10)"
   }
 }

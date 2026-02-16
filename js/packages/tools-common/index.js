@@ -1,13 +1,9 @@
-const readBuffelaFile = require('./utils/readUtils')
 const Printer = require('./models/Printer')
-const fileUtils = require('./utils/fileUtils')
-const objectUtils = require('./utils/objectUtils')
-const stringUtils = require('./utils/stringUtils')
+const { readSchema } = require('./utils/readUtils')
+const { getFileOutputStream } = require('./utils/fileUtils')
 
 module.exports = {
     Printer,
-    readBuffelaFile,
-    fileUtils,
-    objectUtils,
-    stringUtils
+    readSchema,
+    getFileOutputStream
 }

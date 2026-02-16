@@ -1,9 +1,14 @@
+/**
+ *
+ * @param {NodeJS.WritableStream} stream
+ * @constructor
+ */
 function Printer(stream) {
     let indent = 0;
     let isBlockEmpty = false;
 
     function print(string) {
-        stream.write(string ?? "")
+        stream.write(string)
     }
 
     function printIndent() {
@@ -15,7 +20,11 @@ function Printer(stream) {
         print(string)
     }
 
-    this.line = function(string) {
+    /**
+     *
+     * @param {string} [string]
+     */
+    this.line = function(string = "") {
         if (isBlockEmpty) print('\n')
 
         printIndented(string)
@@ -24,6 +33,11 @@ function Printer(stream) {
         isBlockEmpty = false
     }
 
+    /**
+     *
+     * @param {string[]} lines
+     * @param {string} [separator]
+     */
     this.lines = function(lines, separator = "") {
         if (isBlockEmpty) print('\n')
 
@@ -37,6 +51,10 @@ function Printer(stream) {
         isBlockEmpty = false
     }
 
+    /**
+     *
+     * @param {string} [string]
+     */
     this.blockStart = function(string) {
         print('\n')
 
@@ -46,6 +64,10 @@ function Printer(stream) {
         isBlockEmpty = true
     }
 
+    /**
+     *
+     * @param {string} string
+     */
     this.blockEnd = function(string) {
         indent--
 
@@ -59,6 +81,10 @@ function Printer(stream) {
         isBlockEmpty = false
     }
 
+    /**
+     *
+     * @param {string} string
+     */
     this.blockEndStart = function(string) {
         indent--
 

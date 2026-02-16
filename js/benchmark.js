@@ -7,7 +7,7 @@ const { deserializeCalf } = require('@buffela/deserializer')
 const sampleBuffela = require('./sampleBuffela.json')
 
 /**
- * @type {import('./sampleBuffela').default}
+ * @type {import('./sampleBuffela.old').default}
  */
 const buffela = parseBuffelaSchema(sampleBuffela)
 
