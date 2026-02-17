@@ -2,12 +2,12 @@
   "name": "@buffela/tools-common",
   "version": "2.4.2",
   "description": "Common internal utils for the buffela developer tools",
-  "types": "types/index.d.ts",
+  "types": "types/index.ts",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
     ".": {
-      "types": "./types/index.d.ts",
+      "types": "./types/index.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     }
@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node tools/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist",
+    "build": "node scripts/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
@@ -33,7 +33,7 @@
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
     "@babel/code-frame": "^7.29.0",
-    "ajv": "^8.17.1",
+    "ajv": "8.18.0",
     "ajv-errors": "^3.0.0",
     "chalk": "^5.6.2",
     "yaml": "^2.8.2"
