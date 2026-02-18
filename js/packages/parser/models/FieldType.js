@@ -1,12 +1,12 @@
 export default class FieldType {
-    static #typePattern = /^([A-Z][a-zA-Z]*)(?:\((?:(?<primitiveParam>[A-Z][a-zA-Z]*)|(?<constParam>\d+)\)))?/
+    static #typePattern = /^([A-Z][a-zA-Z\d]*)(?:\((?:(?<primitiveArg>[A-Z][a-zA-Z]*)|(?<constArg>\d+)\)))?/
     static #dimensionPattern = /$|\[(?:(?<primitiveLength>[A-Z][a-zA-Z]*)|(?<constLength>\d+))]/y
 
     final = true;
     override = false;
     name;
     dimensions;
-    param;
+    argument;
     primitive;
 
     #schema;
@@ -54,14 +54,14 @@ export default class FieldType {
 
         const alias = this.#schema.lookupAlias(elementType)
         if (alias) {
-            this.#resolve(definition)
+            this.#resolve(alias)
             this.dimensions.push(...dimensions)
             return
         }
 
         this.name = elementTypeName
         this.primitive = this.#schema[elementTypeName] ?? this.#schema.lookupPrimitive(elementTypeName);
-        this.param = this.#parseArgument(elementTypeGroups.constParam, elementTypeGroups.primitiveParam);
+        this.argument = this.#parseArgument(elementTypeGroups.constArg, elementTypeGroups.primitiveArg);
         this.dimensions = dimensions;
     }
 }

@@ -2,15 +2,7 @@
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": false,
-    "allowJs": true,
-    "checkJs": false,
-    "skipLibCheck": true,
-    "declaration": true,
-    "emitDeclarationOnly": true,
-    "outDir": "dist"
+    "skipLibCheck": false
   },
-  "include": ["index.js"]
+  "include": [ "./types/*.d.ts" ]
 }

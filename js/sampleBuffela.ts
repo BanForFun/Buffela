@@ -14,15 +14,13 @@ type _Gender = {
 }
 
 type _User = {
-    readonly RegisteredWithPhone: {
-        readonly Empty: { [id]: "User.RegisteredWithPhone.Empty" }
-        readonly Landline: { [id]: "User.RegisteredWithPhone.Landline" }
-        readonly Mobile: { [id]: "User.RegisteredWithPhone.Mobile" }
-    }
-    readonly RegisteredWithEmail: { [id]: "User.RegisteredWithEmail" }
+    readonly Anonymous: { [id]: "User.Anonymous" }
+    readonly Registered: { [id]: "User.Registered" }
 }
 
 type _AuthTokenPayload = {}
+
+type _AuthTokenSignature = {}
 
 type _AuthToken = {}
 
@@ -31,42 +29,34 @@ export type Gender = _Gender[keyof _Gender]
 export type User = {
     userId: string,
     gender: Gender,
-    hobbies: string,
-    registrationDate: Date,
 } & (
     {
-        _type: _User["RegisteredWithPhone"],
-        countryCode: number,
-    } & (
-        {
-            _type: _User["RegisteredWithPhone"]["Empty"],
-        } | {
-            _type: _User["RegisteredWithPhone"]["Landline"],
-            phone: string,
-        } | {
-            _type: _User["RegisteredWithPhone"]["Mobile"],
-            phone: string,
-        }
-    ) | {
-        _type: _User["RegisteredWithEmail"],
-        email: string,
+        User_type: _User["Anonymous"],
+    } | {
+        User_type: _User["Registered"],
+        phone: string,
     }
 )
 
 export type AuthTokenPayload = {
-    issuedAt: number,
+    issuedAt: Date,
     user: User,
+}
+
+export type AuthTokenSignature = {
+    sha256: Buffer,
 }
 
 export type AuthToken = {
     payload: AuthTokenPayload,
-    signature: Buffer,
+    signature: AuthTokenSignature,
 }
 
 type schema = {
     readonly Gender: _Gender & type<Gender>
     readonly User: _User & type<User>
     readonly AuthTokenPayload: _AuthTokenPayload & type<AuthTokenPayload>
+    readonly AuthTokenSignature: _AuthTokenSignature & type<AuthTokenSignature>
     readonly AuthToken: _AuthToken & type<AuthToken>
 
     primitives: {

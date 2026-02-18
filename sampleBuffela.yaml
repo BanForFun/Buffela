@@ -2,30 +2,24 @@ Gender:
   - FEMALE
   - MALE
 
+Uuid: String(36)
+
 User:
-  userId: String(36)
+  userId: Uuid
   gender: Gender
-  hobbies: String[UByte]
-  registrationDate: Date
 
-  RegisteredWithPhone:
-    countryCode: UByte
+  Anonymous: {}
 
-    Empty: {}
-
-    Landline:
-      phone: String
-
-    Mobile:
-      phone: String
-
-  RegisteredWithEmail:
-    email: String
+  Registered:
+    phone: String
 
 AuthTokenPayload:
-  issuedAt: Double
+  issuedAt: Date
   user: User
+
+AuthTokenSignature:
+  sha256: Buffer(32)
 
 AuthToken:
   payload: AuthTokenPayload
-  signature: Buffer(10)
+  signature: AuthTokenSignature

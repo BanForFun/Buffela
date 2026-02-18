@@ -3,19 +3,19 @@
   "version": "2.4.2",
   "description": "Deserializer for the buffela binary data format",
   "type": "module",
-  "types": "types/index.ts",
-  "main": "dist/index.cjs",
+  "types": "types/index.d.ts",
   "module": "dist/index.js",
+  "main": "dist/index.cjs",
   "exports": {
     ".": {
-      "types": "./types/index.ts",
+      "types": "./types/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
   "files": [
     "dist",
-    "types",
+    "types/index.d.ts",
     "README.md"
   ],
   "scripts": {

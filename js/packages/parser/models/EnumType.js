@@ -6,10 +6,10 @@ export default class EnumType extends Type {
     #definition;
     #schema;
 
-    constructor(schema, param, definition, inspectName) {
-        super(schema, param, 'enum');
+    constructor(schema, argument, definition, name) {
+        super(schema, argument, 'enum');
 
-        this[inspectSymbol] = () => `<BuffelaEnum ${inspectName}>`
+        this[inspectSymbol] = () => `<BuffelaEnum ${name}>`
         this.#definition = definition;
         this.#schema = schema;
 

@@ -9,11 +9,11 @@ export default class Schema {
     constructor(definition) {
         this.#definition = definition;
 
-        Object.defineProperty(this, 'objectPrototype', { value: {} })
-        Object.defineProperty(this, 'enumPrototype', { value: {} })
-        Object.defineProperty(this, 'primitives', { value: {} })
+        Object.defineProperty(this, 'typePrototype', { value: {} })
+        Object.defineProperty(this, 'objectPrototype', { value: Object.create(this.typePrototype) })
+        Object.defineProperty(this, 'enumPrototype', { value: Object.create(this.typePrototype) })
 
-        // Object.defineProperty(this, 'types', { value: this })
+        Object.defineProperty(this, 'primitives', { value: {} })
 
         this.#hoistTypes()
         this.#linkTypes()
@@ -21,7 +21,7 @@ export default class Schema {
 
     lookupPrimitive(primitiveString) {
         if (primitiveString == null) return null
-        return (this.primitives[primitiveString] ??= {})
+        return (this.primitives[primitiveString] ??= Object.create(this.typePrototype))
     }
 
     lookupAlias(typeString) {
@@ -33,10 +33,10 @@ export default class Schema {
         const namePatternResults = Schema.#namePattern.exec(nameString)
         if (namePatternResults == null) throw new Error('Invalid name')
 
-        const [ _, name, primitiveParam ] = namePatternResults
-        const param = this.lookupPrimitive(primitiveParam)
+        const [ _, name, primitiveArgument ] = namePatternResults
+        const argument = this.lookupPrimitive(primitiveArgument)
 
-        return { name, param }
+        return { name, argument }
     }
 
     #hoistTypes() {
@@ -44,10 +44,10 @@ export default class Schema {
             const member = this.#definition[key];
             if (typeof member !== 'object') continue;
 
-            const { name, param } = this.parseParameterizedName(key)
+            const { name, argument } = this.parseParameterizedName(key)
             this[name] = Array.isArray(member)
-                ? new EnumType(this, param, member, name)
-                : new ObjectType(this, param, member, name)
+                ? new EnumType(this, argument, member, name)
+                : new ObjectType(this, argument, member, name)
         }
     }
 

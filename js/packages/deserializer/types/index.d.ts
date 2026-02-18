@@ -1,23 +1,23 @@
-import type {Primitive, SimplifiedSchema} from "@buffela/parser"
+import {Primitive, SimplifiedSchema} from "@buffela/parser"
 
 declare class DeserializerBuffer {
     constructor(buffer: Buffer)
 
-    readonly offset: number
+    offset: number
 
-    readByte(offset?: number): number
-    readUByte(offset?: number): number
-    readShort(offset?: number): number
-    readUShort(offset?: number): number
-    readInt(offset?: number): number
-    readUInt(offset?: number): number
-    readLong(offset?: number): bigint
-    readULong(offset?: number): bigint
-    readFloat(offset?: number): number
-    readDouble(offset?: number): number
-    readString(offset?: number): string
-    readStringNt(offset?: number): string
-    readBuffer(offset?: number): Buffer
+    readByte(): number
+    readUByte(): number
+    readShort(): number
+    readUShort(): number
+    readInt(): number
+    readUInt(): number
+    readLong(): bigint
+    readULong(): bigint
+    readFloat(): number
+    readDouble(): number
+    readString(): string
+    readStringNt(): string
+    readBuffer(): Buffer
 }
 
 export type Deserializable<T> = {

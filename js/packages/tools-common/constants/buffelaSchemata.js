@@ -33,7 +33,7 @@ const lengthSuffixPattern = `\\(${lengthPattern}\\)`
 const hybridSuffixPattern = `(\\(${constLengthPattern}\\))?`
 
 const enumValuePattern = '[A-Z_]+'
-const fieldNamePattern = '[a-z][a-zA-Z]*'
+const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
 const subtypeNamePattern = '[A-Z][a-zA-Z]*'
 const typeNamePattern = '[A-Z][a-zA-Z]*'
 
@@ -72,6 +72,7 @@ function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
             "EnumDefinition": {
                 "type": "array",
                 "uniqueItems": true,
+                "minItems": 1,
                 "items": {
                     "type": "string",
                     "pattern": anchoredPattern(enumValuePattern)
@@ -81,8 +82,7 @@ function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
                 "type": "object",
                 "patternProperties": {
                     [anchoredPattern(fieldNamePattern)]: fieldSchema,
-                    [anchoredPattern(subtypeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" },
-                    [anchoredPattern(subtypeNamePattern, sizeSuffixPattern)]: { "$ref": "#/$defs/ObjectDefinition" }
+                    [anchoredPattern(subtypeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" }
                 },
                 "additionalProperties": false,
             }

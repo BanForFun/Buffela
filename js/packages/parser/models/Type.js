@@ -13,14 +13,15 @@ export default class Type {
 
     #schema;
 
-    constructor(schema, param, kind) {
+    constructor(schema, argument, kind) {
         this.#schema = schema;
 
         Object.defineProperty(this, 'kind', { value: kind })
-        Object.defineProperty(this, 'param', { value: param, writable: true })
+        Object.defineProperty(this, 'argument', { value: argument, writable: true })
     }
 
     autoSizeParam(count) {
-        this.param ??= this.#schema.lookupPrimitive(Type.#getAutoSizePrimitive(count))
+        if (count <= 1) return;
+        this.argument ??= this.#schema.lookupPrimitive(Type.#getAutoSizePrimitive(count))
     }
 }

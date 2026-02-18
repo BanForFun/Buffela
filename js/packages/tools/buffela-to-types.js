@@ -188,18 +188,29 @@ function nativeType(field) {
 
 /**
  *
+ * @param {Record<string, import('@buffela/parser').FieldType>} fields
+ */
+function printFields(fields) {
+    for (const fieldName in fields) {
+        printer.line(`${fieldName}: ${nativeType(fields[fieldName])},`)
+    }
+}
+
+/**
+ *
  * @param {import('@buffela/parser').ObjectType} objectType
- * @param {string[]} path
+ * @param {string} name
+ * @param {...string} path
  * @returns {boolean} isLeaf
  */
-function printObjectType(objectType, path) {
-    if (!objectType.isRoot)
-        printer.line(`_type: ${typeOf(...path)},`)
+function printObjectType(objectType, name, ...path) {
+    const fullPath = [...path, name]
 
-    for (const fieldName in objectType.fields) {
-        const field = objectType.fields[fieldName];
-        printer.line(`${fieldName}: ${nativeType(field)},`)
-    }
+    if (!objectType.isRoot)
+        printer.line(`${objectType.parent.metadataPrefix}type: ${typeOf(...fullPath)},`)
+
+    printFields(objectType.fields)
+    printFields(objectType.deferredFields)
 
     if (objectType.isLeaf) return true;
 
@@ -213,7 +224,7 @@ function printObjectType(objectType, path) {
         const subtypeName = subtypes[i]
 
         const subtype = objectType[subtypeName]
-        const isLeaf = printObjectType(subtype, path.concat(subtypeName))
+        const isLeaf = printObjectType(subtype, subtypeName, ...fullPath)
 
         if (i < subtypes.length - 1) {
             printer.blockEndStart(isLeaf ? '} | {' : ') | {')
@@ -236,7 +247,7 @@ for (
         printer.line(`export type ${name} = _${name}[keyof _${name}]`)
     } else if (type.kind === "object") {
         printer.blockStart(`export type ${name} = {`)
-        const isLeaf = printObjectType(type, [name])
+        const isLeaf = printObjectType(type, name)
         printer.blockEnd(isLeaf ? '}' : ')')
     }
 }

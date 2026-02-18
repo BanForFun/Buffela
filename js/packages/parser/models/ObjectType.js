@@ -7,19 +7,27 @@ class ObjectSubtype extends Type {
     #definition;
     #schema;
 
-    constructor(schema, param, definition, inspectName) {
-        super(schema, param, 'object');
+    constructor(schema, argument, definition, name) {
+        super(schema, argument, 'object');
 
-        this[inspectSymbol] = () => `<BuffelaSubtype ${inspectName}>`
+        this[inspectSymbol] = () => `<BuffelaSubtype ${name}>`
         this.#definition = definition;
         this.#schema = schema;
 
+        Object.defineProperty(this, 'metadataPrefix', { value: `${name}_` })
         Object.defineProperty(this, 'fields', { value: {}, writable: true })
+        Object.defineProperty(this, 'deferredFields', { value: {}, writable: true })
         Object.defineProperty(this, 'parent', { value: null, writable: true })
 
         Object.defineProperty(this, 'isRoot', {
             get() {
-                return this.parent === null
+                return this.leaves !== undefined
+            }
+        })
+
+        Object.defineProperty(this, 'isInternal', {
+            get() {
+                return this.leafRangeEnd !== undefined
             }
         })
 
@@ -28,15 +36,9 @@ class ObjectSubtype extends Type {
                 return this.leafIndex !== undefined
             }
         })
-
-        Object.defineProperty(this, 'isAbstract', {
-            get() {
-                return !!this.param // Users may force a type to be abstract by giving a size argument
-            }
-        })
     }
 
-    #linkFields(fieldScope) {
+    #parseFields(fieldScope) {
         const fields = {}
 
         for (const key in this.#definition) {
@@ -53,8 +55,17 @@ class ObjectSubtype extends Type {
             fields[key] = field
         }
 
-        this.fields = fields
         Object.assign(fieldScope, fields);
+
+        return fields;
+    }
+
+    #isLeaf() {
+        // noinspection LoopStatementThatDoesntLoopJS
+        for (const _ in this)
+            return false
+
+        return true
     }
 
     #linkSubtypes(fieldScope, leaves) {
@@ -62,40 +73,55 @@ class ObjectSubtype extends Type {
             const member = this.#definition[key]
             if (typeof member !== 'object') continue;
 
-            const { name, param } = this.#schema.parseParameterizedName(key)
-            const subtype = new ObjectSubtype(this.#schema, param, member, name)
+            const { name, argument } = this.#schema.parseParameterizedName(key)
+            const subtype = new ObjectSubtype(this.#schema, argument, member, name)
             subtype.link(this, leaves, fieldScope)
 
             this[name] = subtype
         }
 
-        const subtypeCount = Object.keys(this).length
-        if (subtypeCount === 0) {
+        if (this.#isLeaf()) {
             Object.defineProperty(this, 'leafIndex', { value: leaves.length, configurable: true })
             leaves.push(this)
         } else {
-            this.autoSizeParam(subtypeCount)
+            Object.defineProperty(this, 'leafRangeEnd', { value: leaves.length, configurable: true })
         }
     }
 
     link(parent, leaves, fieldScope = {}) {
         this.parent = parent;
-        this.#linkFields(fieldScope);
+
+        const fields = this.#parseFields(fieldScope);
         this.#linkSubtypes(fieldScope, leaves);
 
-        Object.setPrototypeOf(this, this.#schema.objectPrototype)
+        for (const fieldName in fields) {
+            const field = fields[fieldName];
+            if (!field.final && !field.override) {
+                this.deferredFields[fieldName] = field;
+            } else {
+                this.fields[fieldName] = field;
+            }
+        }
     }
 }
 
 export default class ObjectType extends ObjectSubtype {
-    constructor(schema, param, definition, inspectName) {
-        super(schema, param, definition, inspectName);
+    #schema;
 
-        this[inspectSymbol] = () => `<BuffelaObject ${inspectName}>`
+    constructor(schema, argument, definition, name) {
+        super(schema, argument, definition, name);
+
+        this.#schema = schema;
+        this[inspectSymbol] = () => `<BuffelaObject ${name}>`
     }
 
     link() {
         Object.defineProperty(this, 'leaves', { value: [], configurable: true })
         super.link(null, this.leaves)
+
+        delete this.leafRangeEnd
+        this.autoSizeParam(this.leaves.length)
+
+        Object.setPrototypeOf(this, this.#schema.objectPrototype)
     }
 }

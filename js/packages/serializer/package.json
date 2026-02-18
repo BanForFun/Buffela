@@ -3,19 +3,19 @@
   "version": "2.4.2",
   "description": "Serializer for the buffela data format",
   "type": "module",
-  "types": "types/index.ts",
+  "types": "types/index.d.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
     ".": {
-      "types": "./types/index.ts",
+      "types": "./types/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
   "files": [
     "dist",
-    "types",
+    "types/index.d.ts",
     "README.md"
   ],
   "scripts": {
