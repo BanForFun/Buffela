@@ -3,8 +3,7 @@
   "version": "2.4.2",
   "description": "Javascript/Typescript developer tools for the buffela data format",
   "bin": {
-    "buffela-to-types": "dist/buffela-to-types.js",
-    "buffela-to-json": "dist/buffela-to-json.js"
+    "buffela-js": "dist/js-tools.js"
   },
   "files": [
     "dist",
@@ -12,7 +11,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup buffela-to-types.js buffela-to-json.js --format cjs --clean --out-dir dist",
+    "build": "tsup js-tools.js --format cjs --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
@@ -40,6 +39,7 @@
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
     "@buffela/parser": "2.4.2",
-    "@buffela/tools-common": "2.4.2"
+    "@buffela/tools-common": "2.4.2",
+    "yargs": "^18.0.0"
   }
 }

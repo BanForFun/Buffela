@@ -1,4 +1,4 @@
-declare function readSchema(filePath: string): {
+declare function readSchemaFile(filePath: string): {
     schema: any;
     name: string;
 };
@@ -15,4 +15,4 @@ declare class Printer {
     blockEndStart: (string: string) => void;
 }
 
-export { Printer, readSchema, getFileOutputStream };
+export { Printer, readSchemaFile, getFileOutputStream };

@@ -3,13 +3,12 @@
   <component name="JsonSchemaMappingsProjectConfiguration">
     <state>
       <map>
-        <entry key="buffela">
+        <entry key="buffela-schema">
           <value>
             <SchemaInfo>
               <option name="generatedName" value="New Schema" />
-              <option name="name" value="buffela" />
-              <option name="relativePathToSchema" value="packages/tools-common/schemas/buffela.json" />
-              <option name="schemaVersion" value="JSON Schema 202,012" />
+              <option name="name" value="buffela-schema" />
+              <option name="relativePathToSchema" value="packages/tools-common/schemata/buffela-schema.json" />
               <option name="patterns">
                 <list>
                   <Item>

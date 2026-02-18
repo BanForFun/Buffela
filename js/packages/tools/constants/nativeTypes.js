@@ -1,0 +1,28 @@
+const nativeTypes = {
+    "UByte":            "number",
+    "UShort":           "number",
+    "Int":              "number",
+    "String":           "string",
+    "Boolean":          "boolean",
+    "Byte":             "number",
+    "Short":            "number",
+    "Long":             "BigInt",
+    "Float":            "number",
+    "Double":           "number",
+    "UInt":             "number",
+    "ULong":            "BigInt",
+    "UByteArray":       "Uint8Array",
+    "UShortArray":      "Uint16Array",
+    "UIntArray":        "Uint32Array",
+    "ULongArray":       "BigUint64Array",
+    "BooleanArray":     "Uint8ClampedArray",
+    "ByteArray":        "Int8Array",
+    "ShortArray":       "Int16Array",
+    "IntArray":         "Int32Array",
+    "LongArray":        "BigInt64Array",
+    "FloatArray":       "Float32Array",
+    "DoubleArray":      "Float64Array",
+    "Buffer":           "Buffer",
+}
+
+module.exports = nativeTypes

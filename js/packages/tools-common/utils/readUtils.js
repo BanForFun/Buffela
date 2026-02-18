@@ -6,7 +6,7 @@ const {validateBuffelaSchema} = require("./validationUtils");
  * @param {string} filePath
  * @returns {{ schema: any, name: string }}
  */
-function readSchema(filePath) {
+function readSchemaFile(filePath) {
     if (filePath.endsWith(".yaml")) return {
         schema: validateBuffelaSchema(fs.readFileSync(filePath, "utf8")),
         name: path.basename(filePath, ".yaml")
@@ -15,4 +15,4 @@ function readSchema(filePath) {
     throw new Error("Only yaml files are accepted")
 }
 
-module.exports = { readSchema }
+module.exports = { readSchemaFile }

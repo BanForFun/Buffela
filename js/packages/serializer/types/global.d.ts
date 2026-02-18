@@ -2,11 +2,11 @@ import type * as parser from "@buffela/parser";
 import type * as serializer from "./index.d.ts";
 
 declare global {
+    type Serialize = (buffer: serializer.SerializerBuffer, value: unknown, arg: number | Serializer | null) => void
+
     interface Serializer extends serializer.Serializable<unknown> {
         _serialize: Serialize
     }
-
-    type Serialize = (buffer: serializer.SerializerBuffer, value: unknown, arg: number | Serializer | null) => void
 
     type CustomSerializer = serializer.Serializer<unknown>
     type SerializerBuffer = serializer.SerializerBuffer
