@@ -5,10 +5,10 @@ const {printSchema} = require("./schemaUtils");
 
 function printImports() {
     if (options.serializerEnabled)
-        printer.line('import type { Serializable as serializable, Serializer as serializer } from "@buffela/serializer"')
+        printer.line('import type { Serializable as _Serializable, Serializer as _Serializer } from "@buffela/serializer"')
 
     if (options.deserializerEnabled)
-        printer.line('import type { Deserializable as deserializable, Deserializer as deserializer } from "@buffela/deserializer"')
+        printer.line('import type { Deserializable as _Deserializable, Deserializer as _Deserializer } from "@buffela/deserializer"')
 
     for (const type in schema.primitives) {
         if (type in nativeTypes) continue;

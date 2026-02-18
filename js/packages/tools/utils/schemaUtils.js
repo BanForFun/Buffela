@@ -10,40 +10,40 @@ function printSchemaUtils() {
     const typeExtensions = [], primitiveExtensions = []
 
     if (options.serializerEnabled) {
-        typeExtensions.push('serializable<T>')
-        primitiveExtensions.push('serializer<T>')
+        typeExtensions.push('_Serializable<T>')
+        primitiveExtensions.push('_Serializer<T>')
     }
 
     if (options.deserializerEnabled) {
-        typeExtensions.push('deserializable<T>')
-        primitiveExtensions.push('deserializer<T>')
+        typeExtensions.push('_Deserializable<T>')
+        primitiveExtensions.push('_Deserializer<T>')
     }
 
     printer.line()
-    printer.line(`type type<T> = Partial<${combineExtensions(typeExtensions)}>`)
-    printer.line(`type primitive<T> = Partial<${combineExtensions(primitiveExtensions)}>`)
+    printer.line(`type _Type<T> = Partial<${combineExtensions(typeExtensions)}>`)
+    printer.line(`type _Primitive<T> = Partial<${combineExtensions(primitiveExtensions)}>`)
 }
 
 function printSchema() {
     printSchemaUtils()
 
-    printer.blockStart(`type schema = {`)
+    printer.blockStart(`type _Schema = {`)
 
     for (const name in schema) {
-        printer.line(`readonly ${name}: ${typeSchemaName(name)} & type<${name}>`)
+        printer.line(`readonly ${name}: ${typeSchemaName(name)} & _Type<${name}>`)
     }
 
     printer.blockStart('primitives: {')
     for (const name in schema.primitives) {
         if (name in nativeTypes) continue;
-        printer.line(`${name}?: primitive<${name}>`)
+        printer.line(`${name}?: _Primitive<${name}>`)
     }
     printer.blockEnd('}')
 
     printer.blockEnd('}')
 
     printer.line()
-    printer.line("export default schema")
+    printer.line("export default _Schema")
 
 }
 
