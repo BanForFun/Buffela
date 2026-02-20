@@ -1,71 +1,77 @@
-export type Primitive = object
+export interface Extensions {
 
-type FieldLengthArgument<P extends Primitive> = number | P
+}
 
-type FieldTypeArgument<P extends Primitive> = number | P | null
+type Type<E extends Extensions> = E & {
+    name: string;
+}
 
-export interface FieldType<P extends Primitive = {}> {
+export type TypeArgument<E extends Extensions> = null | number | InstantiatedType<E>
+
+export type InstantiatedType<E extends Extensions> = {
+    element: Type<E>
+    argument: TypeArgument<E>
+    dimensions: FieldDimension<E>[]
+}
+
+export type FieldDimension<E extends Extensions> = number | InstantiatedType<E>
+
+export interface Field<E extends Extensions> {
     final: boolean
-    override: boolean
-    name: string
-    dimensions: FieldLengthArgument<P>[]
-    argument: FieldTypeArgument<P>
-    primitive: P
+    type: InstantiatedType<E>
 }
 
-export type TypeName = `${Uppercase<string>}${string}`
+export type ObjectSubtypeName = `${Uppercase<string>}${string}`
+export type ComplexTypeArgument<E extends Extensions> = null | InstantiatedType<E>
 
-interface Type<K extends string> {
+export type ComplexType<K extends string, E extends Extensions> = Type<E> & {
     kind: K;
+    defaultArgument: ComplexTypeArgument<E>;
 }
 
-type TypeArgument<P extends Primitive> = P | null
+export type ObjectType<E extends Extensions> = ComplexType<'object', E> & {
+    [subtype: ObjectSubtypeName]: ObjectType<E>
 
-export interface ObjectType<P extends Primitive = {}> extends Type<'object'> {
-    [subtype: TypeName]: ObjectType<P>
-
-    metadataPrefix: string;
-    argument: TypeArgument<P>;
-    fields: Record<string, FieldType<P>>
-    deferredFields: Record<string, FieldType<P>>
-    parent: ObjectType<P> | null;
-
-    leafIndex?: number;
-    leafRangeEnd?: number;
-    leaves?: ObjectType<P>[];
+    ownFields: Record<string, Field<E>>;
+    fieldOverrides: Record<string, Field<E>>;
+    parent: ObjectType<E> | null;
 
     isRoot: boolean;
     isInternal: boolean;
     isLeaf: boolean;
+
+    leaves?: ObjectType<E>[];
+    leafRangeEnd?: number;
+    leafIndex?: number;
 }
 
-type EnumValue = Uppercase<string>
+export type EnumValue = Uppercase<string>
 
 export interface EnumEntry {
     index: number;
 }
 
-export interface EnumType<P extends Primitive = {}> extends Type<'enum'> {
+export type EnumType<E extends Extensions> = ComplexType<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
-    argument: TypeArgument<P>;
     values: string[]
 }
 
-type SchemaType<P extends Primitive = {}> = EnumType<P> | ObjectType<P>
+export type SchemaTypeName = `${Uppercase<string>}${string}`
+export type SchemaType<E extends Extensions> = EnumType<E> | ObjectType<E>
 
-export interface Schema<P extends Primitive = {}> {
-    [type: TypeName]: P & SchemaType<P>
+export interface Schema<E extends Extensions, U extends Extensions> {
+    [type: SchemaTypeName]: SchemaType<E>
 
-    typePrototype: P
-    objectPrototype: P
-    enumPrototype: P
-    primitives: Record<string, P>
+    userExtensions: E & U
+    objectExtensions: E
+    enumExtensions: E
+    primitiveTypes: Record<string, Type<E>>
 }
 
 export interface SimplifiedSchema {
-    [type: TypeName]: Primitive
-    primitives: Record<string, Primitive>
+    [type: SchemaTypeName]: Extensions
+    primitiveTypes: Record<string, Type<Extensions>>
 }
 
 declare function parseSchema(definition: any): unknown;

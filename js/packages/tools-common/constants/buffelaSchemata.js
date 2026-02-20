@@ -1,8 +1,8 @@
 const {
-    arrayTypes,
-    hybridTypes,
-    sizeTypes,
-    primitiveTypes
+    sentinelTypes,
+    constSizedTypes,
+    sizedTypes,
+    scalarTypes
 } = require('./buffelaTypes.js')
 
 // Patterns ============================================================================================================
@@ -19,26 +19,35 @@ function excludePattern(pattern, exclude) {
     return `${pattern}(?<!^${exclude})`
 }
 
-const reservedTypeNamePattern = enumPattern(...primitiveTypes, ...hybridTypes, ...arrayTypes)
-const complexTypeNamePattern = enumPattern(...hybridTypes, ...arrayTypes)
-const hybridTypeNamePattern = enumPattern(...hybridTypes)
-const arrayTypeNamePattern = enumPattern(...arrayTypes)
 
-const constLengthPattern =  "\\d+"
-const lengthPattern = enumPattern(...sizeTypes, constLengthPattern)
+const sentinelTypeNamePattern = enumPattern(...sentinelTypes)
+const sizedTypeNamePattern = enumPattern(...sizedTypes)
+const constSizedTypeNamePattern = enumPattern(...constSizedTypes)
 
-const sizeSuffixPattern = `\\(${enumPattern(...sizeTypes)}\\)`
-const arraySuffixPattern = `(\\[${lengthPattern}\\])*`
-const lengthSuffixPattern = `\\(${lengthPattern}\\)`
-const hybridSuffixPattern = `(\\(${constLengthPattern}\\))?`
+const constSizePattern =  "\\d+"
+const sentinelTypeSuffixPattern = `(\\(${constSizePattern}\\))?`
+const constSizedTypeSuffixPattern = `\\(${constSizePattern}\\)`
 
-const enumValuePattern = '[A-Z_]+'
+const sizePattern = enumPattern(
+    constSizePattern,
+    "UByte",
+    "UShort",
+    "Int",
+    "Unsigned" + constSizedTypeSuffixPattern
+)
+const sizedTypeSuffixPattern = `\\(${sizePattern}\\)`
+const arraySuffixPattern = `(\\[${sizePattern}\\])*`
+
+const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
-const subtypeNamePattern = '[A-Z][a-zA-Z]*'
-const typeNamePattern = '[A-Z][a-zA-Z]*'
+const subtypeNamePattern = '[A-Z][a-zA-Z\\d]*'
+const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
-const globalNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
-const simpleTypeNamePattern = excludePattern(typeNamePattern, complexTypeNamePattern)
+const reservedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes, ...scalarTypes)
+const safeTypeNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
+
+const parameterizedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes)
+const simpleTypeNamePattern = excludePattern(typeNamePattern, parameterizedTypeNamePattern)
 
 // Schemata ============================================================================================================
 
@@ -56,7 +65,7 @@ function fail(message) {
     return { "not": {}, "errorMessage": message }
 }
 
-function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
+function buildSchema(fieldSchema, typeSchema) {
     return {
         "$defs": {
             "AliasDefinition": {
@@ -66,7 +75,7 @@ function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
                     "pattern": anchoredPattern(typeNamePattern)
                 },
                 "errorMessage": {
-                    "not": "Expected complex type"
+                    "not": "Expected parameterized or array type"
                 }
             },
             "EnumDefinition": {
@@ -89,19 +98,13 @@ function buildSchema(fieldSchema, sizedSchema, simpleSchema) {
         },
         "type": "object",
         "patternProperties": {
-            [anchoredPattern(globalNamePattern)]: simpleSchema,
-            [anchoredPattern(globalNamePattern, sizeSuffixPattern)]: sizedSchema
+            [anchoredPattern(safeTypeNamePattern)]: typeSchema
         },
         "additionalProperties": false
     }
 }
 
-const sizedDefinitionSchemata = [
-    ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
-    ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
-]
-
-const simpleDefinitionSchemata = [
+const typeDefinitionSchemata = [
     ifThen({ "type": "string" }, { "$ref": "#/$defs/AliasDefinition" }),
     ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
     ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
@@ -121,24 +124,28 @@ function fieldSchema(namePattern, suffixPattern, suffixMessage) {
 const fieldSchemata = [
     fieldSchema(
         simpleTypeNamePattern, arraySuffixPattern,
-        "Expected length e.g. [10] or [UByte]"
+        "Expected a size e.g. [10] or [UByte]"
     ),
 
     fieldSchema(
-        hybridTypeNamePattern, hybridSuffixPattern + arraySuffixPattern,
-        "Expected constant size e.g. (10)"
+        sentinelTypeNamePattern, sentinelTypeSuffixPattern + arraySuffixPattern,
+        "Expected a constant size e.g. (10)"
     ),
 
     fieldSchema(
-        arrayTypeNamePattern, lengthSuffixPattern + arraySuffixPattern,
-        "Expected length e.g. (10) or (UByte)"
+        sizedTypeNamePattern, sizedTypeSuffixPattern + arraySuffixPattern,
+        "Expected a size e.g. (10) or (UByte)"
+    ),
+
+    fieldSchema(
+        constSizedTypeNamePattern, constSizedTypeSuffixPattern + arraySuffixPattern,
+        "Expected a constant size e.g. (10)"
     )
 ]
 
 const readerSchema = buildSchema(
     when(fieldSchemata, fail("Expected field type")),
-    when(sizedDefinitionSchemata, fail("Expected enum or object definition")),
-    when(simpleDefinitionSchemata, fail("Expected enum, object or alias definition")),
+    when(typeDefinitionSchemata, fail("Expected enum, object or alias definition")),
 )
 
 // Some editors *cough* IntelliJ *cough* do not support if/then, we need to simplify the schema
@@ -150,16 +157,15 @@ const editorSchema = buildSchema({
             "type": "string",
             "pattern": "[]",
             "enum": [
-                ...primitiveTypes,
-                ...hybridTypes,
-                ...arrayTypes.map(t => `${t}(Int)`),
+                ...sentinelTypes,
+                ...constSizedTypes.map(t => `${t}(4)`),
+                ...sizedTypes.map(t => `${t}(Int)`),
+                ...scalarTypes
             ]
         },
     ]
 }, {
-    "oneOf": sizedDefinitionSchemata.map(k => k.then),
-}, {
-    "oneOf": simpleDefinitionSchemata.map(k => k.then),
+    "oneOf": typeDefinitionSchemata.map(k => k.then),
 })
 
 module.exports = {

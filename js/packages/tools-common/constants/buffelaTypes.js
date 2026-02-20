@@ -1,14 +1,22 @@
-const sizeTypes = [
+const scalarTypes = [
     "UByte",
     "UShort",
     "Int",
+    "Boolean",
+    "Byte",
+    "Short",
+    "Long",
+    "Float",
+    "Double",
+    "UInt",
+    "ULong",
 ]
 
-const hybridTypes = [
+const sentinelTypes = [
     "String",
 ]
 
-const arrayTypes = [
+const sizedTypes = [
     "UByteArray",
     "UShortArray",
     "UIntArray",
@@ -23,21 +31,14 @@ const arrayTypes = [
     "Buffer",
 ]
 
-const primitiveTypes = [
-    ...sizeTypes,
-    "Boolean",
-    "Byte",
-    "Short",
-    "Long",
-    "Float",
-    "Double",
-    "UInt",
-    "ULong",
+const constSizedTypes = [
+    "Signed",
+    "Unsigned"
 ]
 
 module.exports = {
-    sizeTypes,
-    hybridTypes,
-    arrayTypes,
-    primitiveTypes
+    sentinelTypes,
+    constSizedTypes,
+    sizedTypes,
+    scalarTypes
 }

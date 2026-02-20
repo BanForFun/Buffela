@@ -1,13 +1,13 @@
 import {inspectSymbol} from "../constants/symbols.js";
 
-import Type from "./Type.js";
+import ComplexType from "./ComplexType.js";
 
-export default class EnumType extends Type {
+export default class EnumType extends ComplexType {
     #definition;
     #schema;
 
-    constructor(schema, argument, definition, name) {
-        super(schema, argument, 'enum');
+    constructor(schema, definition, name) {
+        super(schema, 'enum', name);
 
         this[inspectSymbol] = () => `<BuffelaEnum ${name}>`
         this.#definition = definition;
@@ -27,8 +27,8 @@ export default class EnumType extends Type {
         }
 
         this.values = [...this.#definition]
-        this.autoSizeParam(this.#definition.length)
+        this.setSize(this.#definition.length)
 
-        Object.setPrototypeOf(this, this.#schema.enumPrototype)
+        Object.setPrototypeOf(this, this.#schema.enumExtensions)
     }
 }
