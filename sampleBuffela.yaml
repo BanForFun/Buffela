@@ -4,6 +4,10 @@ Gender:
 
 Uuid: String(36)
 
+Date:
+  yearMonth: Unsigned(17)
+  day: Unsigned(5)
+
 User:
   userId: Uuid
   gender: Gender

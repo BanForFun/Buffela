@@ -1,54 +1,41 @@
-import {writeSize} from "./standardUtils.js";
+import {serializeValue} from "./typeUtils.js";
 
 /**
- *
- * @param {FieldType} field
  * @param {SerializerBuffer} buffer
- * @param value {unknown}
- * @param {number} dimension
- */
-function serializeField(field, buffer, value, dimension = field.dimensions?.length) {
-    if (dimension === 0) {
-        field.primitive._serialize(buffer, value, field.argument)
-    } else {
-        const dimensionArgument = field.dimensions[dimension - 1]
-        writeSize(buffer, value.length, dimensionArgument)
-
-        for (const item of value)
-            serializeField(field, buffer, item, dimension - 1)
-    }
-}
-
-/**
  * @param {ObjectType} type
- * @param {SerializerBuffer} buffer
  * @param {object} object
- * @param {Record<string, FieldType>} fieldOverrides
+ * @param {Record<string, Field>} fieldOverrides
  * @returns {number} leafIndex
  */
-function serializeFields(type, buffer, object, fieldOverrides = {}) {
-    for (const fieldName in type.fields) {
-        const field = type.fields[fieldName]
-        if (field.override) {
-            fieldOverrides[fieldName] = field
-        } else {
-            serializeField(field, buffer, object[fieldName])
-        }
+function getLeafIndex(buffer, type, object, fieldOverrides) {
+    for (const fieldName in type.fieldOverrides) {
+        fieldOverrides[fieldName] = type.fieldOverrides[fieldName]
     }
 
     if (type.isLeaf) return type.leafIndex
 
-    const subtype = object[type.metadataPrefix + "type"]
-    const leafIndex = serializeFields(subtype, buffer, object, fieldOverrides)
+    const subtype = object[type.name + "_type"]
+    return getLeafIndex(buffer, subtype, object, fieldOverrides)
+}
 
-    for (const fieldName in type.deferredFields) {
-        const field = fieldOverrides[fieldName] ?? type.deferredFields[fieldName]
-        serializeField(field, buffer, object[fieldName])
+/**
+ * @param {SerializerBuffer} buffer
+ * @param {ObjectType} type
+ * @param {object} object
+ * @param {Record<string, Field>} fieldOverrides
+ */
+function serializeFields(buffer, type, object, fieldOverrides) {
+    for (const fieldName in type.ownFields) {
+        const field = type.ownFields[fieldName]
+        const finalField = field.final ? field : (fieldOverrides[fieldName] ?? field)
 
-        delete fieldOverrides[fieldName]
+        serializeValue(buffer, finalField.type, object[fieldName])
     }
 
-    return leafIndex
+    if (type.isLeaf) return
+
+    const subtype = object[type.name + "_type"]
+    serializeFields(buffer, subtype, object, fieldOverrides)
 }
 
 /**
@@ -57,16 +44,11 @@ function serializeFields(type, buffer, object, fieldOverrides = {}) {
  * @param {object} object
  */
 export function serializeObject(buffer, object) {
-    const leafIndexOffset = buffer.offset
-    this.argument?._serialize(buffer, 0, null) // Just reserve space, will get overwritten
+    const fieldOverrides = {}
+    const leafIndex = getLeafIndex(buffer, this, object, fieldOverrides)
 
-    console.log(this.argument, object)
+    if (this.defaultArgument) // Will be null if the type isn't abstract
+        serializeValue(buffer, this.defaultArgument, leafIndex)
 
-    const leafIndex = serializeFields(this, buffer, object)
-    const savedOffset = buffer.offset
-
-    buffer.offset = leafIndexOffset
-    this.argument?._serialize(buffer, leafIndex, null)
-
-    buffer.offset = savedOffset
+    serializeFields(buffer, this, object, fieldOverrides)
 }

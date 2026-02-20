@@ -40,11 +40,10 @@ const arraySuffixPattern = `(\\[${sizePattern}\\])*`
 
 const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
-const subtypeNamePattern = '[A-Z][a-zA-Z\\d]*'
 const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
 const reservedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes, ...scalarTypes)
-const safeTypeNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
+const rootTypeNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
 
 const parameterizedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes)
 const simpleTypeNamePattern = excludePattern(typeNamePattern, parameterizedTypeNamePattern)
@@ -91,14 +90,14 @@ function buildSchema(fieldSchema, typeSchema) {
                 "type": "object",
                 "patternProperties": {
                     [anchoredPattern(fieldNamePattern)]: fieldSchema,
-                    [anchoredPattern(subtypeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" }
+                    [anchoredPattern(typeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" }
                 },
                 "additionalProperties": false,
             }
         },
         "type": "object",
         "patternProperties": {
-            [anchoredPattern(safeTypeNamePattern)]: typeSchema
+            [anchoredPattern(rootTypeNamePattern)]: typeSchema
         },
         "additionalProperties": false
     }

@@ -33,8 +33,8 @@ function printSchema() {
         printer.line(`readonly ${name}: ${typeSchemaName(name)} & _Type<${name}>`)
     }
 
-    printer.blockStart('primitives: {')
-    for (const name in schema.primitives) {
+    printer.blockStart('primitiveTypes: {')
+    for (const name in schema.primitiveTypes) {
         if (name in nativeTypes) continue;
         printer.line(`${name}?: _Primitive<${name}>`)
     }

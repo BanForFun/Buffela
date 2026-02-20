@@ -1,40 +1,28 @@
+import {serializeValue} from "./typeUtils.js";
+
 /**
  *
  * @param {SerializerBuffer} buffer
  * @param {boolean} value
  */
 function serializeBoolean(buffer, value) {
-    buffer.writeUByte(value ? 1 : 0)
+    buffer.writeTruncated(value ? 1 : 0, 1)
 }
 
 /**
  *
  * @param {SerializerBuffer} buffer
  * @param {string} value
- * @param {number | null} arg
+ * @param {InstantiatedType | null} sizeType
  */
-function serializeString(buffer, value, arg) {
-    if (typeof arg === 'number') {
-        if (value.length !== arg)
-            throw new Error(`Expected length '${arg}' (got '${value.length}')`)
+function serializeString(buffer, value, sizeType) {
+    if (sizeType === null) {
+        buffer.writeStringNt(value)
+    } else if (typeof sizeType.element === 'number') {
+        if (value.length !== sizeType.element)
+            throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)
 
         buffer.writeString(value)
-    } else if (arg === null) {
-        buffer.writeStringNt(value)
-    }
-}
-
-/**
- *
- * @param {SerializerBuffer} buffer
- * @param {number} size
- * @param {number | Serializer} arg
- */
-export function writeSize(buffer, size, arg) {
-    if (typeof arg === 'number' && size !== arg) {
-        throw new Error(`Expected size '${arg}' (got '${size}')`)
-    } else if (typeof arg === 'object') {
-        arg._serialize(buffer, size, null)
     }
 }
 
@@ -42,10 +30,10 @@ export function writeSize(buffer, size, arg) {
  *
  * @param {SerializerBuffer} buffer
  * @param {TypedArray} value
- * @param {number | Serializer} arg
+ * @param {InstantiatedType} sizeType
  */
-function serializeTypedArray(buffer, value, arg) {
-    writeSize(buffer, value.length, arg);
+function serializeTypedArray(buffer, value, sizeType) {
+    serializeValue(buffer, sizeType, value.length);
     buffer.writeBuffer(Buffer.from(value))
 }
 
@@ -53,11 +41,24 @@ function serializeTypedArray(buffer, value, arg) {
  *
  * @param {SerializerBuffer} buffer
  * @param {Buffer} value
- * @param {number | Serializer} arg
+ * @param {InstantiatedType} sizeType
  */
-function serializeBuffer(buffer, value, arg) {
-    writeSize(buffer, value.length, arg);
+function serializeBuffer(buffer, value, sizeType) {
+    serializeValue(buffer, sizeType, value.length);
     buffer.writeBuffer(value)
+}
+
+/**
+ *
+ * @param {SerializerBuffer} buffer
+ * @param {boolean[]} values
+ * @param {InstantiatedType} sizeType
+ */
+function serializeBooleanArray(buffer, values, sizeType) {
+    serializeValue(buffer, sizeType, values.length);
+    for (const bool of values) {
+        buffer.writeTruncated(bool ? 1 : 0, 1)
+    }
 }
 
 /**
@@ -75,9 +76,11 @@ export const standardSerializers = {
     ULong: (buffer, value) => buffer.writeULong(value),
     Float: (buffer, value) => buffer.writeFloat(value),
     Double: (buffer, value) => buffer.writeDouble(value),
+    Signed: (buffer, value, arg) => buffer.writeSigned(value, arg.element),
+    Unsigned: (buffer, value, arg) => buffer.writeUnsigned(value, arg.element),
     Boolean: serializeBoolean,
-    Buffer: serializeBuffer,
     String: serializeString,
+    Buffer: serializeBuffer,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,
     ShortArray: serializeTypedArray,
@@ -88,7 +91,7 @@ export const standardSerializers = {
     ULongArray: serializeTypedArray,
     FloatArray: serializeTypedArray,
     DoubleArray: serializeTypedArray,
-    BooleanArray: serializeTypedArray,
+    BooleanArray: serializeBooleanArray,
 }
 
 export const standardNames = new Set(Object.keys(standardSerializers))

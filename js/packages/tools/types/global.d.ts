@@ -1,8 +1,8 @@
 import {Printer} from "@buffela/tools-common";
-import {Schema} from "@buffela/parser";
+import {Extensions, Schema} from "@buffela/parser";
 
 declare global {
-    let schema: Schema;
+    let schema: Schema<Extensions, Extensions>;
     let printer: Printer;
     let options: {
         serializerEnabled: boolean;

@@ -59,8 +59,9 @@ schema.AuthTokenPayload.serialize({
     user: {
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
         gender: schema.Gender.MALE,
-        User_type: schema.User.Registered,
-        phone: "1234567890"
+        User_type: schema.User.Anonymous,
+        // User_type: schema.User.Registered,
+        // phone: "1234567890"
     }
 }, serializerBuffer)
 

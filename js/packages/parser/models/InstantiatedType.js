@@ -31,17 +31,21 @@ export default class InstantiatedType {
         if (stack.length > 0) throw new Error('Non matching brackets')
     }
 
-    static #parse(schema, definition, pattern) {
+    static #parseElementType(schema, definition, pattern) {
         const match = pattern.exec(definition);
         if (!match) throw new Error('Invalid type prefix');
 
         const { 0: name, groups: { number } } = match;
-        if (number) return +number;
+        if (number) return new InstantiatedType(+number);
 
         const alias = schema.lookupAlias(name);
         if (alias) return InstantiatedType.parse(schema, alias)
 
-        const type = new InstantiatedType(schema.lookupType(name))
+        return new InstantiatedType(schema.lookupType(name))
+    }
+
+    static #parse(schema, definition, pattern) {
+        const type = InstantiatedType.#parseElementType(schema, definition, pattern);
         type.#parseSuffix(schema, definition, pattern)
 
         return type;

@@ -1,3 +1,5 @@
+import InstantiatedType from "./InstantiatedType.js";
+
 export default class ComplexType {
     //TODO: Make bit field
     static #getMinSizeType(count) {
@@ -25,7 +27,7 @@ export default class ComplexType {
         if (size <= 1) return;
 
         Object.defineProperty(this, 'defaultArgument', {
-            value: this.#schema.lookupType(ComplexType.#getMinSizeType(size)),
+            value: InstantiatedType.parse(this.#schema, ComplexType.#getMinSizeType(size)),
             configurable: true
         })
     }

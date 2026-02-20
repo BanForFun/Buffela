@@ -7,9 +7,9 @@ export default class Schema {
     constructor(definition) {
         this.#definition = definition;
 
-        Object.defineProperty(this, 'userExtensions', { value: {} })
-        Object.defineProperty(this, 'objectExtensions', { value: Object.create(this.userExtensions) })
-        Object.defineProperty(this, 'enumExtensions', { value: Object.create(this.userExtensions) })
+        Object.defineProperty(this, 'complexExtensions', { value: {} })
+        Object.defineProperty(this, 'objectExtensions', { value: Object.create(this.complexExtensions) })
+        Object.defineProperty(this, 'enumExtensions', { value: Object.create(this.complexExtensions) })
 
         Object.defineProperty(this, 'primitiveTypes', { value: {} })
 

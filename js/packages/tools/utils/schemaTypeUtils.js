@@ -13,11 +13,11 @@ function typeOf(...path) {
 
 /**
  *
- * @param {import('@buffela/parser').FieldType} field
+ * @param {import('@buffela/parser').InstantiatedType} type
  * @returns {string}
  */
-function nativeType(field) {
-    const { name, dimensions } = field;
+function printFieldType(type) {
+    const { element: { name }, dimensions } = type;
     const arraySuffix = dimensions.map(() => "[]").join("")
 
     return nativeTypes[name] ?? name + arraySuffix
@@ -25,11 +25,11 @@ function nativeType(field) {
 
 /**
  *
- * @param {Record<string, import('@buffela/parser').FieldType>} fields
+ * @param {Record<string, import('@buffela/parser').Field>} fields
  */
 function printFields(fields) {
     for (const fieldName in fields) {
-        printer.line(`${fieldName}: ${nativeType(fields[fieldName])},`)
+        printer.line(`${fieldName}: ${printFieldType(fields[fieldName].type)},`)
     }
 }
 
@@ -44,10 +44,10 @@ function printObjectType(objectType, name, ...path) {
     const fullPath = [...path, name]
 
     if (!objectType.isRoot)
-        printer.line(`${objectType.parent.metadataPrefix}type: ${typeOf(...fullPath)},`)
+        printer.line(`${objectType.parent.name}_type: ${typeOf(...fullPath)},`)
 
-    printFields(objectType.fields)
-    printFields(objectType.deferredFields)
+    printFields(objectType.ownFields)
+    printFields(objectType.fieldOverrides)
 
     if (objectType.isLeaf) return true;
 

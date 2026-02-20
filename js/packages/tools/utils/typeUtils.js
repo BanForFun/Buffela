@@ -10,7 +10,7 @@ function printImports() {
     if (options.deserializerEnabled)
         printer.line('import type { Deserializable as _Deserializable, Deserializer as _Deserializer } from "@buffela/deserializer"')
 
-    for (const type in schema.primitives) {
+    for (const type in schema.primitiveTypes) {
         if (type in nativeTypes) continue;
         printer.line(`import type ${type} from "./primitives/${type}"`)
     }

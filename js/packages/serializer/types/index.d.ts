@@ -1,4 +1,4 @@
-import {Primitive, SimplifiedSchema} from "@buffela/parser"
+import {Extensions, SimplifiedSchema} from "@buffela/parser"
 
 declare class SerializerBuffer {
     constructor()
@@ -18,6 +18,8 @@ declare class SerializerBuffer {
     writeString(string: string): void
     writeStringNt(string: string): void
     writeBuffer(buffer: Buffer): void
+    writeSigned(value: number, bitLength: number): void
+    writeUnsigned(value: number, bitLength: number): void
 
     toBuffer(): Buffer
 }
@@ -31,7 +33,7 @@ export interface Serializer<T> {
     serialize(buffer: SerializerBuffer, value: T): void
 }
 
-type PrimitiveSerializers<S extends Record<string, Primitive>> = {
+type PrimitiveSerializers<S extends Record<string, Extensions>> = {
     [K in keyof S]-?: Required<S[K]> extends Serializer<infer T> ? Serializer<T> : never
 }
 
@@ -41,7 +43,7 @@ type SerializableSchema<S extends SimplifiedSchema> = {
 
 declare function registerSerializer<S extends SimplifiedSchema>(
     schema: S,
-    customSerializers: PrimitiveSerializers<S['primitives']>
+    customSerializers: PrimitiveSerializers<S['primitiveTypes']>
 ): asserts schema is SerializableSchema<S>
 
 export { registerSerializer, SerializerBuffer }
