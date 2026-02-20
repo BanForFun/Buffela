@@ -1,8 +1,8 @@
 /**
  *
  * @param {SerializerBuffer} buffer
- * @param {InstantiatedType} type
- * @param value {unknown}
+ * @param {Serializer.InstantiatedType} type
+ * @param {unknown} value
  * @param {number} dimension
  */
 export function serializeValue(buffer, type, value, dimension = type.dimensions?.length) {

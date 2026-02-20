@@ -13,7 +13,7 @@ function serializeBoolean(buffer, value) {
  *
  * @param {SerializerBuffer} buffer
  * @param {string} value
- * @param {InstantiatedType | null} sizeType
+ * @param {Serializer.InstantiatedType | null} sizeType
  */
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
@@ -30,7 +30,7 @@ function serializeString(buffer, value, sizeType) {
  *
  * @param {SerializerBuffer} buffer
  * @param {TypedArray} value
- * @param {InstantiatedType} sizeType
+ * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeTypedArray(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
@@ -41,7 +41,7 @@ function serializeTypedArray(buffer, value, sizeType) {
  *
  * @param {SerializerBuffer} buffer
  * @param {Buffer} value
- * @param {InstantiatedType} sizeType
+ * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeBuffer(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
@@ -52,12 +52,12 @@ function serializeBuffer(buffer, value, sizeType) {
  *
  * @param {SerializerBuffer} buffer
  * @param {boolean[]} values
- * @param {InstantiatedType} sizeType
+ * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeBooleanArray(buffer, values, sizeType) {
     serializeValue(buffer, sizeType, values.length);
     for (const bool of values) {
-        buffer.writeTruncated(bool ? 1 : 0, 1)
+        serializeBoolean(buffer, bool)
     }
 }
 

@@ -1,4 +1,4 @@
-import {Primitive, SimplifiedSchema} from "@buffela/parser"
+import {Extensions, SimplifiedSchema} from "@buffela/parser"
 
 declare class DeserializerBuffer {
     constructor(buffer: Buffer)
@@ -15,9 +15,11 @@ declare class DeserializerBuffer {
     readULong(): bigint
     readFloat(): number
     readDouble(): number
-    readString(): string
     readStringNt(): string
-    readBuffer(): Buffer
+    readString(length: number): string
+    readBuffer(length: number): Buffer
+    readSigned(bitLength: number): number
+    readUnsigned(bitLength: number): number
 }
 
 export type Deserializable<T> = {
@@ -28,7 +30,7 @@ export type Deserializer<T> = {
     deserialize: (buffer: DeserializerBuffer) => T
 }
 
-type PrimitiveDeserializers<S extends Record<string, Primitive>> = {
+type PrimitiveDeserializers<S extends Record<string, Extensions>> = {
     [K in keyof S]-?: Required<S[K]> extends Deserializer<infer T> ? Deserializer<T> : never
 }
 
@@ -38,7 +40,7 @@ type DeserializableSchema<S extends SimplifiedSchema> = {
 
 declare function registerDeserializer<S extends SimplifiedSchema>(
     schema: S,
-    deserializers: PrimitiveDeserializers<S['primitives']>
+    customDeserializers: PrimitiveDeserializers<S['primitiveTypes']>
 ): asserts schema is DeserializableSchema<S>
 
 export { registerDeserializer, DeserializerBuffer }

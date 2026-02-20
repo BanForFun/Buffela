@@ -5,5 +5,5 @@
     "moduleResolution": "nodenext",
     "skipLibCheck": false
   },
-  "include": [ "./types/*.d.ts" ]
+  "include": [ "types/*.d.ts" ]
 }

@@ -49,7 +49,7 @@ export interface EnumEntry {
 export type EnumType<E extends Extensions> = ComplexType<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
-    values: string[]
+    entries: EnumEntry[]
 }
 
 export type RootType<E extends Extensions> = EnumType<E> | ObjectType<E>

@@ -1,6 +1,6 @@
 const { parseSchema } = require('@buffela/parser')
 const { registerSerializer, SerializerBuffer} = require('@buffela/serializer')
-// const { registerDeserializer, DeserializerBuffer} = require("@buffela/deserializer");
+const { registerDeserializer, DeserializerBuffer} = require("@buffela/deserializer");
 
 const sampleBuffela = require('./sampleBuffela.json')
 
@@ -9,22 +9,29 @@ const sampleBuffela = require('./sampleBuffela.json')
  */
 const schema = parseSchema(sampleBuffela)
 
-registerSerializer(schema, {
-    Date: {
-        serialize(buffer, value) {
-            let result = 0
-
-            result = (value.year - 1) * 12 + (value.month - 1)
-
-            result <<= 5
-            result |= (value.day - 1)
-
-            buffer.writeUInt(result)
-        }
+function createDate(year, month, day) {
+    return {
+        yearMonth: (year - 1) * 12 + (month - 1),
+        day: day - 1
     }
+}
+
+registerSerializer(schema, {
+    // Date: {
+    //     serialize(buffer, value) {
+    //         let result = 0
+    //
+    //         result = (value.year - 1) * 12 + (value.month - 1)
+    //
+    //         result <<= 5
+    //         result |= (value.day - 1)
+    //
+    //         buffer.writeUInt(result)
+    //     }
+    // }
 })
 
-// registerDeserializer(schema, {
+registerDeserializer(schema, {
 //     Date: {
 //         deserialize(buffer) {
 //             let date = buffer.readUInt()
@@ -42,7 +49,7 @@ registerSerializer(schema, {
 //             }
 //         }
 //     }
-// })
+})
 
 function sha256(buffer) {
     return Buffer.alloc(32)
@@ -51,11 +58,7 @@ function sha256(buffer) {
 const serializerBuffer = new SerializerBuffer()
 
 schema.AuthTokenPayload.serialize({
-    issuedAt: {
-        year: 2026,
-        month: 12,
-        day: 12
-    },
+    issuedAt: createDate(2026, 12, 12),
     user: {
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
         gender: schema.Gender.MALE,
@@ -74,14 +77,10 @@ const serialized = serializerBuffer.toBuffer()
 console.log('Serialized', serialized.byteLength, 'bytes')
 console.log(serialized.toString('hex').match(/../g).join(' '))
 
-// const deserializerBuffer = new DeserializerBuffer(serialized)
-//
-// const payload = schema.AuthTokenPayload.deserialize(deserializerBuffer)
-//
-// const signature = schema.AuthTokenSignature.deserialize(deserializerBuffer)
+const deserializerBuffer = new DeserializerBuffer(serialized)
+
+const payload = schema.AuthTokenPayload.deserialize(deserializerBuffer)
+const signature = schema.AuthTokenSignature.deserialize(deserializerBuffer)
 
 
-//
-// console.log()
-// const deserialized = deserializeCalf(buffela.AuthToken, buffer)
-// console.log('Deserialized', deserialized)
+console.log(payload, signature)

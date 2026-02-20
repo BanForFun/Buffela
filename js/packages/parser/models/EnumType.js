@@ -13,20 +13,23 @@ export default class EnumType extends ComplexType {
         this.#definition = definition;
         this.#schema = schema;
 
-        Object.defineProperty(this, 'values', { value: [], writable: true })
+        Object.defineProperty(this, 'entries', { value: [], writable: true })
     }
 
     link() {
+        const entries = []
         for (let index = 0; index < this.#definition.length; index++) {
             const value = this.#definition[index];
-
-            this[value] = {
+            const entry = {
                 index,
                 [inspectSymbol]: () =>  `<BuffelaEnumValue ${value}>`
             }
+
+            this[value] = entry
+            entries[index] = entry
         }
 
-        this.values = [...this.#definition]
+        this.entries = entries;
         this.setSize(this.#definition.length)
 
         Object.setPrototypeOf(this, this.#schema.enumExtensions)

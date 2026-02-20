@@ -1,19 +1,6 @@
 import InstantiatedType from "./InstantiatedType.js";
 
 export default class ComplexType {
-    //TODO: Make bit field
-    static #getMinSizeType(count) {
-        if (count <= 255) {
-            return "UByte"
-        } else if (count <= 65535) {
-            return "UShort"
-        } else if (count <= 2147483647) {
-            return "Int"
-        } else {
-            throw new Error("Fuck off")
-        }
-    }
-
     #schema;
 
     constructor(schema, kind, name) {
@@ -23,12 +10,18 @@ export default class ComplexType {
         Object.defineProperty(this, 'name', { value: name })
     }
 
-    setSize(size) {
-        if (size <= 1) return;
+    #getMinSizeType(size) {
+        if (size <= 1) return null;
 
-        Object.defineProperty(this, 'defaultArgument', {
-            value: InstantiatedType.parse(this.#schema, ComplexType.#getMinSizeType(size)),
-            configurable: true
-        })
+        const bits = Math.ceil(Math.log2(size)) + 1
+        const type = new InstantiatedType(this.#schema.lookupType("Unsigned"))
+        type.argument = new InstantiatedType(bits)
+
+        return type
+    }
+
+    setSize(size) {
+        const minSizeType = this.#getMinSizeType(size)
+        Object.defineProperty(this, 'defaultArgument', { value: minSizeType, configurable: true })
     }
 }

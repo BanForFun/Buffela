@@ -32,10 +32,10 @@ class SerializerBuffer {
 
         const mask = (1 << bitLength) - 1
         const masked = value & mask
+        const shifted = masked << this.#bitCount
 
         this.#bitCount += bitLength
-        this.#bitBuffer <<= bitLength
-        this.#bitBuffer |= masked
+        this.#bitBuffer |= shifted
     }
 
     // Will truncate all significant bits above the bitLength
@@ -44,7 +44,7 @@ class SerializerBuffer {
             const available = 8 - this.#bitCount
             if (bitLength < available) {
                 this.#writeLSBits(value, bitLength)
-                return;
+                break;
             }
 
             this.#writeLSBits(value, available)
@@ -56,8 +56,13 @@ class SerializerBuffer {
     }
 
     writeSigned(value, bitLength) {
-        if (bitLength > 32) throw new Error('Bit fields cannot be larger that 32 bits')
+        // Bit shifts return 32-bit SIGNED integers so we cannot decode 32-bit unsigned values.
+        // Technically we could allow 32-bit signed bit fields only, but that would be weird
+        // Just use a regular Int/UInt
+        if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
 
+        // Here we could use bit shifts to calculate the range,
+        // but I prefer to stay consistent with the unsigned implementation where we cannot
         const minValue = -Math.pow(2, bitLength - 1)
         const maxValue = Math.pow(2, bitLength - 1) - 1
 
@@ -68,7 +73,7 @@ class SerializerBuffer {
     }
 
     writeUnsigned(value, bitLength) {
-        if (bitLength > 32) throw new Error('Bit fields cannot be larger that 32 bits')
+        if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
 
         const maxValue = Math.pow(2, bitLength) - 1
 

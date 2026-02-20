@@ -4,10 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Combined json converter and type generator">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Implemented deserializer">
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/types/global.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/enumUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/objectUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/typeUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/ComplexType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/ComplexType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/EnumType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple.js" beforeDir="false" afterPath="$PROJECT_DIR$/simple.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +71,12 @@
     "git-widget-placeholder": "v3",
     "javascript.nodejs.core.library.configured.version": "22.20.0",
     "javascript.nodejs.core.library.typings.version": "22.19.0",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/deserializer/types",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
     "npm.common > build.executor": "Run",
     "npm.deserializer > build.executor": "Run",
@@ -61,18 +85,18 @@
     "npm.tools-common > build.executor": "Run",
     "npm.tools-kotlin > build.executor": "Run",
     "npm.tools-types > build.executor": "Run",
-    "settings.editor.selected.configurable": "settings.json.schema",
+    "settings.editor.selected.configurable": "settings.typescriptcompiler",
     "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/deserializer/types" />
       <recent name="$PROJECT_DIR$/packages/tools" />
       <recent name="$PROJECT_DIR$/packages/deserializer" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/packages/parser" />
-      <recent name="$PROJECT_DIR$/packages/serializer" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
@@ -203,7 +227,10 @@
       <workItem from="1771242720410" duration="35458000" />
       <workItem from="1771329750448" duration="21451000" />
       <workItem from="1771354098028" duration="18450000" />
-      <workItem from="1771411466698" duration="36448000" />
+      <workItem from="1771411466698" duration="42153000" />
+      <workItem from="1771504375168" duration="29913000" />
+      <workItem from="1771589993267" duration="22947000" />
+      <workItem from="1771619881187" duration="11984000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -485,7 +512,31 @@
       <option name="project" value="LOCAL" />
       <updated>1771450380542</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Made all generated types pascal case">
+      <option name="closed" value="true" />
+      <created>1771450611313</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1771450611313</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Added bit field syntax">
+      <option name="closed" value="true" />
+      <created>1771550076606</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1771550076607</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Added bit field serializer">
+      <option name="closed" value="true" />
+      <created>1771616347119</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1771616347119</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -503,10 +554,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Replaced _objectType hack with proper type" />
-    <MESSAGE value="Added kotlin example and fixed generated namespaces" />
-    <MESSAGE value="Changed the examples" />
-    <MESSAGE value="Changed the kotlin input type to Source and output to Sink" />
     <MESSAGE value="Added readme and set version" />
     <MESSAGE value="Changed subtype ordering in packet" />
     <MESSAGE value="Refactored code" />
@@ -528,6 +575,10 @@
     <MESSAGE value="Added plugin type system" />
     <MESSAGE value="Implemented serializer" />
     <MESSAGE value="Combined json converter and type generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Combined json converter and type generator" />
+    <MESSAGE value="Made all generated types pascal case" />
+    <MESSAGE value="Added bit field syntax" />
+    <MESSAGE value="Added bit field serializer" />
+    <MESSAGE value="Implemented deserializer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented deserializer" />
   </component>
 </project>

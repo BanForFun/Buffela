@@ -5,7 +5,7 @@ import {serializeObject} from "./objectUtils.js";
 
 /**
  *
- * @this {ComplexType}
+ * @this {Serializer.ComplexType}
  * @param {unknown} value
  * @param {SerializerBuffer} [buffer]
  */
@@ -21,7 +21,7 @@ function serializeComplexType(value, buffer) {
 
 /**
  *
- * @param {Schema} schema
+ * @param {Serializer.Schema} schema
  * @param {Object.<string, CustomSerializer>} customSerializers
  */
 export function registerSerializer(schema, customSerializers) {
