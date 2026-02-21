@@ -5,32 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Implemented deserializer">
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/types/global.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/enumUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/objectUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/deserializer/utils/typeUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buffela_benchmark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buffela_common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buffela_size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json_benchmark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/json_size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto_benchmark.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto_common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proto_size.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sample.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/calfDeserializer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/ComplexType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/ComplexType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/EnumType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple.js" beforeDir="false" afterPath="$PROJECT_DIR$/simple.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simple.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,7 +65,7 @@
     "git-widget-placeholder": "v3",
     "javascript.nodejs.core.library.configured.version": "22.20.0",
     "javascript.nodejs.core.library.typings.version": "22.19.0",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/deserializer/types",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -92,11 +86,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages/deserializer/types" />
       <recent name="$PROJECT_DIR$/packages/tools" />
       <recent name="$PROJECT_DIR$/packages/deserializer" />
       <recent name="$PROJECT_DIR$/packages/tools-common" />
-      <recent name="$PROJECT_DIR$/packages/parser" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
@@ -230,7 +224,8 @@
       <workItem from="1771411466698" duration="42153000" />
       <workItem from="1771504375168" duration="29913000" />
       <workItem from="1771589993267" duration="22947000" />
-      <workItem from="1771619881187" duration="11984000" />
+      <workItem from="1771619881187" duration="13980000" />
+      <workItem from="1771671423569" duration="7204000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -536,7 +531,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771616347119</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Implemented deserializer">
+      <option name="closed" value="true" />
+      <created>1771631873700</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1771631873700</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

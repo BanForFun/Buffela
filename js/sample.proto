@@ -1,0 +1,53 @@
+syntax = "proto3";
+
+package auth;
+
+enum Gender {
+  FEMALE = 0;
+  MALE = 1;
+}
+
+message User {
+  string user_id = 1;
+
+  oneof user_type {
+    Anonymous anonymous = 2;
+    Registered registered = 3;
+  }
+
+  message Anonymous {}
+
+  message Registered {
+    repeated bool vector = 1;
+
+    oneof registered_type {
+      Viewer viewer = 2;
+      Organizer organizer = 3;
+    }
+
+    message Viewer {
+      string birth_date = 1;
+      uint32 country_code = 2;
+      string phone = 3;
+      Gender gender = 4;
+    }
+
+    message Organizer {
+      string email = 1;
+    }
+  }
+}
+
+message AuthTokenPayload {
+  double issued_at = 1;
+  User user = 2;
+}
+
+message AuthTokenSignature {
+  bytes sha256 = 1;
+}
+
+message AuthToken {
+  AuthTokenPayload payload = 1;
+  AuthTokenSignature signature = 2;
+}

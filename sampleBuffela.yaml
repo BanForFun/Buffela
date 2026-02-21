@@ -1,29 +1,30 @@
+Uuid: String(36)
+
 Gender:
   - FEMALE
   - MALE
 
-Uuid: String(36)
-
-Date:
-  yearMonth: Unsigned(17)
-  day: Unsigned(5)
-
 User:
   userId: Uuid
-  gender: Gender
 
   Anonymous: {}
 
   Registered:
-    phone: String
+    vector: BooleanArray(UShort)
+
+    Viewer:
+      birthDate: Date
+      countryCode: Unsigned(10)
+      phone: String
+      gender: Gender
+
+    Organizer:
+      userId: String
+      email: String
 
 AuthTokenPayload:
-  issuedAt: Date
+  issuedAt: Double
   user: User
 
 AuthTokenSignature:
   sha256: Buffer(32)
-
-AuthToken:
-  payload: AuthTokenPayload
-  signature: AuthTokenSignature

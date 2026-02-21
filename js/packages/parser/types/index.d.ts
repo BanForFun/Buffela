@@ -65,6 +65,7 @@ export interface Schema<E extends Extensions, C extends Extensions> {
 
 export interface SimplifiedSchema {
     [type: TypeName]: Extensions
+
     primitiveTypes: Record<string, Extensions>
 }
 
