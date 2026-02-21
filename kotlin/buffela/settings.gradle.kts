@@ -14,4 +14,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "buffela"
-include(":utils")
+
+include(":serialization")
+include(":deserialization")

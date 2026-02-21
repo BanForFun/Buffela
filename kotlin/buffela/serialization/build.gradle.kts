@@ -1,34 +1,25 @@
-import com.android.build.api.dsl.androidLibrary
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
-    alias(libs.plugins.android.kotlin.multiplatform.library)
-    alias(libs.plugins.vanniktech.mavenPublish)
+    alias(libs.plugins.androidKmpLibrary)
+    alias(libs.plugins.mavenPublish)
 }
 
-group = "gr.elaevents.buffela.schema"
-version = "2.1.0"
+group = libs.versions.lib.group.get()
+version = libs.versions.lib.version.get()
 
 kotlin {
     jvm()
     androidLibrary {
-        namespace = "gr.elaevents.buffela.schema"
+        namespace = "gr.elaevents.buffela.serialization"
         compileSdk = libs.versions.android.compileSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
 
-        withJava() // enable java compilation support
-        withHostTestBuilder {}.configure {}
-        withDeviceTestBuilder {
-            sourceSetTreeName = "test"
-        }
+        withJava()
 
-        compilations.configureEach {
-            compilerOptions.configure {
-                jvmTarget.set(
-                    JvmTarget.JVM_11
-                )
-            }
+        compilerOptions {
+            jvmTarget.set(JvmTarget.JVM_11)
         }
     }
     iosX64()
@@ -52,12 +43,12 @@ mavenPublishing {
 
     signAllPublications()
 
-    coordinates(group.toString(), "utils", version.toString())
+    coordinates(group.toString(), "serialization", version.toString())
 
     pom {
-        name = "Buffela utilities"
-        description = "Utilities required by the classes generated from a buffela schema"
-        inceptionYear = "2025"
+        name = "Buffela serialization utilities"
+        description = "Utilities for buffela schema serialization"
+        inceptionYear = "2026"
         url = "https://github.com/BanForFun/Buffela/tree/master"
         licenses {
             license {

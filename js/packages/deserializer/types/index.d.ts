@@ -3,7 +3,7 @@ import {Extensions, SimplifiedSchema} from "@buffela/parser"
 declare class DeserializerBuffer {
     constructor(buffer: Buffer)
 
-    offset: number
+    readonly position: number
 
     readByte(): number
     readUByte(): number
@@ -15,7 +15,7 @@ declare class DeserializerBuffer {
     readULong(): bigint
     readFloat(): number
     readDouble(): number
-    readStringNt(): string
+    readNtString(): string
     readString(length: number): string
     readBuffer(length: number): Buffer
     readSigned(bitLength: number): number

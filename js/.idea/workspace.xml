@@ -4,27 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Implemented deserializer">
-      <change afterPath="$PROJECT_DIR$/buffela_benchmark.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buffela_common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/buffela_size.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json_benchmark.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/json_size.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto_benchmark.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto_common.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/proto_size.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sample.proto" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added benchmarks">
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/Deserializable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/Serializable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/utils/LinkedList.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleBuffela.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/sampleBuffela.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simple.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../sampleBuffela.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/SinkExt.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/internal/utils/SourceExt.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/utils/src/commonMain/kotlin/schema/Serializable.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +225,7 @@
       <workItem from="1771504375168" duration="29913000" />
       <workItem from="1771589993267" duration="22947000" />
       <workItem from="1771619881187" duration="13980000" />
-      <workItem from="1771671423569" duration="7204000" />
+      <workItem from="1771671423569" duration="12246000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -539,7 +539,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771631873700</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Added benchmarks">
+      <option name="closed" value="true" />
+      <created>1771679591887</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1771679591887</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,7 +565,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added readme and set version" />
     <MESSAGE value="Changed subtype ordering in packet" />
     <MESSAGE value="Refactored code" />
     <MESSAGE value="Prepared for release" />
@@ -582,6 +589,7 @@
     <MESSAGE value="Added bit field syntax" />
     <MESSAGE value="Added bit field serializer" />
     <MESSAGE value="Implemented deserializer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented deserializer" />
+    <MESSAGE value="Added benchmarks" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added benchmarks" />
   </component>
 </project>

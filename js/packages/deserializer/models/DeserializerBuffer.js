@@ -6,12 +6,8 @@ export default class DeserializerBuffer {
     #bitBuffer = 0
     #bitCount = 0
 
-    get offset() {
+    get position() {
         return this.#buffer.readOffset
-    }
-
-    set offset(offset) {
-        this.#buffer.readOffset = offset
     }
 
     constructor(buffer) {
@@ -101,15 +97,15 @@ export default class DeserializerBuffer {
         return this.#buffer.readDoubleLE()
     }
 
-    readStringNt() {
+    readBuffer(length) {
+        return this.#buffer.readBuffer(length)
+    }
+
+    readNtString() {
         return this.#buffer.readStringNT()
     }
 
     readString(length) {
         return this.#buffer.readString(length)
-    }
-
-    readBuffer(length) {
-        return this.#buffer.readBuffer(length)
     }
 }

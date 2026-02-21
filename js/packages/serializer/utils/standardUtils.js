@@ -17,7 +17,7 @@ function serializeBoolean(buffer, value) {
  */
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
-        buffer.writeStringNt(value)
+        buffer.writeNtString(value)
     } else if (typeof sizeType.element === 'number') {
         if (value.length !== sizeType.element)
             throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)

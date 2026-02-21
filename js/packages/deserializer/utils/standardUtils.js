@@ -17,7 +17,7 @@ function deserializeBoolean(buffer) {
  */
 function deserializeString(buffer, arg) {
     if (arg === null) {
-        return buffer.readStringNt()
+        return buffer.readNtString()
     } else if (typeof arg.element === 'number') {
         return buffer.readString(arg.element)
     }

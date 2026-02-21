@@ -3,7 +3,7 @@ import {Extensions, SimplifiedSchema} from "@buffela/parser"
 declare class SerializerBuffer {
     constructor()
 
-    offset: number
+    readonly length: number
 
     writeByte(byte: number): void
     writeUByte(uByte: number): void
@@ -16,7 +16,7 @@ declare class SerializerBuffer {
     writeFloat(float: number): void
     writeDouble(double: number): void
     writeString(string: string): void
-    writeStringNt(string: string): void
+    writeNtString(string: string): void
     writeBuffer(buffer: Buffer): void
     writeSigned(value: number, bitLength: number): void
     writeUnsigned(value: number, bitLength: number): void

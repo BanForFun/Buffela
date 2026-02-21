@@ -7,12 +7,8 @@ class SerializerBuffer {
     #bitBuffer = 0
     #bitCount = 0
 
-    get offset() {
-        return this.#buffer.writeOffset
-    }
-
-    set offset(offset) {
-        this.#buffer.writeOffset = offset
+    get length() {
+        return this.#buffer.length
     }
 
     #flushBits() {
@@ -123,16 +119,16 @@ class SerializerBuffer {
         this.#buffer.writeDoubleLE(double)
     }
 
+    writeBuffer(buffer) {
+        this.#buffer.writeBuffer(buffer)
+    }
+
     writeString(string) {
         this.#buffer.writeString(string)
     }
 
-    writeStringNt(string) {
+    writeNtString(string) {
         this.#buffer.writeStringNT(string)
-    }
-
-    writeBuffer(buffer) {
-        this.#buffer.writeBuffer(buffer)
     }
 
     toBuffer() {
