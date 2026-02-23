@@ -37,7 +37,7 @@ class DeserializerBuffer(byteArray: ByteArray) {
         return value
     }
 
-    fun readTruncated(bitLength: Int): Int {
+    private fun readTruncated(bitLength: Int): Int {
         var result = 0
         var totalRead = 0
 
@@ -53,6 +53,10 @@ class DeserializerBuffer(byteArray: ByteArray) {
         }
 
         return result
+    }
+
+    fun clearBitBuffer() {
+        this.bitCount = 0
     }
 
     fun readUnsigned(bitLength: Int): UInt {

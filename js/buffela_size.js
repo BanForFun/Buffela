@@ -1,11 +1,10 @@
 const { SerializerBuffer } = require('@buffela/serializer')
 const { DeserializerBuffer } = require("@buffela/deserializer");
-const { schema, payload, calculateSignature } = require('./common')
+const { schema, payload, calculateSignature } = require('./buffela_common')
 
 const serializerBuffer = new SerializerBuffer()
 
 schema.AuthTokenPayload.serialize(payload, serializerBuffer)
-
 schema.AuthTokenSignature.serialize(calculateSignature(serializerBuffer.toBuffer()), serializerBuffer)
 
 const serialized = serializerBuffer.toBuffer()

@@ -13,17 +13,13 @@ class SerializerBuffer {
 
     #flushBits() {
         if (this.#bitCount === 0) return
-
         this.#buffer.writeUInt8(this.#bitBuffer, this.#bitOffset)
-        this.#bitCount = 0
-        this.#bitBuffer = 0
     }
 
     #writeLSBits(value, bitLength) {
         if (this.#bitCount === 0) {
-            // Reserve space
             this.#bitOffset = this.#buffer.writeOffset
-            this.#buffer.writeUInt8(0)
+            this.#buffer.writeUInt8(0) // Reserve space
         }
 
         const mask = (1 << bitLength) - 1
@@ -45,10 +41,16 @@ class SerializerBuffer {
 
             this.#writeLSBits(value, available)
             this.#flushBits()
+            this.clearBitBuffer()
 
             value >>= available
             bitLength -= available
         }
+    }
+
+    clearBitBuffer() {
+        this.#bitCount = 0
+        this.#bitBuffer = 0
     }
 
     writeSigned(value, bitLength) {

@@ -29,6 +29,10 @@ export default class DeserializerBuffer {
         return value
     }
 
+    clearBitBuffer() {
+        this.#bitCount = 0
+    }
+
     readUnsigned(bitLength) {
         let result = 0
         let totalRead = 0

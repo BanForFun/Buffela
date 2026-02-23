@@ -5,6 +5,8 @@ declare class DeserializerBuffer {
 
     readonly position: number
 
+    clearBitBuffer(): void
+
     readByte(): number
     readUByte(): number
     readShort(): number

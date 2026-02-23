@@ -5,6 +5,8 @@ declare class SerializerBuffer {
 
     readonly length: number
 
+    clearBitBuffer(): void
+
     writeByte(byte: number): void
     writeUByte(uByte: number): void
     writeShort(short: number): void

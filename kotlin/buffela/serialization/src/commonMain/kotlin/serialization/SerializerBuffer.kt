@@ -13,7 +13,7 @@ import kotlinx.io.writeUIntLe
 import kotlinx.io.writeULongLe
 import kotlinx.io.writeUShortLe
 
-private data class BitChunk(var offset: Int, var buffer: Byte) {
+private data class BitChunk(val offset: Int, var buffer: Byte = 0) {
     fun apply(bytes: ByteArray) {
         bytes[offset] = buffer
     }
@@ -23,7 +23,7 @@ class SerializerBuffer {
     private val buffer = Buffer()
     private val bitChunks = LinkedList<BitChunk>()
 
-    private var bitOffset: Long = -1
+    private var bitChunk: BitChunk? = null
     private var bitBuffer: Int = 0
     private var bitCount = 0
 
@@ -31,17 +31,15 @@ class SerializerBuffer {
 
     private fun flushBits() {
         if (this.bitCount == 0) return
-
-        bitChunks.append(BitChunk(this.bitOffset.toInt(), this.bitBuffer.toByte()))
-        this.bitCount = 0
-        this.bitBuffer = 0
+        bitChunk!!.buffer = this.bitBuffer.toByte()
     }
 
     private fun writeLSBits(value: Int, bitLength: Int) {
         if (this.bitCount == 0) {
-            // Reserve space
-            this.bitOffset = this.buffer.size
-            this.buffer.skip(1)
+            this.bitChunk = BitChunk(this.buffer.size.toInt())
+            bitChunks.append(this.bitChunk!!)
+            
+            this.buffer.skip(1) // Reserve space
         }
 
         val mask = (1 shl bitLength) - 1
@@ -65,10 +63,16 @@ class SerializerBuffer {
 
             this.writeLSBits(remainingValue, available)
             this.flushBits()
+            this.clearBitBuffer()
 
             remainingValue = remainingValue ushr available
             remainingLength -= available
         }
+    }
+
+    fun clearBitBuffer() {
+        this.bitCount = 0
+        this.bitBuffer = 0
     }
 
     fun writeSigned(value: Int, bitLength: Int) {

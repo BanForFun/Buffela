@@ -4,60 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added kotlin utils">
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/constants/nativeTypes.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/typeUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/deserialization_jvm_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/serialization_jvm_3_0_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/kotlinc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Date.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Simple.kt" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added kotlin code generator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buffela_size.js" beforeDir="false" afterPath="$PROJECT_DIR$/buffela_size.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/Schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeDeserializationUtils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeInterfaceUtils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeSerializationUtils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/dataTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/Deserializable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/Deserializer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/gradle.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradle/libs.versions.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/settings.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +214,7 @@
       <workItem from="1771589993267" duration="22947000" />
       <workItem from="1771619881187" duration="13980000" />
       <workItem from="1771671423569" duration="16271000" />
-      <workItem from="1771770165887" duration="27584000" />
+      <workItem from="1771770165887" duration="29485000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -589,7 +544,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771691502093</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Added kotlin code generator">
+      <option name="closed" value="true" />
+      <created>1771804922188</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1771804922188</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -607,7 +570,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Refactored code" />
     <MESSAGE value="Prepared for release" />
     <MESSAGE value="Fixed types for moduleResolution node and module imports" />
     <MESSAGE value="Added esm compatibility" />
@@ -632,6 +594,7 @@
     <MESSAGE value="Implemented deserializer" />
     <MESSAGE value="Added benchmarks" />
     <MESSAGE value="Added kotlin utils" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added kotlin utils" />
+    <MESSAGE value="Added kotlin code generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added kotlin code generator" />
   </component>
 </project>
