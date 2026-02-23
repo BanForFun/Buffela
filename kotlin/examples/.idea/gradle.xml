@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
+  <component name="GradleSettings">
+    <option name="linkedExternalProjectsSettings">
+      <GradleProjectSettings>
+        <compositeConfiguration>
+          <compositeBuild compositeDefinitionSource="SCRIPT">
+            <builds>
+              <build path="$PROJECT_DIR$/../buffela" name="buffela">
+                <projects>
+                  <project path="$PROJECT_DIR$/../buffela" />
+                  <project path="$PROJECT_DIR$/../buffela/deserialization" />
+                  <project path="$PROJECT_DIR$/../buffela/serialization" />
+                </projects>
+              </build>
+            </builds>
+          </compositeBuild>
+        </compositeConfiguration>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$/../buffela" />
+            <option value="$PROJECT_DIR$/../buffela/deserialization" />
+            <option value="$PROJECT_DIR$/../buffela/serialization" />
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </GradleProjectSettings>
+    </option>
+  </component>
+</project>

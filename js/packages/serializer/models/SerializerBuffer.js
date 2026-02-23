@@ -35,7 +35,7 @@ class SerializerBuffer {
     }
 
     // Will truncate all significant bits above the bitLength
-    writeTruncated(value, bitLength) {
+    #writeTruncated(value, bitLength) {
         while (bitLength > 0) {
             const available = 8 - this.#bitCount
             if (bitLength < available) {
@@ -65,7 +65,7 @@ class SerializerBuffer {
         if (value < minValue || value > maxValue)
             throw new Error('Value out of range')
 
-        this.writeTruncated(value, bitLength)
+        this.#writeTruncated(value, bitLength)
     }
 
     writeUnsigned(value, bitLength) {
@@ -76,7 +76,7 @@ class SerializerBuffer {
         if (value < 0 || value > maxValue)
             throw new Error('Value out of range')
 
-        this.writeTruncated(value, bitLength)
+        this.#writeTruncated(value, bitLength)
     }
 
     writeByte(byte) {
@@ -119,16 +119,19 @@ class SerializerBuffer {
         this.#buffer.writeDoubleLE(double)
     }
 
+    writeBoolean(boolean) {
+        this.#writeTruncated(boolean ? 1 : 0, 1)
+    }
+
     writeBuffer(buffer) {
         this.#buffer.writeBuffer(buffer)
     }
 
-    writeString(string) {
-        this.#buffer.writeString(string)
-    }
-
-    writeNtString(string) {
-        this.#buffer.writeStringNT(string)
+    writeString(string, nt = false) {
+        if (nt)
+            this.#buffer.writeStringNT(string)
+        else
+            this.#buffer.writeString(string)
     }
 
     toBuffer() {

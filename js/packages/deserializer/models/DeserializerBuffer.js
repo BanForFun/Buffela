@@ -97,15 +97,15 @@ export default class DeserializerBuffer {
         return this.#buffer.readDoubleLE()
     }
 
+    readBoolean() {
+        return !!this.readUnsigned(1)
+    }
+
     readBuffer(length) {
         return this.#buffer.readBuffer(length)
     }
 
-    readNtString() {
-        return this.#buffer.readStringNT()
-    }
-
-    readString(length) {
-        return this.#buffer.readString(length)
+    readString(length = 0) {
+        return length ? this.#buffer.readString(length) : this.#buffer.readStringNT()
     }
 }

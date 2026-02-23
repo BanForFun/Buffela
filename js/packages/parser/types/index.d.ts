@@ -4,12 +4,13 @@ export interface Extensions {
 
 export type TypeName = `${Uppercase<string>}${string}`
 
-type Type<E extends Extensions> = E & {
+type Type<K extends string, E extends Extensions> = E & {
+    kind: K;
     name: string;
 }
 
 export type InstantiatedType<E extends Extensions> = {
-    element: Type<E> | number
+    element: Type<string, E> | number
     argument: InstantiatedType<E> | null
     dimensions: InstantiatedType<E>[]
 }
@@ -19,8 +20,7 @@ export interface Field<E extends Extensions> {
     type: InstantiatedType<E>
 }
 
-export type ComplexType<K extends string, E extends Extensions> = Type<E> & {
-    kind: K;
+export type ComplexType<K extends string, E extends Extensions> = Type<K, E> & {
     defaultArgument: InstantiatedType<E> | null
 }
 
@@ -60,7 +60,7 @@ export interface Schema<E extends Extensions, C extends Extensions> {
     complexExtensions: E & C
     objectExtensions: E
     enumExtensions: E
-    primitiveTypes: Record<string, Type<E>>
+    primitiveTypes: Record<string, Type<'primitive', E>>
 }
 
 export interface SimplifiedSchema {

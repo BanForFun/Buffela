@@ -83,14 +83,14 @@ class SerializerBuffer {
         this.writeTruncated(value, bitLength)
     }
 
-    fun writeUnsigned(value: Int, bitLength: Int) {
+    fun writeUnsigned(value: UInt, bitLength: Int) {
         if (bitLength > 31) throw IllegalArgumentException("Bit fields cannot be larger than 31 bits")
 
         val maxValue = (1u shl bitLength) - 1u
-        if (value !in 0..maxValue.toInt())
+        if (value !in 0u..maxValue)
             throw IllegalArgumentException("Value out of range")
 
-        this.writeTruncated(value, bitLength)
+        this.writeTruncated(value.toInt(), bitLength)
     }
 
     fun writeByte(byte: Byte) {
@@ -129,19 +129,17 @@ class SerializerBuffer {
         this.buffer.writeDoubleLe(double)
     }
 
+    fun writeBoolean(boolean: Boolean) {
+        this.writeTruncated(if (boolean) 1 else 0, 1)
+    }
+
     fun writeByteArray(bytes: ByteArray) {
         this.buffer.write(bytes, 0, bytes.size)
     }
 
-    fun writeString(string: String) {
+    fun writeString(string: String, nt: Boolean = false) {
         this.buffer.writeString(string)
-    }
-
-    fun writeNtString(string: String) {
-        with(this.buffer) {
-            this.writeString(string)
-            this.writeByte(0)
-        }
+        if (nt) this.buffer.writeByte(0)
     }
 
     fun toByteArray(): ByteArray {

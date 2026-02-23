@@ -11,8 +11,10 @@ declare class Printer {
     line: (string?: string) => void;
     lines: (lines: string[], separator?: string) => void;
     blockStart: (string: string) => void;
-    blockEnd: (string: string) => void;
+    blockEnd: (string?: string) => void;
     blockEndStart: (string: string) => void;
 }
 
-export { Printer, readSchemaFile, getFileOutputStream };
+declare const editorSchema: object;
+
+export { Printer, readSchemaFile, getFileOutputStream, editorSchema };

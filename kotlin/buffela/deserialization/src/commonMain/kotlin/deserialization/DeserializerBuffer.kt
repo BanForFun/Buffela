@@ -101,21 +101,25 @@ class DeserializerBuffer(byteArray: ByteArray) {
         return this.buffer.readDoubleLe()
     }
 
+    fun readBoolean(): Boolean {
+        return this.readTruncated(1) == 1
+    }
+
     fun readByteArray(length: Int): ByteArray {
         return this.buffer.readByteArray(length)
     }
 
-    fun readString(length: Long): String {
-        return this.buffer.readString(length)
-    }
-
-    fun readNtString(): String {
+    fun readString(): String {
         with(this.buffer) {
-            val length = this.indexOf(0)
-            val string = this.readString(length)
-            this.skip(1)
+            val length = indexOf(0)
+            val string = readString(length)
+            skip(1)
 
             return string
         }
+    }
+
+    fun readString(length: Long): String {
+        return this.buffer.readString(length)
     }
 }

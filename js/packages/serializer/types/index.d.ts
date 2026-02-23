@@ -15,8 +15,8 @@ declare class SerializerBuffer {
     writeULong(uLong: bigint): void
     writeFloat(float: number): void
     writeDouble(double: number): void
-    writeString(string: string): void
-    writeNtString(string: string): void
+    writeBoolean(boolean: boolean): void
+    writeString(string: string, nt?: boolean): void
     writeBuffer(buffer: Buffer): void
     writeSigned(value: number, bitLength: number): void
     writeUnsigned(value: number, bitLength: number): void

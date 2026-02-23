@@ -68,7 +68,7 @@ function Printer(stream) {
      *
      * @param {string} string
      */
-    this.blockEnd = function(string) {
+    this.blockEnd = function(string = "") {
         indent--
 
         if (isBlockEmpty)

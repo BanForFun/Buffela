@@ -18,7 +18,7 @@ export default class Schema {
     }
 
     lookupType(name) {
-        return this[name] ?? (this.primitiveTypes[name] ??= { name })
+        return this[name] ?? (this.primitiveTypes[name] ??= { name, kind: 'primitive' })
     }
 
     lookupAlias(name) {

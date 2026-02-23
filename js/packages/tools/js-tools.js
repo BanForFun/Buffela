@@ -1,9 +1,9 @@
 const process = require("node:process");
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
-const { readSchemaFile, getFileOutputStream, Printer} = require('@buffela/tools-common')
-const { printTypes } = require("./utils/typeUtils");
+const { readSchemaFile, getFileOutputStream, Printer } = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
+const { printTypes } = require("./utils/typeUtils");
 
 yargs()
     .command({

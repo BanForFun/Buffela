@@ -15,8 +15,8 @@ declare class DeserializerBuffer {
     readULong(): bigint
     readFloat(): number
     readDouble(): number
-    readNtString(): string
-    readString(length: number): string
+    readBoolean(): boolean
+    readString(length?: number): string
     readBuffer(length: number): Buffer
     readSigned(bitLength: number): number
     readUnsigned(bitLength: number): number

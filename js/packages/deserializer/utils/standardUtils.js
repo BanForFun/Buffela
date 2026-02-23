@@ -3,21 +3,12 @@ import {deserializeValue} from "./typeUtils.js";
 /**
  *
  * @param {DeserializerBuffer} buffer
- * @returns {boolean}
- */
-function deserializeBoolean(buffer) {
-    return !!buffer.readUnsigned(1)
-}
-
-/**
- *
- * @param {DeserializerBuffer} buffer
  * @param {Deserializer.InstantiatedType | null} arg
  * @returns {string}
  */
 function deserializeString(buffer, arg) {
     if (arg === null) {
-        return buffer.readNtString()
+        return buffer.readString()
     } else if (typeof arg.element === 'number') {
         return buffer.readString(arg.element)
     }
@@ -54,7 +45,7 @@ function typedArrayDeserializer(Constructor) {
  */
 function deserializeBooleanArray(buffer, arg) {
     const size = deserializeValue(buffer, arg)
-    return Array.from({ length: size }, () => deserializeBoolean(buffer))
+    return Array.from({ length: size }, () => buffer.readBoolean())
 }
 
 /**
@@ -72,9 +63,9 @@ export const standardDeserializers = {
     ULong: (buffer) => buffer.readULong(),
     Float: (buffer) => buffer.readFloat(),
     Double: (buffer) => buffer.readDouble(),
+    Boolean: (buffer) => buffer.readBoolean(),
     Signed: (buffer, arg) => buffer.readSigned(arg.element),
     Unsigned: (buffer, arg) => buffer.readUnsigned(arg.element),
-    Boolean: deserializeBoolean,
     String: deserializeString,
     Buffer: deserializeBuffer,
     ByteArray: typedArrayDeserializer(Int8Array),

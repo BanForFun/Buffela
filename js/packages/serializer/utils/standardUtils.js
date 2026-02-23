@@ -3,21 +3,12 @@ import {serializeValue} from "./typeUtils.js";
 /**
  *
  * @param {SerializerBuffer} buffer
- * @param {boolean} value
- */
-function serializeBoolean(buffer, value) {
-    buffer.writeTruncated(value ? 1 : 0, 1)
-}
-
-/**
- *
- * @param {SerializerBuffer} buffer
  * @param {string} value
  * @param {Serializer.InstantiatedType | null} sizeType
  */
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
-        buffer.writeNtString(value)
+        buffer.writeString(value, true)
     } else if (typeof sizeType.element === 'number') {
         if (value.length !== sizeType.element)
             throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)
@@ -57,7 +48,7 @@ function serializeBuffer(buffer, value, sizeType) {
 function serializeBooleanArray(buffer, values, sizeType) {
     serializeValue(buffer, sizeType, values.length);
     for (const bool of values) {
-        serializeBoolean(buffer, bool)
+        buffer.writeBoolean(bool)
     }
 }
 
@@ -76,9 +67,9 @@ export const standardSerializers = {
     ULong: (buffer, value) => buffer.writeULong(value),
     Float: (buffer, value) => buffer.writeFloat(value),
     Double: (buffer, value) => buffer.writeDouble(value),
+    Boolean: (buffer, value) => buffer.writeBoolean(value),
     Signed: (buffer, value, arg) => buffer.writeSigned(value, arg.element),
     Unsigned: (buffer, value, arg) => buffer.writeUnsigned(value, arg.element),
-    Boolean: serializeBoolean,
     String: serializeString,
     Buffer: serializeBuffer,
     ByteArray: serializeTypedArray,

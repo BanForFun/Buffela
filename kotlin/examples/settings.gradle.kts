@@ -1,19 +1,7 @@
-pluginManagement {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
-}
+plugins {
 
-dependencyResolutionManagement {
-    repositories {
-        google()
-        mavenCentral()
-    }
 }
 
 rootProject.name = "examples"
-include(":simple")
 
 includeBuild("../buffela")
