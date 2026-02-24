@@ -30,7 +30,3 @@ fun main() {
 
     println("Signature is valid")
 }
-
-class Test {
-
-}

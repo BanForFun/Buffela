@@ -4,33 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added clearBitBuffer api">
-      <change afterPath="$PROJECT_DIR$/formatUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/signatureUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/printUtils.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/signatureUtils.kt" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed kotlin bit packing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/buffela_benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/buffela_common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_size.js" beforeDir="false" afterPath="$PROJECT_DIR$/buffela_size.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_benchmark.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/json_size.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/debug.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/proto_benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/proto_common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_size.js" beforeDir="false" afterPath="$PROJECT_DIR$/proto_size.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sample.proto" beforeDir="false" afterPath="$PROJECT_DIR$/AuthToken.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleBuffela.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/AuthToken.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sampleBuffela.json" beforeDir="false" afterPath="$PROJECT_DIR$/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Date.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/Date.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Simple.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Simple.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/sampleBuffela.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../sampleBuffela.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -233,7 +211,7 @@
       <workItem from="1771619881187" duration="13980000" />
       <workItem from="1771671423569" duration="16271000" />
       <workItem from="1771770165887" duration="29576000" />
-      <workItem from="1771930560660" duration="8901000" />
+      <workItem from="1771930560660" duration="9988000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -579,7 +557,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771807224695</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Fixed kotlin bit packing">
+      <option name="closed" value="true" />
+      <created>1771946067080</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1771946067080</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +583,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed types for moduleResolution node and module imports" />
     <MESSAGE value="Added esm compatibility" />
     <MESSAGE value="Fixed parser types and buffela-to-types" />
     <MESSAGE value="Fixed type field deserialization" />
@@ -622,6 +607,7 @@
     <MESSAGE value="Added kotlin utils" />
     <MESSAGE value="Added kotlin code generator" />
     <MESSAGE value="Added clearBitBuffer api" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added clearBitBuffer api" />
+    <MESSAGE value="Fixed kotlin bit packing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed kotlin bit packing" />
   </component>
 </project>

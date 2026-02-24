@@ -9,32 +9,29 @@ if (!file) {
 
 const { serialize, deserialize } = require(file)
 
-const warmUpReps = 100_000
+const warmupReps = 100_000
 const measurementReps = 1_000_000
 
-for (let i = 0; i < warmUpReps; i++) {
-    serialize()
-}
+
+// Serialization
+
+for (let i = 0; i < warmupReps; i++) serialize()
 
 const serializationStart = performance.now()
-for (let i = 0; i < measurementReps; i++) {
-    serialize()
-}
-
+for (let i = 0; i < measurementReps; i++) serialize()
 const serializationTime = performance.now() - serializationStart
-console.log('Serialization took an average of', serializationTime / measurementReps, "ms")
 
+console.log('Serialization took', serializationTime / measurementReps, "ms on average")
+
+
+// Deserialization
 
 const buffer = serialize()
 
-for (let i = 0; i < warmUpReps; i++) {
-    deserialize(buffer)
-}
+for (let i = 0; i < warmupReps; i++) deserialize(buffer)
 
 const deserializationStart = performance.now()
-for (let i = 0; i < measurementReps; i++) {
-    deserialize(buffer)
-}
-
+for (let i = 0; i < measurementReps; i++) deserialize(buffer)
 const deserializationTime = performance.now() - deserializationStart
-console.log('Deserialization took an average of', deserializationTime / measurementReps, "ms")
+
+console.log('Deserialization took', deserializationTime / measurementReps, "ms on average")
