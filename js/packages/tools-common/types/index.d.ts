@@ -3,6 +3,8 @@ declare function readSchemaFile(filePath: string): {
     name: string;
 };
 
+declare function existsDirSync(path: string): boolean;
+
 declare function getFileOutputStream(outputPath: string, defaultName: string): NodeJS.WritableStream;
 
 declare class Printer {
@@ -17,4 +19,4 @@ declare class Printer {
 
 declare const editorSchema: object;
 
-export { Printer, readSchemaFile, getFileOutputStream, editorSchema };
+export { Printer, readSchemaFile, existsDirSync, getFileOutputStream, editorSchema };

@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Disabled alias recursion">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added root dir parameter to js-tools">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/AuthToken.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/AuthToken.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -218,7 +214,7 @@
       <workItem from="1771770165887" duration="29576000" />
       <workItem from="1771930560660" duration="17461000" />
       <workItem from="1771959693333" duration="1754000" />
-      <workItem from="1771975247544" duration="487000" />
+      <workItem from="1771975247544" duration="1043000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -588,7 +584,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771959606171</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Changed example schema">
+      <option name="closed" value="true" />
+      <created>1771975852032</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975852032</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added root dir parameter to js-tools">
+      <option name="closed" value="true" />
+      <created>1771975910892</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975910892</updated>
+    </task>
+    <option name="localTasksCounter" value="49" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,8 +618,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed type field deserialization" />
-    <MESSAGE value="Added json schema exporter to kotlin tools" />
     <MESSAGE value="Added enums in json schema for better editor suggestions" />
     <MESSAGE value="Added fixed length strings" />
     <MESSAGE value="Fixed readme mistakes and added keywords" />
@@ -631,7 +641,9 @@
     <MESSAGE value="Fixed kotlin bit packing" />
     <MESSAGE value="Added kotlin benchmark" />
     <MESSAGE value="Disabled alias recursion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Disabled alias recursion" />
+    <MESSAGE value="Changed example schema" />
+    <MESSAGE value="Added root dir parameter to js-tools" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added root dir parameter to js-tools" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

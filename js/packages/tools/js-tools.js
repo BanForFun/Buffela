@@ -2,7 +2,7 @@ const process = require("node:process");
 const path = require("path");
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
-const { readSchemaFile, getFileOutputStream, Printer } = require('@buffela/tools-common')
+const { readSchemaFile, getFileOutputStream, Printer, existsDirSync} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
 const { printTypes } = require("./utils/typeUtils");
 
@@ -44,6 +44,11 @@ yargs()
                 default: true
             }),
         handler: (argv) => {
+            if (!existsDirSync(argv.rootDir)) {
+                console.error('rootDir is not a valid directory')
+                process.exit(1)
+            }
+
             const inputFile = readSchemaFile(argv.schema)
 
             if (argv.json) {
