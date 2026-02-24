@@ -2,10 +2,10 @@ const { parseSchema } = require('@buffela/parser')
 const { registerSerializer } = require('@buffela/serializer')
 const { registerDeserializer } = require("@buffela/deserializer");
 
-const sampleBuffela = require('./sampleBuffela.json')
+const sampleBuffela = require('./AuthToken.json')
 
 /**
- * @type {import('./sampleBuffela').default}
+ * @type {import('./AuthToken').default}
  */
 const schema = parseSchema(sampleBuffela)
 
@@ -37,7 +37,7 @@ registerDeserializer(schema, {
 })
 
 /**
- * @type {import('./sampleBuffela').AuthTokenPayload}
+ * @type {import('./AuthToken').AuthTokenPayload}
  */
 const payload = {
     issuedAt: Date.now(),
@@ -53,30 +53,7 @@ const payload = {
     }
 }
 
-/**
- *
- * @param {Buffer} payloadBytes
- * @returns {import('./sampleBuffela').AuthTokenSignature}
- */
-function calculateSignature(payloadBytes) {
-    return {
-        sha256: Buffer.alloc(32)
-    }
-}
-
-/**
- *
- * @param {Buffer} payloadBytes
- * @param {import('./sampleBuffela').AuthTokenSignature} signature
- * @returns {boolean}
- */
-function verifySignature(payloadBytes, signature) {
-    return true
-}
-
 module.exports = {
     schema,
-    payload,
-    calculateSignature,
-    verifySignature
+    payload
 };

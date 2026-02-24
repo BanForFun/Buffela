@@ -9,7 +9,7 @@ if (!file) {
 
 const { serialize, deserialize } = require(file)
 
-const warmUpReps = 10_000
+const warmUpReps = 100_000
 const measurementReps = 1_000_000
 
 for (let i = 0; i < warmUpReps; i++) {

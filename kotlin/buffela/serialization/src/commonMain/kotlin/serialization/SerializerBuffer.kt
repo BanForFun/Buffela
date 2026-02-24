@@ -27,7 +27,7 @@ class SerializerBuffer {
     private var bitBuffer: Int = 0
     private var bitCount = 0
 
-    val length get() = buffer.size
+    val length get() = buffer.size.toInt()
 
     private fun flushBits() {
         if (this.bitCount == 0) return
@@ -36,10 +36,10 @@ class SerializerBuffer {
 
     private fun writeLSBits(value: Int, bitLength: Int) {
         if (this.bitCount == 0) {
-            this.bitChunk = BitChunk(this.buffer.size.toInt())
+            this.bitChunk = BitChunk(this.length)
             bitChunks.append(this.bitChunk!!)
-            
-            this.buffer.skip(1) // Reserve space
+
+            this.buffer.writeByte(0) // Reserve space
         }
 
         val mask = (1 shl bitLength) - 1
@@ -148,7 +148,9 @@ class SerializerBuffer {
 
     fun toByteArray(): ByteArray {
         this.flushBits()
-        val bytes = this.buffer.readByteArray()
+
+        // Make copy so that we don't consume the bytes from the buffer
+        val bytes = this.buffer.copy().readByteArray()
 
         for (chunk in this.bitChunks)
             chunk.apply(bytes)

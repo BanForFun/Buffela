@@ -1,24 +1,14 @@
-const { SerializerBuffer } = require('@buffela/serializer')
-const { DeserializerBuffer } = require("@buffela/deserializer");
-const { schema, payload, calculateSignature } = require('./buffela_common')
+const { schema, payload } = require('./buffela_common')
 
 function serialize() {
-    const buffer = new SerializerBuffer()
-    schema.AuthTokenPayload.serialize(payload, buffer)
-    schema.AuthTokenSignature.serialize(calculateSignature(buffer.toBuffer()), buffer)
-
-    return buffer.toBuffer()
+    return schema.AuthTokenPayload.serialize(payload)
 }
 
 function deserialize(serialized) {
-    const buffer = new DeserializerBuffer(serialized)
-
-    return {
-        payload: schema.AuthTokenPayload.deserialize(buffer),
-        signature: schema.AuthTokenSignature.deserialize(buffer)
-    }
+    return schema.AuthTokenPayload.deserialize(serialized)
 }
 
 module.exports = {
-    serialize, deserialize
+    serialize,
+    deserialize
 }

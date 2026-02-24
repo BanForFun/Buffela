@@ -17,7 +17,8 @@ import kotlin.math.min
 class DeserializerBuffer(byteArray: ByteArray) {
     private val buffer: Buffer = Buffer().apply { write(byteArray) }
 
-    val position get() = buffer.size
+    private val initialSize = byteArray.size
+    val position get() = initialSize - buffer.size.toInt() //buffer.size is the number of remaining bytes
 
     private var bitBuffer: Int = 0
     private var bitCount = 0

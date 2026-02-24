@@ -1,4 +1,4 @@
-package gr.elaevents.buffela.examples
+package gr.elaevents.buffela.examples.authToken
 
 import gr.elaevents.buffela.deserialization.DeserializerBuffer
 import gr.elaevents.buffela.serialization.SerializerBuffer

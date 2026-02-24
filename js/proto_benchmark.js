@@ -1,25 +1,14 @@
-const {
-    AuthTokenPayload,
-    AuthToken,
-    payload,
-    calculateSignature
-} = require('./proto_common')
+const { AuthTokenPayload, payload } = require('./proto_common')
 
 function serialize() {
-    const payloadBytes = AuthTokenPayload.encode(AuthTokenPayload.create(payload)).finish();
-
-    const token = {
-        payload,
-        signature: calculateSignature(payloadBytes)
-    }
-
-    return AuthToken.encode(AuthToken.create(token)).finish();
+    return AuthTokenPayload.encode(AuthTokenPayload.create(payload)).finish();
 }
 
 function deserialize(serialized) {
-    return AuthToken.toObject(AuthToken.decode(serialized))
+    return AuthTokenPayload.toObject(AuthTokenPayload.decode(serialized))
 }
 
 module.exports = {
-    serialize, deserialize
+    serialize,
+    deserialize
 }

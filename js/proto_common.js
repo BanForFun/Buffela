@@ -1,6 +1,6 @@
 const protobuf = require("protobufjs");
 
-const root = protobuf.loadSync("sample.proto");
+const root = protobuf.loadSync("AuthToken.proto");
 
 const AuthTokenPayload = root.lookupType("auth.AuthTokenPayload");
 const AuthToken = root.lookupType("auth.AuthToken");
@@ -21,20 +21,8 @@ const payload = {
     }
 };
 
-function calculateSignature(payloadBytes) {
-    return {
-        sha256: Buffer.alloc(32)
-    }
-}
-
-function verifySignature(payloadBytes, signature) {
-    return true
-}
-
 module.exports = {
     AuthTokenPayload,
     AuthToken,
-    payload,
-    calculateSignature,
-    verifySignature,
+    payload
 }

@@ -1,22 +1,22 @@
-const {
-    AuthTokenPayload,
-    AuthToken,
-    payload,
-    calculateSignature
-} = require('./proto_common')
-
-const payloadBytes = AuthTokenPayload.encode(AuthTokenPayload.create(payload)).finish();
+const { AuthTokenPayload, AuthToken, payload } = require('./proto_common')
+const { sign, verify } = require("./signatureUtils");
+const { prettyBuffer, prettyObject } = require("./formatUtils");
 
 const token = {
     payload,
-    signature: calculateSignature(payloadBytes)
+    signature: {
+        sha256: sign(AuthTokenPayload.encode(AuthTokenPayload.create(payload)).finish())
+    }
 }
 
 const serialized = AuthToken.encode(AuthToken.create(token)).finish();
 
 console.log('Serialized', serialized.byteLength, 'bytes')
-console.log(serialized.toString('hex').match(/../g).join(' '))
+console.log(prettyBuffer(serialized))
 
 const deserialized = AuthToken.toObject(AuthToken.decode(serialized))
+const serializedPayload = AuthTokenPayload.encode(AuthTokenPayload.create(deserialized.payload)).finish();
 
-console.log(JSON.stringify(deserialized, null, 2))
+console.log("Deserialized payload", prettyObject(deserialized.payload));
+
+verify(serializedPayload, deserialized.signature.sha256)
