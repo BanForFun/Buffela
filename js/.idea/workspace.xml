@@ -4,26 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added kotlin benchmark">
-      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Disabled alias recursion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthToken.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AuthToken.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/AuthToken.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buffela_size.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/size.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/formatUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/formatUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/primitives/Date.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/primitives/Date.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/benchmark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/common.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proto_size.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/size.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/signatureUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/signatureUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/proto/AuthToken.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/AuthToken.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/proto/common.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/common.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,36 +43,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.debug parser.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "v3",
-    "javascript.nodejs.core.library.configured.version": "22.20.0",
-    "javascript.nodejs.core.library.typings.version": "22.19.0",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/schemata/buffela-schema.json",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.common > build.executor": "Run",
-    "npm.deserializer > build.executor": "Run",
-    "npm.parser > build.executor": "Run",
-    "npm.serializer > build.executor": "Run",
-    "npm.tools-common > build.executor": "Run",
-    "npm.tools-kotlin > build.executor": "Run",
-    "npm.tools-types > build.executor": "Run",
-    "settings.editor.selected.configurable": "settings.json.schema",
-    "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v3&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.20.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.0&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/schemata/buffela-schema.json&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
@@ -226,7 +216,9 @@
       <workItem from="1771619881187" duration="13980000" />
       <workItem from="1771671423569" duration="16271000" />
       <workItem from="1771770165887" duration="29576000" />
-      <workItem from="1771930560660" duration="17298000" />
+      <workItem from="1771930560660" duration="17461000" />
+      <workItem from="1771959693333" duration="1754000" />
+      <workItem from="1771975247544" duration="487000" />
     </task>
     <task id="LOCAL-00001" summary="Refactored code">
       <option name="closed" value="true" />
@@ -588,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771947029542</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Disabled alias recursion">
+      <option name="closed" value="true" />
+      <created>1771959606171</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1771959606171</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -606,7 +606,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed parser types and buffela-to-types" />
     <MESSAGE value="Fixed type field deserialization" />
     <MESSAGE value="Added json schema exporter to kotlin tools" />
     <MESSAGE value="Added enums in json schema for better editor suggestions" />
@@ -631,6 +630,17 @@
     <MESSAGE value="Added clearBitBuffer api" />
     <MESSAGE value="Fixed kotlin bit packing" />
     <MESSAGE value="Added kotlin benchmark" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added kotlin benchmark" />
+    <MESSAGE value="Disabled alias recursion" />
+    <option name="LAST_COMMIT_MESSAGE" value="Disabled alias recursion" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/examples/proto/common.js</url>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

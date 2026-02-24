@@ -32,7 +32,7 @@ export type User = {
         User_type: User_Schema["Anonymous"],
     } | {
         User_type: User_Schema["Registered"],
-        vector: Uint8ClampedArray,
+        verified: boolean,
     } & (
         {
             Registered_type: User_Schema["Registered"]["Viewer"],

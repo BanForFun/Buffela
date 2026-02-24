@@ -44,7 +44,7 @@ const payload = {
     user: {
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
         User_type: schema.User.Registered,
-        vector: [true, true, false, true, true, true, false, true],
+        verified: true,
         Registered_type: schema.User.Registered.Viewer,
         birthDate: { year: 2003, month: 7, day: 22 },
         countryCode: 30,

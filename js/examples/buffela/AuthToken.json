@@ -1,5 +1,6 @@
 {
   "Uuid": "String(36)",
+  "Timestamp": "Double",
   "Gender": [
     "FEMALE",
     "MALE"
@@ -8,7 +9,7 @@
     "userId": "Uuid",
     "Anonymous": {},
     "Registered": {
-      "vector": "BooleanArray(UShort)",
+      "verified": "Boolean",
       "Viewer": {
         "birthDate": "Date",
         "countryCode": "Unsigned(10)",
@@ -22,7 +23,7 @@
     }
   },
   "AuthTokenPayload": {
-    "issuedAt": "Double",
+    "issuedAt": "Timestamp",
     "user": "User"
   },
   "AuthTokenSignature": {

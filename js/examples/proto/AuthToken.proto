@@ -18,7 +18,7 @@ message User {
   message Anonymous {}
 
   message Registered {
-    repeated bool vector = 1;
+    bool verified = 1;
 
     oneof registered_type {
       Viewer viewer = 2;
