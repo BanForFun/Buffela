@@ -12,7 +12,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="file://$PROJECT_DIR$/../sampleBuffela.yaml" />
+                    <option name="path" value="file://$PROJECT_DIR$/../AuthToken.yaml" />
                   </Item>
                 </list>
               </option>

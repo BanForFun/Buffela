@@ -1,6 +1,6 @@
-const { AuthTokenPayload, AuthToken, payload } = require('./proto_common')
-const { sign, verify } = require("./signatureUtils");
-const { prettyBuffer, prettyObject } = require("./formatUtils");
+const { AuthTokenPayload, AuthToken, payload } = require('./common')
+const { sign, verify } = require("../utils/signatureUtils");
+const { prettyBuffer, prettyObject } = require("../utils/formatUtils");
 
 const token = {
     payload,

@@ -1,4 +1,4 @@
-const { AuthTokenPayload, payload } = require('./proto_common')
+const { AuthTokenPayload, payload } = require('./common')
 
 function serialize() {
     return AuthTokenPayload.encode(AuthTokenPayload.create(payload)).finish();

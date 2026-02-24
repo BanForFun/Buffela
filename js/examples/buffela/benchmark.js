@@ -1,4 +1,4 @@
-const { schema, payload } = require('./buffela_common')
+const { schema, payload } = require('./common')
 
 function serialize() {
     return schema.AuthTokenPayload.serialize(payload)

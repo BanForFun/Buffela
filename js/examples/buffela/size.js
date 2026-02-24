@@ -1,8 +1,9 @@
 const { SerializerBuffer } = require('@buffela/serializer')
 const { DeserializerBuffer } = require("@buffela/deserializer");
-const { schema, payload } = require('./buffela_common')
-const { sign, verify } = require("./signatureUtils");
-const { prettyBuffer, prettyObject } = require("./formatUtils");
+
+const { schema, payload } = require('./common')
+const { sign, verify } = require("../utils/signatureUtils");
+const { prettyBuffer, prettyObject } = require("../utils/formatUtils");
 
 const serializerBuffer = new SerializerBuffer()
 

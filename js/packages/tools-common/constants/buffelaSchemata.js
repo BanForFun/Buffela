@@ -67,16 +67,7 @@ function fail(message) {
 function buildSchema(fieldSchema, typeSchema) {
     return {
         "$defs": {
-            "AliasDefinition": {
-                ...fieldSchema,
-                "not": {
-                    "type": "string",
-                    "pattern": anchoredPattern(typeNamePattern)
-                },
-                "errorMessage": {
-                    "not": "Expected parameterized or array type"
-                }
-            },
+            "AliasDefinition": fieldSchema,
             "EnumDefinition": {
                 "type": "array",
                 "uniqueItems": true,
