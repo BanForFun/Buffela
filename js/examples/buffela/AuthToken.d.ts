@@ -23,6 +23,8 @@ type AuthTokenPayload_Schema = {}
 
 type AuthTokenSignature_Schema = {}
 
+type GetEvents_Schema = {}
+
 export type Gender = Gender_Schema[keyof Gender_Schema]
 
 export type User = {
@@ -42,6 +44,7 @@ export type User = {
             gender: Gender,
         } | {
             Registered_type: User_Schema["Registered"]["Organizer"],
+            roles: string,
             email: string,
             userId: string,
         }
@@ -57,6 +60,10 @@ export type AuthTokenSignature = {
     sha256: Buffer,
 }
 
+export type GetEvents = {
+    seenIds: Int32Array,
+}
+
 type _Type<T> = Partial<_Serializable<T> & _Deserializable<T>>
 type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
 
@@ -65,6 +72,7 @@ type _Schema = {
     readonly User: User_Schema & _Type<User>
     readonly AuthTokenPayload: AuthTokenPayload_Schema & _Type<AuthTokenPayload>
     readonly AuthTokenSignature: AuthTokenSignature_Schema & _Type<AuthTokenSignature>
+    readonly GetEvents: GetEvents_Schema & _Type<GetEvents>
 
     primitiveTypes: {
         Date?: _Primitive<Date>

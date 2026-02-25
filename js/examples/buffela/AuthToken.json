@@ -17,6 +17,7 @@
         "gender": "Gender"
       },
       "Organizer": {
+        "roles": "String[UByte]",
         "userId": "String",
         "email": "String"
       }
@@ -28,5 +29,8 @@
   },
   "AuthTokenSignature": {
     "sha256": "Buffer(32)"
+  },
+  "GetEvents": {
+    "seenIds": "IntArray(Int)"
   }
 }

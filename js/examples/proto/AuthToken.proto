@@ -33,7 +33,8 @@ message User {
     }
 
     message Organizer {
-      string email = 1;
+      repeated string roles = 1;
+      string email = 2;
     }
   }
 }
@@ -50,4 +51,8 @@ message AuthTokenSignature {
 message AuthToken {
   AuthTokenPayload payload = 1;
   AuthTokenSignature signature = 2;
+}
+
+message GetEvents {
+  repeated int32 seenIds = 1;
 }

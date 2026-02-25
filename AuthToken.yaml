@@ -20,6 +20,7 @@ User:
       gender: Gender
 
     Organizer:
+      roles: String[UByte]
       userId: String
       email: String
 
@@ -29,3 +30,6 @@ AuthTokenPayload:
 
 AuthTokenSignature:
   sha256: Buffer(32)
+
+GetEvents:
+  seenIds: IntArray(Int)
