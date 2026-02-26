@@ -15,7 +15,7 @@ function serializeComplexType(value, buffer) {
     } else {
         buffer = new SerializerBuffer()
         this._serialize(buffer, value, null)
-        return buffer.toBuffer()
+        return buffer.toBytes()
     }
 }
 

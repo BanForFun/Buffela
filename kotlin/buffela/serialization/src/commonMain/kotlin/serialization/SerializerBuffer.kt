@@ -137,7 +137,7 @@ class SerializerBuffer {
         this.writeTruncated(if (boolean) 1 else 0, 1)
     }
 
-    fun writeByteArray(bytes: ByteArray) {
+    fun writeBytes(bytes: ByteArray) {
         this.buffer.write(bytes, 0, bytes.size)
     }
 
@@ -146,7 +146,7 @@ class SerializerBuffer {
         if (nt) this.buffer.writeByte(0)
     }
 
-    fun toByteArray(): ByteArray {
+    fun toBytes(): ByteArray {
         this.flushBits()
 
         // Make copy so that we don't consume the bytes from the buffer

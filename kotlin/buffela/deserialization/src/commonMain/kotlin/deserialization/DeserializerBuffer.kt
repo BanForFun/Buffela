@@ -14,10 +14,10 @@ import kotlinx.io.readULongLe
 import kotlinx.io.readUShortLe
 import kotlin.math.min
 
-class DeserializerBuffer(byteArray: ByteArray) {
-    private val buffer: Buffer = Buffer().apply { write(byteArray) }
+class DeserializerBuffer(bytes: ByteArray) {
+    private val buffer: Buffer = Buffer().apply { write(bytes) }
 
-    private val initialSize = byteArray.size
+    private val initialSize = bytes.size
     val position get() = initialSize - buffer.size.toInt() //buffer.size is the number of remaining bytes
 
     private var bitBuffer: Int = 0
@@ -110,7 +110,7 @@ class DeserializerBuffer(byteArray: ByteArray) {
         return this.readTruncated(1) == 1
     }
 
-    fun readByteArray(length: Int): ByteArray {
+    fun readBytes(length: Int): ByteArray {
         return this.buffer.readByteArray(length)
     }
 

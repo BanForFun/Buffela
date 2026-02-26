@@ -2,7 +2,7 @@ const {
     sentinelTypes,
     constSizedTypes,
     sizedTypes,
-    scalarTypes
+    fixedSizeTypes
 } = require('./buffelaTypes.js')
 
 // Patterns ============================================================================================================
@@ -42,7 +42,7 @@ const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
 const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
-const reservedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes, ...scalarTypes)
+const reservedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes, ...fixedSizeTypes)
 const rootTypeNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
 
 const parameterizedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes)
@@ -150,7 +150,7 @@ const editorSchema = buildSchema({
                 ...sentinelTypes,
                 ...constSizedTypes.map(t => `${t}(4)`),
                 ...sizedTypes.map(t => `${t}(Int)`),
-                ...scalarTypes
+                ...fixedSizeTypes
             ]
         },
     ]

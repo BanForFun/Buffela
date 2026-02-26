@@ -105,7 +105,7 @@ export default class DeserializerBuffer {
         return !!this.readUnsigned(1)
     }
 
-    readBuffer(length) {
+    readBytes(length) {
         return this.#buffer.readBuffer(length)
     }
 

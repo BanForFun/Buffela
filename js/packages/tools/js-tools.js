@@ -60,7 +60,7 @@ yargs()
 
             if (argv.types) {
                 const typesPath = path.resolve(argv.rootDir, argv.types)
-                const typesStream = getFileOutputStream(typesPath, inputFile.name + ".d.ts")
+                const typesStream = getFileOutputStream(typesPath, inputFile.name + ".ts")
 
                 global.schema = parseSchema(inputFile.schema)
                 global.printer = new Printer(typesStream)

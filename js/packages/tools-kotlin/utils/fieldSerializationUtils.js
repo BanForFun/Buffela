@@ -121,9 +121,9 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
         case 'BooleanArray':
             printSerializeArray(type, fieldName, 'Boolean')
             break;
-        case 'Buffer':
+        case 'Bytes':
             printSerializeSize(argument, `${fieldName}.size`)
-            printSerializePrimitive('ByteArray', fieldName)
+            printSerializePrimitive('Bytes', fieldName)
             break;
         case 'Unsigned':
         case 'Signed':

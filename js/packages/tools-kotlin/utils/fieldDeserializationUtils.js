@@ -84,9 +84,9 @@ function deserializeField(type, dimension = type.dimensions?.length) {
             return deserializeArray(type, 'Double')
         case 'BooleanArray':
             return deserializeArray(type, 'Boolean')
-        case 'Buffer':
+        case 'Bytes':
             const size = deserializeSize(argument)
-            return `buffer.readByteArray(${size})`
+            return `buffer.readBytes(${size})`
         case 'Signed':
         case 'Unsigned':
             return deserializePrimitive(element.name, argument.element.toString())

@@ -125,8 +125,8 @@ class SerializerBuffer {
         this.#writeTruncated(boolean ? 1 : 0, 1)
     }
 
-    writeBuffer(buffer) {
-        this.#buffer.writeBuffer(buffer)
+    writeBytes(bytes) {
+        this.#buffer.writeBuffer(bytes)
     }
 
     writeString(string, nt = false) {
@@ -136,7 +136,7 @@ class SerializerBuffer {
             this.#buffer.writeString(string)
     }
 
-    toBuffer() {
+    toBytes() {
         this.#flushBits()
         return this.#buffer.toBuffer()
     }

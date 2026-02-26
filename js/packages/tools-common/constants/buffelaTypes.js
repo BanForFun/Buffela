@@ -1,4 +1,4 @@
-const scalarTypes = [
+const fixedSizeTypes = [
     "UByte",
     "UShort",
     "Int",
@@ -28,7 +28,7 @@ const sizedTypes = [
     "LongArray",
     "FloatArray",
     "DoubleArray",
-    "Buffer",
+    "Bytes",
 ]
 
 const constSizedTypes = [
@@ -40,5 +40,5 @@ module.exports = {
     sentinelTypes,
     constSizedTypes,
     sizedTypes,
-    scalarTypes
+    fixedSizeTypes
 }

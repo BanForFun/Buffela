@@ -12,8 +12,8 @@ const { printTypes } = require("./utils/typeUtils");
 
 yargs()
     .command({
-        command: 'types <schema> [destination]',
-        describe: 'Generates kotlin types for buffela schemata',
+        command: 'compile <schema> [destination]',
+        describe: 'Compiles a buffela schema into kotlin',
         builder: (yargs) => yargs
             .positional('schema', {
                 describe: 'Schema path',

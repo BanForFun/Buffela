@@ -23,8 +23,6 @@ type AuthTokenPayload_Schema = {}
 
 type AuthTokenSignature_Schema = {}
 
-type GetEvents_Schema = {}
-
 export type Gender = Gender_Schema[keyof Gender_Schema]
 
 export type User = {
@@ -57,11 +55,7 @@ export type AuthTokenPayload = {
 }
 
 export type AuthTokenSignature = {
-    sha256: Buffer,
-}
-
-export type GetEvents = {
-    seenIds: Int32Array,
+    hmac256: Buffer,
 }
 
 type _Type<T> = Partial<_Serializable<T> & _Deserializable<T>>
@@ -72,7 +66,6 @@ type _Schema = {
     readonly User: User_Schema & _Type<User>
     readonly AuthTokenPayload: AuthTokenPayload_Schema & _Type<AuthTokenPayload>
     readonly AuthTokenSignature: AuthTokenSignature_Schema & _Type<AuthTokenSignature>
-    readonly GetEvents: GetEvents_Schema & _Type<GetEvents>
 
     primitiveTypes: {
         Date?: _Primitive<Date>

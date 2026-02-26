@@ -7,15 +7,15 @@ import {deserializeObject} from "./objectUtils.js";
 /**
  *
  * @this {Deserializer.ComplexType}
- * @param {DeserializerBuffer | Buffer} buffer
+ * @param {DeserializerBuffer | Buffer} bytes
  * @return {unknown}
  */
-function deserializeComplexType(buffer) {
-    if (buffer instanceof DeserializerBuffer) {
+function deserializeComplexType(bytes) {
+    if (bytes instanceof DeserializerBuffer) {
+        return this._deserialize(bytes, null)
+    } else if (Buffer.isBuffer(bytes)) {
+        const buffer = new DeserializerBuffer(bytes)
         return this._deserialize(buffer, null)
-    } else if (Buffer.isBuffer(buffer)) {
-        const deserializerBuffer = new DeserializerBuffer(buffer)
-        return this._deserialize(deserializerBuffer, null)
     }
 }
 

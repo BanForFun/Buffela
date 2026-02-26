@@ -4,44 +4,38 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added more examples">
-      <change afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/examples/proto/complex.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/benchmarkUtils.kt" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Consolidated examples into single files">
+      <change afterPath="$PROJECT_DIR$/docs/migration.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/benchmark.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/benchmarkUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/benchmark.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/size.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/AuthToken.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/proto/AuthToken.proto" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/benchmark.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/proto/size.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/utils/formatUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/formatUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/utils/signatureUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/signatureUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/scripts/buildSchemas.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/scripts/buildSchema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Benchmark.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Payload.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Simple.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/signatureUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/signatureUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/proto/AuthToken.proto" beforeDir="false" afterPath="$PROJECT_DIR$/examples/protobuf/AuthToken.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/proto/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/protobuf/complex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/constants/buffelaTypes.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/constants/nativeTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/constants/nativeTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/Serializable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/Serializable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/Date.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/Date.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,6 +54,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
@@ -71,36 +68,36 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.debug parser.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "v3",
-    "javascript.nodejs.core.library.configured.version": "24.14.0",
-    "javascript.nodejs.core.library.typings.version": "24.10.13",
-    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/serializer/dist",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "/home/jpeg/.nvm/versions/node/v24.14.0/bin/node",
-    "nodejs_package_manager_path": "npm",
-    "npm.common > build.executor": "Run",
-    "npm.deserializer > build.executor": "Run",
-    "npm.parser > build.executor": "Run",
-    "npm.serializer > build.executor": "Run",
-    "npm.tools-common > build.executor": "Run",
-    "npm.tools-kotlin > build.executor": "Run",
-    "npm.tools-types > build.executor": "Run",
-    "settings.editor.selected.configurable": "JavaScript.Libraries",
-    "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v3&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.14.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.10.13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/serializer/dist&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/jpeg/.nvm/versions/node/v24.14.0/bin/node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;JavaScript.Libraries&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
@@ -249,23 +246,9 @@
       <workItem from="1771975247544" duration="1144000" />
       <workItem from="1772015171905" duration="15366000" />
       <workItem from="1772058780284" duration="2057000" />
-      <workItem from="1772060846320" duration="4347000" />
-    </task>
-    <task id="LOCAL-00002" summary="Fixed Printer.printLines indent">
-      <option name="closed" value="true" />
-      <created>1762367435138</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762367435138</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refactored kotlin generation code">
-      <option name="closed" value="true" />
-      <created>1762372675014</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762372675014</updated>
+      <workItem from="1772060846320" duration="8658000" />
+      <workItem from="1772116869845" duration="947000" />
+      <workItem from="1772190554122" duration="17545000" />
     </task>
     <task id="LOCAL-00004" summary="Renamed kotlinGeneration directory">
       <option name="closed" value="true" />
@@ -643,7 +626,23 @@
       <option name="project" value="LOCAL" />
       <updated>1772016646072</updated>
     </task>
-    <option name="localTasksCounter" value="51" />
+    <task id="LOCAL-00051" summary="Simplified typescript and package configurations">
+      <option name="closed" value="true" />
+      <created>1772065292495</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1772065292495</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Consolidated examples into single files">
+      <option name="closed" value="true" />
+      <created>1772065341372</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1772065341372</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +660,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed readme mistakes and added keywords" />
-    <MESSAGE value="Rebranded to binary format" />
     <MESSAGE value="Improved error handling" />
     <MESSAGE value="Added string length validation" />
     <MESSAGE value="Changed enum and object definition syntax" />
@@ -686,6 +683,8 @@
     <MESSAGE value="Added root dir parameter to js-tools" />
     <MESSAGE value="Added root dir validation to js tools" />
     <MESSAGE value="Added more examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added more examples" />
+    <MESSAGE value="Simplified typescript and package configurations" />
+    <MESSAGE value="Consolidated examples into single files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Consolidated examples into single files" />
   </component>
 </project>

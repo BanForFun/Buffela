@@ -20,9 +20,9 @@ function deserializeString(buffer, arg) {
  * @param {Deserializer.InstantiatedType} arg
  * @returns {Buffer}
  */
-function deserializeBuffer(buffer, arg) {
+function deserializeBytes(buffer, arg) {
     const size = deserializeValue(buffer, arg)
-    return buffer.readBuffer(size)
+    return buffer.readBytes(size)
 }
 
 /**
@@ -33,7 +33,7 @@ function deserializeBuffer(buffer, arg) {
 function typedArrayDeserializer(Constructor) {
     return (buffer, arg) => {
         const size = deserializeValue(buffer, arg)
-        return new Constructor(buffer.readBuffer(size * Constructor.BYTES_PER_ELEMENT))
+        return new Constructor(buffer.readBytes(size * Constructor.BYTES_PER_ELEMENT))
     }
 }
 
@@ -67,7 +67,7 @@ export const standardDeserializers = {
     Signed: (buffer, arg) => buffer.readSigned(arg.element),
     Unsigned: (buffer, arg) => buffer.readUnsigned(arg.element),
     String: deserializeString,
-    Buffer: deserializeBuffer,
+    Bytes: deserializeBytes,
     ByteArray: typedArrayDeserializer(Int8Array),
     UByteArray: typedArrayDeserializer(Uint8Array),
     ShortArray: typedArrayDeserializer(Int16Array),

@@ -17,14 +17,14 @@ const nativeTypes = {
     "UShortArray":      "Uint16Array",
     "UIntArray":        "Uint32Array",
     "ULongArray":       "BigUint64Array",
-    "BooleanArray":     "Uint8ClampedArray",
+    "BooleanArray":     "boolean[]",
     "ByteArray":        "Int8Array",
     "ShortArray":       "Int16Array",
     "IntArray":         "Int32Array",
     "LongArray":        "BigInt64Array",
     "FloatArray":       "Float32Array",
     "DoubleArray":      "Float64Array",
-    "Buffer":           "Buffer",
+    "Bytes":            "Buffer",
 }
 
 module.exports = nativeTypes

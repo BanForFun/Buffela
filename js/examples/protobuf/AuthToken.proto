@@ -45,14 +45,10 @@ message AuthTokenPayload {
 }
 
 message AuthTokenSignature {
-  bytes sha256 = 1;
+  bytes hmac256 = 1;
 }
 
 message AuthToken {
   AuthTokenPayload payload = 1;
   AuthTokenSignature signature = 2;
-}
-
-message GetEvents {
-  repeated int32 seenIds = 1;
 }

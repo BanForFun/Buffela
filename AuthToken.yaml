@@ -29,7 +29,4 @@ AuthTokenPayload:
   user: User
 
 AuthTokenSignature:
-  sha256: Buffer(32)
-
-GetEvents:
-  seenIds: IntArray(Int)
+  hmac256: Bytes(32)

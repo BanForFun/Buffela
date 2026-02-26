@@ -6,7 +6,7 @@ import gr.elaevents.buffela.serialization.SerializerBuffer
 data class Date(val year: Int, val month: Int, val day: Int)
 
 fun SerializerBuffer.writeDate(date: Date) {
-    val yearMonth = (date.year - 1) * 12 + (date.month - 1)
+    val yearMonth = date.year * 12 + (date.month - 1)
     val day = date.day - 1
 
     writeUnsigned(yearMonth.toUInt(), 17)
@@ -18,7 +18,7 @@ fun DeserializerBuffer.readDate(): Date {
     val day = readUnsigned(5).toInt()
 
     return Date(
-        year = yearMonth / 12 + 1,
+        year = yearMonth / 12,
         month = yearMonth % 12 + 1,
         day = day + 1
     )

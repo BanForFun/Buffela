@@ -210,56 +210,28 @@ class AuthTokenPayload: _Serializable {
 }
 
 class AuthTokenSignature: _Serializable {
-    val sha256: ByteArray
+    val hmac256: ByteArray
 
     constructor(
-        sha256: ByteArray,
+        hmac256: ByteArray,
     ): super() {
-        this.sha256 = sha256
+        this.hmac256 = hmac256
     }
 
     override fun serialize(buffer: _SerializerBuffer) {
-        if (this.sha256.size != 32) {
-            throw IllegalStateException("Expected size '32' (got '${this.sha256.size}')")
+        if (this.hmac256.size != 32) {
+            throw IllegalStateException("Expected size '32' (got '${this.hmac256.size}')")
         }
-        buffer.writeByteArray(this.sha256)
+        buffer.writeBytes(this.hmac256)
     }
 
     internal constructor(buffer: _DeserializerBuffer) {
-        this.sha256 = buffer.readByteArray(32)
+        this.hmac256 = buffer.readBytes(32)
     }
 
     companion object Deserializer: _Deserializer<AuthTokenSignature> {
         override fun deserialize(buffer: _DeserializerBuffer): AuthTokenSignature {
             return AuthTokenSignature(buffer)
-        }
-    }
-}
-
-class GetEvents: _Serializable {
-    val seenIds: IntArray
-
-    constructor(
-        seenIds: IntArray,
-    ): super() {
-        this.seenIds = seenIds
-    }
-
-    override fun serialize(buffer: _SerializerBuffer) {
-        buffer.writeInt(this.seenIds.size)
-
-        for (item0 in this.seenIds) {
-            buffer.writeInt(item0)
-        }
-    }
-
-    internal constructor(buffer: _DeserializerBuffer) {
-        this.seenIds = IntArray(buffer.readInt()) { _ -> buffer.readInt() }
-    }
-
-    companion object Deserializer: _Deserializer<GetEvents> {
-        override fun deserialize(buffer: _DeserializerBuffer): GetEvents {
-            return GetEvents(buffer)
         }
     }
 }

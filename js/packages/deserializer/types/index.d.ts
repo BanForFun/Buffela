@@ -19,13 +19,13 @@ declare class DeserializerBuffer {
     readDouble(): number
     readBoolean(): boolean
     readString(length?: number): string
-    readBuffer(length: number): Buffer
+    readBytes(length: number): Buffer
     readSigned(bitLength: number): number
     readUnsigned(bitLength: number): number
 }
 
 export type Deserializable<T> = {
-    deserialize: (buffer: DeserializerBuffer | Buffer) => T
+    deserialize: (bytes: DeserializerBuffer | Buffer) => T
 }
 
 export type Deserializer<T> = {

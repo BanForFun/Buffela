@@ -25,7 +25,7 @@ function serializeString(buffer, value, sizeType) {
  */
 function serializeTypedArray(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
-    buffer.writeBuffer(Buffer.from(value))
+    buffer.writeBytes(Buffer.from(value))
 }
 
 /**
@@ -34,9 +34,9 @@ function serializeTypedArray(buffer, value, sizeType) {
  * @param {Buffer} value
  * @param {Serializer.InstantiatedType} sizeType
  */
-function serializeBuffer(buffer, value, sizeType) {
+function serializeBytes(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
-    buffer.writeBuffer(value)
+    buffer.writeBytes(value)
 }
 
 /**
@@ -71,7 +71,7 @@ export const standardSerializers = {
     Signed: (buffer, value, arg) => buffer.writeSigned(value, arg.element),
     Unsigned: (buffer, value, arg) => buffer.writeUnsigned(value, arg.element),
     String: serializeString,
-    Buffer: serializeBuffer,
+    Bytes: serializeBytes,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,
     ShortArray: serializeTypedArray,

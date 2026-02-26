@@ -16,7 +16,7 @@ fun sign(data: ByteArray): ByteArray {
     return mac.doFinal(data)
 }
 
-fun verify(data: ByteArray, expectedHmac: ByteArray) {
+fun assertSigned(data: ByteArray, expectedHmac: ByteArray) {
     val actualHmac = sign(data)
     if (!MessageDigest.isEqual(actualHmac, expectedHmac))
         throw IllegalStateException("Invalid signature")

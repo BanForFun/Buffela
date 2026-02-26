@@ -7,5 +7,5 @@ interface Serializable {
 fun Serializable.serialize(): ByteArray {
     val buffer = SerializerBuffer()
     this.serialize(buffer)
-    return buffer.toByteArray()
+    return buffer.toBytes()
 }
