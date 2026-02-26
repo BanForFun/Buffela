@@ -4,8 +4,8 @@
   "description": "Deserializer for the buffela binary data format",
   "type": "module",
   "types": "types/index.d.ts",
-  "module": "dist/index.js",
   "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",

@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "esnext",
     "moduleResolution": "nodenext",
     "skipLibCheck": false
   },
-  "include": [ "types/*.d.ts" ]
+  "include": [
+    "./types/*.d.ts"
+  ]
 }

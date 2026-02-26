@@ -4,8 +4,8 @@
   "description": "Parser for the buffela data format schema",
   "type": "module",
   "types": "types/index.d.ts",
-  "module": "dist/index.js",
   "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "exports": {
     ".": {
       "types": "./types/index.d.ts",

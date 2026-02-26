@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
+    "moduleResolution": "node",
     "skipLibCheck": false
   },
-  "include": [ "./types/*.d.ts" ]
+  "include": [
+    "./types/*.d.ts"
+  ]
 }

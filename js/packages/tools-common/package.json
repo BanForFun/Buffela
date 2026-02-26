@@ -4,14 +4,6 @@
   "description": "Common internal utils for the buffela developer tools",
   "types": "types/index.d.ts",
   "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "exports": {
-    ".": {
-      "types": "./types/index/d.ts",
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js"
-    }
-  },
   "files": [
     "dist",
     "types/index.d.ts",
@@ -20,7 +12,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node scripts/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist",
+    "build": "node scripts/buildSchema.js && tsup index.js --format cjs --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
