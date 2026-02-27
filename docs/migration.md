@@ -19,7 +19,7 @@
 ### Javascript/Typescript
 
 - `parseBuffelaSchema()` was renamed to `parseSchema()`
-- `serializeCalf()` and `deserializeCalf()` were removed. Instead you must call `registerSerializer(schema, {})` and `registerDeserializer(schema, {})` directly after parsing the schema. Then you can use `schema.TYPE.serialize()` and `schema.TYPE.deserialize()`
+- `serializeCalf()` and `deserializeCalf()` were removed. Instead you must call `registerSerializer(schema, {})` and `registerDeserializer(schema, {})` directly after parsing the schema. Then you can use `schema.ROOT_TYPE.serialize()` and `schema.ROOT_TYPE.deserialize()`
 - Type fields are now automatically generated with the name `OBJECT_type` (e.g. `User_type`.)
 
 ### Kotlin tools

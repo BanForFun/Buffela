@@ -1,14 +1,14 @@
 [versions]
 
 lib-group = "gr.elaevents.buffela"
-lib-version = "3.0.0"
+lib-version = "3.0.0-rc1"
 
 agp = "9.0.0"
 kotlin = "2.2.20"
 kotlinx-io = "0.8.0"
 android-minSdk = "24"
 android-compileSdk = "36"
-mavenPublish = "0.34.0"
+mavenPublish = "0.36.0"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }

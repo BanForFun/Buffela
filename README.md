@@ -339,7 +339,7 @@ AuthTokenPayload:
   [...]
   
 AuthTokenSignature:
-	[...]
+  [...]
 ```
 
 `Gender`, `User`, `AuthTokenPayload` and `AuthTokenSignature` are all root types. 
@@ -446,7 +446,7 @@ countryCode: Unsigned(10)
 
 #### Strings
 
-Strings and sentinel types meaning that you can *optionally* specify a constant length if you know it beforehand in order to save one byte.
+Strings are sentinel types meaning that you can *optionally* specify a constant length if you know it beforehand in order to save one byte.
 
 Both of these examples are valid:
 
@@ -507,7 +507,7 @@ roles: String[UByte] # This array can have a length of up to 255 strings
 roles: String[Unsigned(10)] # This array can have a length of up to 1023 strings
 ```
 
-Don't get confused with typed arrays, you can also make them higher-dimensional:
+Don't get confused by typed arrays, you can also make them higher-dimensional:
 
 ```yaml
 temperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
@@ -541,7 +541,7 @@ A custom type consists of a serializer and a deserializer. We will have to make 
 
 There are also some read-only properties:
 
-- `SerializerBuffer.size`: How many bytes have been written to the buffer thus far
+- `SerializerBuffer.length`: How many bytes have been written to the buffer thus far
 - `DeserializeBuffer.position`: How many bytes have been read from the buffer thus far
 
 
@@ -682,14 +682,14 @@ User:
   
   Anonymous: {}
 
-	Registered:
-		[...]
+  Registered:
+    [...]
 		
-		Viewer: 
-			[...]
+    Viewer: 
+      [...]
 			
     Organizer:
-    	[...]
+      [...]
 ```
 
 In our example, `Anonymous` and `Registered` are subtypes of `User`. A subtype inherits all fields from its parent type, and can have other subtypes of its own. In the compiled representation the structure is flattened, meaning that all fields live in the same level.
@@ -702,7 +702,7 @@ In our example, `Anonymous` and `Registered` are subtypes of `User`. A subtype i
 
 How you specify a subtype differs from language to language:
 
-In **Javascript**, the compiled type will have an additional field for each abstract (non-leaf) type named *Type*_type. For the above example you need to specify a User_type, and if the user type is set to registered you must additionally specify a Registered_type. These subtypes live inside the object returned by parseSchema, in the same path as defined in the schema:
+In **Javascript**, the compiled type will have an additional field for each abstract (non-leaf) type named *Type*_type. For the above example you need to specify a User_type, and if the user type is set to registered you must additionally specify a Registered_type. These subtypes live inside the parsed schema, in the same path as defined in the schema:
 
 ```js
 const schema = parseSchema(...)
@@ -733,9 +733,9 @@ User:
   userId: Uuid # Resolves to String(36)
   [...]
   
-	Registered:
-		[...]
-			
+  Registered:
+    [...]
+		
     Organizer:
     	userId: String
 ```
