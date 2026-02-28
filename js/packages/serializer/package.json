@@ -1,6 +1,6 @@
 {
   "name": "@buffela/serializer",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Serializer for the buffela data format",
   "type": "module",
   "types": "types/index.d.ts",
@@ -46,6 +46,6 @@
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
     "smart-buffer": "^4.2.0",
-    "@buffela/parser": "3.0.0"
+    "@buffela/parser": "3.0.1"
   }
 }

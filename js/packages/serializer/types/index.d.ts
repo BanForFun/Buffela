@@ -36,7 +36,7 @@ export interface Serializer<T> {
 }
 
 type PrimitiveSerializers<S extends Record<string, Extensions>> = {
-    [K in keyof S]-?: Required<S[K]> extends Serializer<infer T> ? Serializer<T> : never
+    [K in keyof S]-?: Required<S[K] & {}> extends Serializer<infer T> ? Serializer<T> : never
 }
 
 type SerializableSchema<S extends SimplifiedSchema> = {

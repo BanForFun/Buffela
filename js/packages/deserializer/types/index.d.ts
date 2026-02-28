@@ -33,7 +33,7 @@ export type Deserializer<T> = {
 }
 
 type PrimitiveDeserializers<S extends Record<string, Extensions>> = {
-    [K in keyof S]-?: Required<S[K]> extends Deserializer<infer T> ? Deserializer<T> : never
+    [K in keyof S]-?: Required<S[K] & {}> extends Deserializer<infer T> ? Deserializer<T> : never
 }
 
 type DeserializableSchema<S extends SimplifiedSchema> = {
