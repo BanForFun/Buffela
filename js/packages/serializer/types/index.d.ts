@@ -1,5 +1,51 @@
-import type { Calf } from "@buffela/parser/types/Calf"
+import {Extensions, SimplifiedSchema} from "@buffela/parser"
 
-declare function serializeCalf<D>(calf: Calf<D>, data: D): Buffer
+declare class SerializerBuffer {
+    constructor()
 
-export { serializeCalf }
+    readonly length: number
+
+    clearBitBuffer(): void
+
+    writeByte(byte: number): void
+    writeUByte(uByte: number): void
+    writeShort(short: number): void
+    writeUShort(uShort: number): void
+    writeInt(int: number): void
+    writeUInt(uInt: number): void
+    writeLong(long: bigint): void
+    writeULong(uLong: bigint): void
+    writeFloat(float: number): void
+    writeDouble(double: number): void
+    writeBoolean(boolean: boolean): void
+    writeString(string: string, nt?: boolean): void
+    writeBytes(bytes: Buffer): void
+    writeSigned(value: number, bitLength: number): void
+    writeUnsigned(value: number, bitLength: number): void
+
+    toBytes(): Buffer
+}
+
+export interface Serializable<T> {
+    serialize(value: T, buffer: SerializerBuffer): void
+    serialize(value: T): Buffer
+}
+
+export interface Serializer<T> {
+    serialize(buffer: SerializerBuffer, value: T): void
+}
+
+type PrimitiveSerializers<S extends Record<string, Extensions>> = {
+    [K in keyof S]-?: Required<S[K]> extends Serializer<infer T> ? Serializer<T> : never
+}
+
+type SerializableSchema<S extends SimplifiedSchema> = {
+    [K in keyof S]: Required<S[K]> extends Serializable<infer T> ? S[K] & Serializable<T> : S[K]
+}
+
+declare function registerSerializer<S extends SimplifiedSchema>(
+    schema: S,
+    customSerializers: PrimitiveSerializers<S['primitiveTypes']>
+): asserts schema is SerializableSchema<S>
+
+export { registerSerializer, SerializerBuffer }

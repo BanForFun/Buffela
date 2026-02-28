@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="serialization-3.0.0">
+    <output-path>$PROJECT_DIR$/../buffela/serialization/build/libs</output-path>
+    <root id="archive" name="serialization-3.0.0.jar">
+      <element id="module-output" name="buffela.serialization.androidMain" />
+    </root>
+  </artifact>
+</component>

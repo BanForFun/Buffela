@@ -1,6 +1,6 @@
 {
   "name": "@buffela/deserializer",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "Deserializer for the buffela binary data format",
   "type": "module",
   "types": "types/index.d.ts",
@@ -15,7 +15,7 @@
   },
   "files": [
     "dist",
-    "types",
+    "types/index.d.ts",
     "README.md"
   ],
   "scripts": {
@@ -29,15 +29,14 @@
   },
   "keywords": [
     "buffela",
-    "protobuf",
+    "kotlin",
     "wire",
     "data",
     "serialization",
     "format",
     "protocol",
     "schema",
-    "binary",
-    "deserializer"
+    "binary"
   ],
   "author": "BanForFun",
   "license": "MIT",
@@ -47,6 +46,6 @@
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
     "smart-buffer": "^4.2.0",
-    "@buffela/parser": "2.4.2"
+    "@buffela/parser": "3.0.0"
   }
 }

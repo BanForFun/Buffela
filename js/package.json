@@ -13,8 +13,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^24.9.2",
+    "@types/node": "^24.10.13",
     "tsup": "^8.5.0",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "protobufjs": "^8.0.0"
   }
 }

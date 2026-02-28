@@ -1,179 +1,158 @@
-const {typeMap} = require("@buffela/parser");
-
-function printSerializerImports() {
-    printer.line(`
-import kotlinx.io.writeDoubleLe
-import kotlinx.io.writeFloatLe
-import kotlinx.io.writeUByte
-import kotlinx.io.writeUIntLe
-import kotlinx.io.writeULongLe
-import kotlinx.io.writeUShortLe
-import kotlinx.io.writeString
-import gr.elaevents.buffela.internal.utils.writeStringNt`)
+function printSerializerAliases() {
+    printer.line('typealias _Serializable = gr.elaevents.buffela.serialization.Serializable')
+    printer.line('typealias _SerializerBuffer = gr.elaevents.buffela.serialization.SerializerBuffer')
 }
 
-function printWriteSimpleVariable(typeIndex, name) {
-    switch (typeIndex) {
-        case typeMap.Boolean.index:
-            printer.line(`packet.writeUByte(if (${name}) 1u else 0u)`)
-            break;
-        case typeMap.Byte.index:
-            printer.line(`packet.writeByte(${name})`)
-            break;
-        case typeMap.Short.index:
-            printer.line(`packet.writeShortLe(${name})`)
-            break;
-        case typeMap.Int.index:
-            printer.line(`packet.writeIntLe(${name})`)
-            break;
-        case typeMap.Long.index:
-            printer.line(`packet.writeLongLe(${name})`)
-            break;
-        case typeMap.Float.index:
-            printer.line(`packet.writeFloatLe(${name})`)
-            break;
-        case typeMap.Double.index:
-            printer.line(`packet.writeDoubleLe(${name})`)
-            break;
-        case typeMap.UByte.index:
-            printer.line(`packet.writeUByte(${name})`)
-            break;
-        case typeMap.UShort.index:
-            printer.line(`packet.writeUShortLe(${name})`)
-            break;
-        case typeMap.UInt.index:
-            printer.line(`packet.writeUIntLe(${name})`)
-            break;
-        case typeMap.ULong.index:
-            printer.line(`packet.writeULongLe(${name})`)
-            break;
-        default:
-            throw new Error(`Invalid type with index ${typeIndex}`)
-    }
+/**
+ *
+ * @param {string} primitive
+ * @param {...string} args
+ */
+function printSerializePrimitive(primitive, ...args) {
+    printer.line(`buffer.write${primitive}(${args.join(', ')})`)
 }
 
-function printWriteSizeField(field, name) {
-    if (typeof field === 'number') {
-        printer.blockStart(`if (${name} != ${field}) {`)
-        printer.line(`throw IllegalStateException("Expected size '${field}' got '\${${name}}'")`)
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {string | number} size
+ */
+function printSerializeSize(type, size) {
+    const { element } = type
+    if (typeof element === 'number') {
+        printer.blockStart(`if (${size} != ${element}) {`)
+        printer.line(`throw IllegalStateException("Expected size '${element}' (got '\${${size}}')")`)
         printer.blockEnd('}')
 
         return;
     }
 
-    if (typeof field !== "object")
-        throw new Error('Invalid size type')
+    let constantSuffix = "u"
+    let converterExtension = ""
 
-    switch (field.base) {
-        case typeMap.UByte.index:
-            printer.line(`packet.writeUByte(${name}.toUByte())`)
+    switch (element.name) {
+        case 'UByte':
+            converterExtension = ".toUByte()";
             break;
-        case typeMap.UShort.index:
-            printer.line(`packet.writeUShortLe(${name}.toUShort())`)
+        case 'UShort':
+            converterExtension = ".toUShort()";
             break;
-        case typeMap.Int.index:
-            printer.line(`packet.writeIntLe(${name})`)
+        case 'Unsigned':
+            converterExtension = ".toUInt()";
             break;
         default:
-            throw new Error(`Invalid size type with index ${field.base}`)
+            constantSuffix = "";
+            break;
+    }
+
+    if (typeof size === 'number') {
+        printSerializePrimitive(element.name, size + constantSuffix)
+    } else {
+        printSerializeField(type, size + converterExtension)
     }
 }
 
-function printWriteArray(field, name, typeIndex) {
-    printWriteSizeField(field.size, `${name}.size`)
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {string} arrayName
+ * @param {string} itemPrimitive
+ */
+function printSerializeArray(type, arrayName, itemPrimitive) {
+    printSerializeSize(type.argument, `${arrayName}.size`)
+
     const itemName = `item0`;
-    printer.blockStart(`for (${itemName} in ${name}) {`)
-    printWriteSimpleVariable(typeIndex, itemName)
+    printer.blockStart(`for (${itemName} in ${arrayName}) {`)
+    printSerializePrimitive(itemPrimitive, itemName)
     printer.blockEnd('}')
 }
 
-function printWriteVariable(field, name, dimension = field.dimensions?.length) {
-    if (typeof field !== 'object')
-        throw new Error('Expected a variable')
-
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {string} fieldName
+ * @param {number} dimension
+ */
+function printSerializeField(type, fieldName, dimension = type.dimensions.length) {
     if (dimension > 0) {
-        const dimensionField = field.dimensions[dimension - 1]
-        printWriteSizeField(dimensionField, `${name}.size`)
+        const sizeType = type.dimensions[dimension - 1]
+        printSerializeSize(sizeType, `${fieldName}.size`)
 
         const itemName = `item${dimension}`;
-        printer.blockStart(`for (${itemName} in ${name}) {`)
-        printWriteVariable(field, itemName, dimension - 1)
+        printer.blockStart(`for (${itemName} in ${fieldName}) {`)
+        printSerializeField(type, itemName, dimension - 1)
         printer.blockEnd('}')
 
         return
     }
 
-    if (typeof field.base === 'number') {
-        // Built-in type
-        switch(field.base) {
-            case typeMap.String.index:
-                if (typeof field.size === 'number') {
-                    printer.blockStart(`if (${name}.length != ${field.size}) {`)
-                    printer.line(`throw IllegalStateException("Expected string length '${field.size}' got '\${${name}.length}'")`)
-                    printer.blockEnd('}')
+    const { element, argument } = type
+    switch(element.name) {
+        case 'ByteArray':
+            printSerializeArray(type, fieldName, 'Byte')
+            break;
+        case 'UByteArray':
+            printSerializeArray(type, fieldName, 'UByte')
+            break;
+        case 'ShortArray':
+            printSerializeArray(type, fieldName, 'Short')
+            break;
+        case 'UShortArray':
+            printSerializeArray(type, fieldName, 'UShort')
+            break;
+        case 'IntArray':
+            printSerializeArray(type, fieldName, 'Int')
+            break;
+        case 'UIntArray':
+            printSerializeArray(type, fieldName, 'UInt')
+            break;
+        case 'LongArray':
+            printSerializeArray(type, fieldName, 'Long')
+            break;
+        case 'ULongArray':
+            printSerializeArray(type, fieldName, 'ULong')
+            break;
+        case 'FloatArray':
+            printSerializeArray(type, fieldName, 'Float')
+            break;
+        case 'DoubleArray':
+            printSerializeArray(type, fieldName, 'Double')
+            break;
+        case 'BooleanArray':
+            printSerializeArray(type, fieldName, 'Boolean')
+            break;
+        case 'Bytes':
+            printSerializeSize(argument, `${fieldName}.size`)
+            printSerializePrimitive('Bytes', fieldName)
+            break;
+        case 'Unsigned':
+        case 'Signed':
+            printSerializePrimitive(element.name, fieldName, argument.element.toString())
+            break;
+        case 'String':
+            if (argument) {
+                printer.blockStart(`if (${fieldName}.length != ${argument.element}) {`)
+                printer.line(`throw IllegalStateException("Expected string length '${argument.element}' (got '\${${fieldName}.length}')")`)
+                printer.blockEnd('}')
 
-                    printer.line(`packet.writeString(${name})`)
-                } else if (field.size === null) {
-                    printer.line(`packet.writeStringNt(${name})`)
-                } else {
-                    throw new Error('Invalid string constant size')
-                }
-
+                printSerializePrimitive(element.name, fieldName)
                 break;
-            case typeMap.IntArray.index:
-                printWriteArray(field, name, typeMap.Int.index)
+            } else {
+                printSerializePrimitive(element.name, fieldName, 'true')
                 break;
-            case typeMap.ShortArray.index:
-                printWriteArray(field, name, typeMap.Short.index)
-                break;
-            case typeMap.ByteArray.index:
-                printWriteArray(field, name, typeMap.Byte.index)
-                break;
-            case typeMap.LongArray.index:
-                printWriteArray(field, name, typeMap.Long.index)
-                break;
-            case typeMap.FloatArray.index:
-                printWriteArray(field, name, typeMap.Float.index)
-                break;
-            case typeMap.DoubleArray.index:
-                printWriteArray(field, name, typeMap.Double.index)
-                break;
-            case typeMap.UByteArray.index:
-                printWriteArray(field, name, typeMap.UByte.index)
-                break;
-            case typeMap.UShortArray.index:
-                printWriteArray(field, name, typeMap.UShort.index)
-                break;
-            case typeMap.UIntArray.index:
-                printWriteArray(field, name, typeMap.UInt.index)
-                break;
-            case typeMap.ULongArray.index:
-                printWriteArray(field, name, typeMap.ULong.index)
-                break;
-            case typeMap.BooleanArray.index:
-                printWriteArray(field, name, typeMap.Boolean.index)
-                break;
-            case typeMap.Buffer.index:
-                printWriteSizeField(field.size, `${name}.size`)
-                printer.line(`packet.write(${name})`)
-                break;
-            default:
-                if (field.size !== null)
-                    throw new Error('Unexpected size on simple type')
-
-                printWriteSimpleVariable(field.base, name)
-        }
-    } else if (typeof field.base === 'object') {
-        const calf = field.base
-        if (calf.type === "enum")
-            printer.line(`packet.writeUByte(${name}.ordinal.toUByte())`)
-        else if (calf.type === "data")
-            printer.line(`${name}.serialize(packet)`)
-        else
-            throw new Error('Invalid field base calf format')
-    } else {
-        throw new Error('Invalid field base type format')
+            }
+        default:
+            if (element.kind === 'primitive') {
+                printSerializePrimitive(element.name, fieldName)
+            } else {
+                printer.line(`${fieldName}.serialize(buffer)`)
+            }
+            break;
     }
 }
 
-module.exports = { printSerializerImports, printWriteVariable }
+module.exports = {
+    printSerializerAliases,
+    printSerializeField,
+    printSerializeSize
+}

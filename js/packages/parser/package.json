@@ -1,27 +1,26 @@
 {
   "name": "@buffela/parser",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "Parser for the buffela data format schema",
   "type": "module",
-  "types": "dist/index.d.ts",
+  "types": "types/index.d.ts",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
+      "types": "./types/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     }
   },
   "files": [
     "dist",
-    "types",
-    "schemas",
+    "types/index.d.ts",
     "README.md"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node tools/buildSchemas.js && tsup index.js --format cjs,esm --clean --out-dir dist --dts",
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {
@@ -30,15 +29,14 @@
   },
   "keywords": [
     "buffela",
-    "protobuf",
+    "kotlin",
     "wire",
     "data",
     "serialization",
     "format",
     "protocol",
-    "binary",
     "schema",
-    "parser"
+    "binary"
   ],
   "author": "BanForFun",
   "license": "MIT",
@@ -46,7 +44,5 @@
     "url": "https://github.com/BanForFun/Buffela/issues"
   },
   "homepage": "https://github.com/BanForFun/Buffela#readme",
-  "dependencies": {
-    "ajv": "^8.17.1"
-  }
+  "dependencies": {}
 }

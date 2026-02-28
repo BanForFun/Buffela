@@ -4,11 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Improved error handling">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed readme">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/calfSerializer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/simple/src/commonMain/kotlin/sampleBuffela.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,13 +26,16 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
@@ -42,17 +52,19 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.20.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.19.0&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/common&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;v3&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.14.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.10.13&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/serializer/dist&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;/home/jpeg/.nvm/versions/node/v24.14.0/bin/node&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
     &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
@@ -68,21 +80,24 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/common" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
-      <recent name="$PROJECT_DIR$/packages/tools" />
-      <recent name="$PROJECT_DIR$/packages/tools-common" />
+      <recent name="$PROJECT_DIR$/packages/parser/types" />
+      <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/packages/deserializer/types" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/parser/utils" />
-      <recent name="$PROJECT_DIR$/packages/serializer/utils" />
-      <recent name="$PROJECT_DIR$/packages/common/utils" />
-      <recent name="$PROJECT_DIR$/packages/deserializer" />
-      <recent name="$PROJECT_DIR$/packages/deserializer/utils" />
+      <recent name="$PROJECT_DIR$/examples/utils" />
+      <recent name="$PROJECT_DIR$/examples/buffela/js" />
+      <recent name="$PROJECT_DIR$/examples" />
+      <recent name="$PROJECT_DIR$/examples/buffela" />
+      <recent name="$PROJECT_DIR$/examples/proto" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.parser &gt; build">
+  <component name="RunManager" selected="Node.js.debug parser">
+    <configuration name="debug parser" type="NodeJSConfigurationType" path-to-js-file="packages/parser/debug.js" working-dir="$PROJECT_DIR$">
+      <method v="2" />
+    </configuration>
     <configuration name="common &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/packages/common/package.json" />
       <command value="run" />
@@ -133,6 +148,14 @@
       <envs />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Node.js.debug parser" />
+      <item itemvalue="npm.common &gt; build" />
+      <item itemvalue="npm.deserializer &gt; build" />
+      <item itemvalue="npm.parser &gt; build" />
+      <item itemvalue="npm.serializer &gt; build" />
+      <item itemvalue="npm.tools-common &gt; build" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="npm.parser &gt; build" />
@@ -179,55 +202,35 @@
       <workItem from="1763056216000" duration="13566000" />
       <workItem from="1763112129986" duration="6000" />
       <workItem from="1763112694822" duration="1932000" />
-      <workItem from="1763134531768" duration="5218000" />
-    </task>
-    <task id="LOCAL-00001" summary="Refactored code">
-      <option name="closed" value="true" />
-      <created>1762367419335</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1762367419335</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Fixed Printer.printLines indent">
-      <option name="closed" value="true" />
-      <created>1762367435138</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762367435138</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Refactored kotlin generation code">
-      <option name="closed" value="true" />
-      <created>1762372675014</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762372675014</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Renamed kotlinGeneration directory">
-      <option name="closed" value="true" />
-      <created>1762376021264</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1762376021264</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Fixed typescript type generator">
-      <option name="closed" value="true" />
-      <created>1762376049323</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1762376049323</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Refactored folder structure">
-      <option name="closed" value="true" />
-      <created>1762462333125</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1762462333125</updated>
+      <workItem from="1763134531768" duration="5498000" />
+      <workItem from="1763140069563" duration="518000" />
+      <workItem from="1763394625633" duration="4000" />
+      <workItem from="1770900370156" duration="32351000" />
+      <workItem from="1770979932955" duration="2868000" />
+      <workItem from="1771011459381" duration="12216000" />
+      <workItem from="1771023693913" duration="8686000" />
+      <workItem from="1771063019678" duration="7094000" />
+      <workItem from="1771071498305" duration="21423000" />
+      <workItem from="1771163748955" duration="37378000" />
+      <workItem from="1771242720410" duration="35458000" />
+      <workItem from="1771329750448" duration="21451000" />
+      <workItem from="1771354098028" duration="18450000" />
+      <workItem from="1771411466698" duration="42153000" />
+      <workItem from="1771504375168" duration="29913000" />
+      <workItem from="1771589993267" duration="22947000" />
+      <workItem from="1771619881187" duration="13980000" />
+      <workItem from="1771671423569" duration="16271000" />
+      <workItem from="1771770165887" duration="29576000" />
+      <workItem from="1771930560660" duration="17461000" />
+      <workItem from="1771959693333" duration="1754000" />
+      <workItem from="1771975247544" duration="1144000" />
+      <workItem from="1772015171905" duration="15366000" />
+      <workItem from="1772058780284" duration="2057000" />
+      <workItem from="1772060846320" duration="8658000" />
+      <workItem from="1772116869845" duration="947000" />
+      <workItem from="1772190554122" duration="18657000" />
+      <workItem from="1772233790834" duration="717000" />
+      <workItem from="1772291917526" duration="1261000" />
     </task>
     <task id="LOCAL-00007" summary="Refactored folder structure">
       <option name="closed" value="true" />
@@ -405,7 +408,223 @@
       <option name="project" value="LOCAL" />
       <updated>1763139464499</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added string length validation">
+      <option name="closed" value="true" />
+      <created>1763139808633</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1763139808633</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Changed enum and object definition syntax">
+      <option name="closed" value="true" />
+      <created>1771065720847</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771065720847</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Added alias syntax">
+      <option name="closed" value="true" />
+      <created>1771070107678</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771070107678</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Fixed parser and type generator">
+      <option name="closed" value="true" />
+      <created>1771276579672</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1771276579672</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Added plugin type system">
+      <option name="closed" value="true" />
+      <created>1771356136767</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1771356136767</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Implemented serializer">
+      <option name="closed" value="true" />
+      <created>1771440579689</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1771440579689</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Combined json converter and type generator">
+      <option name="closed" value="true" />
+      <created>1771450380542</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1771450380542</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Made all generated types pascal case">
+      <option name="closed" value="true" />
+      <created>1771450611313</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1771450611313</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Added bit field syntax">
+      <option name="closed" value="true" />
+      <created>1771550076606</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1771550076607</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Added bit field serializer">
+      <option name="closed" value="true" />
+      <created>1771616347119</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1771616347119</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Implemented deserializer">
+      <option name="closed" value="true" />
+      <created>1771631873700</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1771631873700</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Added benchmarks">
+      <option name="closed" value="true" />
+      <created>1771679591887</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1771679591887</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Added kotlin utils">
+      <option name="closed" value="true" />
+      <created>1771691502093</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1771691502093</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Added kotlin code generator">
+      <option name="closed" value="true" />
+      <created>1771804922188</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1771804922188</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Added clearBitBuffer api">
+      <option name="closed" value="true" />
+      <created>1771807224695</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1771807224695</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Fixed kotlin bit packing">
+      <option name="closed" value="true" />
+      <created>1771946067080</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1771946067080</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Added kotlin benchmark">
+      <option name="closed" value="true" />
+      <created>1771947029542</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1771947029542</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Disabled alias recursion">
+      <option name="closed" value="true" />
+      <created>1771959606171</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1771959606171</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Changed example schema">
+      <option name="closed" value="true" />
+      <created>1771975852032</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975852032</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Added root dir parameter to js-tools">
+      <option name="closed" value="true" />
+      <created>1771975910892</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1771975910892</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Added root dir validation to js tools">
+      <option name="closed" value="true" />
+      <created>1771976385907</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1771976385907</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Added more examples">
+      <option name="closed" value="true" />
+      <created>1772016646072</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1772016646072</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Simplified typescript and package configurations">
+      <option name="closed" value="true" />
+      <created>1772065292495</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1772065292495</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Consolidated examples into single files">
+      <option name="closed" value="true" />
+      <created>1772065341372</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1772065341372</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Renamed Buffer to Bytes and fixed BooleanArray js mapping">
+      <option name="closed" value="true" />
+      <created>1772230420455</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1772230420455</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Moved docs directory">
+      <option name="closed" value="true" />
+      <created>1772230506609</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1772230506609</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Fixed readme">
+      <option name="closed" value="true" />
+      <created>1772233885107</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1772233885107</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -423,30 +642,31 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed Printer.printLines indent" />
-    <MESSAGE value="Refactored kotlin generation code" />
-    <MESSAGE value="Renamed kotlinGeneration directory" />
-    <MESSAGE value="Fixed typescript type generator" />
-    <MESSAGE value="Refactored folder structure" />
-    <MESSAGE value="Fixed deserializer exports, added buffela to json converter" />
-    <MESSAGE value="Replaced _objectType hack with proper type" />
-    <MESSAGE value="Added kotlin example and fixed generated namespaces" />
-    <MESSAGE value="Changed the examples" />
-    <MESSAGE value="Changed the kotlin input type to Source and output to Sink" />
-    <MESSAGE value="Added readme and set version" />
-    <MESSAGE value="Changed subtype ordering in packet" />
-    <MESSAGE value="Refactored code" />
-    <MESSAGE value="Prepared for release" />
-    <MESSAGE value="Fixed types for moduleResolution node and module imports" />
-    <MESSAGE value="Added esm compatibility" />
-    <MESSAGE value="Fixed parser types and buffela-to-types" />
-    <MESSAGE value="Fixed type field deserialization" />
-    <MESSAGE value="Added json schema exporter to kotlin tools" />
-    <MESSAGE value="Added enums in json schema for better editor suggestions" />
-    <MESSAGE value="Added fixed length strings" />
-    <MESSAGE value="Fixed readme mistakes and added keywords" />
-    <MESSAGE value="Rebranded to binary format" />
-    <MESSAGE value="Improved error handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved error handling" />
+    <MESSAGE value="Added alias syntax" />
+    <MESSAGE value="Fixed parser and type generator" />
+    <MESSAGE value="Added plugin type system" />
+    <MESSAGE value="Implemented serializer" />
+    <MESSAGE value="Combined json converter and type generator" />
+    <MESSAGE value="Made all generated types pascal case" />
+    <MESSAGE value="Added bit field syntax" />
+    <MESSAGE value="Added bit field serializer" />
+    <MESSAGE value="Implemented deserializer" />
+    <MESSAGE value="Added benchmarks" />
+    <MESSAGE value="Added kotlin utils" />
+    <MESSAGE value="Added kotlin code generator" />
+    <MESSAGE value="Added clearBitBuffer api" />
+    <MESSAGE value="Fixed kotlin bit packing" />
+    <MESSAGE value="Added kotlin benchmark" />
+    <MESSAGE value="Disabled alias recursion" />
+    <MESSAGE value="Changed example schema" />
+    <MESSAGE value="Added root dir parameter to js-tools" />
+    <MESSAGE value="Added root dir validation to js tools" />
+    <MESSAGE value="Added more examples" />
+    <MESSAGE value="Simplified typescript and package configurations" />
+    <MESSAGE value="Consolidated examples into single files" />
+    <MESSAGE value="Renamed Buffer to Bytes and fixed BooleanArray js mapping" />
+    <MESSAGE value="Moved docs directory" />
+    <MESSAGE value="Fixed readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed readme" />
   </component>
 </project>
