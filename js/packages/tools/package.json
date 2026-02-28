@@ -1,6 +1,6 @@
 {
   "name": "@buffela/tools",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "Javascript/Typescript developer tools for the buffela data format",
   "bin": {
     "buffela-js": "dist/js-tools.js"
@@ -20,16 +20,14 @@
   },
   "keywords": [
     "buffela",
-    "protobuf",
+    "kotlin",
     "wire",
     "data",
-    "format",
     "serialization",
+    "format",
     "protocol",
-    "binary",
     "schema",
-    "types",
-    "tools"
+    "binary"
   ],
   "author": "BanForFun",
   "license": "MIT",
@@ -38,8 +36,8 @@
   },
   "homepage": "https://github.com/BanForFun/Buffela#readme",
   "dependencies": {
-    "@buffela/parser": "2.4.2",
-    "@buffela/tools-common": "2.4.2",
+    "@buffela/parser": "3.0.0",
+    "@buffela/tools-common": "3.0.0",
     "yargs": "^18.0.0"
   }
 }

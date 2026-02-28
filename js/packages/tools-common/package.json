@@ -1,13 +1,13 @@
 {
   "name": "@buffela/tools-common",
-  "version": "2.4.2",
+  "version": "3.0.0",
   "description": "Common internal utils for the buffela developer tools",
   "types": "types/index.d.ts",
   "main": "dist/index.js",
   "files": [
     "dist",
     "types/index.d.ts",
-    "schemas",
+    "schemata",
     "README.md"
   ],
   "scripts": {

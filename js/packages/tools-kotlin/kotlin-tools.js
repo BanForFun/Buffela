@@ -72,6 +72,7 @@ yargs()
             outputStream.end()
         }
     })
+    .strict()
     .demandCommand(1)
     .help()
     .parse(hideBin(process.argv))

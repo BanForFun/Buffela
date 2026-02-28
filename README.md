@@ -21,7 +21,7 @@ User:
     verified: Boolean
 
     Viewer:
-      birthDate: String # We'll implement our own custom "Date" type further along
+      birthDate: String # We'll implement our own custom "Date" type in the Custom Primitives section
       countryCode: Unsigned(10)
       phone: String
       gender: Gender
@@ -39,7 +39,7 @@ AuthTokenSignature:
   hmac256: Bytes(32)
 ```
 
-Then you can import it in your favorite programming language - as long as it is Javascript, Typescript or Kotlin  ;) - and write type safe serialization and deserialization code.
+Then you can import it in your favorite programming language - as long as it is Javascript, Typescript or Kotlin ;) - and write type safe serialization and deserialization code.
 
 Buffela supports all the types you would expect (strings, booleans, numbers), along with enums, subtypes (similar to kotlin's sealed types) and arrays (in both constant and variable sized variants). You can also easily extend buffela with your own types!
 
@@ -405,6 +405,7 @@ These are the supported fixed-size primitive types along with their mapping to t
 
 | Buffela Type | Javascript Type | Kotlin Type | Bit Length | Description                                                  |
 | ------------ | --------------- | ----------- | ---------- | ------------------------------------------------------------ |
+| **Boolean**  | boolean         | Boolean     | 1          | True or False                                                |
 | **Byte**     | number          | Byte        | 8          | Integers from -128 to 127                                    |
 | **UByte**    | number          | UByte       | 8          | Integers from 0 to 255                                       |
 | **Short**    | number          | Short       | 16         | Integers from -32,768 to 32,767                              |
@@ -415,7 +416,6 @@ These are the supported fixed-size primitive types along with their mapping to t
 | **ULong**    | BigInt          | ULong       | 64         | Integers from 0 to 18,446,744,073,709,551,615                |
 | **Float**    | number          | Float       | 32         | Decimals from 3.4 E-38 to 3.4 E +38                          |
 | **Double**   | number          | Double      | 64         | Decimals from 1.7 E -308 to 1.7 E +308                       |
-| **Boolean**  | boolean         | Boolean     | 1          | True or False                                                |
 
  Here is an example:
 
@@ -446,7 +446,7 @@ countryCode: Unsigned(10)
 
 #### Strings
 
-Strings are sentinel types meaning that you can *optionally* specify a constant length if you know it beforehand in order to save one byte.
+String is a sentinel type meaning that you can *optionally* specify a constant length if you know it beforehand in order to save one byte.
 
 Both of these examples are valid:
 
@@ -497,7 +497,7 @@ The Bytes type maps to Buffer in JS and ByteArray in Kotlin. Like a typed array,
 
 ### Arrays
 
-You can add a `[LENGTH]` prefix to any type to create an array of that type. You can also chain them to create N-dimensional arrays. The length can be either a constant or a length type just like the parameter of typed arrays.
+You can add a `[LENGTH]` suffix to any type to create an array of that type. You can also chain them to create N-dimensional arrays. The length can be either a constant or a length type just like the parameter of typed arrays.
 
 All of these examples are valid:
 
@@ -578,7 +578,7 @@ registerSerializer(schema, {
 })
 ```
 
-Same story for the deserializer:
+Same story for the deserializer in our `registerDeserializer` call:
 
 ```js
 registerDeserializer(schema, {
@@ -674,27 +674,27 @@ Have in mind though that alias resolution is not recursive, or put more simply, 
 
 ### Sub (object) types
 
-Sometimes you may need an object that can take multiple forms. In our example we create an authentication token for all users, registered or not, containing a unique user id. But our registered users will have additional fields, like whether their credentials are verified. Additionally, we have two types of users: viewers and organizers. Organizers register by email and viewers register by phone. To represent this hierarchy we can use subtypes.
+Sometimes you may need an object that can take multiple forms. In our example we create an authentication token for all users, registered or not, containing a unique user id. But our registered users will have additional fields, like a flag indicating whether their credentials are verified. Additionally, we have two types of users: viewers and organizers. Organizers register by email and viewers register by phone. To represent this hierarchy we can use subtypes.
 
 ```yaml
 User:
   [...]
-  
+
   Anonymous: {}
 
   Registered:
     [...]
-		
+
     Viewer: 
       [...]
-			
+
     Organizer:
       [...]
 ```
 
 In our example, `Anonymous` and `Registered` are subtypes of `User`. A subtype inherits all fields from its parent type, and can have other subtypes of its own. In the compiled representation the structure is flattened, meaning that all fields live in the same level.
 
-`Anonymous` is kind of special in that it doesn't define any fields nor does it have any subtypes. In this case the value must be `{}` (an empty object).
+`Anonymous` is kind of special in that it doesn't define any fields nor does it have any subtypes. In this case the value can be `{}` (an empty object).
 
 
 
@@ -732,10 +732,10 @@ You may need to override the type of a field only for specific subtypes. To do t
 User:
   userId: Uuid # Resolves to String(36)
   [...]
-  
+
   Registered:
     [...]
-		
+
     Organizer:
     	userId: String
 ```
@@ -827,7 +827,7 @@ In our example, we want to serialize our payload, then read it back as bytes in 
 const buffer = new SerializerBuffer()
 
 // Write the payload into the buffer
-schema.AuthTokenPayload.serialize({ ... })
+schema.AuthTokenPayload.serialize({ ... }, buffer)
 
 // Read the serialized payload and sign it
 const payloadBytes = buffer.toBytes()
@@ -837,7 +837,7 @@ const hmac256 = sign(payloadBytes)
 buffer.clearBitBuffer()
 
 // Write the signature into the buffer
-schema.AuthTokenSignature.serialize({ hmac256 })
+schema.AuthTokenSignature.serialize({ hmac256 }, buffer)
 
 // Get the combined payload + signature as bytes
 const bytes = buffer.toBytes()

@@ -54,7 +54,7 @@ yargs()
             if (argv.json) {
                 const jsonPath = path.resolve(argv.rootDir, argv.json)
                 const jsonStream = getFileOutputStream(jsonPath, inputFile.name + ".json")
-                jsonStream.write(JSON.stringify(inputFile.schema, null, 2))
+                jsonStream.write(JSON.stringify(inputFile.schema))
                 jsonStream.end()
             }
 
@@ -71,6 +71,7 @@ yargs()
             }
         }
     })
+    .strict()
     .demandCommand(1)
     .help()
     .parse(hideBin(process.argv))
