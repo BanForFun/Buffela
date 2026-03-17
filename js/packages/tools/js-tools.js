@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const process = require("node:process");
 const path = require("path");
 const yargs = require('yargs')

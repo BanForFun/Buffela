@@ -112,7 +112,7 @@ You want to deserialize?
 npm i @buffela/deserializer
 ```
 
-You're a front end developer? 
+You're building a front-end? 
 
 Install the [buffer](https://www.npmjs.com/package/buffer) browser polyfill.
 
@@ -139,19 +139,7 @@ Set up a simple tsconfig.json inside your project folder (don't worry it's for y
 
 ### Kotlin
 
-You can run the developer tools through npm:
-
-```shell
-npx @buffela/tools-kotlin --help
-```
-
-The first time around it will ask you to download the package, press Enter to proceed.
-
->Don't know what npm is? Bless your innocent soul xD. I recommend installing node through nvm: https://github.com/nvm-sh/nvm
->
->Install nvm and then run `nvm install --lts`. Now you should have node and npm with it.
-
-You'll also want to install some dependencies required by the generated code in your project:
+You'll need to install some dependencies required by the generated code in your project:
 
 - `gr.elaevents.buffela:serialization` ([Latest version](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization))
 - `gr.elaevents.buffela:deserialization` ([Latest version](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization))
@@ -179,6 +167,22 @@ buffela-js YOUR_SCHEMA OUTPUT_DIR
 This will generate a .json and a .ts file in the specified directory with the same name as your schema file
 
 If you don't want type safety you can skip generating the .ts file by setting the `types` option to an empty string like this: `--types=`
+
+
+
+### Kotlin
+
+You can run the kotlin compiler through npm
+
+> Don't know what npm is? Bless your innocent soul xD. Install nvm (https://github.com/nvm-sh/nvm) and then run `nvm install --lts`. Now you should have node and npm with it.
+
+> The first time around it will ask you to download the package, press Enter to proceed.
+
+```shell
+npx @buffela/tools-kotlin compile YOUR_SCHEMA OUTPUT_DIR --package=YOUR_PACKAGE
+```
+
+This will create a .kt file in the specified directory with the same name as your buffela schema.
 
 
 
@@ -254,14 +258,6 @@ const payload = schema.AuthTokenPayload.deserialize(buffer)
 
 
 ### Kotlin example
-
-Run the kotlin compiler
-
-```shell
-npx @buffela/tools-kotlin compile YOUR_SCHEMA OUTPUT_DIR --package=YOUR_PACKAGE
-```
-
-This will create a .kt file in the specified directory with the same name as your buffela schema
 
 ```kotlin
 package YOUR_PACKAGE
