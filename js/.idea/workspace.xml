@@ -4,19 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed custom primitive type definitions">
-      <change afterPath="$PROJECT_DIR$/publish.sj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed js-tools missing shebang">
+      <change afterPath="$PROJECT_DIR$/examples/buffela/Debug.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/examples/buffela/debug.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,8 +20,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="JavaScript File" />
         <option value="TypeScript File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -234,15 +227,8 @@
       <workItem from="1772291917526" duration="1261000" />
       <workItem from="1772361690281" duration="40000" />
       <workItem from="1772362441115" duration="442000" />
-      <workItem from="1773768902170" duration="851000" />
-    </task>
-    <task id="LOCAL-00008" summary="Refactored folder structure">
-      <option name="closed" value="true" />
-      <created>1762552947421</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1762552947421</updated>
+      <workItem from="1773768902170" duration="1048000" />
+      <workItem from="1774004787961" duration="1750000" />
     </task>
     <task id="LOCAL-00009" summary="Refactored folder structure">
       <option name="closed" value="true" />
@@ -628,7 +614,15 @@
       <option name="project" value="LOCAL" />
       <updated>1772296233056</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Fixed js-tools missing shebang">
+      <option name="closed" value="true" />
+      <created>1773769818419</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1773769818419</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -646,7 +640,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed parser and type generator" />
     <MESSAGE value="Added plugin type system" />
     <MESSAGE value="Implemented serializer" />
     <MESSAGE value="Combined json converter and type generator" />
@@ -671,6 +664,7 @@
     <MESSAGE value="Moved docs directory" />
     <MESSAGE value="Fixed readme" />
     <MESSAGE value="Fixed custom primitive type definitions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed custom primitive type definitions" />
+    <MESSAGE value="Fixed js-tools missing shebang" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed js-tools missing shebang" />
   </component>
 </project>

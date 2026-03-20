@@ -83,7 +83,7 @@ export default class ObjectType extends ComplexType {
             if (typeof member !== 'object') continue;
 
             const subtype = new ObjectType(this.#schema, member, name)
-            subtype.#linkAsSubtype(this, leaves, fieldScope)
+            subtype.#linkAsSubtype(this, leaves, { ...fieldScope })
             subtype.#finalize()
 
             this[name] = subtype
