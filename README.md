@@ -230,10 +230,6 @@ import { registerDeserializer } from '@buffela/deserializer'
 import type Schema from './YOUR_TYPES'
 import schemaObject from './YOUR_JSON' assert { type: 'json' }
 
-/**
- * Do this only if you have generated types
- * @type {import('./AuthToken').default}
- */
 const schema = parseSchema(schemaObject) as Schema
 registerSerializer(schema, {})
 registerDeserializer(schema, {})
