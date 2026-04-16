@@ -51,6 +51,7 @@ schema.AuthTokenPayload.serialize({
         User_type: schema.User.Registered,
         verified: true,
         Registered_type: schema.User.Registered.Viewer,
+        name: null,
         birthDate: { year: 2003, month: 7, day: 22 },
         countryCode: 30,
         phone: '1234567890',

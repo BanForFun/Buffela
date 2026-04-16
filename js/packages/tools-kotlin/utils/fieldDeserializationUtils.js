@@ -33,7 +33,7 @@ function deserializeSize(type) {
             break;
     }
 
-    return deserializeField(type) + extension
+    return deserializeElement(type) + extension
 }
 
 /**
@@ -42,48 +42,41 @@ function deserializeSize(type) {
  * @param {string} itemPrimitive
  * @returns {string}
  */
-function deserializeArray(type, itemPrimitive) {
+function deserializePrimitiveArray(type, itemPrimitive) {
     const size = deserializeSize(type.argument)
     return `${nativeTypes[type.element.name]}(${size}) { _ -> ${deserializePrimitive(itemPrimitive)} }`
 }
 
-
 /**
  *
  * @param {import('@buffela/parser').InstantiatedType} type
- * @param {number} dimension
  */
-function deserializeField(type, dimension = type.dimensions?.length) {
-    if (dimension > 0) {
-        const sizeType = type.dimensions[dimension - 1]
-        const size = deserializeSize(sizeType)
-        return `Array(${size}) { _ -> ${deserializeField(type,dimension - 1)} }`
-    }
-
+function deserializeElement(type) {
     const { element, argument } = type
+
     switch(element.name) {
         case 'ByteArray':
-            return deserializeArray(type, 'Byte')
+            return deserializePrimitiveArray(type, 'Byte')
         case 'UByteArray':
-            return deserializeArray(type, 'UByte')
+            return deserializePrimitiveArray(type, 'UByte')
         case 'ShortArray':
-            return deserializeArray(type, 'Short')
+            return deserializePrimitiveArray(type, 'Short')
         case 'UShortArray':
-            return deserializeArray(type, 'UShort')
+            return deserializePrimitiveArray(type, 'UShort')
         case 'IntArray':
-            return deserializeArray(type, 'Int')
+            return deserializePrimitiveArray(type, 'Int')
         case 'UIntArray':
-            return deserializeArray(type, 'UInt')
+            return deserializePrimitiveArray(type, 'UInt')
         case 'LongArray':
-            return deserializeArray(type, 'Long')
+            return deserializePrimitiveArray(type, 'Long')
         case 'ULongArray':
-            return deserializeArray(type, 'ULong')
+            return deserializePrimitiveArray(type, 'ULong')
         case 'FloatArray':
-            return deserializeArray(type, 'Float')
+            return deserializePrimitiveArray(type, 'Float')
         case 'DoubleArray':
-            return deserializeArray(type, 'Double')
+            return deserializePrimitiveArray(type, 'Double')
         case 'BooleanArray':
-            return deserializeArray(type, 'Boolean')
+            return deserializePrimitiveArray(type, 'Boolean')
         case 'Bytes':
             const size = deserializeSize(argument)
             return `buffer.readBytes(${size})`
@@ -102,6 +95,34 @@ function deserializeField(type, dimension = type.dimensions?.length) {
             } else {
                 return `${element.name}.deserialize(buffer)`
             }
+    }
+}
+
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {number} dimension
+ */
+function deserializeArray(type, dimension) {
+    const sizeType = type.dimensions[dimension - 1]
+    const size = deserializeSize(sizeType)
+    return `Array(${size}) { _ -> ${deserializeField(type,dimension - 1)} }`
+}
+
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {number} dimension
+ */
+function deserializeField(type, dimension = type.dimensions?.length) {
+    const isArray = dimension > 0
+    const optional = isArray ? type.dimensions[dimension - 1].optional : type.optional
+    const deserialized = isArray ? deserializeArray(type, dimension) : deserializeElement(type)
+
+    if (optional) {
+        return `if (buffer.readBoolean()) ${deserialized} else null`
+    } else {
+        return deserialized
     }
 }
 

@@ -1,10 +1,19 @@
 export default class InstantiatedType {
     element;
+    optional = false;
     argument = null;
     dimensions = []
 
     constructor(element) {
         this.element = element;
+    }
+
+    #handleQuestionMark() {
+        if (this.dimensions.length === 0) {
+            this.optional = true
+        } else {
+            this.dimensions[this.dimensions.length - 1].optional = true
+        }
     }
 
     #parseSuffix(schema, definition, pattern, isAlias) {
@@ -13,11 +22,13 @@ export default class InstantiatedType {
             const character = definition[pattern.lastIndex++]
 
             if (character === '(') {
-                this.argument = InstantiatedType.#parseNested(schema, definition, pattern, isAlias);
+                this.argument = InstantiatedType.#parseNested(schema, definition, pattern, isAlias)
                 stack.push(')')
             } else if (character === '[') {
                 this.dimensions.push(InstantiatedType.#parseNested(schema, definition, pattern, isAlias))
                 stack.push(']')
+            } else if (character === '?') {
+                this.#handleQuestionMark()
             } else if (stack.length === 0) {
                 pattern.lastIndex--; //Didn't actually consume any characters, roll back index
                 return

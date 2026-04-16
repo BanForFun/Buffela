@@ -36,13 +36,14 @@ export type User = {
     } & (
         {
             Registered_type: User_Schema["Registered"]["Viewer"],
+            name: (string | null),
             birthDate: Date,
             countryCode: number,
             phone: string,
             gender: Gender,
         } | {
             Registered_type: User_Schema["Registered"]["Organizer"],
-            roles: string,
+            roles: ((string | null)[] | null),
             email: string,
             userId: string,
         }

@@ -1,18 +1,19 @@
-const stringUtils = require("./stringUtils");
 const nativeTypes = require("../constants/nativeTypes");
 
 /**
  *
  * @param {import('@buffela/parser').InstantiatedType} type
- * @param {number} dimensions
  * @return {string}
  */
-function nativeType(type, dimensions = type.dimensions.length) {
+function nativeType(type) {
     const { name } = type.element;
-    const prefix = stringUtils.repeat("Array<", dimensions)
-    const suffix = stringUtils.repeat( ">", dimensions)
+    const prefix = type.dimensions.map(() => "Array<").join("")
+    const suffix = type.dimensions.map(d => d.optional ? ">?" : ">").join("")
 
-    return prefix + (nativeTypes[name] ?? name) + suffix
+    const nativeName = nativeTypes[name] ?? name
+    const nativeType = type.optional ? `${nativeName}?` : nativeName
+
+    return prefix + nativeType + suffix
 }
 
 /**

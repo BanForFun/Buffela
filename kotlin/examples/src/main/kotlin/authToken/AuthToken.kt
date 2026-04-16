@@ -99,6 +99,7 @@ sealed class User: _Serializable {
         }
 
         class Viewer: Registered {
+            val name: String?
             val birthDate: Date
             val countryCode: UInt
             val phone: String
@@ -107,6 +108,7 @@ sealed class User: _Serializable {
             constructor(
                 userId: String,
                 verified: Boolean,
+                name: String?,
                 birthDate: Date,
                 countryCode: UInt,
                 phone: String,
@@ -115,6 +117,7 @@ sealed class User: _Serializable {
                 userId,
                 verified,
             ) {
+                this.name = name
                 this.birthDate = birthDate
                 this.countryCode = countryCode
                 this.phone = phone
@@ -124,6 +127,11 @@ sealed class User: _Serializable {
             override fun serialize(buffer: _SerializerBuffer) {
                 this.serializeLeafIndex(buffer, 1)
                 super.serialize(buffer)
+                buffer.writeBoolean(this.name != null)
+
+                this.name?.let {
+                    buffer.writeString(this.name, true)
+                }
                 buffer.writeDate(this.birthDate)
                 buffer.writeUnsigned(this.countryCode, 10)
                 buffer.writeString(this.phone, true)
@@ -131,6 +139,7 @@ sealed class User: _Serializable {
             }
 
             internal constructor(buffer: _DeserializerBuffer): super(buffer) {
+                this.name = if (buffer.readBoolean()) buffer.readString() else null
                 this.birthDate = buffer.readDate()
                 this.countryCode = buffer.readUnsigned(10)
                 this.phone = buffer.readString()
@@ -139,14 +148,14 @@ sealed class User: _Serializable {
         }
 
         class Organizer: Registered {
-            val roles: Array<String>
+            val roles: Array<String?>?
             val email: String
             override val userId get() = super.userId as String
 
             constructor(
                 userId: String,
                 verified: Boolean,
-                roles: Array<String>,
+                roles: Array<String?>?,
                 email: String,
             ): super(
                 userId,
@@ -163,17 +172,25 @@ sealed class User: _Serializable {
             override fun serialize(buffer: _SerializerBuffer) {
                 this.serializeLeafIndex(buffer, 2)
                 super.serialize(buffer)
-                buffer.writeUByte(this.roles.size.toUByte())
+                buffer.writeBoolean(this.roles != null)
 
-                for (item1 in this.roles) {
-                    buffer.writeString(item1, true)
+                this.roles?.let {
+                    buffer.writeUByte(this.roles.size.toUByte())
+
+                    for (item1 in this.roles) {
+                        buffer.writeBoolean(item1 != null)
+
+                        item1?.let {
+                            buffer.writeString(item1, true)
+                        }
+                    }
                 }
                 buffer.writeString(this.email, true)
             }
             override fun userId(buffer: _DeserializerBuffer) = buffer.readString()
 
             internal constructor(buffer: _DeserializerBuffer): super(buffer) {
-                this.roles = Array(buffer.readUByte().toInt()) { _ -> buffer.readString() }
+                this.roles = if (buffer.readBoolean()) Array(buffer.readUByte().toInt()) { _ -> if (buffer.readBoolean()) buffer.readString() else null } else null
                 this.email = buffer.readString()
             }
         }

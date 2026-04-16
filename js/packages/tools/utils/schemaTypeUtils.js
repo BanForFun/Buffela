@@ -18,9 +18,14 @@ function typeOf(...path) {
  */
 function printFieldType(type) {
     const { element: { name }, dimensions } = type;
-    const arraySuffix = dimensions.map(() => "[]").join("")
 
-    return nativeTypes[name] ?? name + arraySuffix
+    const arrayPrefix = dimensions.map(d => d.optional ? "(" : "").join("")
+    const arraySuffix = dimensions.map(d => d.optional ? "[] | null)" : "[]").join("")
+
+    const nativeName = nativeTypes[name] ?? name
+    const nativeType = type.optional ? `(${nativeName} | null)` : nativeName
+
+    return arrayPrefix + nativeType + arraySuffix
 }
 
 /**

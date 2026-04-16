@@ -10,6 +10,7 @@ type Type<K extends string, E extends Extensions> = E & {
 }
 
 export type InstantiatedType<E extends Extensions> = {
+    optional: boolean
     element: Type<string, E> | number
     argument: InstantiatedType<E> | null
     dimensions: InstantiatedType<E>[]

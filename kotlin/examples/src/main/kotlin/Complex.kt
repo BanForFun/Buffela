@@ -16,6 +16,7 @@ fun main() {
     val payload = AuthTokenPayload(
         issuedAt = System.currentTimeMillis().toDouble(),
         user = User.Registered.Viewer(
+            name = null,
             userId = "588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11",
             verified = true,
             birthDate = Date(

@@ -15,7 +15,7 @@ function printSerializePrimitive(primitive, ...args) {
 /**
  *
  * @param {import('@buffela/parser').InstantiatedType} type
- * @param {string | number} size
+ * @param {string} size
  */
 function printSerializeSize(type, size) {
     const { element } = type
@@ -27,29 +27,22 @@ function printSerializeSize(type, size) {
         return;
     }
 
-    let constantSuffix = "u"
-    let converterExtension = ""
-
+    let extension = ""
     switch (element.name) {
         case 'UByte':
-            converterExtension = ".toUByte()";
+            extension = ".toUByte()";
             break;
         case 'UShort':
-            converterExtension = ".toUShort()";
+            extension = ".toUShort()";
             break;
         case 'Unsigned':
-            converterExtension = ".toUInt()";
+            extension = ".toUInt()";
             break;
         default:
-            constantSuffix = "";
             break;
     }
 
-    if (typeof size === 'number') {
-        printSerializePrimitive(element.name, size + constantSuffix)
-    } else {
-        printSerializeField(type, size + converterExtension)
-    }
+    printSerializeElement(type, size + extension)
 }
 
 /**
@@ -58,7 +51,7 @@ function printSerializeSize(type, size) {
  * @param {string} arrayName
  * @param {string} itemPrimitive
  */
-function printSerializeArray(type, arrayName, itemPrimitive) {
+function printSerializePrimitiveArray(type, arrayName, itemPrimitive) {
     printSerializeSize(type.argument, `${arrayName}.size`)
 
     const itemName = `item0`;
@@ -71,55 +64,43 @@ function printSerializeArray(type, arrayName, itemPrimitive) {
  *
  * @param {import('@buffela/parser').InstantiatedType} type
  * @param {string} fieldName
- * @param {number} dimension
  */
-function printSerializeField(type, fieldName, dimension = type.dimensions.length) {
-    if (dimension > 0) {
-        const sizeType = type.dimensions[dimension - 1]
-        printSerializeSize(sizeType, `${fieldName}.size`)
-
-        const itemName = `item${dimension}`;
-        printer.blockStart(`for (${itemName} in ${fieldName}) {`)
-        printSerializeField(type, itemName, dimension - 1)
-        printer.blockEnd('}')
-
-        return
-    }
-
+function printSerializeElement(type, fieldName) {
     const { element, argument } = type
+
     switch(element.name) {
         case 'ByteArray':
-            printSerializeArray(type, fieldName, 'Byte')
+            printSerializePrimitiveArray(type, fieldName, 'Byte')
             break;
         case 'UByteArray':
-            printSerializeArray(type, fieldName, 'UByte')
+            printSerializePrimitiveArray(type, fieldName, 'UByte')
             break;
         case 'ShortArray':
-            printSerializeArray(type, fieldName, 'Short')
+            printSerializePrimitiveArray(type, fieldName, 'Short')
             break;
         case 'UShortArray':
-            printSerializeArray(type, fieldName, 'UShort')
+            printSerializePrimitiveArray(type, fieldName, 'UShort')
             break;
         case 'IntArray':
-            printSerializeArray(type, fieldName, 'Int')
+            printSerializePrimitiveArray(type, fieldName, 'Int')
             break;
         case 'UIntArray':
-            printSerializeArray(type, fieldName, 'UInt')
+            printSerializePrimitiveArray(type, fieldName, 'UInt')
             break;
         case 'LongArray':
-            printSerializeArray(type, fieldName, 'Long')
+            printSerializePrimitiveArray(type, fieldName, 'Long')
             break;
         case 'ULongArray':
-            printSerializeArray(type, fieldName, 'ULong')
+            printSerializePrimitiveArray(type, fieldName, 'ULong')
             break;
         case 'FloatArray':
-            printSerializeArray(type, fieldName, 'Float')
+            printSerializePrimitiveArray(type, fieldName, 'Float')
             break;
         case 'DoubleArray':
-            printSerializeArray(type, fieldName, 'Double')
+            printSerializePrimitiveArray(type, fieldName, 'Double')
             break;
         case 'BooleanArray':
-            printSerializeArray(type, fieldName, 'Boolean')
+            printSerializePrimitiveArray(type, fieldName, 'Boolean')
             break;
         case 'Bytes':
             printSerializeSize(argument, `${fieldName}.size`)
@@ -149,6 +130,46 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
             }
             break;
     }
+}
+
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {string} fieldName
+ * @param {number} dimension
+ */
+function printSerializeArray(type, fieldName, dimension) {
+    const sizeType = type.dimensions[dimension - 1]
+    printSerializeSize(sizeType, `${fieldName}.size`)
+
+    const itemName = `item${dimension}`;
+    printer.blockStart(`for (${itemName} in ${fieldName}) {`)
+    printSerializeField(type, itemName, dimension - 1)
+    printer.blockEnd('}')
+}
+
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {string} fieldName
+ * @param {number} dimension
+ */
+function printSerializeField(type, fieldName, dimension = type.dimensions.length) {
+    const isArray = dimension > 0
+    const optional = isArray ? type.dimensions[dimension - 1].optional : type.optional
+
+    if (optional) {
+        printer.line(`buffer.writeBoolean(${fieldName} != null)`)
+        printer.blockStart(`${fieldName}?.let {`)
+    }
+
+    if (isArray) {
+        printSerializeArray(type, fieldName, dimension)
+    } else {
+        printSerializeElement(type, fieldName)
+    }
+
+    if (optional) printer.blockEnd('}')
 }
 
 module.exports = {

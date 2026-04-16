@@ -19,24 +19,20 @@ function excludePattern(pattern, exclude) {
     return `${pattern}(?<!^${exclude})`
 }
 
-
 const sentinelTypeNamePattern = enumPattern(...sentinelTypes)
 const sizedTypeNamePattern = enumPattern(...sizedTypes)
 const constSizedTypeNamePattern = enumPattern(...constSizedTypes)
 
 const constSizePattern =  "\\d+"
-const sentinelTypeSuffixPattern = `(\\(${constSizePattern}\\))?`
-const constSizedTypeSuffixPattern = `\\(${constSizePattern}\\)`
-
 const sizePattern = enumPattern(
     constSizePattern,
     "UByte",
     "UShort",
     "Int",
-    "Unsigned" + constSizedTypeSuffixPattern
+    `Unsigned\\(${constSizePattern}\\)`
 )
-const sizedTypeSuffixPattern = `\\(${sizePattern}\\)`
-const arraySuffixPattern = `(\\[${sizePattern}\\])*`
+const optionalPattern = "\\??"
+const arrayPattern = `(\\[${sizePattern}\\]${optionalPattern})*`
 
 const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
@@ -67,6 +63,7 @@ function fail(message) {
 function buildSchema(fieldSchema, typeSchema) {
     return {
         "$defs": {
+            //Note: If an alias definition is optional, using it as explicitly optional has no additional effect
             "AliasDefinition": fieldSchema,
             "EnumDefinition": {
                 "type": "array",
@@ -113,22 +110,22 @@ function fieldSchema(namePattern, suffixPattern, suffixMessage) {
 
 const fieldSchemata = [
     fieldSchema(
-        simpleTypeNamePattern, arraySuffixPattern,
+        simpleTypeNamePattern, `${optionalPattern}${arrayPattern}`,
         "Expected a size e.g. [10] or [UByte]"
     ),
 
     fieldSchema(
-        sentinelTypeNamePattern, sentinelTypeSuffixPattern + arraySuffixPattern,
+        sentinelTypeNamePattern, `(\\(${constSizePattern}\\))?${optionalPattern}${arrayPattern}`,
         "Expected a constant size e.g. (10)"
     ),
 
     fieldSchema(
-        sizedTypeNamePattern, sizedTypeSuffixPattern + arraySuffixPattern,
+        sizedTypeNamePattern, `\\(${sizePattern}\\)${optionalPattern}${arrayPattern}`,
         "Expected a size e.g. (10) or (UByte)"
     ),
 
     fieldSchema(
-        constSizedTypeNamePattern, constSizedTypeSuffixPattern + arraySuffixPattern,
+        constSizedTypeNamePattern, `\\(${constSizePattern}\\)${optionalPattern}${arrayPattern}`,
         "Expected a constant size e.g. (10)"
     )
 ]

@@ -14,13 +14,14 @@ User:
     verified: Boolean
 
     Viewer:
+      name: String?
       birthDate: Date
       countryCode: Unsigned(10)
       phone: String
       gender: Gender
 
     Organizer:
-      roles: String[UByte]
+      roles: String?[UByte]?
       userId: String
       email: String
 
