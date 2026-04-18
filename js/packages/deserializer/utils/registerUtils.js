@@ -6,7 +6,7 @@ import {deserializeObject} from "./objectUtils.js";
 
 /**
  *
- * @this {Deserializer.ComplexType}
+ * @this {Deserializer}
  * @param {DeserializerBuffer | Buffer} bytes
  * @return {unknown}
  */

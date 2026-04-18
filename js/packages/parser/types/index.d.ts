@@ -4,9 +4,14 @@ export interface Extensions {
 
 export type TypeName = `${Uppercase<string>}${string}`
 
-type Type<K extends string, E extends Extensions> = E & {
-    kind: K;
+interface SchemaNode {
     name: string;
+    path: SchemaNode[];
+}
+
+type Type<K extends string, E extends Extensions> = E & {
+    name: string;
+    kind: K;
 }
 
 export type InstantiatedType<E extends Extensions> = {
@@ -17,20 +22,18 @@ export type InstantiatedType<E extends Extensions> = {
 }
 
 export interface Field<E extends Extensions> {
+    override: boolean
     final: boolean
     type: InstantiatedType<E>
 }
 
-export type ComplexType<K extends string, E extends Extensions> = Type<K, E> & {
-    defaultArgument: InstantiatedType<E> | null
-}
-
-export type ObjectType<E extends Extensions> = ComplexType<'object', E> & {
+export type ObjectType<E extends Extensions> = SchemaNode & Type<'object', E> & {
     [subtype: TypeName]: ObjectType<E>
 
+    path: ObjectType<E>[];
+    leafIndexType: InstantiatedType<E>;
     ownFields: Record<string, Field<E>>;
-    fieldOverrides: Record<string, Field<E>>;
-    parent: ObjectType<E> | null;
+    allFields?: Record<string, Field<E>>;
 
     isRoot: boolean;
     isInternal: boolean;
@@ -43,13 +46,14 @@ export type ObjectType<E extends Extensions> = ComplexType<'object', E> & {
 
 export type EnumValue = Uppercase<string>
 
-export interface EnumEntry {
+export interface EnumEntry extends SchemaNode {
     index: number;
 }
 
-export type EnumType<E extends Extensions> = ComplexType<'enum', E> & {
+export type EnumType<E extends Extensions> = SchemaNode & Type<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
+    entryIndexType: InstantiatedType<E>;
     entries: EnumEntry[]
 }
 

@@ -8,3 +8,4 @@ fun <T> Deserializer<T>.deserialize(bytes: ByteArray): T {
     val buffer = DeserializerBuffer(bytes)
     return this.deserialize(buffer)
 }
+

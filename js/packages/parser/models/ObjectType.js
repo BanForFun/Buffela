@@ -1,22 +1,17 @@
-import {inspectSymbol} from "../constants/symbols.js";
-
-import ComplexType from "./ComplexType.js";
 import InstantiatedType from "./InstantiatedType.js";
+import SchemaNode from "./SchemaNode.js";
 
-export default class ObjectType extends ComplexType {
+export default class ObjectType extends SchemaNode {
     #definition;
     #schema;
 
-    constructor(schema, definition, name) {
-        super(schema, 'object', name);
+    constructor(schema, parentPath, name, definition) {
+        super(parentPath, name);
 
-        this[inspectSymbol] = () => `<BuffelaObject ${name}>`
         this.#definition = definition;
         this.#schema = schema;
 
         Object.defineProperty(this, 'ownFields', { value: {}, writable: true })
-        Object.defineProperty(this, 'fieldOverrides', { value: {}, writable: true })
-        Object.defineProperty(this, 'parent', { value: null, writable: true })
 
         Object.defineProperty(this, 'isRoot', {
             get() {
@@ -37,59 +32,50 @@ export default class ObjectType extends ComplexType {
         })
     }
 
-    #isLeaf() {
-        // noinspection LoopStatementThatDoesntLoopJS
-        for (const _ in this)
-            return false
-
-        return true
-    }
-
     #finalize() {
         Object.setPrototypeOf(this, this.#schema.objectExtensions)
     }
 
     #linkFields(fieldScope) {
-        const fieldOverrides = {}
-        const ownFields = {}
-
         for (const name in this.#definition) {
             const member = this.#definition[name]
             if (typeof member !== 'string') continue;
 
             const field = {
                 final: true,
+                override: false,
                 type: InstantiatedType.parse(this.#schema, member)
             }
 
             const overriddenField = fieldScope[name]
             if (overriddenField) {
                 overriddenField.final = false
-                fieldOverrides[name] = field
-            } else {
-                ownFields[name] = field
+                field.override = true
             }
+
+            this.ownFields[name] = field
         }
 
-        Object.assign(fieldScope, ownFields)
-
-        this.ownFields = ownFields;
-        this.fieldOverrides = fieldOverrides;
+        Object.assign(fieldScope, this.ownFields)
     }
 
-    #linkSubtypes(fieldScope, leaves) {
+    #linkSubtypes(leaves, fieldScope) {
+        let isLeaf = true
+
         for (const name in this.#definition) {
             const member = this.#definition[name]
             if (typeof member !== 'object') continue;
 
-            const subtype = new ObjectType(this.#schema, member, name)
-            subtype.#linkAsSubtype(this, leaves, { ...fieldScope })
+            const subtype = new ObjectType(this.#schema, this.path, name, member)
+            subtype.#linkAsSubtype(leaves, { ...fieldScope })
             subtype.#finalize()
-
             this[name] = subtype
+
+            isLeaf = false
         }
 
-        if (this.#isLeaf()) {
+        if (isLeaf) {
+            Object.defineProperty(this, 'allFields', { value: fieldScope, configurable: true })
             Object.defineProperty(this, 'leafIndex', { value: leaves.length, configurable: true })
             leaves.push(this)
         } else {
@@ -97,19 +83,20 @@ export default class ObjectType extends ComplexType {
         }
     }
 
-    #linkAsSubtype(parent, leaves, fieldScope = {}) {
-        this.parent = parent;
-
+    #linkAsSubtype(leaves, fieldScope) {
         this.#linkFields(fieldScope);
-        this.#linkSubtypes(fieldScope, leaves);
+        this.#linkSubtypes(leaves, fieldScope);
     }
 
     link() {
         Object.defineProperty(this, 'leaves', { value: [], configurable: true })
-        this.#linkAsSubtype(null, this.leaves)
+        this.#linkAsSubtype(this.leaves, {})
 
         delete this.leafRangeEnd
-        this.setSize(this.leaves.length)
+        Object.defineProperty(this, 'leafIndexType', {
+            value: this.#schema.sizeType(this.leaves.length),
+            configurable: true
+        })
 
         this.#finalize()
     }

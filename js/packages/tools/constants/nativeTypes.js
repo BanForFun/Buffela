@@ -24,7 +24,7 @@ const nativeTypes = {
     "LongArray":        "BigInt64Array",
     "FloatArray":       "Float32Array",
     "DoubleArray":      "Float64Array",
-    "Bytes":            "Buffer",
+    "Bytes":            "Uint8Array",
 }
 
 module.exports = nativeTypes

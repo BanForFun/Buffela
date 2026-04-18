@@ -21,7 +21,7 @@ User:
       gender: Gender
 
     Organizer:
-      roles: String?[UByte]?
+      roles: String[UByte]
       userId: String
       email: String
 

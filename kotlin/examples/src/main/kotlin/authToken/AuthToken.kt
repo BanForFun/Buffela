@@ -37,7 +37,7 @@ sealed class User: _Serializable {
 
     protected open fun userId(buffer: _SerializerBuffer) {
         if (this.userId.length != 36) {
-            throw IllegalStateException("Expected string length '36' (got '${this.userId.length}')")
+            throw IllegalStateException("Expected length '36' (got '${this.userId.length}')")
         }
         buffer.writeString(this.userId)
     }
@@ -148,14 +148,14 @@ sealed class User: _Serializable {
         }
 
         class Organizer: Registered {
-            val roles: Array<String?>?
-            val email: String
+            val roles: Array<String>
             override val userId get() = super.userId as String
+            val email: String
 
             constructor(
                 userId: String,
                 verified: Boolean,
-                roles: Array<String?>?,
+                roles: Array<String>,
                 email: String,
             ): super(
                 userId,
@@ -172,25 +172,17 @@ sealed class User: _Serializable {
             override fun serialize(buffer: _SerializerBuffer) {
                 this.serializeLeafIndex(buffer, 2)
                 super.serialize(buffer)
-                buffer.writeBoolean(this.roles != null)
+                buffer.writeUByte(this.roles.size.toUByte())
 
-                this.roles?.let {
-                    buffer.writeUByte(this.roles.size.toUByte())
-
-                    for (item1 in this.roles) {
-                        buffer.writeBoolean(item1 != null)
-
-                        item1?.let {
-                            buffer.writeString(item1, true)
-                        }
-                    }
+                for (item1 in this.roles) {
+                    buffer.writeString(item1, true)
                 }
                 buffer.writeString(this.email, true)
             }
             override fun userId(buffer: _DeserializerBuffer) = buffer.readString()
 
             internal constructor(buffer: _DeserializerBuffer): super(buffer) {
-                this.roles = if (buffer.readBoolean()) Array(buffer.readUByte().toInt()) { _ -> if (buffer.readBoolean()) buffer.readString() else null } else null
+                this.roles = Array(buffer.readUByte().toInt()) { _ -> buffer.readString() }
                 this.email = buffer.readString()
             }
         }
@@ -209,7 +201,14 @@ class AuthTokenPayload: _Serializable {
         this.user = user
     }
 
+    protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {
+        if (index != 0) {
+            throw IllegalStateException("Expected length '0' (got '${index}')")
+        }
+    }
+
     override fun serialize(buffer: _SerializerBuffer) {
+        this.serializeLeafIndex(buffer, 0)
         buffer.writeDouble(this.issuedAt)
         this.user.serialize(buffer)
     }
@@ -221,7 +220,10 @@ class AuthTokenPayload: _Serializable {
 
     companion object Deserializer: _Deserializer<AuthTokenPayload> {
         override fun deserialize(buffer: _DeserializerBuffer): AuthTokenPayload {
-            return AuthTokenPayload(buffer)
+            return when(0) {
+                0 -> AuthTokenPayload(buffer)
+                else -> throw IllegalStateException("Invalid subtype index")
+            }
         }
     }
 }
@@ -235,9 +237,17 @@ class AuthTokenSignature: _Serializable {
         this.hmac256 = hmac256
     }
 
+    protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {
+        if (index != 0) {
+            throw IllegalStateException("Expected length '0' (got '${index}')")
+        }
+    }
+
     override fun serialize(buffer: _SerializerBuffer) {
+        this.serializeLeafIndex(buffer, 0)
+
         if (this.hmac256.size != 32) {
-            throw IllegalStateException("Expected size '32' (got '${this.hmac256.size}')")
+            throw IllegalStateException("Expected length '32' (got '${this.hmac256.size}')")
         }
         buffer.writeBytes(this.hmac256)
     }
@@ -248,7 +258,10 @@ class AuthTokenSignature: _Serializable {
 
     companion object Deserializer: _Deserializer<AuthTokenSignature> {
         override fun deserialize(buffer: _DeserializerBuffer): AuthTokenSignature {
-            return AuthTokenSignature(buffer)
+            return when(0) {
+                0 -> AuthTokenSignature(buffer)
+                else -> throw IllegalStateException("Invalid subtype index")
+            }
         }
     }
 }

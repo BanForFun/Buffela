@@ -1,36 +1,69 @@
 const nativeTypes = require("../constants/nativeTypes");
-const {typeSchemaName} = require("./typeSchemaUtils");
 
-function combineExtensions(extensions) {
-    if (!extensions.length) return '{}'
-    return extensions.join(' & ')
+
+/**
+ * @param {import('@buffela/parser').ObjectType} objectType
+ * @param {string} name
+ */
+function printObjectSubtypeSchema(objectType, name) {
+    const path = objectType.path.map(t => `"${t.name}"`).join(", ")
+    printer.blockStart(`readonly ${name}: _SubtypeSchema<[${path}]> & {`)
+
+    for (
+        /** @type {import('@buffela/parser').TypeName} */
+        const subtypeName in objectType
+    ) {
+        printObjectSubtypeSchema(objectType[subtypeName], subtypeName)
+    }
+
+    printer.blockEnd('}')
 }
 
-function printSchemaUtils() {
-    const typeExtensions = [], primitiveExtensions = []
-
-    if (options.serializerEnabled) {
-        typeExtensions.push('_Serializable<T>')
-        primitiveExtensions.push('_Serializer<T>')
+/**
+ * @param {import('@buffela/parser').ObjectType} objectType
+ */
+function printObjectTypeSchema(objectType) {
+    for (
+        /** @type {import('@buffela/parser').TypeName} */
+        const subtypeName in objectType
+        ) {
+        printObjectSubtypeSchema(objectType[subtypeName], subtypeName)
     }
+}
 
-    if (options.deserializerEnabled) {
-        typeExtensions.push('_Deserializable<T>')
-        primitiveExtensions.push('_Deserializer<T>')
+/**
+ * @param {import('@buffela/parser').EnumType} enumType
+ */
+function printEnumTypeSchema(enumType) {
+    for (
+        /** @type {import('@buffela/parser').EnumValue} */
+        const value in enumType
+    ) {
+        const entry = enumType[value];
+        const path = entry.path.map(t => `"${t.name}"`).join(", ")
+        printer.line(`readonly ${value}: _AbsolutePath<[${path}]>`)
     }
+}
 
-    printer.line()
-    printer.line(`type _Type<T> = Partial<${combineExtensions(typeExtensions)}>`)
-    printer.line(`type _Primitive<T> = Partial<${combineExtensions(primitiveExtensions)}>`)
+/**
+ *
+ * @param {import('@buffela/parser').RootType} type
+ */
+function printTypeSchema(type) {
+    if (type.kind === "enum") {
+        printEnumTypeSchema(type)
+    } else if (type.kind === "object") {
+        printObjectTypeSchema(type)
+    }
 }
 
 function printSchema() {
-    printSchemaUtils()
-
     printer.blockStart(`type _Schema = {`)
 
     for (const name in schema) {
-        printer.line(`readonly ${name}: ${typeSchemaName(name)} & _Type<${name}>`)
+        printer.blockStart(`readonly ${name}: _TypeSchema<${name}> & {`)
+        printTypeSchema(schema[name])
+        printer.blockEnd('}')
     }
 
     printer.blockStart('primitiveTypes: {')

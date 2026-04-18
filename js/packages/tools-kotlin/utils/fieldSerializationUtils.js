@@ -21,7 +21,7 @@ function printSerializeSize(type, size) {
     const { element } = type
     if (typeof element === 'number') {
         printer.blockStart(`if (${size} != ${element}) {`)
-        printer.line(`throw IllegalStateException("Expected size '${element}' (got '\${${size}}')")`)
+        printer.line(`throw IllegalStateException("Expected length '${element}' (got '\${${size}}')")`)
         printer.blockEnd('}')
 
         return;
@@ -112,10 +112,7 @@ function printSerializeElement(type, fieldName) {
             break;
         case 'String':
             if (argument) {
-                printer.blockStart(`if (${fieldName}.length != ${argument.element}) {`)
-                printer.line(`throw IllegalStateException("Expected string length '${argument.element}' (got '\${${fieldName}.length}')")`)
-                printer.blockEnd('}')
-
+                printSerializeSize(argument, `${fieldName}.length`)
                 printSerializePrimitive(element.name, fieldName)
                 break;
             } else {

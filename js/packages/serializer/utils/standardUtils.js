@@ -9,10 +9,8 @@ import {serializeValue} from "./typeUtils.js";
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
         buffer.writeString(value, true)
-    } else if (typeof sizeType.element === 'number') {
-        if (value.length !== sizeType.element)
-            throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)
-
+    } else {
+        serializeValue(buffer, sizeType, value.length);
         buffer.writeString(value)
     }
 }
@@ -26,17 +24,6 @@ function serializeString(buffer, value, sizeType) {
 function serializeTypedArray(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
     buffer.writeBytes(Buffer.from(value))
-}
-
-/**
- *
- * @param {SerializerBuffer} buffer
- * @param {Buffer} value
- * @param {Serializer.InstantiatedType} sizeType
- */
-function serializeBytes(buffer, value, sizeType) {
-    serializeValue(buffer, sizeType, value.length);
-    buffer.writeBytes(value)
 }
 
 /**
@@ -71,7 +58,7 @@ export const standardSerializers = {
     Signed: (buffer, value, arg) => buffer.writeSigned(value, arg.element),
     Unsigned: (buffer, value, arg) => buffer.writeUnsigned(value, arg.element),
     String: serializeString,
-    Bytes: serializeBytes,
+    Bytes: serializeTypedArray,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,
     ShortArray: serializeTypedArray,

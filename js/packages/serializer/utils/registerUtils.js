@@ -5,7 +5,7 @@ import {serializeObject} from "./objectUtils.js";
 
 /**
  *
- * @this {Serializer.ComplexType}
+ * @this {Serializer}
  * @param {unknown} value
  * @param {SerializerBuffer} [buffer]
  */

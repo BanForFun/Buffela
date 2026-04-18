@@ -1,7 +1,7 @@
 const {
     printObjectSerializer,
-    printOpenFieldSerializers,
-    printLeafIndexSerializer, printFieldOverrideSerializers
+    printLeafIndexSerializer,
+    printFieldSerializers
 } = require("./objectTypeSerializationUtils");
 const {
     printObjectFields,
@@ -9,7 +9,8 @@ const {
 } = require("./objectTypeInterfaceUtils");
 const {
     printDeserializerConstructor,
-    printDeserializerObject, printOpenFieldDeserializers, printFieldOverrideDeserializers
+    printDeserializerObject,
+    printFieldDeserializers
 } = require("./objectTypeDeserializationUtils");
 
 /**
@@ -17,9 +18,8 @@ const {
  * @param {import('@buffela/parser').ObjectType} type
  * @param {string} superClass
  * @param {Record<string, import('@buffela/parser').Field>} superFields
- * @param {import('@buffela/parser').ObjectType} rootType
  */
-function printObjectTypeClass(type, superClass, superFields, rootType) {
+function printObjectTypeClass(type, superClass, superFields) {
     const prefix = type.isLeaf ? "class" : "sealed class"
     const suffix = superClass ? `: ${superClass}` : ''
     printer.blockStart(`${prefix} ${type.name}${suffix} {`)
@@ -29,14 +29,12 @@ function printObjectTypeClass(type, superClass, superFields, rootType) {
 
     if (options.serializerEnabled) {
         printLeafIndexSerializer(type)
-        printFieldOverrideSerializers(type)
-        printOpenFieldSerializers(type)
-        printObjectSerializer(type, rootType)
+        printFieldSerializers(type)
+        printObjectSerializer(type)
     }
 
     if (options.deserializerEnabled) {
-        printFieldOverrideDeserializers(type)
-        printOpenFieldDeserializers(type)
+        printFieldDeserializers(type)
         printDeserializerConstructor(type)
         printDeserializerObject(type)
     }
@@ -45,8 +43,7 @@ function printObjectTypeClass(type, superClass, superFields, rootType) {
         printObjectTypeClass(
             type[name],
             type.name,
-            { ...superFields, ...type.ownFields, ...type.fieldOverrides },
-            rootType
+            { ...superFields, ...type.ownFields }
         )
     }
 
@@ -59,7 +56,7 @@ function printObjectTypeClass(type, superClass, superFields, rootType) {
  */
 function printRootObjectTypeClass(type) {
     const superClass = options.serializerEnabled ? "_Serializable" : ""
-    printObjectTypeClass(type, superClass, {}, type)
+    printObjectTypeClass(type, superClass, {})
 }
 
 module.exports = { printRootObjectTypeClass }

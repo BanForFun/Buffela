@@ -4,25 +4,20 @@ const {deserializeField, deserializeSize} = require("./fieldDeserializationUtils
  *
  * @param {import('@buffela/parser').ObjectType} type
  */
-function printOpenFieldDeserializers(type) {
+function printFieldDeserializers(type) {
     for (const name in type.ownFields) {
         const field = type.ownFields[name];
-        if (field.final) continue;
 
-        printer.line(`protected open fun ${name}(buffer: _DeserializerBuffer) = ${deserializeField(field.type)}`)
-    }
-}
+        let prefix = ''
+        if (field.override) {
+            prefix = 'override'
+        } else if (!field.final) {
+            prefix = 'protected open'
+        }
 
-/**
- *
- * @param {import('@buffela/parser').ObjectType} type
- */
-function printFieldOverrideDeserializers(type) {
-    for (const name in type.fieldOverrides) {
-        const field = type.fieldOverrides[name]
-        const prefix = field.final ? 'override' : 'open override'
-
-        printer.line(`${prefix} fun ${name}(buffer: _DeserializerBuffer) = ${deserializeField(field.type)}`)
+        if (prefix) {
+            printer.line(`${prefix} fun ${name}(buffer: _DeserializerBuffer) = ${deserializeField(field.type)}`)
+        }
     }
 }
 
@@ -37,6 +32,7 @@ function printDeserializerConstructor(type) {
 
     for (const name in type.ownFields) {
         const field = type.ownFields[name];
+        if (field.override) continue;
 
         if (field.final) {
             printer.line(`this.${name} = ${deserializeField(field.type)}`)
@@ -56,13 +52,10 @@ function printDeserializerConstructor(type) {
 function leafTypeClass(type) {
     if (type.isRoot) return type.name
 
-    const names = []
-    do {
-        names.push(type.name)
-        type = type.parent
-    } while (!type.isRoot)
-
-    return names.reverse().join('.')
+    return type.path
+        .slice(1)
+        .map(t => t.name)
+        .join('.')
 }
 
 /**
@@ -75,26 +68,21 @@ function printDeserializerObject(type) {
     printer.blockStart(`companion object Deserializer: _Deserializer<${type.name}> {`)
     printer.blockStart(`override fun deserialize(buffer: _DeserializerBuffer): ${type.name} {`)
 
-    if (type.defaultArgument) {
-        printer.blockStart(`return when(${deserializeSize(type.defaultArgument)}) {`)
+    printer.blockStart(`return when(${deserializeSize(type.leafIndexType)}) {`)
 
-        for (const leafType of type.leaves)
-            printer.line(`${leafType.leafIndex} -> ${leafTypeClass(leafType)}(buffer)`)
+    for (const leafType of type.leaves)
+        printer.line(`${leafType.leafIndex} -> ${leafTypeClass(leafType)}(buffer)`)
 
-        printer.line(`else -> throw IllegalStateException("Invalid subtype index")`)
+    printer.line(`else -> throw IllegalStateException("Invalid subtype index")`)
 
-        printer.blockEnd('}')
-    } else {
-        printer.line(`return ${leafTypeClass(type.leaves[0])}(buffer)`)
-    }
+    printer.blockEnd('}')
 
     printer.blockEnd('}')
     printer.blockEnd('}')
 }
 
 module.exports = {
-    printOpenFieldDeserializers,
-    printFieldOverrideDeserializers,
+    printFieldDeserializers,
     printDeserializerConstructor,
     printDeserializerObject
 }

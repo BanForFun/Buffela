@@ -1,7 +1,7 @@
 export default class InstantiatedType {
     element;
-    optional = false;
     argument = null;
+    optional = false;
     dimensions = []
 
     constructor(element) {
@@ -52,7 +52,8 @@ export default class InstantiatedType {
         const alias = isAlias ? null : schema.lookupAlias(name);
         if (alias) return InstantiatedType.#parse(schema, alias, true)
 
-        return new InstantiatedType(schema.lookupType(name))
+        const element = schema.lookupType(name)
+        return new InstantiatedType(element)
     }
 
     static #parseNested(schema, definition, pattern, isAlias) {

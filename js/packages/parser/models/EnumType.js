@@ -1,15 +1,19 @@
-import {inspectSymbol} from "../constants/symbols.js";
+import SchemaNode from "./SchemaNode.js";
 
-import ComplexType from "./ComplexType.js";
+class EnumEntry extends SchemaNode {
+    constructor(parentPath, name, index) {
+        super(parentPath, name);
+        this.index = index;
+    }
+}
 
-export default class EnumType extends ComplexType {
+export default class EnumType extends SchemaNode {
     #definition;
     #schema;
 
-    constructor(schema, definition, name) {
-        super(schema, 'enum', name);
+    constructor(schema, parentPath, name, definition) {
+        super(parentPath, name);
 
-        this[inspectSymbol] = () => `<BuffelaEnum ${name}>`
         this.#definition = definition;
         this.#schema = schema;
 
@@ -19,18 +23,18 @@ export default class EnumType extends ComplexType {
     link() {
         const entries = []
         for (let index = 0; index < this.#definition.length; index++) {
-            const value = this.#definition[index];
-            const entry = {
-                index,
-                [inspectSymbol]: () =>  `<BuffelaEnumValue ${value}>`
-            }
+            const name = this.#definition[index];
+            const entry = new EnumEntry(this.path, name, index);
 
-            this[value] = entry
+            this[name] = entry
             entries[index] = entry
         }
 
         this.entries = entries;
-        this.setSize(this.#definition.length)
+        Object.defineProperty(this, 'entryIndexType', {
+            value: this.#schema.sizeType(this.#definition.length),
+            configurable: true
+        });
 
         Object.setPrototypeOf(this, this.#schema.enumExtensions)
     }
