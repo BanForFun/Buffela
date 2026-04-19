@@ -51,8 +51,9 @@ Buffela supports all the types you would expect (strings, booleans, numbers), al
 ## What's new in Version 4
 
 - Simplified subtype instance creation and checking in JavaScript
+- Optimized JavaScript de/serialization
 
-This version is backwards compatible with version 3
+Warning! This version is not backwards compatible with packets generated using older versions.
 
 **[Breaking API Changes](./docs/migration.md)**
 
