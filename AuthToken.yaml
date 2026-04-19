@@ -5,6 +5,10 @@ Gender:
   - FEMALE
   - MALE
 
+Phone:
+  countryCode: Unsigned(10)
+  number: String
+
 User:
   userId: Uuid
 
@@ -14,11 +18,9 @@ User:
     verified: Boolean
 
     Viewer:
-      name: String?
       birthDate: Date
-      countryCode: Unsigned(10)
-      phone: String
       gender: Gender
+      phone: Phone?
 
     Organizer:
       roles: String[UByte]

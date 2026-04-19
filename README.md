@@ -12,6 +12,10 @@ Gender:
   - FEMALE
   - MALE
 
+Phone:
+  countryCode: Unsigned(10)
+  number: String
+
 User:
   userId: Uuid
 
@@ -22,9 +26,8 @@ User:
 
     Viewer:
       birthDate: String # We'll implement our own custom "Date" type in the Custom Primitives section
-      countryCode: Unsigned(10)
-      phone: String
       gender: Gender
+      phone: Phone?
 
     Organizer:
       roles: String[UByte]
@@ -45,17 +48,11 @@ Buffela supports all the types you would expect (strings, booleans, numbers), al
 
 
 
-## What's new in version 3
+## What's new in Version 3.1
 
-- Type aliases
-- Custom types
-- Field overriding
-- Object concatenation
-- New 'Signed' and 'Unsigned' types
-- Improved enumeration, subtype and boolean space efficiency (using bit packing)
-- Better developer tools with detailed error messages and highlighting
-- Smaller bundle size
-- [Breaking API changes](./docs/migration.md)
+- Added nullable types
+
+[Older changes](./docs/changelog.md)
 
 
 
@@ -208,10 +205,12 @@ const buffer = schema.AuthTokenPayload.serialize({
         User_type: schema.User.Registered,
         verified: true,
         Registered_type: schema.User.Registered.Viewer,
-        birthDate: '2003-22-07',
-        countryCode: 30,
-        phone: '1234567890',
-        gender: schema.Gender.MALE
+        birthDate: '2003-07-22',
+        gender: schema.Gender.MALE,
+        phone: {
+            countryCode: 30,
+            number: "1234567890",
+        }
     }
 })
 
@@ -241,10 +240,12 @@ const buffer = schema.AuthTokenPayload.serialize({
         User_type: schema.User.Registered,
         verified: true,
         Registered_type: schema.User.Registered.Viewer,
-        birthDate: '2003-22-07',
-        countryCode: 30,
-        phone: '1234567890',
-        gender: schema.Gender.MALE
+        birthDate: '2003-07-22',
+        gender: schema.Gender.MALE,
+        phone: {
+            countryCode: 30,
+            number: "1234567890",
+        }
     }
 })
 
@@ -266,11 +267,13 @@ fun main() {
         issuedAt = System.currentTimeMillis().toDouble(),
         user = User.Registered.Viewer(
             userId = "588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11",
+            gender = Gender.MALE,
             verified = true,
             birthDate = "2003-22-07",
-            countryCode = 30u,
-            phone = "1234567890",
-            gender = Gender.MALE
+            phone = Phone(
+                countryCode = 30u,
+                number = "1234567890",
+            ),
         )
     ).serialize()
 
@@ -502,7 +505,17 @@ roles: String[Unsigned(10)] # This array can have a length of up to 1023 strings
 Don't get confused by typed arrays, you can also make them higher-dimensional:
 
 ```yaml
-temperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
+spaceTemperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
+```
+
+
+
+### Optional types
+
+You can make any type optional (nullable) by adding a `?` suffix. For example:
+
+```yaml
+phone: Phone?
 ```
 
 

@@ -10,6 +10,8 @@ type Gender_Schema = {
     readonly MALE: { [id]: "Gender.MALE" }
 }
 
+type Phone_Schema = {}
+
 type User_Schema = {
     readonly Anonymous: { [id]: "User.Anonymous" }
 
@@ -25,6 +27,11 @@ type AuthTokenSignature_Schema = {}
 
 export type Gender = Gender_Schema[keyof Gender_Schema]
 
+export type Phone = {
+    countryCode: number,
+    number: string,
+}
+
 export type User = {
     userId: string,
 } & (
@@ -36,11 +43,9 @@ export type User = {
     } & (
         {
             Registered_type: User_Schema["Registered"]["Viewer"],
-            name: (string | null),
             birthDate: Date,
-            countryCode: number,
-            phone: string,
             gender: Gender,
+            phone: (Phone | null),
         } | {
             Registered_type: User_Schema["Registered"]["Organizer"],
             roles: string[],
@@ -64,6 +69,7 @@ type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
 
 type _Schema = {
     readonly Gender: Gender_Schema & _Type<Gender>
+    readonly Phone: Phone_Schema & _Type<Phone>
     readonly User: User_Schema & _Type<User>
     readonly AuthTokenPayload: AuthTokenPayload_Schema & _Type<AuthTokenPayload>
     readonly AuthTokenSignature: AuthTokenSignature_Schema & _Type<AuthTokenSignature>
