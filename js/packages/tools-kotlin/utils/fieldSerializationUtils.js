@@ -19,7 +19,7 @@ function printSerializePrimitive(primitive, ...args) {
  */
 function printSerializeSize(type, size) {
     const { element } = type
-    if (typeof element === 'number') {
+    if (typeof element !== 'object') {
         printer.blockStart(`if (${size} != ${element}) {`)
         printer.line(`throw IllegalStateException("Expected length '${element}' (got '\${${size}}')")`)
         printer.blockEnd('}')
@@ -47,7 +47,7 @@ function printSerializeSize(type, size) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} arrayName
  * @param {string} itemPrimitive
  */
@@ -62,7 +62,7 @@ function printSerializePrimitiveArray(type, arrayName, itemPrimitive) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  */
 function printSerializeElement(type, fieldName) {
@@ -131,11 +131,16 @@ function printSerializeElement(type, fieldName) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  * @param {number} dimension
  */
-function printSerializeArray(type, fieldName, dimension) {
+function printSerializeNotNullField(type, fieldName, dimension) {
+    if (dimension === 0) {
+        printSerializeElement(type, fieldName)
+        return
+    }
+
     const sizeType = type.dimensions[dimension - 1]
     printSerializeSize(sizeType, `${fieldName}.size`)
 
@@ -147,7 +152,7 @@ function printSerializeArray(type, fieldName, dimension) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  * @param {number} dimension
  */
@@ -157,16 +162,13 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
 
     if (optional) {
         printer.line(`buffer.writeBoolean(${fieldName} != null)`)
+
         printer.blockStart(`${fieldName}?.let {`)
-    }
-
-    if (isArray) {
-        printSerializeArray(type, fieldName, dimension)
+        printSerializeNotNullField(type, fieldName, dimension)
+        printer.blockEnd('}')
     } else {
-        printSerializeElement(type, fieldName)
+        printSerializeNotNullField(type, fieldName, dimension)
     }
-
-    if (optional) printer.blockEnd('}')
 }
 
 module.exports = {

@@ -5,13 +5,13 @@ export interface Extensions {
 export type TypeName = `${Uppercase<string>}${string}`
 
 interface SchemaNode {
-    name: string;
-    path: SchemaNode[];
+    name: string
+    path: SchemaNode[]
 }
 
 type Type<K extends string, E extends Extensions> = E & {
-    name: string;
-    kind: K;
+    name: string
+    kind: K
 }
 
 export type InstantiatedType<E extends Extensions> = {
@@ -21,27 +21,31 @@ export type InstantiatedType<E extends Extensions> = {
     dimensions: InstantiatedType<E>[]
 }
 
+export type InstantiatedFieldType<E extends Extensions> = InstantiatedType<E> & {
+    element: object
+}
+
 export interface Field<E extends Extensions> {
     override: boolean
     final: boolean
-    type: InstantiatedType<E>
+    type: InstantiatedFieldType<E>
 }
 
 export type ObjectType<E extends Extensions> = SchemaNode & Type<'object', E> & {
     [subtype: TypeName]: ObjectType<E>
 
-    path: ObjectType<E>[];
-    leafIndexType: InstantiatedType<E>;
-    ownFields: Record<string, Field<E>>;
-    allFields?: Record<string, Field<E>>;
+    path: ObjectType<E>[]
+    leafIndexType: InstantiatedType<E>
+    ownFields: Record<string, Field<E>>
+    allFields?: Record<string, Field<E>>
 
-    isRoot: boolean;
-    isInternal: boolean;
-    isLeaf: boolean;
+    isRoot: boolean
+    isInternal: boolean
+    isLeaf: boolean
 
-    leaves?: ObjectType<E>[];
-    leafRangeEnd?: number;
-    leafIndex?: number;
+    leaves?: ObjectType<E>[]
+    leafRangeEnd?: number
+    leafIndex?: number
 }
 
 export type EnumValue = Uppercase<string>
@@ -53,7 +57,7 @@ export interface EnumEntry extends SchemaNode {
 export type EnumType<E extends Extensions> = SchemaNode & Type<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
-    entryIndexType: InstantiatedType<E>;
+    entryIndexType: InstantiatedType<E>
     entries: EnumEntry[]
 }
 
@@ -74,6 +78,6 @@ export interface SimplifiedSchema {
     primitiveTypes: Record<string, Extensions>
 }
 
-declare function parseSchema(definition: any): unknown;
+declare function parseSchema(definition: any): unknown
 
-export { parseSchema };
+export { parseSchema }

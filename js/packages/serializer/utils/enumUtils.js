@@ -1,4 +1,4 @@
-import {serializeValue} from "./typeUtils.js";
+import {serializeSize} from "./typeUtils.js";
 
 /**
  * @this {Serializer.EnumType}
@@ -6,5 +6,5 @@ import {serializeValue} from "./typeUtils.js";
  * @param {Serializer.EnumEntry} entry
  */
 export function serializeEnum(buffer, entry) {
-    serializeValue(buffer, this.entryIndexType, entry.index)
+    serializeSize(buffer, this.entryIndexType, entry.index)
 }

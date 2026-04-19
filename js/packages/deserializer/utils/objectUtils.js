@@ -1,4 +1,4 @@
-import {deserializeValue} from "./typeUtils.js";
+import { deserializeField, deserializeSize } from "./typeUtils.js";
 
 /**
  *
@@ -7,13 +7,13 @@ import {deserializeValue} from "./typeUtils.js";
  * @return {object}
  */
 export function deserializeObject(buffer) {
-    const leafIndex = deserializeValue(buffer, this.leafIndexType)
+    const leafIndex = deserializeSize(buffer, this.leafIndexType)
     const leafType = this.leaves[leafIndex]
 
     const result = this.isLeaf ? {} : { _type: leafType }
     for (const name in leafType.allFields) {
         const field = leafType.allFields[name]
-        result[name] = deserializeValue(buffer, field.type)
+        result[name] = deserializeField(buffer, field.type)
     }
 
     return result

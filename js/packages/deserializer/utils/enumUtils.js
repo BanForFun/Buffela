@@ -1,10 +1,10 @@
-import {deserializeValue} from "./typeUtils.js";
+import {deserializeSize} from "./typeUtils.js";
 
 /**
  * @this {Deserializer.EnumType}
  * @param {DeserializerBuffer} buffer
- * @returns {Serializer.EnumEntry}
+ * @returns {Deserializer.EnumEntry}
  */
 export function deserializeEnum(buffer) {
-    return this.entries[deserializeValue(buffer, this.entryIndexType)]
+    return this.entries[deserializeSize(buffer, this.entryIndexType)]
 }

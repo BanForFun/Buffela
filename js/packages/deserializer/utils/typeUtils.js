@@ -2,31 +2,36 @@
  *
  * @param {DeserializerBuffer} buffer
  * @param {Deserializer.InstantiatedType} type
+ * @return {any}
  */
-function skip(buffer, type) {
-    if (!type.optional) return false
-    return !buffer.readBoolean()
+export function deserializeSize(buffer, type) {
+    const { element } = type
+    if (typeof element === 'object') {
+        return element._deserialize(buffer, type.argument)
+    } else {
+        return element
+    }
 }
-
 
 /**
  *
  * @param {DeserializerBuffer} buffer
- * @param {Deserializer.InstantiatedType} type
+ * @param {Deserializer.InstantiatedFieldType} type
  * @param {number} dimension
  * @return {any}
  */
-export function deserializeValue(buffer, type, dimension = type.dimensions?.length) {
-    if (dimension > 0) {
-        const sizeType = type.dimensions[dimension - 1]
-        if (skip(buffer, sizeType)) return null
+export function deserializeField(buffer, type, dimension = type.dimensions?.length) {
+    const isArray = dimension > 0
+    const optional = isArray ? type.dimensions[dimension - 1].optional : type.optional
 
-        const length = deserializeValue(buffer, sizeType)
-        return Array.from({ length }, () => deserializeValue(buffer, type, dimension - 1))
-    } else if (typeof type.element === 'object') {
-        if (skip(buffer, type)) return null
+    if (optional) {
+        if (!buffer.readBoolean()) return null
+    }
+
+    if (isArray) {
+        const length = deserializeSize(buffer, type.dimensions[dimension - 1])
+        return Array.from({ length }, () => deserializeField(buffer, type, dimension - 1))
+    } else {
         return type.element._deserialize(buffer, type.argument)
-    } else if (typeof type.element === 'number') {
-        return type.element
     }
 }

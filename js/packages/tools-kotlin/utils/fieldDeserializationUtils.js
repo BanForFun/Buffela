@@ -22,7 +22,7 @@ function deserializePrimitive(primitive, ...args) {
  */
 function deserializeSize(type) {
     const { element } = type
-    if (typeof element === "number") return element
+    if (typeof element !== 'object') return element
 
     let extension = ""
     switch (element.name) {
@@ -38,7 +38,7 @@ function deserializeSize(type) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} itemPrimitive
  * @returns {string}
  */
@@ -49,7 +49,7 @@ function deserializePrimitiveArray(type, itemPrimitive) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  */
 function deserializeElement(type) {
     const { element, argument } = type
@@ -78,14 +78,13 @@ function deserializeElement(type) {
         case 'BooleanArray':
             return deserializePrimitiveArray(type, 'Boolean')
         case 'Bytes':
-            const size = deserializeSize(argument)
-            return `buffer.readBytes(${size})`
+            return `buffer.readBytes(${deserializeSize(argument)})`
         case 'Signed':
         case 'Unsigned':
             return deserializePrimitive(element.name, argument.element.toString())
         case 'String':
             if (argument) {
-                return `buffer.readString(${argument.element})`
+                return `buffer.readString(${deserializeSize(argument)})`
             } else {
                 return deserializePrimitive(element.name)
             }
@@ -100,10 +99,14 @@ function deserializeElement(type) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {number} dimension
  */
-function deserializeArray(type, dimension) {
+function deserializeNotNullField(type, dimension) {
+    if (dimension === 0) {
+        return deserializeElement(type)
+    }
+
     const sizeType = type.dimensions[dimension - 1]
     const size = deserializeSize(sizeType)
     return `Array(${size}) { _ -> ${deserializeField(type,dimension - 1)} }`
@@ -111,18 +114,17 @@ function deserializeArray(type, dimension) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {number} dimension
  */
 function deserializeField(type, dimension = type.dimensions?.length) {
     const isArray = dimension > 0
     const optional = isArray ? type.dimensions[dimension - 1].optional : type.optional
-    const deserialized = isArray ? deserializeArray(type, dimension) : deserializeElement(type)
 
     if (optional) {
-        return `if (buffer.readBoolean()) ${deserialized} else null`
+        return `if (buffer.readBoolean()) ${deserializeNotNullField(type, dimension)} else null`
     } else {
-        return deserialized
+        return deserializeNotNullField(type, dimension)
     }
 }
 

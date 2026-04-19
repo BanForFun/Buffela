@@ -1,4 +1,4 @@
-import {serializeValue} from "./typeUtils.js";
+import {serializeField, serializeSize} from "./typeUtils.js";
 
 /**
  * @this {Serializer.ObjectType}
@@ -7,10 +7,10 @@ import {serializeValue} from "./typeUtils.js";
  */
 export function serializeObject(buffer, object) {
     const leafType = this.isLeaf ? this : object._type
-    serializeValue(buffer, this.leafIndexType, leafType.leafIndex)
+    serializeSize(buffer, this.leafIndexType, leafType.leafIndex)
 
     for (const name in leafType.allFields) {
         const field = leafType.allFields[name]
-        serializeValue(buffer, field.type, object[name])
+        serializeField(buffer, field.type, object[name])
     }
 }
