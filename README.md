@@ -12,6 +12,10 @@ Gender:
   - FEMALE
   - MALE
 
+Phone:
+  countryCode: Unsigned(10)
+  number: String
+
 User:
   userId: Uuid
 
@@ -22,9 +26,8 @@ User:
 
     Viewer:
       birthDate: String # We'll implement our own custom "Date" type in the Custom Primitives section
-      countryCode: Unsigned(10)
-      phone: String
       gender: Gender
+      phone: Phone?
 
     Organizer:
       roles: String[UByte]
@@ -45,17 +48,15 @@ Buffela supports all the types you would expect (strings, booleans, numbers), al
 
 
 
-## What's new in version 3
+## What's new in Version 4
 
-- Type aliases
-- Custom types
-- Field overriding
-- Object concatenation
-- New 'Signed' and 'Unsigned' types
-- Improved enumeration, subtype and boolean space efficiency (using bit packing)
-- Better developer tools with detailed error messages and highlighting
-- Smaller bundle size
-- [Breaking API changes](./docs/migration.md)
+- Simplified subtype instance creation and checking in JavaScript
+
+This version is backwards compatible with version 3
+
+**[Breaking API Changes](./docs/migration.md)**
+
+[Older changes]('./docs/changelog.md')
 
 
 
@@ -201,21 +202,25 @@ const schema = parseSchema(require('./YOUR_JSON'))
 registerSerializer(schema, {})
 registerDeserializer(schema, {})
 
-const buffer = schema.AuthTokenPayload.serialize({
+const bytes = schema.AuthTokenPayload.serialize({
     issuedAt: Date.now(),
     user: {
+        _type: schema.User.Registered.Viewer,
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
-        User_type: schema.User.Registered,
         verified: true,
-        Registered_type: schema.User.Registered.Viewer,
-        birthDate: '2003-22-07',
-        countryCode: 30,
-        phone: '1234567890',
-        gender: schema.Gender.MALE
+        birthDate: '2003-07-22',
+        gender: schema.Gender.MALE,
+        phone: {
+            countryCode: 30,
+            number: '1234567890',
+        }
     }
 })
 
-const payload = schema.AuthTokenPayload.deserialize(buffer)
+const payload = schema.AuthTokenPayload.deserialize(bytes)
+if (schema.User.Registered.instanceOf(payload.user)) {
+  console.log('User is registered')
+}
 ```
 
 
@@ -228,27 +233,31 @@ import { registerSerializer } from '@buffela/serializer'
 import { registerDeserializer } from '@buffela/deserializer'
 
 import type Schema from './YOUR_TYPES'
-import schemaObject from './YOUR_JSON' assert { type: 'json' }
+import schemaObject from './YOUR_JSON'
 
 const schema = parseSchema(schemaObject) as Schema
 registerSerializer(schema, {})
 registerDeserializer(schema, {})
 
-const buffer = schema.AuthTokenPayload.serialize({
+const bytes = schema.AuthTokenPayload.serialize({
     issuedAt: Date.now(),
     user: {
+        _type: schema.User.Registered.Viewer,
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
-        User_type: schema.User.Registered,
         verified: true,
-        Registered_type: schema.User.Registered.Viewer,
-        birthDate: '2003-22-07',
-        countryCode: 30,
-        phone: '1234567890',
-        gender: schema.Gender.MALE
+        birthDate: '2003-07-22',
+        gender: schema.Gender.MALE,
+        phone: {
+            countryCode: 30,
+            number: '1234567890',
+        }
     }
 })
 
-const payload = schema.AuthTokenPayload.deserialize(buffer)
+const payload = schema.AuthTokenPayload.deserialize(bytes)
+if (schema.User.Registered.instanceOf(payload.user)) {
+  console.log('User is registered')
+}
 ```
 
 
@@ -267,14 +276,19 @@ fun main() {
         user = User.Registered.Viewer(
             userId = "588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11",
             verified = true,
+            gender = Gender.MALE,
             birthDate = "2003-22-07",
-            countryCode = 30u,
-            phone = "1234567890",
-            gender = Gender.MALE
+            phone = Phone(
+                countryCode = 30u,
+                number = "1234567890",
+            ),
         )
     ).serialize()
 
     val payload = AuthTokenPayload.deserialize(bytes)
+    if (payload.user is User.Registered) {
+        println("User is registered")
+    }
 }
 ```
 
@@ -502,7 +516,17 @@ roles: String[Unsigned(10)] # This array can have a length of up to 1023 strings
 Don't get confused by typed arrays, you can also make them higher-dimensional:
 
 ```yaml
-temperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
+spaceTemperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
+```
+
+
+
+### Optional types
+
+You can make any type optional (nullable) by adding a `?` suffix. For example:
+
+```yaml
+phone: Phone?
 ```
 
 
@@ -694,17 +718,26 @@ In our example, `Anonymous` and `Registered` are subtypes of `User`. A subtype i
 
 How you specify a subtype differs from language to language:
 
-In **Javascript**, the compiled type will have an additional field for each abstract (non-leaf) type named *Type*_type. For the above example you need to specify a User_type, and if the user type is set to registered you must additionally specify a Registered_type. These subtypes live inside the parsed schema, in the same path as defined in the schema:
+In **JavaScript**, the compiled type will have an additional special field named `_type`. You need to provide a leaf schema type:
 
 ```js
 const schema = parseSchema(...)
 
 const user = {
-	User_type: schema.User.Registered,
-	Registered_type: schema.User.Registered.Viewer,
+	_type: schema.User.Registered.Viewer,
  	[...]
 }
 ```
+
+To check if an object is a subtype of a type you can use the `instanceOf()` function:
+
+```javascript
+if (schema.User.Registered.instanceOf(user)) {
+  // Do something
+}
+```
+
+
 
 In **Kotlin**, subtypes are just nested classes. So to create a registered viewer you would do:
 
@@ -713,6 +746,16 @@ val user = User.Registered.Viewer(
 	[...]
 )
 ```
+
+To check if an object is a subtype of a type you can use the `is` operator:
+
+```kotlin
+if (user is User.Registered) {
+  // Do something
+}
+```
+
+
 
 
 

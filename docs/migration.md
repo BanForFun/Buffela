@@ -1,4 +1,21 @@
-# Version 3 migration guide
+# Buffela migration guide
+
+## Version 4
+
+### JavaScript/TypeScript
+
+- `SCHEMA.serialize()` now returns a `Uint8Array` instead of a `Buffer`
+- `SerializeBuffer.toBytes()` now returns a `Uint8Array` instead of a `Buffer`
+- `SerializeBuffer.writeBytes()` now takes a `Uint8Array` instead of a `Buffer`
+- `SCHEMA.deserialize()` now takes a `Uint8Array` instead of a `Buffer`
+- `DeserializerBuffer()` constructor now takes a `Uint8Array` instead of a `Buffer`
+- `DeserializerBuffer.readBytes()` now returns a `Uint8Array` instead of a `Buffer`
+- Instead of having a `X_type` property for each level of a nested subtype hierarchy, you now only need to provide one `_type` property with the leaf type
+- To check if an object is a subtype of a nested type, instead of checking each level one by one, you can now use the new `NESTED_TYPE.instanceOf(value)` function
+
+
+
+## Version 3
 
 ### JSON Schema
 
@@ -16,11 +33,11 @@
 - `buffela-to-json` was replaced by `buffela-js`, dropping JSON input support
 - It is no longer recommended to parse the buffela schemata directly from YAML. Instead, you should use `buffela-js`  which converts your schemata into both JSON and type definitions, and then import the generated JSON file
 
-### Javascript/Typescript
+### JavaScript/TypeScript
 
 - `parseBuffelaSchema()` was renamed to `parseSchema()`
 - `serializeCalf()` and `deserializeCalf()` were removed. Instead you must call `registerSerializer(schema, {})` and `registerDeserializer(schema, {})` directly after parsing the schema. Then you can use `schema.ROOT_TYPE.serialize()` and `schema.ROOT_TYPE.deserialize()`
-- Type fields are now automatically generated with the name `OBJECT_type` (e.g. `User_type`.)
+- Type fields are now automatically generated with the name `X_type` (e.g. `User_type`.)
 
 ### Kotlin tools
 
@@ -29,3 +46,9 @@
 ### Kotlin
 
 - Uninstall `org.jetbrains.kotlinx:kotlinx-io-core` and `gr.elaevents.buffela.schema:utils`. Replace them with `gr.elaevents.buffela:serialization` and `gr.elaevents.buffela:deserialization`
+
+
+
+## Version 2
+
+This was the first publicly available version

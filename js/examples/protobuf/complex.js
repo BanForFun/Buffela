@@ -1,14 +1,14 @@
-const protobuf = require("protobufjs");
-const path = require("node:path");
-const {sign, assertSigned} = require("../utils/signatureUtils");
-const {prettyBuffer, prettyObject} = require("../utils/formatUtils");
+const protobuf = require('protobufjs');
+const path = require('node:path');
+const {sign, assertSigned} = require('../utils/signatureUtils');
+const {prettyBuffer, prettyObject} = require('../utils/formatUtils');
 
 // Setup ===============================================================================================================
 
-const root = protobuf.loadSync(path.join(__dirname, "AuthToken.proto"));
+const root = protobuf.loadSync(path.join(__dirname, 'AuthToken.proto'));
 
-const AuthTokenPayload = root.lookupType("auth.AuthTokenPayload");
-const AuthToken = root.lookupType("auth.AuthToken");
+const AuthTokenPayload = root.lookupType('auth.AuthTokenPayload');
+const AuthToken = root.lookupType('auth.AuthToken');
 
 // Serialization =======================================================================================================
 
@@ -19,10 +19,10 @@ const payload = {
         registered: {
             verified: true,
             viewer: {
-                birthDate: "2003-07-22",
+                birthDate: '2003-07-22',
                 phone: {
                     countryCode: 30,
-                    number: "1234567890",
+                    number: '1234567890',
                 },
                 gender: 1
             }
@@ -43,7 +43,7 @@ console.log(prettyBuffer(serialized))
 // Deserialization =====================================================================================================
 
 const deserialized = AuthToken.toObject(AuthToken.decode(serialized))
-console.log("Auth token payload:", prettyObject(deserialized.payload));
+console.log('Auth token payload:', prettyObject(deserialized.payload));
 
 const serializedPayload = AuthTokenPayload.encode(AuthTokenPayload.create(deserialized.payload)).finish();
 assertSigned(serializedPayload, deserialized.signature.hmac256)

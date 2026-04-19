@@ -57,4 +57,8 @@ fun main() {
     assertSigned(serializedPayload, deserializedSignature.hmac256)
 
     println("Signature is valid")
+
+    if (deserializedPayload.user is User.Registered && deserializedPayload.user.verified) {
+        println("User is registered and verified")
+    }
 }
