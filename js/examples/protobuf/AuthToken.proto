@@ -7,6 +7,11 @@ enum Gender {
   MALE = 1;
 }
 
+message Phone {
+  uint32 country_code = 1;
+  string number = 2;
+}
+
 message User {
   string user_id = 1;
 
@@ -27,9 +32,8 @@ message User {
 
     message Viewer {
       string birth_date = 1;
-      uint32 country_code = 2;
-      string phone = 3;
-      Gender gender = 4;
+      Phone phone = 2;
+      Gender gender = 3;
     }
 
     message Organizer {

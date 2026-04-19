@@ -11,12 +11,51 @@ enum class Gender: _Serializable {
     ;
 
     override fun serialize(buffer: _SerializerBuffer) {
-        buffer.writeUnsigned(this.ordinal.toUInt(), 2)
+        buffer.writeUnsigned(this.ordinal.toUInt(), 1)
     }
 
     companion object Deserializer: _Deserializer<Gender> {
         override fun deserialize(buffer: _DeserializerBuffer): Gender {
-            return Gender.entries[buffer.readUnsigned(2).toInt()]
+            return Gender.entries[buffer.readUnsigned(1).toInt()]
+        }
+    }
+}
+
+class Phone: _Serializable {
+    val countryCode: UInt
+    val number: String
+
+    constructor(
+        countryCode: UInt,
+        number: String,
+    ): super() {
+        this.countryCode = countryCode
+        this.number = number
+    }
+
+    protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {
+        if (index != 0) {
+            throw IllegalStateException("Expected length '0' (got '${index}')")
+        }
+    }
+
+    override fun serialize(buffer: _SerializerBuffer) {
+        this.serializeLeafIndex(buffer, 0)
+        buffer.writeUnsigned(this.countryCode, 10)
+        buffer.writeString(this.number, true)
+    }
+
+    internal constructor(buffer: _DeserializerBuffer) {
+        this.countryCode = buffer.readUnsigned(10)
+        this.number = buffer.readString()
+    }
+
+    companion object Deserializer: _Deserializer<Phone> {
+        override fun deserialize(buffer: _DeserializerBuffer): Phone {
+            return when(0) {
+                0 -> Phone(buffer)
+                else -> throw IllegalStateException("Invalid subtype index")
+            }
         }
     }
 }
@@ -32,7 +71,7 @@ sealed class User: _Serializable {
     }
 
     protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {
-        buffer.writeUnsigned(index.toUInt(), 3)
+        buffer.writeUnsigned(index.toUInt(), 2)
     }
 
     protected open fun userId(buffer: _SerializerBuffer) {
@@ -53,7 +92,7 @@ sealed class User: _Serializable {
 
     companion object Deserializer: _Deserializer<User> {
         override fun deserialize(buffer: _DeserializerBuffer): User {
-            return when(buffer.readUnsigned(3).toInt()) {
+            return when(buffer.readUnsigned(2).toInt()) {
                 0 -> Anonymous(buffer)
                 1 -> Registered.Viewer(buffer)
                 2 -> Registered.Organizer(buffer)
@@ -99,51 +138,41 @@ sealed class User: _Serializable {
         }
 
         class Viewer: Registered {
-            val name: String?
             val birthDate: Date
-            val countryCode: UInt
-            val phone: String
             val gender: Gender
+            val phone: Phone?
 
             constructor(
                 userId: String,
                 verified: Boolean,
-                name: String?,
                 birthDate: Date,
-                countryCode: UInt,
-                phone: String,
                 gender: Gender,
+                phone: Phone?,
             ): super(
                 userId,
                 verified,
             ) {
-                this.name = name
                 this.birthDate = birthDate
-                this.countryCode = countryCode
-                this.phone = phone
                 this.gender = gender
+                this.phone = phone
             }
 
             override fun serialize(buffer: _SerializerBuffer) {
                 this.serializeLeafIndex(buffer, 1)
                 super.serialize(buffer)
-                buffer.writeBoolean(this.name != null)
-
-                this.name?.let {
-                    buffer.writeString(this.name, true)
-                }
                 buffer.writeDate(this.birthDate)
-                buffer.writeUnsigned(this.countryCode, 10)
-                buffer.writeString(this.phone, true)
                 this.gender.serialize(buffer)
+                buffer.writeBoolean(this.phone != null)
+
+                this.phone?.let {
+                    this.phone.serialize(buffer)
+                }
             }
 
             internal constructor(buffer: _DeserializerBuffer): super(buffer) {
-                this.name = if (buffer.readBoolean()) buffer.readString() else null
                 this.birthDate = buffer.readDate()
-                this.countryCode = buffer.readUnsigned(10)
-                this.phone = buffer.readString()
                 this.gender = Gender.deserialize(buffer)
+                this.phone = if (buffer.readBoolean()) Phone.deserialize(buffer) else null
             }
         }
 

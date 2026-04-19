@@ -50,11 +50,12 @@ schema.AuthTokenPayload.serialize({
         _type: schema.User.Registered.Viewer,
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
         verified: true,
-        name: null,
         birthDate: { year: 2003, month: 7, day: 22 },
-        countryCode: 30,
-        phone: '1234567890',
-        gender: schema.Gender.MALE
+        gender: schema.Gender.MALE,
+        phone: {
+            countryCode: 30,
+            number: "1234567890",
+        }
     }
 }, serializerBuffer)
 

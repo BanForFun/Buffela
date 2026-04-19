@@ -20,8 +20,10 @@ const payload = {
             verified: true,
             viewer: {
                 birthDate: "2003-07-22",
-                countryCode: 30,
-                phone: "1234567890",
+                phone: {
+                    countryCode: 30,
+                    number: "1234567890",
+                },
                 gender: 1
             }
         }

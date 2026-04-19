@@ -19,6 +19,11 @@ type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
 
 export type Gender = _RelativePath<0, "Gender">
 
+export type Phone = {
+    countryCode: number,
+    number: string,
+}
+
 export type User = {
     _type: _RelativePath<0, "User">,
     userId: string,
@@ -31,16 +36,14 @@ export type User = {
     } & (
         {
             _type: _RelativePath<2, "Viewer">,
-            name: (string | null),
             birthDate: Date,
-            countryCode: number,
-            phone: string,
             gender: Gender,
+            phone: (Phone | null),
         } | {
             _type: _RelativePath<2, "Organizer">,
             roles: string[],
-            email: string,
             userId: string,
+            email: string,
         }
     )
 )
@@ -59,6 +62,8 @@ type _Schema = {
         readonly FEMALE: _AbsolutePath<["Gender", "FEMALE"]>
         readonly MALE: _AbsolutePath<["Gender", "MALE"]>
     }
+
+    readonly Phone: _TypeSchema<Phone> & {}
 
     readonly User: _TypeSchema<User> & {
         readonly Anonymous: _SubtypeSchema<["User", "Anonymous"]> & {}
