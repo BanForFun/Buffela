@@ -9,6 +9,25 @@ interface SchemaNode {
     path: SchemaNode[]
 }
 
+interface SchemaNodeByName<N> {
+    name: N
+}
+
+interface SchemaNodeByPath<P> {
+    path: { [K in keyof P]: SchemaNodeByName<P[K]> }
+}
+
+type AbsoluteSchemaNode<P extends string[]> = SchemaNodeByPath<Omit<P, keyof any[]>>
+export type RelativeSchemaNode<D extends number, N extends string> = SchemaNodeByPath<{ [K in D]: N }>
+
+export interface AbsoluteEnumEntry<P extends string[]> extends AbsoluteSchemaNode<P> {
+
+}
+
+export interface AbsoluteSubtypeSchema<P extends string[]> extends AbsoluteSchemaNode<P> {
+    instanceOf(value: unknown): value is { _type: AbsoluteSchemaNode<P>}
+}
+
 type Type<K extends string, E extends Extensions> = E & {
     name: string
     kind: K

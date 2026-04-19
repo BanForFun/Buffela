@@ -14,4 +14,15 @@ export default class SchemaNode {
     [inspectSymbol]() {
         return `<${this.#inspectType} ${this.#fullName}>`
     }
+
+    instanceOf(value) {
+        const leafPath = value?._type?.path
+        if (!Array.isArray(leafPath)) return false
+
+        for (let i = 0; i < this.path.length; i++) {
+            if (leafPath[i] !== this.path[i]) return false
+        }
+
+        return true
+    }
 }

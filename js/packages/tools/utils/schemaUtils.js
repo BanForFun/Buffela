@@ -7,7 +7,7 @@ const nativeTypes = require("../constants/nativeTypes");
  */
 function printObjectSubtypeSchema(objectType, name) {
     const path = objectType.path.map(t => `"${t.name}"`).join(", ")
-    printer.blockStart(`readonly ${name}: _SubtypeSchema<[${path}]> & {`)
+    printer.blockStart(`readonly ${name}: _AbsoluteSubtypeSchema<[${path}]> & {`)
 
     for (
         /** @type {import('@buffela/parser').TypeName} */
@@ -26,7 +26,7 @@ function printObjectTypeSchema(objectType) {
     for (
         /** @type {import('@buffela/parser').TypeName} */
         const subtypeName in objectType
-        ) {
+    ) {
         printObjectSubtypeSchema(objectType[subtypeName], subtypeName)
     }
 }
@@ -41,7 +41,7 @@ function printEnumTypeSchema(enumType) {
     ) {
         const entry = enumType[value];
         const path = entry.path.map(t => `"${t.name}"`).join(", ")
-        printer.line(`readonly ${value}: _AbsolutePath<[${path}]>`)
+        printer.line(`readonly ${value}: _AbsoluteEnumEntry<[${path}]>`)
     }
 }
 

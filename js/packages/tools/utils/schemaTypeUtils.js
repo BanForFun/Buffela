@@ -34,7 +34,7 @@ function printFields(fields) {
  */
 function printObjectType(objectType) {
     if (!(objectType.isRoot && objectType.isLeaf)) {
-        printer.line(`_type: _RelativePath<${objectType.path.length - 1}, "${objectType.name}">,`)
+        printer.line(`_type: _RelativeSchemaNode<${objectType.path.length - 1}, "${objectType.name}">,`)
     }
 
     printFields(objectType.ownFields)
@@ -70,7 +70,7 @@ function printSchemaTypes() {
 
         if (type.kind === "enum") {
             printer.line()
-            printer.line(`export type ${name} = _RelativePath<0, "${name}">`)
+            printer.line(`export type ${name} = _RelativeSchemaNode<0, "${name}">`)
         } else if (type.kind === "object") {
             printer.blockStart(`export type ${name} = {`)
             const isLeaf = printObjectType(type)
