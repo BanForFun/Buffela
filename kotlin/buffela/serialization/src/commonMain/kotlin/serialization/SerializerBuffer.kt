@@ -71,6 +71,7 @@ class SerializerBuffer {
     }
 
     fun clearBitBuffer() {
+        this.flushBits()
         this.bitCount = 0
         this.bitBuffer = 0
     }
