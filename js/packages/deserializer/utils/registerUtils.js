@@ -21,6 +21,23 @@ function deserializeComplexType(bytes) {
 
 /**
  *
+ * @this {Deserializer.ObjectType}
+ * @param {unknown} value
+ * @return {boolean}
+ */
+function instanceOf(value) {
+    const leafPath = value?._type?.path
+    if (!Array.isArray(leafPath)) return false
+
+    for (let i = 0; i < this.path.length; i++) {
+        if (leafPath[i] !== this.path[i]) return false
+    }
+
+    return true
+}
+
+/**
+ *
  * @param {Deserializer.Schema} schema
  * @param {Object.<string, CustomDeserializer>} customDeserializers
  */
@@ -42,6 +59,7 @@ export function registerDeserializer(schema, customDeserializers) {
 
     schema.enumExtensions._deserialize = deserializeEnum
     schema.objectExtensions._deserialize = deserializeObject
+    schema.objectExtensions.instanceOf = instanceOf
 
     for (const name in standardDeserializers) {
         const primitive = schema.primitiveTypes[name]
