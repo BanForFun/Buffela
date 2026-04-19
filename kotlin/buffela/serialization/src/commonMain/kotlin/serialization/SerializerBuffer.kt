@@ -1,6 +1,6 @@
 package gr.elaevents.buffela.serialization
 
-import gr.elaevents.buffela.utils.LinkedList
+import gr.elaevents.buffela.serialization.utils.LinkedList
 import kotlinx.io.Buffer
 import kotlinx.io.readByteArray
 import kotlinx.io.writeDoubleLe

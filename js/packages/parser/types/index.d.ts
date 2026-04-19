@@ -4,13 +4,37 @@ export interface Extensions {
 
 export type TypeName = `${Uppercase<string>}${string}`
 
+interface SchemaNode {
+    name: string
+    path: SchemaNode[]
+}
+
+interface SchemaNodeByName<N> {
+    name: N
+}
+
+interface SchemaNodeByPath<P> {
+    path: { [K in keyof P]: SchemaNodeByName<P[K]> }
+}
+
+type AbsoluteSchemaNode<P extends string[]> = SchemaNodeByPath<Omit<P, keyof any[]>>
+export type RelativeSchemaNode<D extends number, N extends string> = SchemaNodeByPath<{ [K in D]: N }>
+
+export interface AbsoluteEnumEntry<P extends string[]> extends AbsoluteSchemaNode<P> {
+
+}
+
+export interface AbsoluteSubtypeSchema<P extends string[]> extends AbsoluteSchemaNode<P> {
+    instanceOf(value: unknown): value is { _type: AbsoluteSchemaNode<P>}
+}
+
 type Type<K extends string, E extends Extensions> = E & {
-    kind: K;
-    name: string;
+    name: string
+    kind: K
 }
 
 export type InstantiatedType<E extends Extensions> = {
-    optional: boolean
+    optional: boolean // it is also used on const numeric optional array dimensions
     element: Type<string, E> | number
     argument: InstantiatedType<E> | null
     dimensions: InstantiatedType<E>[]
@@ -21,39 +45,38 @@ export type InstantiatedFieldType<E extends Extensions> = InstantiatedType<E> & 
 }
 
 export interface Field<E extends Extensions> {
+    override: boolean
     final: boolean
     type: InstantiatedFieldType<E>
 }
 
-export type ComplexType<K extends string, E extends Extensions> = Type<K, E> & {
-    defaultArgument: InstantiatedType<E> | null
-}
-
-export type ObjectType<E extends Extensions> = ComplexType<'object', E> & {
+export type ObjectType<E extends Extensions> = SchemaNode & Type<'object', E> & {
     [subtype: TypeName]: ObjectType<E>
 
-    ownFields: Record<string, Field<E>>;
-    fieldOverrides: Record<string, Field<E>>;
-    parent: ObjectType<E> | null;
+    path: ObjectType<E>[]
+    leafIndexType: InstantiatedType<E>
+    ownFields: Record<string, Field<E>>
+    allFields?: Record<string, Field<E>>
 
-    isRoot: boolean;
-    isInternal: boolean;
-    isLeaf: boolean;
+    isRoot: boolean
+    isInternal: boolean
+    isLeaf: boolean
 
-    leaves?: ObjectType<E>[];
-    leafRangeEnd?: number;
-    leafIndex?: number;
+    leaves?: ObjectType<E>[]
+    leafRangeEnd?: number
+    leafIndex?: number
 }
 
 export type EnumValue = Uppercase<string>
 
-export interface EnumEntry {
+export interface EnumEntry extends SchemaNode {
     index: number;
 }
 
-export type EnumType<E extends Extensions> = ComplexType<'enum', E> & {
+export type EnumType<E extends Extensions> = SchemaNode & Type<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
+    entryIndexType: InstantiatedType<E>
     entries: EnumEntry[]
 }
 
@@ -74,6 +97,6 @@ export interface SimplifiedSchema {
     primitiveTypes: Record<string, Extensions>
 }
 
-declare function parseSchema(definition: any): unknown;
+declare function parseSchema(definition: any): unknown
 
-export { parseSchema };
+export { parseSchema }

@@ -6,6 +6,5 @@ import {serializeSize} from "./typeUtils.js";
  * @param {Serializer.EnumEntry} entry
  */
 export function serializeEnum(buffer, entry) {
-    if (this.defaultArgument) // Argument can be null if enum only has one value, skip
-        serializeSize(buffer, this.defaultArgument, entry.index)
+    serializeSize(buffer, this.entryIndexType, entry.index)
 }

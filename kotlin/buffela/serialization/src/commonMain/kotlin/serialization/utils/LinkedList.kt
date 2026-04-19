@@ -1,4 +1,4 @@
-package gr.elaevents.buffela.utils
+package gr.elaevents.buffela.serialization.utils
 
 private data class Node<T>(
     var value: T,
@@ -19,7 +19,7 @@ private class LinkedListIterator<T>(private var current: Node<T>?): Iterator<T> 
     }
 }
 
-class LinkedList<T> : Iterable<T> {
+internal class LinkedList<T> : Iterable<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
 

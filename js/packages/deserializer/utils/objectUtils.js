@@ -2,63 +2,18 @@ import { deserializeField, deserializeSize } from "./typeUtils.js";
 
 /**
  *
- * @param {DeserializerBuffer} buffer
- * @param {Deserializer.ObjectType} type
- * @param {object} object
- * @param {Record<string, Deserializer.Field>} fieldOverrides
- * @returns {Deserializer.ObjectType[]}
- */
-function getReversePath(buffer, type, object, fieldOverrides) {
-    const path = [type]
-    while (type.parent) {
-        object[type.parent.name + "_type"] = type
-
-        for (const name in type.fieldOverrides) {
-            fieldOverrides[name] ??= type.fieldOverrides[name]
-        }
-
-        path.push(type.parent)
-        type = type.parent
-    }
-
-    return path
-}
-
-/**
- *
- * @param {DeserializerBuffer} buffer
- * @param {Deserializer.ObjectType} type
- * @param {object} object
- * @param {Record<string, Deserializer.Field>} fieldOverrides
- */
-function deserializeFields(buffer, type, object, fieldOverrides) {
-    for (const name in type.ownFields) {
-        const field = type.ownFields[name]
-        const finalField = field.final ? field : (fieldOverrides[name] ?? field)
-
-        object[name] = deserializeField(buffer, finalField.type)
-    }
-}
-
-/**
- *
  * @this {Deserializer.ObjectType}
  * @param {DeserializerBuffer} buffer
  * @return {object}
  */
 export function deserializeObject(buffer) {
-    const result = {}
-
-    const leafIndex = this.defaultArgument
-        ? deserializeSize(buffer, this.defaultArgument)
-        : 0
-
+    const leafIndex = deserializeSize(buffer, this.leafIndexType)
     const leafType = this.leaves[leafIndex]
-    const fieldOverrides = {}
-    const reverseLeafPath = getReversePath(buffer, leafType, result, fieldOverrides)
 
-    for (let i = reverseLeafPath.length - 1; i >= 0; i--) {
-        deserializeFields(buffer, reverseLeafPath[i], result, fieldOverrides)
+    const result = this.isLeaf ? {} : { _type: leafType }
+    for (const name in leafType.allFields) {
+        const field = leafType.allFields[name]
+        result[name] = deserializeField(buffer, field.type)
     }
 
     return result

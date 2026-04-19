@@ -15,15 +15,14 @@ function printEnumTypeClass(type) {
 
     printer.blockStart(`override fun serialize(buffer: _SerializerBuffer) {`)
 
-    if (type.defaultArgument)
-        printSerializeSize(type.defaultArgument, 'this.ordinal')
+    printSerializeSize(type.entryIndexType, 'this.ordinal')
 
     printer.blockEnd('}')
 
     printer.blockStart(`companion object Deserializer: _Deserializer<${type.name}> {`)
 
     printer.blockStart(`override fun deserialize(buffer: _DeserializerBuffer): ${type.name} {`)
-    printer.line(`return ${type.name}.entries[${type.defaultArgument ? deserializeSize(type.defaultArgument) : 0}]`)
+    printer.line(`return ${type.name}.entries[${deserializeSize(type.entryIndexType)}]`)
     printer.blockEnd('}')
 
     printer.blockEnd('}')

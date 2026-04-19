@@ -1,17 +1,26 @@
 const { printSerializeField, printSerializeSize} = require("./fieldSerializationUtils");
+const { isConstantType } = require("./instantiatedTypeUtils");
 
 /**
  *
  * @param {import('@buffela/parser').ObjectType} type
  */
-function printOpenFieldSerializers(type) {
+function printFieldSerializers(type) {
     for (const name in type.ownFields) {
         const field = type.ownFields[name]
-        if (field.final) continue;
 
-        printer.blockStart(`protected open fun ${name}(buffer: _SerializerBuffer) {`)
-        printSerializeField(field.type, `this.${name}`)
-        printer.blockEnd('}')
+        let prefix = ''
+        if (field.override) {
+            prefix = 'override'
+        } else if (!field.final) {
+            prefix = 'protected open'
+        }
+
+        if (prefix) {
+            printer.blockStart(`${prefix} fun ${name}(buffer: _SerializerBuffer) {`)
+            printSerializeField(field.type, `this.${name}`)
+            printer.blockEnd('}')
+        }
     }
 }
 
@@ -19,26 +28,10 @@ function printOpenFieldSerializers(type) {
  *
  * @param {import('@buffela/parser').ObjectType} type
  */
-function printFieldOverrideSerializers(type) {
-    for (const name in type.fieldOverrides) {
-        const field = type.fieldOverrides[name]
-        const prefix = field.final ? 'override' : 'open override'
-
-        printer.blockStart(`${prefix} fun ${name}(buffer: _SerializerBuffer) {`)
-        printSerializeField(field.type, `this.${name}`)
-        printer.blockEnd('}')
-    }
-}
-
-/**
- *
- * @param {import('@buffela/parser').ObjectType} type
- * @param {import('@buffela/parser').ObjectType} rootType
- */
-function printObjectSerializer(type, rootType) {
+function printObjectSerializer(type) {
     printer.blockStart(`override fun serialize(buffer: _SerializerBuffer) {`)
 
-    if (type.isLeaf && rootType.defaultArgument) {
+    if (type.isLeaf && !isConstantType(type.path[0].leafIndexType)) {
         printer.line(`this.serializeLeafIndex(buffer, ${type.leafIndex})`)
     }
 
@@ -48,6 +41,8 @@ function printObjectSerializer(type, rootType) {
 
     for (const name in type.ownFields) {
         const field = type.ownFields[name]
+        if (field.override) continue;
+
         if (field.final) {
             printSerializeField(field.type, `this.${name}`)
         } else {
@@ -63,16 +58,15 @@ function printObjectSerializer(type, rootType) {
  * @param {import('@buffela/parser').ObjectType} type
  */
 function printLeafIndexSerializer(type) {
-    if (!type.isRoot || !type.defaultArgument) return;
+    if (!type.isRoot || isConstantType(type.leafIndexType)) return;
 
     printer.blockStart(`protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {`)
-    printSerializeSize(type.defaultArgument, 'index')
+    printSerializeSize(type.leafIndexType, 'index')
     printer.blockEnd('}')
 }
 
 module.exports = {
     printLeafIndexSerializer,
     printObjectSerializer,
-    printOpenFieldSerializers,
-    printFieldOverrideSerializers
+    printFieldSerializers
 };

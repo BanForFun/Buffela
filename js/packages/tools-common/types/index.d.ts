@@ -5,10 +5,10 @@ declare function readSchemaFile(filePath: string): {
 
 declare function existsDirSync(path: string): boolean;
 
-declare function getFileOutputStream(outputPath: string, defaultName: string): NodeJS.WritableStream;
+declare function getFileOutputStream(outputPath: string, defaultName: string): WritableStream;
 
 declare class Printer {
-    constructor(stream: NodeJS.WritableStream);
+    constructor(stream: WritableStream);
 
     line: (string?: string) => void;
     lines: (lines: string[], separator?: string) => void;

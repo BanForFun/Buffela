@@ -25,18 +25,15 @@ function printObjectFields(type) {
         const field = type.ownFields[name];
         const fieldType = nativeType(field.type)
 
-        if (field.final) {
+        if (field.override) {
+            const prefix = field.final ? "val" : "open val"
+            printer.line(`override ${prefix} ${name} get() = super.${name} as ${fieldType}`)
+        } else if (field.final) {
             printer.line(`val ${name}: ${fieldType}`)
         } else {
             printer.line(`private val _${name}: ${fieldType}`)
             printer.line(`open val ${name} get() = this._${name}`)
         }
-    }
-
-    for (const name in type.fieldOverrides) {
-        const field = type.fieldOverrides[name];
-        const prefix = field.final ? "val" : "open val"
-        printer.line(`override ${prefix} ${name} get() = super.${name} as ${nativeType(field.type)}`)
     }
 }
 
@@ -49,12 +46,14 @@ function printObjectConstructor(type, superFields) {
     printer.blockStart(`constructor(`)
 
     for (const name in superFields) {
-        const field = type.fieldOverrides[name] ?? superFields[name];
+        const field = type.ownFields[name] ?? superFields[name];
         printer.line(`${name}: ${nativeType(field.type)},`)
     }
 
     for (const name in type.ownFields) {
         const field = type.ownFields[name];
+        if (field.override) continue;
+
         printer.line(`${name}: ${nativeType(field.type)},`)
     }
 
@@ -66,7 +65,10 @@ function printObjectConstructor(type, superFields) {
     printer.blockEndStart(`) {`)
 
     for (const name in type.ownFields) {
-        if (type.ownFields[name].final)
+        const field = type.ownFields[name];
+        if (field.override) continue;
+
+        if (field.final)
             printer.line(`this.${name} = ${name}`)
         else
             printer.line(`this._${name} = ${name}`)

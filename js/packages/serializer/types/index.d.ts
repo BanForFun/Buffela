@@ -19,16 +19,16 @@ declare class SerializerBuffer {
     writeDouble(double: number): void
     writeBoolean(boolean: boolean): void
     writeString(string: string, nt?: boolean): void
-    writeBytes(bytes: Buffer): void
+    writeBytes(bytes: Uint8Array): void
     writeSigned(value: number, bitLength: number): void
     writeUnsigned(value: number, bitLength: number): void
 
-    toBytes(): Buffer
+    toBytes(): Uint8Array
 }
 
 export interface Serializable<T> {
     serialize(value: T, buffer: SerializerBuffer): void
-    serialize(value: T): Buffer
+    serialize(value: T): Uint8Array
 }
 
 export interface Serializer<T> {

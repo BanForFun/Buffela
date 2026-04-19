@@ -1,7 +1,7 @@
 import {Extensions, SimplifiedSchema} from "@buffela/parser"
 
 declare class DeserializerBuffer {
-    constructor(buffer: Buffer)
+    constructor(bytes: Uint8Array)
 
     readonly position: number
 
@@ -19,13 +19,13 @@ declare class DeserializerBuffer {
     readDouble(): number
     readBoolean(): boolean
     readString(length?: number): string
-    readBytes(length: number): Buffer
+    readBytes(length: number): Uint8Array
     readSigned(bitLength: number): number
     readUnsigned(bitLength: number): number
 }
 
 export type Deserializable<T> = {
-    deserialize: (bytes: DeserializerBuffer | Buffer) => T
+    deserialize: (bytes: DeserializerBuffer | Uint8Array) => T
 }
 
 export type Deserializer<T> = {

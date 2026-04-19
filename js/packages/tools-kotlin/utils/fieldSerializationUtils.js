@@ -1,3 +1,7 @@
+function printSerializerImports() {
+    printer.line('import gr.elaevents.buffela.serialization.utils.assertLength')
+}
+
 function printSerializerAliases() {
     printer.line('typealias _Serializable = gr.elaevents.buffela.serialization.Serializable')
     printer.line('typealias _SerializerBuffer = gr.elaevents.buffela.serialization.SerializerBuffer')
@@ -19,11 +23,8 @@ function printSerializePrimitive(primitive, ...args) {
  */
 function printSerializeSize(type, size) {
     const { element } = type
-    if (typeof element === 'number') {
-        printer.blockStart(`if (${size} != ${element}) {`)
-        printer.line(`throw IllegalStateException("Expected size '${element}' (got '\${${size}}')")`)
-        printer.blockEnd('}')
-
+    if (typeof element !== 'object') {
+        printer.line(`assertLength(${element}, ${size})`)
         return;
     }
 
@@ -47,7 +48,7 @@ function printSerializeSize(type, size) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} arrayName
  * @param {string} itemPrimitive
  */
@@ -62,7 +63,7 @@ function printSerializePrimitiveArray(type, arrayName, itemPrimitive) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  */
 function printSerializeElement(type, fieldName) {
@@ -112,10 +113,7 @@ function printSerializeElement(type, fieldName) {
             break;
         case 'String':
             if (argument) {
-                printer.blockStart(`if (${fieldName}.length != ${argument.element}) {`)
-                printer.line(`throw IllegalStateException("Expected string length '${argument.element}' (got '\${${fieldName}.length}')")`)
-                printer.blockEnd('}')
-
+                printSerializeSize(argument, `${fieldName}.length`)
                 printSerializePrimitive(element.name, fieldName)
                 break;
             } else {
@@ -134,11 +132,16 @@ function printSerializeElement(type, fieldName) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  * @param {number} dimension
  */
-function printSerializeArray(type, fieldName, dimension) {
+function printSerializeNotNullField(type, fieldName, dimension) {
+    if (dimension === 0) {
+        printSerializeElement(type, fieldName)
+        return
+    }
+
     const sizeType = type.dimensions[dimension - 1]
     printSerializeSize(sizeType, `${fieldName}.size`)
 
@@ -150,7 +153,7 @@ function printSerializeArray(type, fieldName, dimension) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @param {string} fieldName
  * @param {number} dimension
  */
@@ -160,19 +163,17 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
 
     if (optional) {
         printer.line(`buffer.writeBoolean(${fieldName} != null)`)
+
         printer.blockStart(`${fieldName}?.let {`)
-    }
-
-    if (isArray) {
-        printSerializeArray(type, fieldName, dimension)
+        printSerializeNotNullField(type, fieldName, dimension)
+        printer.blockEnd('}')
     } else {
-        printSerializeElement(type, fieldName)
+        printSerializeNotNullField(type, fieldName, dimension)
     }
-
-    if (optional) printer.blockEnd('}')
 }
 
 module.exports = {
+    printSerializerImports,
     printSerializerAliases,
     printSerializeField,
     printSerializeSize

@@ -2,8 +2,8 @@ const { parseSchema } = require('@buffela/parser')
 const { registerSerializer, SerializerBuffer } = require('@buffela/serializer')
 const { registerDeserializer, DeserializerBuffer } = require('@buffela/deserializer');
 
-const { sign, assertSigned } = require("../utils/signatureUtils");
-const { prettyBuffer, prettyObject } = require("../utils/formatUtils");
+const { sign, assertSigned } = require('../utils/signatureUtils');
+const { prettyBuffer, prettyObject } = require('../utils/formatUtils');
 
 const schemaJson = require('./AuthToken.json')
 
@@ -47,15 +47,14 @@ const serializerBuffer = new SerializerBuffer()
 schema.AuthTokenPayload.serialize({
     issuedAt: Date.now(),
     user: {
+        _type: schema.User.Registered.Viewer,
         userId: '588809b0-d8ce-4a6b-a2aa-9b10fd9d7a11',
-        User_type: schema.User.Registered,
         verified: true,
-        Registered_type: schema.User.Registered.Viewer,
         birthDate: { year: 2003, month: 7, day: 22 },
         gender: schema.Gender.MALE,
         phone: {
             countryCode: 30,
-            number: "1234567890",
+            number: '1234567890',
         }
     }
 }, serializerBuffer)
@@ -86,3 +85,7 @@ const signature = schema.AuthTokenSignature.deserialize(deserializerBuffer)
 assertSigned(payloadBytes, signature.hmac256)
 
 console.log('Signature is valid')
+
+if (schema.User.Registered.instanceOf(payload.user) && payload.user.verified) {
+    console.log('User is registered and verified')
+}

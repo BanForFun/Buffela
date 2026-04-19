@@ -1,5 +1,16 @@
 import EnumType from "./EnumType.js";
 import ObjectType from "./ObjectType.js";
+import SchemaNode from "./SchemaNode.js";
+import InstantiatedType from "./InstantiatedType.js";
+
+const primitivePrototype = { kind: 'primitive' }
+
+function createPrimitive(name) {
+    const primitive = Object.create(primitivePrototype)
+    primitive.name = name
+
+    return primitive
+}
 
 export default class Schema {
     #definition;
@@ -7,9 +18,13 @@ export default class Schema {
     constructor(definition) {
         this.#definition = definition;
 
-        Object.defineProperty(this, 'complexExtensions', { value: {} })
-        Object.defineProperty(this, 'objectExtensions', { value: Object.create(this.complexExtensions) })
-        Object.defineProperty(this, 'enumExtensions', { value: Object.create(this.complexExtensions) })
+        const complexExtensions = Object.create(SchemaNode.prototype)
+        const objectExtensions = Object.create(complexExtensions, { kind: { value: 'object' } })
+        const enumExtensions = Object.create(complexExtensions, { kind: { value: 'enum' } })
+
+        Object.defineProperty(this, 'complexExtensions', { value: complexExtensions })
+        Object.defineProperty(this, 'objectExtensions', { value: objectExtensions })
+        Object.defineProperty(this, 'enumExtensions', { value: enumExtensions })
 
         Object.defineProperty(this, 'primitiveTypes', { value: {} })
 
@@ -17,8 +32,18 @@ export default class Schema {
         this.#linkTypes()
     }
 
+    sizeType(size) {
+        if (size <= 1) return new InstantiatedType(0);
+
+        const bits = Math.ceil(Math.log2(size - 1)) + 1
+        const sizeType = new InstantiatedType(this.lookupType("Unsigned"))
+        sizeType.argument = new InstantiatedType(bits)
+
+        return sizeType
+    }
+
     lookupType(name) {
-        return this[name] ?? (this.primitiveTypes[name] ??= { name, kind: 'primitive' })
+        return this[name] ?? (this.primitiveTypes[name] ??= createPrimitive(name))
     }
 
     lookupAlias(name) {
@@ -32,8 +57,8 @@ export default class Schema {
             if (typeof member !== 'object') continue;
 
             this[name] = Array.isArray(member)
-                ? new EnumType(this, member, name)
-                : new ObjectType(this, member, name)
+                ? new EnumType(this, [], name, member)
+                : new ObjectType(this, [], name, member)
         }
     }
 

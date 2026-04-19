@@ -33,6 +33,7 @@ fun main() {
     )
 
     payload.serialize(serializerBuffer)
+
     serializerBuffer.clearBitBuffer()
 
     val signature = AuthTokenSignature(hmac256 = sign(serializerBuffer.toBytes()))
@@ -56,4 +57,8 @@ fun main() {
     assertSigned(serializedPayload, deserializedSignature.hmac256)
 
     println("Signature is valid")
+
+    if (deserializedPayload.user is User.Registered && deserializedPayload.user.verified) {
+        println("User is registered and verified")
+    }
 }

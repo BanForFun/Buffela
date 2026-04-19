@@ -1,15 +1,4 @@
 const nativeTypes = require("../constants/nativeTypes");
-const {typeSchemaName} = require("./typeSchemaUtils");
-
-/**
- *
- * @param {...string} path
- * @returns {string}
- */
-function typeOf(...path) {
-    const [root, ...rest] = path;
-    return `${typeSchemaName(root)}${rest.map(n => `["${n}"]`).join("")}`
-}
 
 /**
  *
@@ -41,18 +30,14 @@ function printFields(fields) {
 /**
  *
  * @param {import('@buffela/parser').ObjectType} objectType
- * @param {string} name
- * @param {...string} path
  * @returns {boolean} isLeaf
  */
-function printObjectType(objectType, name, ...path) {
-    const fullPath = [...path, name]
-
-    if (!objectType.isRoot)
-        printer.line(`${objectType.parent.name}_type: ${typeOf(...fullPath)},`)
+function printObjectType(objectType) {
+    if (!(objectType.isRoot && objectType.isLeaf)) {
+        printer.line(`_type: _RelativeSchemaNode<${objectType.path.length - 1}, "${objectType.name}">,`)
+    }
 
     printFields(objectType.ownFields)
-    printFields(objectType.fieldOverrides)
 
     if (objectType.isLeaf) return true;
 
@@ -64,9 +49,7 @@ function printObjectType(objectType, name, ...path) {
 
         /** @type {import('@buffela/parser').TypeName} */
         const subtypeName = subtypes[i]
-
-        const subtype = objectType[subtypeName]
-        const isLeaf = printObjectType(subtype, subtypeName, ...fullPath)
+        const isLeaf = printObjectType(objectType[subtypeName])
 
         if (i < subtypes.length - 1) {
             printer.blockEndStart(isLeaf ? '} | {' : ') | {')
@@ -87,10 +70,10 @@ function printSchemaTypes() {
 
         if (type.kind === "enum") {
             printer.line()
-            printer.line(`export type ${name} = ${typeSchemaName(name)}[keyof ${typeSchemaName(name)}]`)
+            printer.line(`export type ${name} = _RelativeSchemaNode<0, "${name}">`)
         } else if (type.kind === "object") {
             printer.blockStart(`export type ${name} = {`)
-            const isLeaf = printObjectType(type, name)
+            const isLeaf = printObjectType(type)
             printer.blockEnd(isLeaf ? '}' : ')')
         }
     }

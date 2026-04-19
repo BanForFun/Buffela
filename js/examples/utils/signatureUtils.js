@@ -4,18 +4,18 @@ const secret = "your-secret-key";
 
 /**
  *
- * @param {Buffer} buffer
+ * @param {Uint8Array} buffer
  */
 function sign(buffer) {
-    return /** @type {Buffer} */ crypto.createHmac('sha256', secret)
+    return /** @type {Uint8Array} */ crypto.createHmac('sha256', secret)
         .update(buffer)
         .digest()
 }
 
 /**
  *
- * @param {Buffer} buffer
- * @param {Buffer} expectedSignature
+ * @param {Uint8Array} buffer
+ * @param {Uint8Array} expectedSignature
  */
 function assertSigned(buffer, expectedSignature) {
     const signature = sign(buffer);

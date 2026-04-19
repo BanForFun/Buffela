@@ -10,8 +10,8 @@ export default class DeserializerBuffer {
         return this.#buffer.readOffset
     }
 
-    constructor(buffer) {
-        this.#buffer = SmartBuffer.fromBuffer(buffer)
+    constructor(bytes) {
+        this.#buffer = SmartBuffer.fromBuffer(Buffer.from(bytes))
     }
 
     #loadBits() {

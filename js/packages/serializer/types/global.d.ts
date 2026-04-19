@@ -2,7 +2,6 @@ import type * as parser from "@buffela/parser";
 import type * as serializer from "./index.d.ts";
 
 declare namespace Serializer {
-    type ComplexType = parser.ComplexType<string, Serializer>
     type EnumType = parser.EnumType<Serializer>
     type ObjectType = parser.ObjectType<Serializer>
     type Field = parser.Field<Serializer>

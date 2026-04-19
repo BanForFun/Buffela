@@ -4,14 +4,72 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Removed debugging examples">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Improved generated kotlin code readability">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/instantiatedTypeUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/utils/ValidationUtils.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/utils/ValidationUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/v3-migration.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/migration.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/protobuf/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/protobuf/complex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/utils/signatureUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/utils/signatureUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/enumUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/enumUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/objectUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/ComplexType.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/EnumType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/Schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/stringUtils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaTypeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeSchemaUtils.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/Deserializer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/Deserializer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/utils/LinkedList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/utils/LinkedList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/deserialization_jvm_3_0_0_rc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/deserialization_jvm_3_0_0_rc1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/serialization_jvm_3_0_0_rc1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/serialization_jvm_3_0_0_rc1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +86,8 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$/.." value="v4" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RESET_MODE" value="SOFT" />
   </component>
   <component name="McpProjectServerCommands">
     <commands />
@@ -53,50 +107,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.14.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.12.2&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/schemata/buffela-schema.json&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.debug parser.executor": "Debug",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "24.14.0",
+    "javascript.nodejs.core.library.typings.version": "24.12.2",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/examples/buffela",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.common > build.executor": "Run",
+    "npm.deserializer > build.executor": "Run",
+    "npm.parser > build.executor": "Run",
+    "npm.serializer > build.executor": "Run",
+    "npm.tools-common > build.executor": "Run",
+    "npm.tools-kotlin > build.executor": "Run",
+    "npm.tools-types > build.executor": "Run",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/examples/buffela" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
       <recent name="$PROJECT_DIR$/packages/parser/types" />
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/packages/deserializer/types" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/utils" />
@@ -170,11 +224,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="npm.parser &gt; build" />
         <item itemvalue="npm.tools-common &gt; build" />
         <item itemvalue="npm.serializer &gt; build" />
-        <item itemvalue="npm.parser &gt; build" />
-        <item itemvalue="npm.deserializer &gt; build" />
         <item itemvalue="npm.common &gt; build" />
+        <item itemvalue="npm.deserializer &gt; build" />
       </list>
     </recent_temporary>
   </component>
@@ -249,23 +303,11 @@
       <workItem from="1774004787961" duration="1750000" />
       <workItem from="1776288787026" duration="8133000" />
       <workItem from="1776341766189" duration="5640000" />
-      <workItem from="1776605118488" duration="10275000" />
-    </task>
-    <task id="LOCAL-00015" summary="Changed the kotlin input type to Source and output to Sink">
-      <option name="closed" value="true" />
-      <created>1762727642700</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1762727642700</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Added readme and set version">
-      <option name="closed" value="true" />
-      <created>1762795181498</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1762795181498</updated>
+      <workItem from="1776428053481" duration="4120000" />
+      <workItem from="1776432189425" duration="2134000" />
+      <workItem from="1776446589876" duration="7230000" />
+      <workItem from="1776459564350" duration="8433000" />
+      <workItem from="1776511791697" duration="35058000" />
     </task>
     <task id="LOCAL-00017" summary="Refactored code">
       <option name="closed" value="true" />
@@ -595,55 +637,71 @@
       <option name="project" value="LOCAL" />
       <updated>1773769818419</updated>
     </task>
-    <task id="LOCAL-00058" summary="Fixed deserializer override resolution bug">
+    <task id="LOCAL-00058" summary="Simplified javascript type system and refactored code">
       <option name="closed" value="true" />
-      <created>1776557785128</created>
+      <created>1776556185764</created>
       <option name="number" value="00058" />
       <option name="presentableId" value="LOCAL-00058" />
       <option name="project" value="LOCAL" />
-      <updated>1776557785128</updated>
+      <updated>1776556185765</updated>
     </task>
-    <task id="LOCAL-00059" summary="Fixed unnecessary typed array copy during serialization">
+    <task id="LOCAL-00059" summary="Fixed clearBitBuffer function">
       <option name="closed" value="true" />
-      <created>1776606071299</created>
+      <created>1776618065885</created>
       <option name="number" value="00059" />
       <option name="presentableId" value="LOCAL-00059" />
       <option name="project" value="LOCAL" />
-      <updated>1776606071299</updated>
+      <updated>1776618065885</updated>
     </task>
-    <task id="LOCAL-00060" summary="Fixed typescript 6 imports for custom primitives">
+    <task id="LOCAL-00060" summary="Fixed typed array unnecessary copy during serialization">
       <option name="closed" value="true" />
-      <created>1776606288836</created>
+      <created>1776618103822</created>
       <option name="number" value="00060" />
       <option name="presentableId" value="LOCAL-00060" />
       <option name="project" value="LOCAL" />
-      <updated>1776606288837</updated>
+      <updated>1776618103822</updated>
     </task>
-    <task id="LOCAL-00061" summary="Fixed clearBitBuffer function">
+    <task id="LOCAL-00061" summary="Improved examples">
       <option name="closed" value="true" />
-      <created>1776610158746</created>
+      <created>1776618117429</created>
       <option name="number" value="00061" />
       <option name="presentableId" value="LOCAL-00061" />
       <option name="project" value="LOCAL" />
-      <updated>1776610158746</updated>
+      <updated>1776618117429</updated>
     </task>
-    <task id="LOCAL-00062" summary="Fixed js serializer override resolution">
+    <task id="LOCAL-00062" summary="Fixed optional byte being serialized twice for dimension types">
       <option name="closed" value="true" />
-      <created>1776610286670</created>
+      <created>1776627736178</created>
       <option name="number" value="00062" />
       <option name="presentableId" value="LOCAL-00062" />
       <option name="project" value="LOCAL" />
-      <updated>1776610286670</updated>
+      <updated>1776627736178</updated>
     </task>
-    <task id="LOCAL-00063" summary="Removed debugging examples">
+    <task id="LOCAL-00063" summary="Updated readme and examples">
       <option name="closed" value="true" />
-      <created>1776610411846</created>
+      <created>1776631500229</created>
       <option name="number" value="00063" />
       <option name="presentableId" value="LOCAL-00063" />
       <option name="project" value="LOCAL" />
-      <updated>1776610411846</updated>
+      <updated>1776631500229</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Refactored code">
+      <option name="closed" value="true" />
+      <created>1776636054285</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1776636054285</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Improved generated kotlin code readability">
+      <option name="closed" value="true" />
+      <created>1776638050581</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1776638050581</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,9 +719,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Implemented deserializer" />
-    <MESSAGE value="Added benchmarks" />
-    <MESSAGE value="Added kotlin utils" />
     <MESSAGE value="Added kotlin code generator" />
     <MESSAGE value="Added clearBitBuffer api" />
     <MESSAGE value="Fixed kotlin bit packing" />
@@ -680,12 +735,15 @@
     <MESSAGE value="Fixed readme" />
     <MESSAGE value="Fixed custom primitive type definitions" />
     <MESSAGE value="Fixed js-tools missing shebang" />
-    <MESSAGE value="Fixed deserializer override resolution bug" />
-    <MESSAGE value="Fixed unnecessary typed array copy during serialization" />
-    <MESSAGE value="Fixed typescript 6 imports for custom primitives" />
+    <MESSAGE value="Simplified javascript type system and refactored code" />
     <MESSAGE value="Fixed clearBitBuffer function" />
-    <MESSAGE value="Fixed js serializer override resolution" />
-    <MESSAGE value="Removed debugging examples" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed debugging examples" />
+    <MESSAGE value="Fixed typed array unnecessary copy during serialization" />
+    <MESSAGE value="Improved examples" />
+    <MESSAGE value="Fixed optional byte being serialized for constant sizes" />
+    <MESSAGE value="Fixed optional byte being serialized twice for dimension types" />
+    <MESSAGE value="Updated readme and examples" />
+    <MESSAGE value="Refactored code" />
+    <MESSAGE value="Improved generated kotlin code readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved generated kotlin code readability" />
   </component>
 </project>
