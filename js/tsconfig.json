@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "nodenext",
+    "types": ["node"],
     "skipLibCheck": true
   },
   "include": [

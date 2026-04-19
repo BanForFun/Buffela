@@ -12,7 +12,7 @@ function printImports() {
 
     for (const type in schema.primitiveTypes) {
         if (type in nativeTypes) continue;
-        printer.line(`import type ${type} from "./primitives/${type}"`)
+        printer.line(`import type ${type} from "./primitives/${type}.ts"`)
     }
 }
 
