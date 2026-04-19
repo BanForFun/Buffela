@@ -10,12 +10,12 @@ import {serializeValue} from "./typeUtils.js";
 function getLeafIndex(buffer, path, object, fieldOverrides) {
     let type = path[0]
     while (!type.isLeaf) {
+        type = object[type.name + "_type"]
+        path.push(type)
+
         for (const name in type.fieldOverrides) {
             fieldOverrides[name] = type.fieldOverrides[name]
         }
-
-        type = object[type.name + "_type"]
-        path.push(type)
     }
 
     return type.leafIndex
