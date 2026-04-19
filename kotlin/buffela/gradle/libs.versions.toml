@@ -1,7 +1,7 @@
 [versions]
 
 lib-group = "gr.elaevents.buffela"
-lib-version = "3.0.0-rc1"
+lib-version = "4.0.0"
 
 agp = "9.0.0"
 kotlin = "2.2.20"

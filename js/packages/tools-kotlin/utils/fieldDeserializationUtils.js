@@ -1,8 +1,7 @@
 const nativeTypes = require("../constants/nativeTypes");
 
 function printDeserializerImports() {
-    printer.line('import gr.elaevents.buffela.utils.invalidSubtype')
-    printer.line()
+    printer.line('import gr.elaevents.buffela.deserialization.utils.invalidSubtype')
 }
 
 function printDeserializerAliases() {

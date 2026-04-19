@@ -1,6 +1,6 @@
 {
   "name": "@buffela/tools-common",
-  "version": "3.0.3",
+  "version": "4.0.0",
   "description": "Common internal utils for the buffela developer tools",
   "types": "types/index.d.ts",
   "main": "dist/index.js",

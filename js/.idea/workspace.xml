@@ -4,17 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored code">
-      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/instantiatedTypeUtils.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/utils/ValidationUtils.kt" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Improved generated kotlin code readability">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/stringUtils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/utils/ValidationUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/utils/ValidationUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/gradle/libs.versions.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/utils/LinkedList.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/utils/LinkedList.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/utils/ValidationUtils.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -253,14 +259,6 @@
       <workItem from="1776446589876" duration="7230000" />
       <workItem from="1776459564350" duration="8433000" />
       <workItem from="1776511791697" duration="35058000" />
-    </task>
-    <task id="LOCAL-00016" summary="Added readme and set version">
-      <option name="closed" value="true" />
-      <created>1762795181498</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1762795181498</updated>
     </task>
     <task id="LOCAL-00017" summary="Refactored code">
       <option name="closed" value="true" />
@@ -646,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776636054285</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Improved generated kotlin code readability">
+      <option name="closed" value="true" />
+      <created>1776638050581</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1776638050581</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -664,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added kotlin utils" />
     <MESSAGE value="Added kotlin code generator" />
     <MESSAGE value="Added clearBitBuffer api" />
     <MESSAGE value="Fixed kotlin bit packing" />
@@ -689,6 +694,7 @@
     <MESSAGE value="Fixed optional byte being serialized twice for dimension types" />
     <MESSAGE value="Updated readme and examples" />
     <MESSAGE value="Refactored code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored code" />
+    <MESSAGE value="Improved generated kotlin code readability" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improved generated kotlin code readability" />
   </component>
 </project>

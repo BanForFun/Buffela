@@ -1,6 +1,5 @@
 function printSerializerImports() {
-    printer.line('import gr.elaevents.buffela.utils.assertLength')
-    printer.line()
+    printer.line('import gr.elaevents.buffela.serialization.utils.assertLength')
 }
 
 function printSerializerAliases() {

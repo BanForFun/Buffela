@@ -34,7 +34,7 @@ type Type<K extends string, E extends Extensions> = E & {
 }
 
 export type InstantiatedType<E extends Extensions> = {
-    optional: boolean
+    optional: boolean // it is also used on const numeric optional array dimensions
     element: Type<string, E> | number
     argument: InstantiatedType<E> | null
     dimensions: InstantiatedType<E>[]
