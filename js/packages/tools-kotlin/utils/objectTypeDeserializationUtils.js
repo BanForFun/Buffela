@@ -1,4 +1,5 @@
 const {deserializeField, deserializeSize} = require("./fieldDeserializationUtils");
+const { isConstantType } = require("./instantiatedTypeUtils");
 
 /**
  *
@@ -68,14 +69,18 @@ function printDeserializerObject(type) {
     printer.blockStart(`companion object Deserializer: _Deserializer<${type.name}> {`)
     printer.blockStart(`override fun deserialize(buffer: _DeserializerBuffer): ${type.name} {`)
 
-    printer.blockStart(`return when(${deserializeSize(type.leafIndexType)}) {`)
+    if (isConstantType(type.leafIndexType)) {
+        printer.line(`return ${leafTypeClass(type.leaves[0])}(buffer)`)
+    } else {
+        printer.blockStart(`return when(val index = ${deserializeSize(type.leafIndexType)}) {`)
 
-    for (const leafType of type.leaves)
-        printer.line(`${leafType.leafIndex} -> ${leafTypeClass(leafType)}(buffer)`)
+        for (const leafType of type.leaves)
+            printer.line(`${leafType.leafIndex} -> ${leafTypeClass(leafType)}(buffer)`)
 
-    printer.line(`else -> throw IllegalStateException("Invalid subtype index")`)
+        printer.line(`else -> invalidSubtype(index)`)
 
-    printer.blockEnd('}')
+        printer.blockEnd('}')
+    }
 
     printer.blockEnd('}')
     printer.blockEnd('}')

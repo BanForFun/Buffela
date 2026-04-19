@@ -1,5 +1,10 @@
 const nativeTypes = require("../constants/nativeTypes");
 
+function printDeserializerImports() {
+    printer.line('import gr.elaevents.buffela.utils.invalidSubtype')
+    printer.line()
+}
+
 function printDeserializerAliases() {
     printer.line('typealias _Deserializer<T> = gr.elaevents.buffela.deserialization.Deserializer<T>')
     printer.line('typealias _DeserializerBuffer = gr.elaevents.buffela.deserialization.DeserializerBuffer')
@@ -129,6 +134,7 @@ function deserializeField(type, dimension = type.dimensions?.length) {
 }
 
 module.exports = {
+    printDeserializerImports,
     printDeserializerAliases,
     deserializeSize,
     deserializeField

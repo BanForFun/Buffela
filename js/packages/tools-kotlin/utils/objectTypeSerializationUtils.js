@@ -1,4 +1,5 @@
 const { printSerializeField, printSerializeSize} = require("./fieldSerializationUtils");
+const { isConstantType } = require("./instantiatedTypeUtils");
 
 /**
  *
@@ -30,7 +31,7 @@ function printFieldSerializers(type) {
 function printObjectSerializer(type) {
     printer.blockStart(`override fun serialize(buffer: _SerializerBuffer) {`)
 
-    if (type.isLeaf) {
+    if (type.isLeaf && !isConstantType(type.path[0].leafIndexType)) {
         printer.line(`this.serializeLeafIndex(buffer, ${type.leafIndex})`)
     }
 
@@ -57,7 +58,7 @@ function printObjectSerializer(type) {
  * @param {import('@buffela/parser').ObjectType} type
  */
 function printLeafIndexSerializer(type) {
-    if (!type.isRoot) return;
+    if (!type.isRoot || isConstantType(type.leafIndexType)) return;
 
     printer.blockStart(`protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {`)
     printSerializeSize(type.leafIndexType, 'index')

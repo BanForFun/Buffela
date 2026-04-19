@@ -1,5 +1,5 @@
-const {printSerializerAliases} = require("./fieldSerializationUtils");
-const {printDeserializerAliases} = require("./fieldDeserializationUtils");
+const {printSerializerImports, printSerializerAliases} = require("./fieldSerializationUtils");
+const {printDeserializerImports, printDeserializerAliases} = require("./fieldDeserializationUtils");
 const {printEnumTypeClass} = require("./enumTypeUtils");
 const {printRootObjectTypeClass} = require("./objectTypeUtils");
 
@@ -8,6 +8,12 @@ function printTypes() {
 
     if (options.package)
         printer.line(`package ${options.package}`)
+
+    if (options.serializerEnabled)
+        printSerializerImports()
+
+    if (options.deserializerEnabled)
+        printDeserializerImports()
 
     if (options.serializerEnabled)
         printSerializerAliases()

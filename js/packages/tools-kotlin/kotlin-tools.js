@@ -8,7 +8,7 @@ const { hideBin } = require("yargs/helpers");
 const { readSchemaFile, getFileOutputStream, Printer, editorSchema} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
 
-const { printTypes } = require("./utils/typeUtils");
+const { printTypes } = require("./utils/schemaUtils");
 
 yargs()
     .command({

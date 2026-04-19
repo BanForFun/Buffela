@@ -1,3 +1,8 @@
+function printSerializerImports() {
+    printer.line('import gr.elaevents.buffela.utils.assertLength')
+    printer.line()
+}
+
 function printSerializerAliases() {
     printer.line('typealias _Serializable = gr.elaevents.buffela.serialization.Serializable')
     printer.line('typealias _SerializerBuffer = gr.elaevents.buffela.serialization.SerializerBuffer')
@@ -20,10 +25,7 @@ function printSerializePrimitive(primitive, ...args) {
 function printSerializeSize(type, size) {
     const { element } = type
     if (typeof element !== 'object') {
-        printer.blockStart(`if (${size} != ${element}) {`)
-        printer.line(`throw IllegalStateException("Expected length '${element}' (got '\${${size}}')")`)
-        printer.blockEnd('}')
-
+        printer.line(`assertLength(${element}, ${size})`)
         return;
     }
 
@@ -172,6 +174,7 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
 }
 
 module.exports = {
+    printSerializerImports,
     printSerializerAliases,
     printSerializeField,
     printSerializeSize
