@@ -1,4 +1,4 @@
-import {serializeValue} from "./typeUtils.js";
+import {serializeSize} from "./typeUtils.js";
 
 /**
  *
@@ -24,7 +24,7 @@ function serializeString(buffer, value, sizeType) {
  * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeTypedArray(buffer, value, sizeType) {
-    serializeValue(buffer, sizeType, value.length);
+    serializeSize(buffer, sizeType, value.length);
     buffer.writeBytes(Buffer.from(value.buffer))
 }
 
@@ -35,7 +35,7 @@ function serializeTypedArray(buffer, value, sizeType) {
  * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeBytes(buffer, value, sizeType) {
-    serializeValue(buffer, sizeType, value.length);
+    serializeSize(buffer, sizeType, value.length);
     buffer.writeBytes(value)
 }
 
@@ -46,7 +46,7 @@ function serializeBytes(buffer, value, sizeType) {
  * @param {Serializer.InstantiatedType} sizeType
  */
 function serializeBooleanArray(buffer, values, sizeType) {
-    serializeValue(buffer, sizeType, values.length);
+    serializeSize(buffer, sizeType, values.length);
     for (const bool of values) {
         buffer.writeBoolean(bool)
     }

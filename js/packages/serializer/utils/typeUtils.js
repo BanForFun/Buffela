@@ -4,37 +4,40 @@
  * @param {Serializer.InstantiatedType} type
  * @param {unknown} value
  */
-function skip(buffer, type, value) {
-    if (!type.optional) return false
-
-    const present = value !== null
-    buffer.writeBoolean(present)
-
-    return !present
+export function serializeSize(buffer, type, value) {
+    const { element } = type
+    if (typeof element === 'object') {
+        element._serialize(buffer, value, type.argument)
+    } else if (value !== element) {
+        throw new Error(`Expected size '${element}' (got '${value}')`)
+    }
 }
 
 /**
  *
  * @param {SerializerBuffer} buffer
- * @param {Serializer.InstantiatedType} type
+ * @param {Serializer.InstantiatedFieldType} type
  * @param {unknown} value
  * @param {number} dimension
  */
-export function serializeValue(buffer, type, value, dimension = type.dimensions?.length) {
-    if (dimension > 0) {
-        const sizeType = type.dimensions[dimension - 1]
-        if (skip(buffer, sizeType, value)) return
+export function serializeField(buffer, type, value, dimension = type.dimensions?.length) {
+    const isArray = dimension > 0
+    const optional = isArray ? type.dimensions[dimension - 1].optional : type.optional
 
-        serializeValue(buffer, sizeType, value.length)
+    if (optional) {
+        const present = value !== null
+        buffer.writeBoolean(present)
+
+        if (!present) return
+    }
+
+    if (isArray) {
+        serializeSize(buffer, type.dimensions[dimension - 1], value.length)
 
         for (const item of value) {
-            serializeValue(buffer, type, item, dimension - 1)
+            serializeField(buffer, type, item, dimension - 1)
         }
-    } else if (typeof type.element === 'object') {
-        if (skip(buffer, type, value)) return
-
+    } else {
         type.element._serialize(buffer, value, type.argument)
-    } else if (typeof type.element === 'number' && value !== type.element) {
-        throw new Error(`Expected size '${type.element}' (got '${value}')`)
     }
 }

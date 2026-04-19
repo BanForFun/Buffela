@@ -1,4 +1,4 @@
-import {deserializeValue} from "./typeUtils.js";
+import {deserializeSize} from "./typeUtils.js";
 
 /**
  *
@@ -21,7 +21,7 @@ function deserializeString(buffer, arg) {
  * @returns {Buffer}
  */
 function deserializeBytes(buffer, arg) {
-    const size = deserializeValue(buffer, arg)
+    const size = deserializeSize(buffer, arg)
     return buffer.readBytes(size)
 }
 
@@ -32,7 +32,7 @@ function deserializeBytes(buffer, arg) {
  */
 function typedArrayDeserializer(Constructor) {
     return (buffer, arg) => {
-        const size = deserializeValue(buffer, arg)
+        const size = deserializeSize(buffer, arg)
         return new Constructor(buffer.readBytes(size * Constructor.BYTES_PER_ELEMENT))
     }
 }
@@ -44,7 +44,7 @@ function typedArrayDeserializer(Constructor) {
  * @returns {boolean[]}
  */
 function deserializeBooleanArray(buffer, arg) {
-    const size = deserializeValue(buffer, arg)
+    const size = deserializeSize(buffer, arg)
     return Array.from({ length: size }, () => buffer.readBoolean())
 }
 

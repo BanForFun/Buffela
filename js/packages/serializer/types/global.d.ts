@@ -7,6 +7,7 @@ declare namespace Serializer {
     type ObjectType = parser.ObjectType<Serializer>
     type Field = parser.Field<Serializer>
     type InstantiatedType = parser.InstantiatedType<Serializer>
+    type InstantiatedFieldType = parser.InstantiatedFieldType<Serializer>
     type Schema = parser.Schema<Serializer, Serializable>
     type EnumEntry = parser.EnumEntry
 }

@@ -1,4 +1,4 @@
-import {serializeValue} from "./typeUtils.js";
+import { serializeField, serializeSize } from "./typeUtils.js";
 
 /**
  * @param {SerializerBuffer} buffer
@@ -32,7 +32,7 @@ function serializeFields(buffer, type, object, fieldOverrides) {
         const field = type.ownFields[name]
         const finalField = field.final ? field : (fieldOverrides[name] ?? field)
 
-        serializeValue(buffer, finalField.type, object[name])
+        serializeField(buffer, finalField.type, object[name])
     }
 }
 
@@ -47,7 +47,7 @@ export function serializeObject(buffer, object) {
     const leafIndex = getLeafIndex(buffer, leafPath, object, fieldOverrides)
 
     if (this.defaultArgument) // Will be null if the type isn't abstract
-        serializeValue(buffer, this.defaultArgument, leafIndex)
+        serializeSize(buffer, this.defaultArgument, leafIndex)
 
     for (const type of leafPath) {
         serializeFields(buffer, type, object, fieldOverrides)

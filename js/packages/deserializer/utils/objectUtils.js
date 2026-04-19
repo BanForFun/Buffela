@@ -1,4 +1,4 @@
-import {deserializeValue} from "./typeUtils.js";
+import { deserializeField, deserializeSize } from "./typeUtils.js";
 
 /**
  *
@@ -36,7 +36,7 @@ function deserializeFields(buffer, type, object, fieldOverrides) {
         const field = type.ownFields[name]
         const finalField = field.final ? field : (fieldOverrides[name] ?? field)
 
-        object[name] = deserializeValue(buffer, finalField.type)
+        object[name] = deserializeField(buffer, finalField.type)
     }
 }
 
@@ -50,7 +50,7 @@ export function deserializeObject(buffer) {
     const result = {}
 
     const leafIndex = this.defaultArgument
-        ? deserializeValue(buffer, this.defaultArgument)
+        ? deserializeSize(buffer, this.defaultArgument)
         : 0
 
     const leafType = this.leaves[leafIndex]

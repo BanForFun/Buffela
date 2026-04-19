@@ -16,9 +16,13 @@ export type InstantiatedType<E extends Extensions> = {
     dimensions: InstantiatedType<E>[]
 }
 
+export type InstantiatedFieldType<E extends Extensions> = InstantiatedType<E> & {
+    element: object
+}
+
 export interface Field<E extends Extensions> {
     final: boolean
-    type: InstantiatedType<E>
+    type: InstantiatedFieldType<E>
 }
 
 export type ComplexType<K extends string, E extends Extensions> = Type<K, E> & {
