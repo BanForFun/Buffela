@@ -56,7 +56,7 @@ This version is backwards compatible with version 3
 
 **[Breaking API Changes](./docs/migration.md)**
 
-[Older changes]('./docs/changelog.md')
+[Older changes](./docs/changelog.md)
 
 
 
