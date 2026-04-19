@@ -14,9 +14,7 @@ function getReversePath(buffer, type, object, fieldOverrides) {
         object[type.parent.name + "_type"] = type
 
         for (const name in type.fieldOverrides) {
-            const field = type.fieldOverrides[name]
-            if (field.final)
-                fieldOverrides[name] = field
+            fieldOverrides[name] ??= type.fieldOverrides[name]
         }
 
         path.push(type.parent)
