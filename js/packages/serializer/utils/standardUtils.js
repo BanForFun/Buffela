@@ -23,7 +23,7 @@ function serializeString(buffer, value, sizeType) {
  */
 function serializeTypedArray(buffer, value, sizeType) {
     serializeValue(buffer, sizeType, value.length);
-    buffer.writeBytes(Buffer.from(value))
+    buffer.writeBytes(Buffer.from(value.buffer))
 }
 
 /**
