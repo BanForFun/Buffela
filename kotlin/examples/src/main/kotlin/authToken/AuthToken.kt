@@ -148,14 +148,14 @@ sealed class User: _Serializable {
         }
 
         class Organizer: Registered {
-            val roles: Array<String?>?
+            val roles: Array<String>
             val email: String
             override val userId get() = super.userId as String
 
             constructor(
                 userId: String,
                 verified: Boolean,
-                roles: Array<String?>?,
+                roles: Array<String>,
                 email: String,
             ): super(
                 userId,
@@ -172,25 +172,17 @@ sealed class User: _Serializable {
             override fun serialize(buffer: _SerializerBuffer) {
                 this.serializeLeafIndex(buffer, 2)
                 super.serialize(buffer)
-                buffer.writeBoolean(this.roles != null)
+                buffer.writeUByte(this.roles.size.toUByte())
 
-                this.roles?.let {
-                    buffer.writeUByte(this.roles.size.toUByte())
-
-                    for (item1 in this.roles) {
-                        buffer.writeBoolean(item1 != null)
-
-                        item1?.let {
-                            buffer.writeString(item1, true)
-                        }
-                    }
+                for (item1 in this.roles) {
+                    buffer.writeString(item1, true)
                 }
                 buffer.writeString(this.email, true)
             }
             override fun userId(buffer: _DeserializerBuffer) = buffer.readString()
 
             internal constructor(buffer: _DeserializerBuffer): super(buffer) {
-                this.roles = if (buffer.readBoolean()) Array(buffer.readUByte().toInt()) { _ -> if (buffer.readBoolean()) buffer.readString() else null } else null
+                this.roles = Array(buffer.readUByte().toInt()) { _ -> buffer.readString() }
                 this.email = buffer.readString()
             }
         }

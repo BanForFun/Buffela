@@ -43,7 +43,7 @@ export type User = {
             gender: Gender,
         } | {
             Registered_type: User_Schema["Registered"]["Organizer"],
-            roles: ((string | null)[] | null),
+            roles: string[],
             email: string,
             userId: string,
         }
