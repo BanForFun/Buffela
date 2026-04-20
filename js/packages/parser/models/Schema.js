@@ -35,7 +35,7 @@ export default class Schema {
     sizeType(size) {
         if (size <= 1) return new InstantiatedType(0);
 
-        const bits = Math.ceil(Math.log2(size - 1)) + 1
+        const bits = Math.floor(Math.log2(size)) + 1
         const sizeType = new InstantiatedType(this.lookupType("Unsigned"))
         sizeType.argument = new InstantiatedType(bits)
 
