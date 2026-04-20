@@ -1,6 +1,6 @@
 {
   "name": "@buffela/parser",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "description": "Parser for the buffela data format schema",
   "type": "module",
   "types": "types/index.d.ts",

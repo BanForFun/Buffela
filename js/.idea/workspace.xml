@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed lies in readme">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/Schema.js" afterDir="false" />
-    </list>
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed enum and subtype size type calculation" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -245,15 +242,7 @@
       <workItem from="1776446589876" duration="7230000" />
       <workItem from="1776459564350" duration="8433000" />
       <workItem from="1776511791697" duration="35058000" />
-      <workItem from="1776648283627" duration="102000" />
-    </task>
-    <task id="LOCAL-00020" summary="Added esm compatibility">
-      <option name="closed" value="true" />
-      <created>1763044643928</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1763044643928</updated>
+      <workItem from="1776648283627" duration="327000" />
     </task>
     <task id="LOCAL-00021" summary="Fixed parser types and buffela-to-types">
       <option name="closed" value="true" />
@@ -639,7 +628,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776640216570</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="Fixed enum and subtype size type calculation">
+      <option name="closed" value="true" />
+      <created>1776648515059</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1776648515059</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -657,7 +654,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added kotlin benchmark" />
     <MESSAGE value="Disabled alias recursion" />
     <MESSAGE value="Changed example schema" />
     <MESSAGE value="Added root dir parameter to js-tools" />
@@ -682,6 +678,7 @@
     <MESSAGE value="Merge with v4" />
     <MESSAGE value="Fixed older changes link" />
     <MESSAGE value="Fixed lies in readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed lies in readme" />
+    <MESSAGE value="Fixed enum and subtype size type calculation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed enum and subtype size type calculation" />
   </component>
 </project>
