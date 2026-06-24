@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added better serializer error reporting">
-      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
-    </list>
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Removed editor files" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -255,23 +249,7 @@
       <workItem from="1777749665987" duration="66000" />
       <workItem from="1778249665688" duration="258000" />
       <workItem from="1781890700540" duration="5693000" />
-      <workItem from="1782301864531" duration="1847000" />
-    </task>
-    <task id="LOCAL-00023" summary="Added json schema exporter to kotlin tools">
-      <option name="closed" value="true" />
-      <created>1763055323505</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1763055323505</updated>
-    </task>
-    <task id="LOCAL-00024" summary="Added enums in json schema for better editor suggestions">
-      <option name="closed" value="true" />
-      <created>1763056440313</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1763056440313</updated>
+      <workItem from="1782301864531" duration="2429000" />
     </task>
     <task id="LOCAL-00025" summary="Added fixed length strings">
       <option name="closed" value="true" />
@@ -649,7 +627,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782302723600</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="Fixed kotlin serialization bug when overriding a nullable field">
+      <option name="closed" value="true" />
+      <created>1782303784751</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1782303784751</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Removed editor files">
+      <option name="closed" value="true" />
+      <created>1782303853776</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1782303853776</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -667,8 +661,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added root dir parameter to js-tools" />
-    <MESSAGE value="Added root dir validation to js tools" />
     <MESSAGE value="Added more examples" />
     <MESSAGE value="Simplified typescript and package configurations" />
     <MESSAGE value="Consolidated examples into single files" />
@@ -692,6 +684,8 @@
     <MESSAGE value="Fixed enum and subtype size type calculation" />
     <MESSAGE value="Actually fixed enum and subtype size type calculation" />
     <MESSAGE value="Added better serializer error reporting" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added better serializer error reporting" />
+    <MESSAGE value="Fixed kotlin serialization bug when overriding a nullable field" />
+    <MESSAGE value="Removed editor files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed editor files" />
   </component>
 </project>

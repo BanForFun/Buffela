@@ -143,8 +143,14 @@ Set up a simple tsconfig.json inside your project folder (don't worry it's for y
 
 You'll need to install some dependencies required by the generated code in your project:
 
-- `gr.elaevents.buffela:serialization` ([Latest version](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization))
-- `gr.elaevents.buffela:deserialization` ([Latest version](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization))
+```
+gr.elaevents.buffela:serialization
+gr.elaevents.buffela:deserialization
+```
+
+[Serialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization)
+
+[Deserialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization)
 
 You can skip installing either package if you're interested in only serializing or only deserializing.
 
@@ -178,11 +184,11 @@ You can run the kotlin compiler through npm
 
 > Don't know what npm is? Bless your innocent soul xD. Install nvm (https://github.com/nvm-sh/nvm) and then run `nvm install --lts`. Now you should have node and npm with it.
 
-> The first time around it will ask you to download the package, press Enter to proceed.
-
 ```shell
 npx @buffela/tools-kotlin compile YOUR_SCHEMA OUTPUT_DIR --package=YOUR_PACKAGE
 ```
+
+> The first time around it will ask you to download the package, press Enter to proceed.
 
 This will create a .kt file in the specified directory with the same name as your buffela schema.
 
@@ -498,7 +504,7 @@ vector: FloatArray(Unsigned(10)) # This array can have a length of up to 1023 fl
 
 #### Bytes
 
-The Bytes type maps to Buffer in JS and ByteArray in Kotlin. Like a typed array, it also requires a parameter that specifies the length, and the same rules apply.
+The Bytes type maps to Uint8Array in JS and ByteArray in Kotlin. Like a typed array, it also requires a parameter that specifies the length, and the same rules apply.
 
 
 
@@ -725,8 +731,8 @@ In **JavaScript**, the compiled type will have an additional special field named
 const schema = parseSchema(...)
 
 const user = {
-	_type: schema.User.Registered.Viewer,
- 	[...]
+    _type: schema.User.Registered.Viewer,
+    [...]
 }
 ```
 
@@ -734,7 +740,7 @@ To check if an object is a subtype of a type you can use the `instanceOf()` func
 
 ```javascript
 if (schema.User.Registered.instanceOf(user)) {
-  // Do something
+    // Do something
 }
 ```
 
@@ -744,7 +750,7 @@ In **Kotlin**, subtypes are just nested classes. So to create a registered viewe
 
 ```kotlin
 val user = User.Registered.Viewer(
-	[...]
+    [...]
 )
 ```
 
@@ -752,7 +758,7 @@ To check if an object is a subtype of a type you can use the `is` operator:
 
 ```kotlin
 if (user is User.Registered) {
-  // Do something
+    // Do something
 }
 ```
 
@@ -773,7 +779,7 @@ User:
     [...]
 
     Organizer:
-    	userId: String
+        userId: String
 ```
 
 With this mechanism you can safely override the length parameter or an array's i-th dimension length (e.g. String -> String(10), Int[10] -> Int[UByte]). The only rule is that all type overrides should map to the same native type in your language of choice.
@@ -812,7 +818,7 @@ const buffer = new DeserializerBuffer(bytes)
 
 const header = schema.Header.deserialize(buffer)
 if (header.version !== 2)
-	throw new Error("Packet version not supported")
+    throw new Error("Packet version not supported")
 
 const body = schema.Body.deserialize(buffer)
 ```
@@ -838,7 +844,7 @@ val buffer = DeserializerBuffer(bytes)
 
 val header = Header.deserialize(buffer)
 if (header.version != 2)
-	throw IllegalStateException("Packet version not supported")
+    throw IllegalStateException("Packet version not supported")
 
 val body = Body.deserialize(buffer)
 ```
@@ -869,7 +875,7 @@ schema.AuthTokenPayload.serialize({ ... }, buffer)
 const payloadBytes = buffer.toBytes()
 const hmac256 = sign(payloadBytes)
 
-// Clear the bit buffer
+// Align to byte
 buffer.clearBitBuffer()
 
 // Write the signature into the buffer
@@ -888,7 +894,7 @@ const payload = schema.AuthTokenPayload.deserialize(buffer)
 // The deserializer has only read the payload, all bytes up to the current position must be the payload
 const payloadBytes = bytes.subarray(0, buffer.position)
 
-// Clear the bit buffer
+// Align to byte
 buffer.clearBitBuffer()
 
 // Continue to deserialize the signature
@@ -915,7 +921,7 @@ payload.serialize(buffer)
 val payloadBytes = payload.toBytes()
 val hmac256 = sign(payloadBytes)
 
-// Clear the bit buffer
+// Align to byte
 buffer.clearBitBuffer()
 
 // Write the signature into the buffer
@@ -935,7 +941,7 @@ val payload = AuthTokenPayload.deserialize(buffer)
 // The deserializer has only read the payload, all bytes up to the current position must be the payload
 val payloadBytes = bytes.sliceArray(0 until buffer.position)
 
-// Clear the bit buffer
+// Align to byte
 buffer.clearBitBuffer()
 
 // Continue to deserialize the signature
