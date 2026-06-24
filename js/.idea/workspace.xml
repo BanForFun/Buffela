@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Actually fixed enum and subtype size type calculation">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added better serializer error reporting">
+      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,15 +255,7 @@
       <workItem from="1777749665987" duration="66000" />
       <workItem from="1778249665688" duration="258000" />
       <workItem from="1781890700540" duration="5693000" />
-      <workItem from="1782301864531" duration="828000" />
-    </task>
-    <task id="LOCAL-00022" summary="Fixed type field deserialization">
-      <option name="closed" value="true" />
-      <created>1763048625738</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1763048625739</updated>
+      <workItem from="1782301864531" duration="1847000" />
     </task>
     <task id="LOCAL-00023" summary="Added json schema exporter to kotlin tools">
       <option name="closed" value="true" />
@@ -647,7 +641,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776648894583</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Added better serializer error reporting">
+      <option name="closed" value="true" />
+      <created>1782302723600</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1782302723600</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -665,7 +667,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed example schema" />
     <MESSAGE value="Added root dir parameter to js-tools" />
     <MESSAGE value="Added root dir validation to js tools" />
     <MESSAGE value="Added more examples" />
@@ -690,6 +691,7 @@
     <MESSAGE value="Fixed lies in readme" />
     <MESSAGE value="Fixed enum and subtype size type calculation" />
     <MESSAGE value="Actually fixed enum and subtype size type calculation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actually fixed enum and subtype size type calculation" />
+    <MESSAGE value="Added better serializer error reporting" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added better serializer error reporting" />
   </component>
 </project>

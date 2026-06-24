@@ -157,7 +157,7 @@ sealed class User: _Serializable {
                 buffer.writeBoolean(this.phone != null)
 
                 this.phone?.let {
-                    this.phone.serialize(buffer)
+                    it.serialize(buffer)
                 }
             }
 

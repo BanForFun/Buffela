@@ -165,7 +165,7 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
         printer.line(`buffer.writeBoolean(${fieldName} != null)`)
 
         printer.blockStart(`${fieldName}?.let {`)
-        printSerializeNotNullField(type, fieldName, dimension)
+        printSerializeNotNullField(type, 'it', dimension)
         printer.blockEnd('}')
     } else {
         printSerializeNotNullField(type, fieldName, dimension)
