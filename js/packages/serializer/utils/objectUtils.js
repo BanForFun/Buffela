@@ -11,6 +11,12 @@ export function serializeObject(buffer, object) {
 
     for (const name in leafType.allFields) {
         const field = leafType.allFields[name]
-        serializeField(buffer, field.type, object[name])
+
+        try {
+            serializeField(buffer, field.type, object[name])
+        } catch(err) {
+            const path = this.path.map(n => n.name).join('.')
+            throw new Error(`Unable to serialize field '${name}' at ${path}`, { cause: err })
+        }
     }
 }
