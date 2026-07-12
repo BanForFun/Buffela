@@ -60,7 +60,7 @@ class SerializerBuffer {
             val available = 8 - this.bitCount
             if (remainingLength < available) {
                 this.writeLSBits(remainingValue, remainingLength)
-                break;
+                break
             }
 
             this.writeLSBits(remainingValue, available)
@@ -157,11 +157,11 @@ class SerializerBuffer {
         this.flushBits()
 
         val bytes = ByteArray(this.length)
-        val buffer = this.buffer.peek()
+        val source = this.buffer.peek()
 
         var currentPosition = 0
         for (chunk in this.bitChunks) {
-            buffer.readTo(
+            source.readTo(
                 sink = bytes,
                 startIndex = currentPosition,
                 endIndex = chunk.offset
@@ -171,7 +171,7 @@ class SerializerBuffer {
             currentPosition = chunk.offset + 1
         }
 
-        buffer.readTo(
+        source.readTo(
             sink = bytes,
             startIndex = currentPosition,
             endIndex = bytes.size
