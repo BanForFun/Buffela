@@ -4,6 +4,7 @@ import kotlinx.io.Buffer
 import kotlinx.io.indexOf
 import kotlinx.io.readByteArray
 import kotlinx.io.readDoubleLe
+import kotlinx.io.readFloatLe
 import kotlinx.io.readIntLe
 import kotlinx.io.readLongLe
 import kotlinx.io.readShortLe
@@ -100,6 +101,10 @@ class DeserializerBuffer(bytes: ByteArray) {
 
     fun readULong(): ULong {
         return this.buffer.readULongLe()
+    }
+
+    fun readFloat(): Float {
+        return this.buffer.readFloatLe()
     }
 
     fun readDouble(): Double {

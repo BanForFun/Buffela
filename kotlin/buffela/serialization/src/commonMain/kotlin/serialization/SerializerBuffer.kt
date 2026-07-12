@@ -4,6 +4,7 @@ import gr.elaevents.buffela.serialization.utils.LinkedList
 import kotlinx.io.Buffer
 import kotlinx.io.readTo
 import kotlinx.io.writeDoubleLe
+import kotlinx.io.writeFloatLe
 import kotlinx.io.writeIntLe
 import kotlinx.io.writeLongLe
 import kotlinx.io.writeShortLe
@@ -34,7 +35,7 @@ class SerializerBuffer {
 
     private fun flushBits() {
         if (this.bitCount == 0) return
-        bitChunk?.set(bitBuffer.toByte())
+        this.bitChunk?.set(this.bitBuffer.toByte())
     }
 
     private fun writeLSBits(value: Int, bitLength: Int) {
@@ -129,6 +130,10 @@ class SerializerBuffer {
 
     fun writeULong(uLong: ULong) {
         this.buffer.writeULongLe(uLong)
+    }
+
+    fun writeFloat(float: Float) {
+        this.buffer.writeFloatLe(float)
     }
 
     fun writeDouble(double: Double) {
