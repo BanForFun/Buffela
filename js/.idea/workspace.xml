@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Removed editor files" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Release 4.0.4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -249,23 +251,7 @@
       <workItem from="1777749665987" duration="66000" />
       <workItem from="1778249665688" duration="258000" />
       <workItem from="1781890700540" duration="5693000" />
-      <workItem from="1782301864531" duration="2429000" />
-    </task>
-    <task id="LOCAL-00025" summary="Added fixed length strings">
-      <option name="closed" value="true" />
-      <created>1763074152579</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1763074152579</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Fixed readme mistakes and added keywords">
-      <option name="closed" value="true" />
-      <created>1763133154621</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1763133154621</updated>
+      <workItem from="1782301864531" duration="4342000" />
     </task>
     <task id="LOCAL-00027" summary="Rebranded to binary format">
       <option name="closed" value="true" />
@@ -643,7 +629,23 @@
       <option name="project" value="LOCAL" />
       <updated>1782303853776</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="Fixed readme tabs">
+      <option name="closed" value="true" />
+      <created>1782304357179</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1782304357179</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Release 4.0.4">
+      <option name="closed" value="true" />
+      <created>1782304540965</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1782304540965</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -661,8 +663,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added more examples" />
-    <MESSAGE value="Simplified typescript and package configurations" />
     <MESSAGE value="Consolidated examples into single files" />
     <MESSAGE value="Renamed Buffer to Bytes and fixed BooleanArray js mapping" />
     <MESSAGE value="Moved docs directory" />
@@ -686,6 +686,8 @@
     <MESSAGE value="Added better serializer error reporting" />
     <MESSAGE value="Fixed kotlin serialization bug when overriding a nullable field" />
     <MESSAGE value="Removed editor files" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed editor files" />
+    <MESSAGE value="Fixed readme tabs" />
+    <MESSAGE value="Release 4.0.4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Release 4.0.4" />
   </component>
 </project>

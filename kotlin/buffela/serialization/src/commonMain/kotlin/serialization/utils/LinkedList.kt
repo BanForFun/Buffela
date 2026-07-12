@@ -23,6 +23,9 @@ internal class LinkedList<T> : Iterable<T> {
     private var head: Node<T>? = null
     private var tail: Node<T>? = null
 
+    var size: Int = 0
+        private set
+
     val isEmpty: Boolean
         get() = head == null
 
@@ -35,6 +38,8 @@ internal class LinkedList<T> : Iterable<T> {
             tail?.next = newNode
             tail = newNode
         }
+
+        size++
     }
 
     override fun iterator(): Iterator<T> {

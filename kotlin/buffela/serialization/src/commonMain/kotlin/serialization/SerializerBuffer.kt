@@ -2,7 +2,7 @@ package gr.elaevents.buffela.serialization
 
 import gr.elaevents.buffela.serialization.utils.LinkedList
 import kotlinx.io.Buffer
-import kotlinx.io.readByteArray
+import kotlinx.io.readTo
 import kotlinx.io.writeDoubleLe
 import kotlinx.io.writeIntLe
 import kotlinx.io.writeLongLe
@@ -13,9 +13,12 @@ import kotlinx.io.writeUIntLe
 import kotlinx.io.writeULongLe
 import kotlinx.io.writeUShortLe
 
-private data class BitChunk(val offset: Int, var buffer: Byte = 0) {
-    fun apply(bytes: ByteArray) {
-        bytes[offset] = buffer
+private class BitChunk(val offset: Int) {
+    var value: Byte = 0
+        private set
+
+    fun set(value: Byte) {
+        this.value = value
     }
 }
 
@@ -27,19 +30,17 @@ class SerializerBuffer {
     private var bitBuffer: Int = 0
     private var bitCount = 0
 
-    val length get() = buffer.size.toInt()
+    val length get() = buffer.size.toInt() + this.bitChunks.size
 
     private fun flushBits() {
         if (this.bitCount == 0) return
-        bitChunk!!.buffer = this.bitBuffer.toByte()
+        bitChunk?.set(bitBuffer.toByte())
     }
 
     private fun writeLSBits(value: Int, bitLength: Int) {
         if (this.bitCount == 0) {
             this.bitChunk = BitChunk(this.length)
-            bitChunks.append(this.bitChunk!!)
-
-            this.buffer.writeByte(0) // Reserve space
+                .also { bitChunks.append(it) }
         }
 
         val mask = (1 shl bitLength) - 1
@@ -150,11 +151,26 @@ class SerializerBuffer {
     fun toBytes(): ByteArray {
         this.flushBits()
 
-        // Make copy so that we don't consume the bytes from the buffer
-        val bytes = this.buffer.copy().readByteArray()
+        val bytes = ByteArray(this.length)
+        val buffer = this.buffer.peek()
 
-        for (chunk in this.bitChunks)
-            chunk.apply(bytes)
+        var currentPosition = 0
+        for (chunk in this.bitChunks) {
+            buffer.readTo(
+                sink = bytes,
+                startIndex = currentPosition,
+                endIndex = chunk.offset
+            )
+
+            bytes[chunk.offset] = chunk.value
+            currentPosition = chunk.offset + 1
+        }
+
+        buffer.readTo(
+            sink = bytes,
+            startIndex = currentPosition,
+            endIndex = bytes.size
+        )
 
         return bytes
     }
