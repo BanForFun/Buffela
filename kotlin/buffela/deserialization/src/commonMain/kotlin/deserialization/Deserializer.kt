@@ -1,6 +1,6 @@
 package gr.elaevents.buffela.deserialization
 
-interface Deserializer<out T> {
+fun interface Deserializer<out T> {
     fun deserialize(buffer: DeserializerBuffer): T
 }
 
