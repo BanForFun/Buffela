@@ -1,14 +1,16 @@
 #!/usr/bin/env node
 
 const process = require("node:process");
+const fs = require("node:fs");
 
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
 
-const { readSchemaFile, getFileOutputStream, Printer, editorSchema} = require('@buffela/tools-common')
+const { readSchemaFile, resolveOutputFilePath, Printer, editorSchema} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
 
 const { printTypes } = require("./utils/schemaUtils");
+const { autoDetectPackage } = require("./utils/packageUtils");
 
 yargs()
     .command({
@@ -29,7 +31,7 @@ yargs()
                 alias: 'p',
                 describe: 'The package name for the generated code',
                 type: 'string',
-                default: ''
+                defaultDescription: '(Auto detect)'
             })
             .option('serializer', {
                 describe: 'Generate serializer methods',
@@ -43,14 +45,16 @@ yargs()
             }),
         handler: (argv) => {
             const inputFile = readSchemaFile(argv.schema)
-            const outputStream = getFileOutputStream(argv.destination, inputFile.name + ".kt")
+
+            const outputFilePath = resolveOutputFilePath(argv.destination, inputFile.name + ".kt")
+            const outputStream = fs.createWriteStream(outputFilePath)
 
             global.schema = parseSchema(inputFile.schema)
             global.printer = new Printer(outputStream)
             global.options = {
                 serializerEnabled: argv.serializer,
                 deserializerEnabled: argv.deserializer,
-                package: argv.package
+                package: argv.package ?? autoDetectPackage(outputFilePath)
             }
 
             printTypes()

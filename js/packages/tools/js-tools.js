@@ -1,11 +1,15 @@
 #!/usr/bin/env node
 
 const process = require("node:process");
-const path = require("path");
+const path = require("node:path");
+const fs = require("node:fs")
+
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
-const { readSchemaFile, getFileOutputStream, Printer, existsDirSync} = require('@buffela/tools-common')
+
+const { readSchemaFile, resolveOutputFilePath, Printer, existsDirSync} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
+
 const { printTypes } = require("./utils/typeUtils");
 
 yargs()
@@ -54,15 +58,18 @@ yargs()
             const inputFile = readSchemaFile(argv.schema)
 
             if (argv.json) {
-                const jsonPath = path.resolve(argv.rootDir, argv.json)
-                const jsonStream = getFileOutputStream(jsonPath, inputFile.name + ".json")
+                const jsonOutputPath = path.resolve(argv.rootDir, argv.json)
+                const jsonFilePath = resolveOutputFilePath(jsonOutputPath, inputFile.name + ".json")
+                const jsonStream = fs.createWriteStream(jsonFilePath)
+
                 jsonStream.write(JSON.stringify(inputFile.schema))
                 jsonStream.end()
             }
 
             if (argv.types) {
-                const typesPath = path.resolve(argv.rootDir, argv.types)
-                const typesStream = getFileOutputStream(typesPath, inputFile.name + ".ts")
+                const typesOutputPath = path.resolve(argv.rootDir, argv.types)
+                const typesFilePath = resolveOutputFilePath(typesOutputPath, inputFile.name + ".ts")
+                const typesStream = fs.createWriteStream(typesFilePath)
 
                 global.schema = parseSchema(inputFile.schema)
                 global.printer = new Printer(typesStream)

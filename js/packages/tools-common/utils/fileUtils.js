@@ -1,5 +1,4 @@
 const fs = require('node:fs')
-const process = require('node:process')
 const path = require('node:path')
 
 /**
@@ -14,18 +13,18 @@ function existsDirSync(path) {
 /**
  * @param {string} outputPath
  * @param {string} defaultName
- * @returns {NodeJS.WritableStream}
+ * @returns {string}
  */
-function getFileOutputStream(outputPath, defaultName) {
-    if (!outputPath) return process.stdout
+function resolveOutputFilePath(outputPath, defaultName) {
+    if (!outputPath) return ""
 
     if (existsDirSync(outputPath))
-        outputPath = path.join(outputPath, defaultName)
+        return path.join(outputPath, defaultName)
 
-    return fs.createWriteStream(outputPath)
+    return outputPath
 }
 
 module.exports = {
-    getFileOutputStream,
+    resolveOutputFilePath,
     existsDirSync
 }

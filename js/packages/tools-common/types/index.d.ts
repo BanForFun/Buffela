@@ -5,7 +5,7 @@ declare function readSchemaFile(filePath: string): {
 
 declare function existsDirSync(path: string): boolean;
 
-declare function getFileOutputStream(outputPath: string, defaultName: string): WritableStream;
+declare function resolveOutputFilePath(outputPath: string, defaultName: string): string;
 
 declare class Printer {
     constructor(stream: WritableStream);
@@ -19,4 +19,4 @@ declare class Printer {
 
 declare const editorSchema: object;
 
-export { Printer, readSchemaFile, existsDirSync, getFileOutputStream, editorSchema };
+export { Printer, readSchemaFile, existsDirSync, resolveOutputFilePath, editorSchema };
