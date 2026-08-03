@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed compiler crashing on validation error">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Modified TypeScript primitive type importing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/types/global.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,14 +259,6 @@
       <workItem from="1782301864531" duration="4342000" />
       <workItem from="1785691680825" duration="24793000" />
       <workItem from="1785751074294" duration="997000" />
-    </task>
-    <task id="LOCAL-00031" summary="Added alias syntax">
-      <option name="closed" value="true" />
-      <created>1771070107678</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1771070107678</updated>
     </task>
     <task id="LOCAL-00032" summary="Fixed parser and type generator">
       <option name="closed" value="true" />
@@ -653,7 +644,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785722559901</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Modified TypeScript primitive type importing">
+      <option name="closed" value="true" />
+      <created>1785756680788</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1785756680788</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -671,7 +670,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed readme" />
     <MESSAGE value="Fixed custom primitive type definitions" />
     <MESSAGE value="Fixed js-tools missing shebang" />
     <MESSAGE value="Simplified javascript type system and refactored code" />
@@ -696,6 +694,7 @@
     <MESSAGE value="Added kotlin output package auto detection" />
     <MESSAGE value="Added compiler watch mode" />
     <MESSAGE value="Fixed compiler crashing on validation error" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed compiler crashing on validation error" />
+    <MESSAGE value="Modified TypeScript primitive type importing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified TypeScript primitive type importing" />
   </component>
 </project>

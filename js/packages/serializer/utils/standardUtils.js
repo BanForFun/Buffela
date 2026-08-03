@@ -8,7 +8,8 @@ import {serializeSize} from "./typeUtils.js";
  */
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
-        buffer.writeString(value, true)
+        buffer.writeString(value)
+        buffer.writeByte(0)
     } else {
         serializeSize(buffer, sizeType, value.length);
         buffer.writeString(value)

@@ -28,14 +28,8 @@ function deserializeSize(type) {
     const { element } = type
     if (typeof element !== 'object') return element
 
-    let extension = ""
-    switch (element.name) {
-        case 'UByte':
-        case 'UShort':
-        case 'Unsigned':
-            extension = ".toInt()"
-            break;
-    }
+    const nativeType = nativeTypes[element.name]
+    const extension = nativeType === "Int" ? "" : ".toInt()"
 
     return deserializeElement(type) + extension
 }

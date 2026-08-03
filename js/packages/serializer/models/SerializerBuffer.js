@@ -130,11 +130,8 @@ class SerializerBuffer {
         this.#buffer.writeBuffer(bytes)
     }
 
-    writeString(string, nt = false) {
-        if (nt)
-            this.#buffer.writeStringNT(string)
-        else
-            this.#buffer.writeString(string)
+    writeString(string) {
+        this.#buffer.writeString(string)
     }
 
     toBytes() {

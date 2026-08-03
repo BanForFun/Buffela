@@ -148,9 +148,8 @@ class SerializerBuffer {
         this.buffer.write(bytes, 0, bytes.size)
     }
 
-    fun writeString(string: String, nt: Boolean = false) {
+    fun writeString(string: String) {
         this.buffer.writeString(string)
-        if (nt) this.buffer.writeByte(0)
     }
 
     fun toBytes(): ByteArray {

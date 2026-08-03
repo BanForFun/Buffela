@@ -1,3 +1,5 @@
+const nativeTypes = require("../constants/nativeTypes");
+
 function printSerializerImports() {
     printer.line('import gr.elaevents.buffela.serialization.utils.assertLength')
 }
@@ -28,20 +30,8 @@ function printSerializeSize(type, size) {
         return;
     }
 
-    let extension = ""
-    switch (element.name) {
-        case 'UByte':
-            extension = ".toUByte()";
-            break;
-        case 'UShort':
-            extension = ".toUShort()";
-            break;
-        case 'Unsigned':
-            extension = ".toUInt()";
-            break;
-        default:
-            break;
-    }
+    const nativeType = nativeTypes[element.name];
+    const extension = nativeType === "Int" ? "" : `.to${nativeType ?? element.name}()`;
 
     printSerializeElement(type, size + extension)
 }
@@ -105,7 +95,7 @@ function printSerializeElement(type, fieldName) {
             break;
         case 'Bytes':
             printSerializeSize(argument, `${fieldName}.size`)
-            printSerializePrimitive('Bytes', fieldName)
+            printSerializePrimitive(element.name, fieldName)
             break;
         case 'Unsigned':
         case 'Signed':
@@ -117,7 +107,8 @@ function printSerializeElement(type, fieldName) {
                 printSerializePrimitive(element.name, fieldName)
                 break;
             } else {
-                printSerializePrimitive(element.name, fieldName, 'true')
+                printSerializePrimitive(element.name, fieldName)
+                printSerializePrimitive('Byte', '0')
                 break;
             }
         default:
