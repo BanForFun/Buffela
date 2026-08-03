@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added compiler watch mode">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed compiler crashing on validation error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -260,23 +256,8 @@
       <workItem from="1778249665688" duration="258000" />
       <workItem from="1781890700540" duration="5693000" />
       <workItem from="1782301864531" duration="4342000" />
-      <workItem from="1785691680825" duration="24414000" />
-    </task>
-    <task id="LOCAL-00029" summary="Added string length validation">
-      <option name="closed" value="true" />
-      <created>1763139808633</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1763139808633</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Changed enum and object definition syntax">
-      <option name="closed" value="true" />
-      <created>1771065720847</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1771065720847</updated>
+      <workItem from="1785691680825" duration="24793000" />
+      <workItem from="1785751074294" duration="997000" />
     </task>
     <task id="LOCAL-00031" summary="Added alias syntax">
       <option name="closed" value="true" />
@@ -654,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1785719567998</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="Added compiler watch mode">
+      <option name="closed" value="true" />
+      <created>1785722462698</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1785722462698</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Fixed compiler crashing on validation error">
+      <option name="closed" value="true" />
+      <created>1785722559901</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1785722559901</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -672,7 +669,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Moved docs directory" />
     <MESSAGE value="Fixed readme" />
     <MESSAGE value="Fixed custom primitive type definitions" />
     <MESSAGE value="Fixed js-tools missing shebang" />
@@ -697,6 +693,7 @@
     <MESSAGE value="Release 4.0.4" />
     <MESSAGE value="Added kotlin output package auto detection" />
     <MESSAGE value="Added compiler watch mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added compiler watch mode" />
+    <MESSAGE value="Fixed compiler crashing on validation error" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed compiler crashing on validation error" />
   </component>
 </project>

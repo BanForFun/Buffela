@@ -34,8 +34,12 @@ export function serializeField(buffer, type, value, dimension = type.dimensions?
     if (isArray) {
         serializeSize(buffer, type.dimensions[dimension - 1], value.length)
 
-        for (const item of value) {
-            serializeField(buffer, type, item, dimension - 1)
+        for (let i = 0; i < value.length; i++) {
+            try {
+                serializeField(buffer, type, value[i], dimension - 1)
+            } catch(err) {
+                throw new Error(`Unable to serialize element ${i}`, { cause: err })
+            }
         }
     } else {
         type.element._serialize(buffer, value, type.argument)

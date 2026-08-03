@@ -6,6 +6,7 @@ export type TypeName = `${Uppercase<string>}${string}`
 
 interface SchemaNode {
     name: string
+    fullName: string
     path: SchemaNode[]
 }
 
