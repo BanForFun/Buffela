@@ -65,30 +65,32 @@ yargs()
         handler: (argv) => {
             processFiles(argv.schema, argv.watch, (filePath) => {
                 console.log("Compiling", filePath)
-                const inputFile = readSchemaFile(filePath)
-                const nestedDirPath = getNestedDirPath(filePath)
+                const schemaFile = readSchemaFile(filePath)
+                if (schemaFile == null) return
 
                 if (argv.jsonDirPath) {
+                    const nestedDirPath = getNestedDirPath(filePath)
                     const jsonOutputDirPath = path.join(argv.outputDirPath, argv.jsonDirPath, nestedDirPath)
                     if (!existsDirSync(jsonOutputDirPath))
                         throw new Error(`Invalid json output directory '${jsonOutputDirPath}'`)
 
-                    const jsonOutputFilePath = path.join(jsonOutputDirPath, inputFile.name + ".json")
+                    const jsonOutputFilePath = path.join(jsonOutputDirPath, schemaFile.name + ".json")
                     const jsonOutputFileStream = fs.createWriteStream(jsonOutputFilePath)
 
-                    jsonOutputFileStream.write(JSON.stringify(inputFile.schema))
+                    jsonOutputFileStream.write(JSON.stringify(schemaFile.schema))
                     jsonOutputFileStream.end()
                 }
 
                 if (argv.typesDirPath) {
-                    const typesOutputDitPath = path.join(argv.outputDirPath, argv.typesDirPath, nestedDirPath)
-                    if (!existsDirSync(typesOutputDitPath))
-                        throw new Error(`Invalid types output directory '${typesOutputDitPath}'`)
+                    const nestedDirPath = getNestedDirPath(filePath)
+                    const typesOutputDirPath = path.join(argv.outputDirPath, argv.typesDirPath, nestedDirPath)
+                    if (!existsDirSync(typesOutputDirPath))
+                        throw new Error(`Invalid types output directory '${typesOutputDirPath}'`)
 
-                    const typesOutputFilePath = path.join(typesOutputDitPath, inputFile.name + ".ts")
+                    const typesOutputFilePath = path.join(typesOutputDirPath, schemaFile.name + ".ts")
                     const typesOutputFileStream = fs.createWriteStream(typesOutputFilePath)
 
-                    global.schema = parseSchema(inputFile.schema)
+                    global.schema = parseSchema(schemaFile.schema)
                     global.printer = new Printer(typesOutputFileStream)
                     global.options = { serializerEnabled: argv.serializer, deserializerEnabled: argv.deserializer }
 

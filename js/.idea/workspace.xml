@@ -4,16 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added kotlin output package auto detection">
-      <change afterPath="$PROJECT_DIR$/packages/tools/.gitignore" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added compiler watch mode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/AdditionalPropertyError.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/ValidationError.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/readUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/packageUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/packageUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -261,15 +260,7 @@
       <workItem from="1778249665688" duration="258000" />
       <workItem from="1781890700540" duration="5693000" />
       <workItem from="1782301864531" duration="4342000" />
-      <workItem from="1785691680825" duration="21707000" />
-    </task>
-    <task id="LOCAL-00028" summary="Improved error handling">
-      <option name="closed" value="true" />
-      <created>1763139464499</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1763139464499</updated>
+      <workItem from="1785691680825" duration="24414000" />
     </task>
     <task id="LOCAL-00029" summary="Added string length validation">
       <option name="closed" value="true" />
@@ -655,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785695580877</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="Added compiler watch mode">
+      <option name="closed" value="true" />
+      <created>1785719567998</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1785719567998</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -673,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Renamed Buffer to Bytes and fixed BooleanArray js mapping" />
     <MESSAGE value="Moved docs directory" />
     <MESSAGE value="Fixed readme" />
     <MESSAGE value="Fixed custom primitive type definitions" />
@@ -698,6 +696,7 @@
     <MESSAGE value="Fixed readme tabs" />
     <MESSAGE value="Release 4.0.4" />
     <MESSAGE value="Added kotlin output package auto detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added kotlin output package auto detection" />
+    <MESSAGE value="Added compiler watch mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added compiler watch mode" />
   </component>
 </project>

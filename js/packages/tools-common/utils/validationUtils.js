@@ -8,7 +8,12 @@ const {prettifyErrors} = require("./ajvUtils");
 const ajv = new Ajv({ allErrors: true })
 AjvErrors(ajv)
 
-function validateBuffelaSchema(yamlString) {
+/**
+ *
+ * @param {string} yamlString
+ * @returns {object | null}
+ */
+function validateSchema(yamlString) {
     const validate = ajv.compile(readerSchema)
     const buffela = yaml.parse(yamlString)
 
@@ -17,11 +22,11 @@ function validateBuffelaSchema(yamlString) {
 
     const errors = prettifyErrors(validate.errors, buffela, yamlString)
     for (const error of errors) {
-        console.log(error.codeFrame())
-        console.log('\n')
+        console.error(error.codeFrame())
+        console.error('\n')
     }
 
-    throw new Error('Schema validation failed')
+    return null
 }
 
-module.exports = { validateBuffelaSchema }
+module.exports = { validateSchema }

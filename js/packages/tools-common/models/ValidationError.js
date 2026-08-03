@@ -37,7 +37,6 @@ class ValidationError {
 
         const lines = [
             `${chalk.red.bold(`[${this.keyword}]`)} ${this.message}`,
-            // `    ${chalk.blue(`at ${this.schemaPath}`)}\n`,
             frame
         ]
 

@@ -60,28 +60,26 @@ yargs()
         handler: (argv) => {
             processFiles(argv.schema, argv.watch, (filePath) => {
                 console.log("Compiling", filePath)
-                const inputFile = readSchemaFile(filePath)
-                const nestedDirPath = getNestedDirPath(filePath)
+                const schemaFile = readSchemaFile(filePath)
+                if (schemaFile == null) return
 
-                if (argv.outputDirPath) {
-                    const kotlinOutputDirPath = path.join(argv.outputDirPath, nestedDirPath)
-                    if (!existsDirSync(kotlinOutputDirPath))
-                        throw new Error(`Invalid kotlin output directory '${kotlinOutputDirPath}'`)
+                const outputDirPath = path.join(argv.outputDirPath, getNestedDirPath(filePath))
+                if (!existsDirSync(outputDirPath))
+                    throw new Error(`Invalid kotlin output directory '${outputDirPath}'`)
 
-                    const kotlinOutputFilePath = path.join(kotlinOutputDirPath, inputFile.name + ".kt")
-                    const kotlinOutputFileStream = fs.createWriteStream(kotlinOutputFilePath)
+                const outputFilePath = path.join(outputDirPath, schemaFile.name + ".kt")
+                const outputFileStream = fs.createWriteStream(outputFilePath)
 
-                    global.schema = parseSchema(inputFile.schema)
-                    global.printer = new Printer(kotlinOutputFileStream)
-                    global.options = {
-                        serializerEnabled: argv.serializer,
-                        deserializerEnabled: argv.deserializer,
-                        package: argv.package ?? autoDetectPackage(kotlinOutputDirPath)
-                    }
-
-                    printTypes()
-                    kotlinOutputFilePath.end()
+                global.schema = parseSchema(schemaFile.schema)
+                global.printer = new Printer(outputFileStream)
+                global.options = {
+                    serializerEnabled: argv.serializer,
+                    deserializerEnabled: argv.deserializer,
+                    package: argv.package ?? autoDetectPackage(outputDirPath)
                 }
+
+                printTypes()
+                outputFilePath.end()
             })
         }
     })

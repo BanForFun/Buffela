@@ -71,7 +71,8 @@ function buildSchema(fieldSchema, typeSchema) {
                 "minItems": 1,
                 "items": {
                     "type": "string",
-                    "pattern": anchoredPattern(enumValuePattern)
+                    "pattern": anchoredPattern(enumValuePattern),
+                    "errorMessage": "Must begin with capital letter and can only contain capital letters, numbers and underscores"
                 }
             },
             "ObjectDefinition": {
@@ -144,15 +145,17 @@ const editorSchema = buildSchema({
             "type": "string",
             "pattern": "[]",
             "enum": [
+                ...fixedSizeTypes,
+                ...constSizedTypes.map(t => `${t}(N)`),
                 ...sentinelTypes,
-                ...constSizedTypes.map(t => `${t}(4)`),
-                ...sizedTypes.map(t => `${t}(Int)`),
-                ...fixedSizeTypes
+                ...sentinelTypes.map(t => `${t}(N)`),
+                ...sizedTypes.map(t => `${t}(N)`),
+                ...sizedTypes.map(t => `${t}(Int)`)
             ]
         },
     ]
 }, {
-    "oneOf": typeDefinitionSchemata.map(k => k.then),
+    "oneOf": typeDefinitionSchemata.map(k => k.then)
 })
 
 module.exports = {

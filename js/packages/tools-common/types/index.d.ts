@@ -1,7 +1,7 @@
 declare function readSchemaFile(filePath: string): {
-    schema: any;
+    schema: object;
     name: string;
-};
+} | null;
 
 declare function existsDirSync(path: string): boolean;
 
