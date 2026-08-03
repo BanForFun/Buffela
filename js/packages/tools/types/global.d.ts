@@ -7,5 +7,6 @@ declare global {
     let options: {
         serializerEnabled: boolean;
         deserializerEnabled: boolean;
+        primitives: string;
     }
 }

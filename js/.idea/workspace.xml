@@ -6,10 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed compiler crashing on validation error">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/objectUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/types/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +22,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="tsconfig.json" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>

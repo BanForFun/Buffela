@@ -11,6 +11,8 @@ declare function processFiles(matchExpression: string, watch: Boolean, callback:
 
 declare function getNestedDirPath(filePath: string, relativeTo?: string): string;
 
+declare function tryReadFileSync(filePath: string): string | null;
+
 declare class Printer {
     constructor(stream: WritableStream);
 
@@ -23,4 +25,12 @@ declare class Printer {
 
 declare const editorSchema: object;
 
-export { Printer, readSchemaFile, existsDirSync, processFiles, getNestedDirPath, editorSchema };
+export {
+    Printer,
+    readSchemaFile,
+    existsDirSync,
+    processFiles,
+    getNestedDirPath,
+    tryReadFileSync,
+    editorSchema
+};

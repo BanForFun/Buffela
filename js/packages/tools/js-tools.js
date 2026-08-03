@@ -13,6 +13,7 @@ const {
     existsDirSync,
     processFiles,
     getNestedDirPath,
+    tryReadFileSync,
     Printer
 } = require('@buffela/tools-common')
 
@@ -87,12 +88,19 @@ yargs()
                     if (!existsDirSync(typesOutputDirPath))
                         throw new Error(`Invalid types output directory '${typesOutputDirPath}'`)
 
+                    const primitivesFilePath = path.join(typesOutputDirPath, schemaFile.name + ".primitives.ts")
+                    const primitivesFileContents = tryReadFileSync(primitivesFilePath) ?? ""
+
                     const typesOutputFilePath = path.join(typesOutputDirPath, schemaFile.name + ".ts")
                     const typesOutputFileStream = fs.createWriteStream(typesOutputFilePath)
 
                     global.schema = parseSchema(schemaFile.schema)
                     global.printer = new Printer(typesOutputFileStream)
-                    global.options = { serializerEnabled: argv.serializer, deserializerEnabled: argv.deserializer }
+                    global.options = {
+                        serializerEnabled: argv.serializer,
+                        deserializerEnabled: argv.deserializer,
+                        primitives: primitivesFileContents
+                    }
 
                     printTypes()
                     typesOutputFileStream.end()

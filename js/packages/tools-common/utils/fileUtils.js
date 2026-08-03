@@ -14,7 +14,8 @@ function existsDirSync(path) {
 }
 
 /**
- *
+ * Returns the nested directory of relativeTo that filePath is in.
+ * Returns empty string if filePath is not inside relativeTo.
  * @param {string} filePath
  * @param {string} [relativeTo]
  * @returns {string}
@@ -25,6 +26,22 @@ function getNestedDirPath(filePath, relativeTo = "") {
     if (relativeDirPath.startsWith("..")) return ""
 
     return relativeDirPath
+}
+
+/**
+ * Reads a text file if it exists
+ * @param {string} filePath
+ * @returns {string | null}
+ */
+function tryReadFileSync(filePath) {
+    try {
+        return fs.readFileSync(filePath, 'utf8');
+    } catch(err) {
+        if (err.code === 'ENOENT')
+            return null;
+        else
+            throw err;
+    }
 }
 
 /**
@@ -72,4 +89,9 @@ async function processFiles(inputExpr, watch, callback) {
     }
 }
 
-module.exports = { existsDirSync, processFiles, getNestedDirPath }
+module.exports = {
+    existsDirSync,
+    processFiles,
+    getNestedDirPath,
+    tryReadFileSync
+}

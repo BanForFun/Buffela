@@ -1,6 +1,5 @@
-const nativeTypes = require("../constants/nativeTypes");
-const {printSchemaTypes} = require("./schemaTypeUtils");
-const {printSchema} = require("./schemaUtils");
+const { printSchemaTypes } = require("./schemaTypeUtils");
+const { printSchema } = require("./schemaUtils");
 
 function printImports() {
     printer.line(`import type { 
@@ -19,12 +18,8 @@ function printImports() {
     Deserializer as _Deserializer 
 } from "@buffela/deserializer"`)
 
-    for (const type in schema.primitiveTypes) {
-        if (type in nativeTypes) continue;
-        printer.line(`import type ${type} from "./primitives/${type}.ts"`)
-    }
-
     printer.line()
+    printer.line(options.primitives)
 }
 
 function combineExtensions(extensions) {
