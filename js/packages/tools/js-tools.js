@@ -4,40 +4,53 @@ const process = require("node:process");
 const path = require("node:path");
 const fs = require("node:fs")
 
-const yargs = require('yargs')
+const yargs = require('yargs');
 const { hideBin } = require("yargs/helpers");
 
-const { readSchemaFile, resolveOutputFilePath, Printer, existsDirSync} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
+const {
+    readSchemaFile,
+    existsDirSync,
+    processFiles,
+    getNestedDirPath,
+    Printer
+} = require('@buffela/tools-common')
 
 const { printTypes } = require("./utils/typeUtils");
 
+
 yargs()
     .command({
-        command: '* <schema> [rootDir]',
+        command: '* <schema> [outputDirPath]',
         describe: 'Converts buffela schemata to JSON and generates type definitions',
         builder: (yargs) => yargs
             .positional('schema', {
                 describe: 'Schema path',
                 type: 'string'
             })
-            .positional('rootDir', {
-                describe: 'Root output directory',
+            .positional('outputDirPath', {
+                describe: 'Output directory',
                 type: 'string',
                 default: '.',
                 defaultDescription: '(Current directory)'
             })
-            .option('json', {
+            .option('jsonDirPath', {
                 alias: 'j',
-                describe: 'Json output file or directory (relative to rootDir)',
+                describe: 'Json output directory (relative to outputDirPath)',
                 type: 'string',
                 default: '.'
             })
-            .option('types', {
+            .option('typesDirPath', {
                 alias: 't',
-                describe: 'Type output file or directory (relative to rootDir)',
+                describe: 'Types output directory (relative to outputDirPath)',
                 type: 'string',
                 default: '.'
+            })
+            .option('watch', {
+                alias: 'w',
+                describe: 'Watch for changes',
+                type: 'boolean',
+                default: false
             })
             .option('serializer', {
                 describe: 'Generate serializer types',
@@ -50,34 +63,39 @@ yargs()
                 default: true
             }),
         handler: (argv) => {
-            if (!existsDirSync(argv.rootDir)) {
-                console.error('rootDir is not a valid directory')
-                process.exit(1)
-            }
+            processFiles(argv.schema, argv.watch, (filePath) => {
+                console.log("Compiling", filePath)
+                const inputFile = readSchemaFile(filePath)
+                const nestedDirPath = getNestedDirPath(filePath)
 
-            const inputFile = readSchemaFile(argv.schema)
+                if (argv.jsonDirPath) {
+                    const jsonOutputDirPath = path.join(argv.outputDirPath, argv.jsonDirPath, nestedDirPath)
+                    if (!existsDirSync(jsonOutputDirPath))
+                        throw new Error(`Invalid json output directory '${jsonOutputDirPath}'`)
 
-            if (argv.json) {
-                const jsonOutputPath = path.resolve(argv.rootDir, argv.json)
-                const jsonFilePath = resolveOutputFilePath(jsonOutputPath, inputFile.name + ".json")
-                const jsonStream = fs.createWriteStream(jsonFilePath)
+                    const jsonOutputFilePath = path.join(jsonOutputDirPath, inputFile.name + ".json")
+                    const jsonOutputFileStream = fs.createWriteStream(jsonOutputFilePath)
 
-                jsonStream.write(JSON.stringify(inputFile.schema))
-                jsonStream.end()
-            }
+                    jsonOutputFileStream.write(JSON.stringify(inputFile.schema))
+                    jsonOutputFileStream.end()
+                }
 
-            if (argv.types) {
-                const typesOutputPath = path.resolve(argv.rootDir, argv.types)
-                const typesFilePath = resolveOutputFilePath(typesOutputPath, inputFile.name + ".ts")
-                const typesStream = fs.createWriteStream(typesFilePath)
+                if (argv.typesDirPath) {
+                    const typesOutputDitPath = path.join(argv.outputDirPath, argv.typesDirPath, nestedDirPath)
+                    if (!existsDirSync(typesOutputDitPath))
+                        throw new Error(`Invalid types output directory '${typesOutputDitPath}'`)
 
-                global.schema = parseSchema(inputFile.schema)
-                global.printer = new Printer(typesStream)
-                global.options = { serializerEnabled: argv.serializer, deserializerEnabled: argv.deserializer }
+                    const typesOutputFilePath = path.join(typesOutputDitPath, inputFile.name + ".ts")
+                    const typesOutputFileStream = fs.createWriteStream(typesOutputFilePath)
 
-                printTypes()
-                typesStream.end()
-            }
+                    global.schema = parseSchema(inputFile.schema)
+                    global.printer = new Printer(typesOutputFileStream)
+                    global.options = { serializerEnabled: argv.serializer, deserializerEnabled: argv.deserializer }
+
+                    printTypes()
+                    typesOutputFileStream.end()
+                }
+            })
         }
     })
     .strict()

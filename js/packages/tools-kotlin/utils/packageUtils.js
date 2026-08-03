@@ -2,17 +2,17 @@ const path = require("node:path")
 
 /**
  *
- * @param {string} filePath
+ * @param {string} dirPath
  * @return {string}
  */
-function autoDetectPackage(filePath) {
-    const resolvedPath = path.resolve(filePath)
+function autoDetectPackage(dirPath) {
+    const resolvedPath = path.resolve(dirPath)
     const segments = resolvedPath.split(path.sep)
 
     const kotlinSegmentIndex = segments.lastIndexOf('kotlin')
     if (kotlinSegmentIndex === -1) return ""
 
-    return segments.slice(kotlinSegmentIndex + 1, -1).join('.')
+    return segments.slice(kotlinSegmentIndex + 1).join('.')
 }
 
 

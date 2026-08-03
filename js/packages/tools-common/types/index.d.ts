@@ -5,7 +5,11 @@ declare function readSchemaFile(filePath: string): {
 
 declare function existsDirSync(path: string): boolean;
 
-declare function resolveOutputFilePath(outputPath: string, defaultName: string): string;
+type FileProcessor = (filePath: string, workingDirectory: string) => void;
+
+declare function processFiles(matchExpression: string, watch: Boolean, callback: FileProcessor): Promise<void>
+
+declare function getNestedDirPath(filePath: string, relativeTo?: string): string;
 
 declare class Printer {
     constructor(stream: WritableStream);
@@ -19,4 +23,4 @@ declare class Printer {
 
 declare const editorSchema: object;
 
-export { Printer, readSchemaFile, existsDirSync, resolveOutputFilePath, editorSchema };
+export { Printer, readSchemaFile, existsDirSync, processFiles, getNestedDirPath, editorSchema };

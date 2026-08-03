@@ -2,30 +2,44 @@
 
 const process = require("node:process");
 const fs = require("node:fs");
+const path = require("node:path");
 
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
 
-const { readSchemaFile, resolveOutputFilePath, Printer, editorSchema} = require('@buffela/tools-common')
 const { parseSchema } = require("@buffela/parser");
+const {
+    readSchemaFile,
+    existsDirSync,
+    getNestedDirPath,
+    Printer,
+    editorSchema,
+    processFiles
+} = require('@buffela/tools-common')
 
 const { printTypes } = require("./utils/schemaUtils");
 const { autoDetectPackage } = require("./utils/packageUtils");
 
 yargs()
     .command({
-        command: 'compile <schema> [destination]',
-        describe: 'Compiles a buffela schema into kotlin',
+        command: 'compile <schema> [outputDirPath]',
+        describe: 'Compiles a buffela schema into kotlin code',
         builder: (yargs) => yargs
             .positional('schema', {
                 describe: 'Schema path',
                 type: 'string'
             })
-            .positional('destination', {
-                describe: 'Output file or directory',
+            .positional('outputDirPath', {
+                describe: 'Output directory',
                 type: 'string',
                 default: '.',
                 defaultDescription: '(Current directory)'
+            })
+            .option('watch', {
+                alias: 'w',
+                describe: 'Watch for changes',
+                type: 'boolean',
+                default: false
             })
             .option('package', {
                 alias: 'p',
@@ -44,36 +58,48 @@ yargs()
                 default: true
             }),
         handler: (argv) => {
-            const inputFile = readSchemaFile(argv.schema)
+            processFiles(argv.schema, argv.watch, (filePath) => {
+                console.log("Compiling", filePath)
+                const inputFile = readSchemaFile(filePath)
+                const nestedDirPath = getNestedDirPath(filePath)
 
-            const outputFilePath = resolveOutputFilePath(argv.destination, inputFile.name + ".kt")
-            const outputStream = fs.createWriteStream(outputFilePath)
+                if (argv.outputDirPath) {
+                    const kotlinOutputDirPath = path.join(argv.outputDirPath, nestedDirPath)
+                    if (!existsDirSync(kotlinOutputDirPath))
+                        throw new Error(`Invalid kotlin output directory '${kotlinOutputDirPath}'`)
 
-            global.schema = parseSchema(inputFile.schema)
-            global.printer = new Printer(outputStream)
-            global.options = {
-                serializerEnabled: argv.serializer,
-                deserializerEnabled: argv.deserializer,
-                package: argv.package ?? autoDetectPackage(outputFilePath)
-            }
+                    const kotlinOutputFilePath = path.join(kotlinOutputDirPath, inputFile.name + ".kt")
+                    const kotlinOutputFileStream = fs.createWriteStream(kotlinOutputFilePath)
 
-            printTypes()
-            outputStream.end()
+                    global.schema = parseSchema(inputFile.schema)
+                    global.printer = new Printer(kotlinOutputFileStream)
+                    global.options = {
+                        serializerEnabled: argv.serializer,
+                        deserializerEnabled: argv.deserializer,
+                        package: argv.package ?? autoDetectPackage(kotlinOutputDirPath)
+                    }
+
+                    printTypes()
+                    kotlinOutputFilePath.end()
+                }
+            })
         }
     })
     .command({
-        command: 'schema [destination]',
+        command: 'schema [outputPath]',
         describe: 'Outputs the JSON schema for buffela schemata',
-        builder: (yargs) => yargs.positional('destination', {
-            describe: 'The output file or directory',
+        builder: (yargs) => yargs.positional('outputPath', {
+            describe: 'The output file or directory path',
             type: 'string',
             default: '.',
             defaultDescription: '(Current directory)'
         }),
         handler: (argv) => {
-            const outputStream = getFileOutputStream(argv.destination, "buffela-schema.json")
-            outputStream.write(JSON.stringify(editorSchema, null, 2))
-            outputStream.end()
+            const outputPath = existsDirSync(argv.outputPath)
+                ? path.join(argv.outputPath, "buffela-schema.json")
+                : argv.outputPath
+
+            fs.writeFileSync(outputPath, JSON.stringify(editorSchema, null, 2))
         }
     })
     .strict()
