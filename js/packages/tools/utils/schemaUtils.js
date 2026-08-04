@@ -105,7 +105,7 @@ function printSchemaType() {
     printer.blockStart('primitiveTypes: {')
     for (const name in schema.primitiveTypes) {
         if (name in nativeTypes) continue;
-        printer.line(`${name}?: _Primitive<${name}>`)
+        printer.line(`${name}?: _Primitive<_Primitives.${name}>`)
     }
     printer.blockEnd('}')
 

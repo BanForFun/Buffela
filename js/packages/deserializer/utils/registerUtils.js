@@ -2,44 +2,17 @@ import {standardDeserializers} from "./standardUtils.js";
 import DeserializerBuffer from "../models/DeserializerBuffer.js";
 import {deserializeEnum} from "./enumUtils.js";
 import {deserializeObject} from "./objectUtils.js";
-import {deserializerPrimitiveSize} from "./typeUtils.js";
 
 const standardNames = new Set(Object.keys(standardDeserializers))
-
-class InstantiatedPrimitiveSizeAdapter {
-    /**
-     * @type {DeserializerTypes.InstantiatedPrimitiveSizeType}
-     */
-    #argument;
-
-    constructor(argument) {
-        this.#argument = argument;
-    }
-
-    /**
-     *
-     * @param {DeserializerBuffer} buffer
-     * @return {unknown}
-     */
-    deserialize(buffer) {
-        return deserializerPrimitiveSize(buffer, this.#argument);
-    }
-}
 
 /**
  *
  * @param {DeserializerBuffer} buffer
- * @param {DeserializerTypes.InstantiatedSizeType | null} arg
+ * @param {DeserializerTypes.InstantiatedConstSizeType | null} arg
  * @return {unknown}
  */
 function deserializeCustomPrimitive(buffer, arg) {
-    if (arg == null) {
-        return this._deserializer.deserialize(buffer)
-    } else if (typeof arg.element === "object") {
-        return this._deserializer.deserialize(buffer, new InstantiatedPrimitiveSizeAdapter(arg).deserialize)
-    } else {
-        return this._deserializer.deserialize(buffer, arg.element)
-    }
+    return this._doDeserialize(buffer, arg?.element)
 }
 
 /**
@@ -93,7 +66,7 @@ export function registerDeserializer(schema, customDeserializers) {
             if (deserializer.argument === 'required' && primitive.usedWithoutArgument)
                 throw new Error(`Type '${name}' needs an argument`)
 
-            primitive._deserializer = deserializer
+            primitive._doDeserialize = deserializer.deserialize
             primitive._deserialize = deserializeCustomPrimitive
         }
     }

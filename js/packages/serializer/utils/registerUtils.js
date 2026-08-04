@@ -2,44 +2,17 @@ import {standardSerializers} from "./standardUtils.js";
 import SerializerBuffer from "../models/SerializerBuffer.js";
 import {serializeEnum} from "./enumUtils.js";
 import {serializeObject} from "./objectUtils.js";
-import {serializePrimitiveSize} from "./typeUtils.js"
 
 const standardNames = new Set(Object.keys(standardSerializers))
-
-class InstantiatedPrimitiveSizeAdapter {
-    /**
-     * @type {SerializerTypes.InstantiatedPrimitiveSizeType}
-     */
-    #argument;
-
-    constructor(argument) {
-        this.#argument = argument;
-    }
-
-    /**
-     *
-     * @param {SerializerBuffer} buffer
-     * @param {unknown} value
-     */
-    serialize(buffer, value) {
-        serializePrimitiveSize(buffer, this.#argument, value)
-    }
-}
 
 /**
  *
  * @param {SerializerBuffer} buffer
  * @param {any} value
- * @param {SerializerTypes.InstantiatedSizeType | null} arg
+ * @param {SerializerTypes.InstantiatedConstSizeType | null} arg
  */
 function serializeCustomPrimitive(buffer, value, arg) {
-    if (arg == null) {
-        this._serializer.serialize(buffer, value)
-    } else if (typeof arg.element === "object") {
-        this._serializer.serialize(buffer, value, new InstantiatedPrimitiveSizeAdapter(arg).serialize)
-    } else {
-        this._serializer.serialize(buffer, value, arg.element)
-    }
+    this._doSerialize(buffer, value, arg?.element)
 }
 
 /**
@@ -94,7 +67,7 @@ export function registerSerializer(schema, customSerializers) {
             if (serializer.argument === 'required' && primitive.usedWithoutArgument)
                 throw new Error(`Type '${name}' needs an argument`)
 
-            primitive._serializer = serializer
+            primitive._doSerialize = serializer.serialize
             primitive._serialize = serializeCustomPrimitive
         }
     }

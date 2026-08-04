@@ -29,10 +29,8 @@ export interface Serializable<T> {
     serialize(value: T): Uint8Array
 }
 
-export type SerializerArgument = number | ((buffer: SerializerBuffer, value: unknown) => void)
-
 export interface Serializer<T> extends CustomPrimitiveConfiguration {
-    serialize(buffer: SerializerBuffer, value: T, argument?: SerializerArgument): void
+    serialize(buffer: SerializerBuffer, value: T, argument?: number): void
 }
 
 type PrimitiveSerializers<S extends Record<string, Extensions>> = {

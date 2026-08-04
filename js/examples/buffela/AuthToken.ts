@@ -76,7 +76,7 @@ type _Schema = {
     readonly AuthTokenPayload: _TypeSchema<AuthTokenPayload> & {}
     readonly AuthTokenSignature: _TypeSchema<AuthTokenSignature> & {}
     primitiveTypes: {
-        Date?: _Primitive<Date>
+        Date?: _Primitive<_Primitives.Date>
     }
 }
 
