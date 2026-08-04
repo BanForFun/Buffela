@@ -4,28 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added javascript support for custom parameterized types">
-      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsonSchemas.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsonSchemas.xml" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.primitives.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.primitives.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/primitives/Date.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/models/Printer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/patternUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/patternUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/constants/nativeTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/complexTypeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/typeUtils.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -279,15 +260,7 @@
       <workItem from="1785751074294" duration="997000" />
       <workItem from="1785794929723" duration="10126000" />
       <workItem from="1785805072875" duration="7179000" />
-      <workItem from="1785841333529" duration="18114000" />
-    </task>
-    <task id="LOCAL-00034" summary="Implemented serializer">
-      <option name="closed" value="true" />
-      <created>1771440579689</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1771440579689</updated>
+      <workItem from="1785841333529" duration="18761000" />
     </task>
     <task id="LOCAL-00035" summary="Combined json converter and type generator">
       <option name="closed" value="true" />
@@ -673,7 +646,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785811738587</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name">
+      <option name="closed" value="true" />
+      <created>1785867901222</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1785867901222</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -691,7 +672,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Simplified javascript type system and refactored code" />
     <MESSAGE value="Fixed clearBitBuffer function" />
     <MESSAGE value="Fixed typed array unnecessary copy during serialization" />
     <MESSAGE value="Improved examples" />
@@ -716,6 +696,7 @@
     <MESSAGE value="Modified TypeScript primitive type importing" />
     <MESSAGE value="Removed writeString nt parameter" />
     <MESSAGE value="Added javascript support for custom parameterized types" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added javascript support for custom parameterized types" />
+    <MESSAGE value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
   </component>
 </project>

@@ -3,15 +3,16 @@ const {optConstSizeTypes, varSizeTypes, fixedSizeTypes} = require('./buffelaType
 const Pattern = require('../utils/patternUtils')
 const Schema = require('../utils/jsonSchemaUtils')
 
+const standardTypes = [ ...varSizeTypes, ...optConstSizeTypes, ...fixedSizeTypes ]
+
 const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
 const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
 const fixedSizeTypeNamePattern = Pattern.oneOf(...fixedSizeTypes)
 const varSizeTypeNamePattern = Pattern.oneOf(...varSizeTypes)
-const optConstSizeTypeNamePattern = Pattern.excludeBehind(typeNamePattern, ...varSizeTypes, ...fixedSizeTypes)
-const standardTypeNamePattern = Pattern.oneOf(...varSizeTypes, ...optConstSizeTypes, ...fixedSizeTypes)
-const rootTypeNamePattern = Pattern.excludeAhead(typeNamePattern, standardTypeNamePattern)
+const optConstSizeTypeNamePattern = Pattern.oneOf(...optConstSizeTypes)
+const userTypeNamePattern = Pattern.excludeBehind(typeNamePattern, ...standardTypes)
 
 const sizePattern = Pattern.oneOf(
     "\\d+",
@@ -35,7 +36,7 @@ function buildSchema(fieldSchema, typeSchema) {
                 "items": {
                     "type": "string",
                     "pattern": Pattern.anchored(enumValuePattern),
-                    "errorMessage": "Must be capitalized and can contain uppercase letters, numbers and underscores"
+                    "errorMessage": "Must be uppercase and start with a letter; can also contain numbers and underscores."
                 }
             },
             "ObjectDefinition": {
@@ -49,7 +50,7 @@ function buildSchema(fieldSchema, typeSchema) {
         },
         "type": "object",
         "patternProperties": {
-            [Pattern.anchored(rootTypeNamePattern)]: typeSchema
+            [Pattern.anchored(userTypeNamePattern)]: typeSchema
         },
         "additionalProperties": false
     }
@@ -78,9 +79,14 @@ const fieldSchemata = [
     ),
 
     fieldSchema(
-        optConstSizeTypeNamePattern, `(\\(\\d*\\))?${optionalSuffixPattern}${arraySuffixPattern}`,
+        optConstSizeTypeNamePattern, `(\\(\\d+\\))?${optionalSuffixPattern}${arraySuffixPattern}`,
         "Expected a constant size e.g. (10) and/or array dimensions e.g. [10] or [UByte]"
-    )
+    ),
+
+    fieldSchema(
+        userTypeNamePattern, `(\\(\\d*\\))?${optionalSuffixPattern}${arraySuffixPattern}`,
+        "Expected a constant size e.g. (10) and/or array dimensions e.g. [10] or [UByte]"
+    ),
 ]
 
 const typeDefinitionSchemata = [
