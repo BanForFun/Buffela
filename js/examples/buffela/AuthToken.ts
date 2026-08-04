@@ -13,8 +13,8 @@ import type {
     Deserializable as _Deserializable, 
     Deserializer as _Deserializer 
 } from "@buffela/deserializer"
-import type Date from "./primitives/Date.ts"
 
+import type Date from "./primitives/Date.ts"
 type _TypeSchema<T> = Partial<_Serializable<T> & _Deserializable<T>>
 type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
 

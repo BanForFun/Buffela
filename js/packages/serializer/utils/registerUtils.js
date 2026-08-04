@@ -1,11 +1,54 @@
-import {standardNames, standardSerializers} from "./standardUtils.js";
+import {nullarySerializers, unarySerializers, variadicSerializers} from "./standardUtils.js";
 import SerializerBuffer from "../models/SerializerBuffer.js";
 import {serializeEnum} from "./enumUtils.js";
 import {serializeObject} from "./objectUtils.js";
+import {serializePrimitiveSize} from "./typeUtils.js"
+
+const standardNames = new Set([
+    ...Object.keys(nullarySerializers),
+    ...Object.keys(variadicSerializers),
+    ...Object.keys(unarySerializers),
+])
+
+class InstantiatedPrimitiveSizeAdapter {
+    /**
+     * @type {SerializerTypes.InstantiatedPrimitiveSizeType}
+     */
+    #argument;
+
+    constructor(argument) {
+        this.#argument = argument;
+    }
+
+    /**
+     *
+     * @param {SerializerBuffer} buffer
+     * @param {unknown} value
+     */
+    serialize(buffer, value) {
+        serializePrimitiveSize(buffer, this.#argument, value)
+    }
+}
 
 /**
  *
- * @this {Serializer}
+ * @param {SerializerBuffer} buffer
+ * @param {any} value
+ * @param {SerializerTypes.InstantiatedSizeType | null} arg
+ */
+function serializeCustomPrimitive(buffer, value, arg) {
+    if (arg == null) {
+        this._serializer.serialize(buffer, value)
+    } else if (typeof arg.element === "object") {
+        this._serializer.serialize(buffer, value, new InstantiatedPrimitiveSizeAdapter(arg).serialize)
+    } else {
+        this._serializer.serialize(buffer, value, arg.element)
+    }
+}
+
+/**
+ *
+ * @this {SerializerExtensions}
  * @param {unknown} value
  * @param {SerializerBuffer} [buffer]
  */
@@ -21,15 +64,13 @@ function serializeComplexType(value, buffer) {
 
 /**
  *
- * @param {Serializer.Schema} schema
+ * @param {SerializerTypes.Schema} schema
  * @param {Object.<string, CustomSerializer>} customSerializers
  */
 export function registerSerializer(schema, customSerializers) {
-    const unresolvedNames = new Set(Object.keys(schema.primitiveTypes))
     const customNames = new Set(Object.keys(customSerializers))
-
     const missingNames = Array.from(
-        unresolvedNames
+        new Set(Object.keys(schema.primitiveTypes))
             .difference(standardNames)
             .difference(customNames)
     )
@@ -43,17 +84,52 @@ export function registerSerializer(schema, customSerializers) {
     schema.enumExtensions._serialize = serializeEnum
     schema.objectExtensions._serialize = serializeObject
 
-    for (const name in standardSerializers) {
-        const primitive = schema.primitiveTypes[name]
-        if (primitive) {
-            primitive._serialize = standardSerializers[name]
-        }
-    }
-
     for (const name in customSerializers) {
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
-            primitive._serialize = customSerializers[name].serialize
+            const serializer = customSerializers[name]
+
+            if (serializer.argument === 'none' && primitive.usedWithArgument)
+                throw new Error(`Type '${name}' does not take arguments`)
+
+            if (serializer.argument === 'required' && primitive.usedWithoutArgument)
+                throw new Error(`Type '${name}' needs an argument`)
+
+            primitive._serializer = serializer
+            primitive._serialize = serializeCustomPrimitive
+        }
+    }
+
+    for (const name in nullarySerializers) {
+        if (name in customSerializers) continue
+
+        const primitive = schema.primitiveTypes[name]
+        if (primitive) {
+            if (primitive.usedWithArgument)
+                throw new Error(`Type '${name}' does not take arguments`)
+
+            primitive._serialize = nullarySerializers[name]
+        }
+    }
+
+    for (const name in variadicSerializers) {
+        if (name in customSerializers) continue
+
+        const primitive = schema.primitiveTypes[name]
+        if (primitive) {
+            primitive._serialize = variadicSerializers[name]
+        }
+    }
+
+    for (const name in unarySerializers) {
+        if (name in customSerializers) continue
+
+        const primitive = schema.primitiveTypes[name]
+        if (primitive) {
+            if (primitive.usedWithoutArgument)
+                throw new Error(`Type '${name}' needs an argument`)
+
+            primitive._serialize = unarySerializers[name]
         }
     }
 }

@@ -1,5 +1,5 @@
 /**
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedSizeType} type
  */
 function isConstantType(type) {
     return typeof type.element !== 'object'

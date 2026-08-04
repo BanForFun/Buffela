@@ -8,6 +8,8 @@ const primitivePrototype = { kind: 'primitive' }
 function createPrimitive(name) {
     const primitive = Object.create(primitivePrototype)
     primitive.name = name
+    primitive.usedWithArgument = false
+    primitive.usedWithoutArgument = false
 
     return primitive
 }
@@ -33,17 +35,17 @@ export default class Schema {
     }
 
     sizeType(size) {
-        if (size <= 1) return new InstantiatedType(0);
+        if (size <= 1) return null
 
         const bits = Math.floor(Math.log2(size - 1)) + 1
-        const sizeType = new InstantiatedType(this.lookupType("Unsigned"))
+        const sizeType = new InstantiatedType(this.lookupPrimitive("UInt"))
         sizeType.argument = new InstantiatedType(bits)
 
         return sizeType
     }
 
-    lookupType(name) {
-        return this[name] ?? (this.primitiveTypes[name] ??= createPrimitive(name))
+    lookupPrimitive(name) {
+        return this.primitiveTypes[name] ??= createPrimitive(name)
     }
 
     lookupAlias(name) {

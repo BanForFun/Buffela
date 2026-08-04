@@ -1,19 +1,19 @@
 const fixedSizeTypes = [
     "UByte",
     "UShort",
-    "Int",
     "Boolean",
     "Byte",
     "Short",
     "Long",
     "Float",
     "Double",
-    "UInt",
     "ULong",
 ]
 
 const sentinelTypes = [
     "String",
+    "Int",
+    "UInt"
 ]
 
 const sizedTypes = [
@@ -31,14 +31,8 @@ const sizedTypes = [
     "Bytes",
 ]
 
-const constSizedTypes = [
-    "Signed",
-    "Unsigned"
-]
-
 module.exports = {
     sentinelTypes,
-    constSizedTypes,
     sizedTypes,
     fixedSizeTypes
 }

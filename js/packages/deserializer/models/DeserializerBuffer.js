@@ -29,36 +29,8 @@ export default class DeserializerBuffer {
         return value
     }
 
-    clearBitBuffer() {
+    alignToByte() {
         this.#bitCount = 0
-    }
-
-    readUnsigned(bitLength) {
-        let result = 0
-        let totalRead = 0
-
-        while (totalRead < bitLength) {
-            if (this.#bitCount === 0) this.#loadBits()
-
-            const readLength = Math.min(this.#bitCount, bitLength - totalRead)
-            const lsb = this.#readLSBits(readLength)
-            const shifted = lsb << totalRead
-
-            result |= shifted
-            totalRead += readLength
-        }
-
-        return result
-    }
-
-    readSigned(bitLength) {
-        let result = this.readUnsigned(bitLength)
-
-        const prefixLength = 32 - bitLength
-        result <<= prefixLength
-        result >>= prefixLength
-
-        return result;
     }
 
     readByte() {
@@ -77,12 +49,40 @@ export default class DeserializerBuffer {
         return this.#buffer.readUInt16LE()
     }
 
-    readInt() {
-        return this.#buffer.readInt32LE()
+    readInt(bitLength = null) {
+        if (bitLength == null) {
+            return this.#buffer.readInt32LE();
+        } else {
+            let result = this.readUInt(bitLength)
+
+            const prefixLength = 32 - bitLength
+            result <<= prefixLength
+            result >>= prefixLength
+
+            return result;
+        }
     }
 
-    readUInt() {
-        return this.#buffer.readUInt32LE()
+    readUInt(bitLength = null) {
+        if (bitLength == null) {
+            return this.#buffer.readUInt32LE();
+        } else {
+            let result = 0
+            let totalRead = 0
+
+            while (totalRead < bitLength) {
+                if (this.#bitCount === 0) this.#loadBits()
+
+                const readLength = Math.min(this.#bitCount, bitLength - totalRead)
+                const lsb = this.#readLSBits(readLength)
+                const shifted = lsb << totalRead
+
+                result |= shifted
+                totalRead += readLength
+            }
+
+            return result
+        }
     }
 
     readLong() {
@@ -102,14 +102,16 @@ export default class DeserializerBuffer {
     }
 
     readBoolean() {
-        return !!this.readUnsigned(1)
+        return !!this.readUInt(1)
     }
 
     readBytes(length) {
         return this.#buffer.readBuffer(length)
     }
 
-    readString(length = 0) {
-        return length ? this.#buffer.readString(length) : this.#buffer.readStringNT()
+    readString(length = null) {
+        return length != null
+            ? this.#buffer.readString(length)
+            : this.#buffer.readStringNT()
     }
 }

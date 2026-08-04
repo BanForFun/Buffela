@@ -9,10 +9,11 @@
               <option name="generatedName" value="New Schema" />
               <option name="name" value="buffela-schema" />
               <option name="relativePathToSchema" value="packages/tools-common/schemata/buffela-schema.json" />
+              <option name="schemaVersion" value="JSON Schema 202,012" />
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="file://$PROJECT_DIR$/../AuthToken.yaml" />
+                    <option name="path" value="packages/tools-common/test/Test.yaml" />
                   </Item>
                 </list>
               </option>

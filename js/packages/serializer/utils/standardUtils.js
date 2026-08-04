@@ -1,17 +1,19 @@
-import {serializeSize} from "./typeUtils.js";
+import { serializeSize } from "./typeUtils.js";
 
 /**
  *
  * @param {SerializerBuffer} buffer
  * @param {string} value
- * @param {Serializer.InstantiatedType | null} sizeType
+ * @param {SerializerTypes.InstantiatedConstSizeType | null} sizeType
  */
 function serializeString(buffer, value, sizeType) {
     if (sizeType === null) {
         buffer.writeString(value)
         buffer.writeByte(0)
     } else {
-        serializeSize(buffer, sizeType, value.length);
+        if (value.length !== sizeType.element)
+            throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)
+
         buffer.writeString(value)
     }
 }
@@ -19,8 +21,28 @@ function serializeString(buffer, value, sizeType) {
 /**
  *
  * @param {SerializerBuffer} buffer
+ * @param {number} value
+ * @param {SerializerTypes.InstantiatedConstSizeType | null} sizeType
+ */
+function serializeInt(buffer, value, sizeType) {
+    buffer.writeInt(value, sizeType?.element)
+}
+
+/**
+ *
+ * @param {SerializerBuffer} buffer
+ * @param {number} value
+ * @param {SerializerTypes.InstantiatedConstSizeType | null} sizeType
+ */
+function serializeUInt(buffer, value, sizeType) {
+    buffer.writeUInt(value, sizeType?.element)
+}
+
+/**
+ *
+ * @param {SerializerBuffer} buffer
  * @param {TypedArray} value
- * @param {Serializer.InstantiatedType} sizeType
+ * @param {SerializerTypes.InstantiatedSizeType} sizeType
  */
 function serializeTypedArray(buffer, value, sizeType) {
     serializeSize(buffer, sizeType, value.length);
@@ -31,7 +53,7 @@ function serializeTypedArray(buffer, value, sizeType) {
  *
  * @param {SerializerBuffer} buffer
  * @param {boolean[]} values
- * @param {Serializer.InstantiatedType} sizeType
+ * @param {SerializerTypes.InstantiatedSizeType} sizeType
  */
 function serializeBooleanArray(buffer, values, sizeType) {
     serializeSize(buffer, sizeType, values.length);
@@ -42,23 +64,35 @@ function serializeBooleanArray(buffer, values, sizeType) {
 
 /**
  *
- * @type {Object.<string, Serialize>}
+ * @type {Object.<string, SerializeCallback>}
  */
-export const standardSerializers = {
+export const nullarySerializers = {
     Byte: (buffer, value) => buffer.writeByte(value),
     UByte: (buffer, value) => buffer.writeUByte(value),
     Short: (buffer, value) => buffer.writeShort(value),
     UShort: (buffer, value) => buffer.writeUShort(value),
-    Int: (buffer, value) => buffer.writeInt(value),
-    UInt: (buffer, value) => buffer.writeUInt(value),
     Long: (buffer, value) => buffer.writeLong(value),
     ULong: (buffer, value) => buffer.writeULong(value),
     Float: (buffer, value) => buffer.writeFloat(value),
     Double: (buffer, value) => buffer.writeDouble(value),
     Boolean: (buffer, value) => buffer.writeBoolean(value),
-    Signed: (buffer, value, arg) => buffer.writeSigned(value, arg.element),
-    Unsigned: (buffer, value, arg) => buffer.writeUnsigned(value, arg.element),
+}
+
+/**
+ *
+ * @type {Object.<string, SerializeCallback>}
+ */
+export const variadicSerializers = {
+    Int: serializeInt,
+    UInt: serializeUInt,
     String: serializeString,
+}
+
+/**
+ *
+ * @type {Object.<string, SerializeCallback>}
+ */
+export const unarySerializers = {
     Bytes: serializeTypedArray,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,
@@ -72,5 +106,3 @@ export const standardSerializers = {
     DoubleArray: serializeTypedArray,
     BooleanArray: serializeBooleanArray,
 }
-
-export const standardNames = new Set(Object.keys(standardSerializers))

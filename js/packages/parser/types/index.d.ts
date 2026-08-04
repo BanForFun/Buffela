@@ -18,8 +18,11 @@ interface SchemaNodeByPath<P> {
     path: { [K in keyof P]: SchemaNodeByName<P[K]> }
 }
 
-type AbsoluteSchemaNode<P extends string[]> = SchemaNodeByPath<Omit<P, keyof any[]>>
-export type RelativeSchemaNode<D extends number, N extends string> = SchemaNodeByPath<{ [K in D]: N }>
+type AbsoluteSchemaNode<P extends string[]> =
+    SchemaNodeByPath<Omit<P, keyof any[]>>
+
+export type RelativeSchemaNode<D extends number, N extends string> =
+    SchemaNodeByPath<{ [K in D]: N }>
 
 export interface AbsoluteEnumEntry<P extends string[]> extends AbsoluteSchemaNode<P> {
 
@@ -29,20 +32,33 @@ export interface AbsoluteSubtypeSchema<P extends string[]> extends AbsoluteSchem
     instanceOf(value: unknown): value is { _type: AbsoluteSchemaNode<P>}
 }
 
-type Type<K extends string, E extends Extensions> = E & {
-    name: string
+type DataType<K extends string, E extends Extensions> = E & {
+    name: string,
     kind: K
 }
 
-export type InstantiatedType<E extends Extensions> = {
-    optional: boolean // it is also used on const numeric optional array dimensions
-    element: Type<string, E> | number
-    argument: InstantiatedType<E> | null
-    dimensions: InstantiatedType<E>[]
+export type InstantiatedConstSizeType = {
+    element: number
 }
 
-export type InstantiatedFieldType<E extends Extensions> = InstantiatedType<E> & {
-    element: object
+export type InstantiatedPrimitiveSizeType<E extends Extensions> = {
+    element: DataType<string, E>
+    argument: InstantiatedConstSizeType | null
+}
+
+export type InstantiatedSizeType<E extends Extensions> =
+    InstantiatedConstSizeType | InstantiatedPrimitiveSizeType<E>
+
+export type InstantiatedFieldType<E extends Extensions> = {
+    element: DataType<string, E>,
+    argument: InstantiatedSizeType<E> | null,
+    optional: boolean,
+    dimensions: InstantiatedFieldTypeDimension<E>[]
+}
+
+export type InstantiatedFieldTypeDimension<E extends Extensions> = {
+    sizeType: InstantiatedSizeType<E>,
+    optional: boolean
 }
 
 export interface Field<E extends Extensions> {
@@ -51,11 +67,11 @@ export interface Field<E extends Extensions> {
     type: InstantiatedFieldType<E>
 }
 
-export type ObjectType<E extends Extensions> = SchemaNode & Type<'object', E> & {
+export type ObjectType<E extends Extensions> = SchemaNode & DataType<'object', E> & {
     [subtype: TypeName]: ObjectType<E>
 
     path: ObjectType<E>[]
-    leafIndexType: InstantiatedType<E>
+    leafIndexType: InstantiatedPrimitiveSizeType<E> | null
     ownFields: Record<string, Field<E>>
     allFields?: Record<string, Field<E>>
 
@@ -74,11 +90,16 @@ export interface EnumEntry extends SchemaNode {
     index: number;
 }
 
-export type EnumType<E extends Extensions> = SchemaNode & Type<'enum', E> & {
+export type EnumType<E extends Extensions> = SchemaNode & DataType<'enum', E> & {
     [value: EnumValue]: EnumEntry
 
-    entryIndexType: InstantiatedType<E>
+    entryIndexType: InstantiatedPrimitiveSizeType<E> | null
     entries: EnumEntry[]
+}
+
+export type PrimitiveType<E extends Extensions> = DataType<'primitive', E> & {
+    usedWithArgument: boolean
+    usedWithoutArgument: boolean
 }
 
 export type RootType<E extends Extensions> = EnumType<E> | ObjectType<E>
@@ -89,7 +110,11 @@ export interface Schema<E extends Extensions, C extends Extensions> {
     complexExtensions: E & C
     objectExtensions: E
     enumExtensions: E
-    primitiveTypes: Record<string, Type<'primitive', E>>
+    primitiveTypes: Record<string, PrimitiveType<E>>
+}
+
+export interface CustomPrimitiveConfiguration {
+    argument: 'none' | 'optional' | 'required'
 }
 
 export interface SimplifiedSchema {

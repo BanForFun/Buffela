@@ -2,12 +2,12 @@ import { deserializeField, deserializeSize } from "./typeUtils.js";
 
 /**
  *
- * @this {Deserializer.ObjectType}
+ * @this {DeserializerTypes.ObjectType}
  * @param {DeserializerBuffer} buffer
  * @return {object}
  */
 export function deserializeObject(buffer) {
-    const leafIndex = deserializeSize(buffer, this.leafIndexType)
+    const leafIndex = this.leafIndexType ? deserializeSize(buffer, this.leafIndexType) : 0
     const leafType = this.leaves[leafIndex]
 
     const result = this.isLeaf ? {} : { _type: leafType }

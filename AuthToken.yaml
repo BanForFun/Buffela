@@ -6,7 +6,7 @@ Gender:
   - MALE
 
 Phone:
-  countryCode: Unsigned(10)
+  countryCode: UInt(10)
   number: String
 
 User:
@@ -15,7 +15,7 @@ User:
   Anonymous: {}
 
   Registered:
-    verified: Boolean
+    verified: Boolean()
 
     Viewer:
       birthDate: Date

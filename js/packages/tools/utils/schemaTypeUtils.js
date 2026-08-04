@@ -2,7 +2,7 @@ const nativeTypes = require("../constants/nativeTypes");
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @returns {string}
  */
 function printFieldType(type) {

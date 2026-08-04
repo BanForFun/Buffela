@@ -41,45 +41,17 @@ class SerializerBuffer {
 
             this.#writeLSBits(value, available)
             this.#flushBits()
-            this.clearBitBuffer()
+            this.alignToByte()
 
             value >>= available
             bitLength -= available
         }
     }
 
-    clearBitBuffer() {
+    alignToByte() {
         this.#flushBits()
         this.#bitCount = 0
         this.#bitBuffer = 0
-    }
-
-    writeSigned(value, bitLength) {
-        // Bit shifts return 32-bit SIGNED integers so we cannot decode 32-bit unsigned values.
-        // Technically we could allow 32-bit signed bit fields only, but that would be weird
-        // Just use a regular Int/UInt
-        if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
-
-        // Here we could use bit shifts to calculate the range,
-        // but I prefer to stay consistent with the unsigned implementation where we cannot
-        const minValue = -Math.pow(2, bitLength - 1)
-        const maxValue = Math.pow(2, bitLength - 1) - 1
-
-        if (value < minValue || value > maxValue)
-            throw new Error('Value out of range')
-
-        this.#writeTruncated(value, bitLength)
-    }
-
-    writeUnsigned(value, bitLength) {
-        if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
-
-        const maxValue = Math.pow(2, bitLength) - 1
-
-        if (value < 0 || value > maxValue)
-            throw new Error('Value out of range')
-
-        this.#writeTruncated(value, bitLength)
     }
 
     writeByte(byte) {
@@ -98,12 +70,40 @@ class SerializerBuffer {
         this.#buffer.writeUInt16LE(uShort)
     }
 
-    writeInt(int) {
-        this.#buffer.writeInt32LE(int)
+    writeInt(int, bitLength = null) {
+        if (bitLength == null) {
+            this.#buffer.writeInt32LE(int)
+        } else {
+            // Bit shifts return 32-bit SIGNED integers so we cannot decode 32-bit unsigned values.
+            // Technically we could allow 32-bit signed bit fields only, but that would be weird
+            // Just use a regular Int/UInt
+            if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
+
+            // Here we could use bit shifts to calculate the range,
+            // but I prefer to stay consistent with the unsigned implementation where we cannot
+            const minValue = -Math.pow(2, bitLength - 1)
+            const maxValue = Math.pow(2, bitLength - 1) - 1
+
+            if (int < minValue || int > maxValue)
+                throw new Error('Value out of range')
+
+            this.#writeTruncated(int, bitLength)
+        }
     }
 
-    writeUInt(uInt) {
-        this.#buffer.writeUInt32LE(uInt)
+    writeUInt(uInt, bitLength = null) {
+        if (bitLength == null) {
+            this.#buffer.writeUInt32LE(uInt)
+        } else {
+            if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
+
+            const maxValue = Math.pow(2, bitLength) - 1
+
+            if (uInt < 0 || uInt > maxValue)
+                throw new Error('Value out of range')
+
+            this.#writeTruncated(uInt, bitLength)
+        }
     }
 
     writeLong(long) {

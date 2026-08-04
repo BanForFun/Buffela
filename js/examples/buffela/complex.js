@@ -12,31 +12,33 @@ const schemaJson = require('./AuthToken.json')
 /** @type {import('./AuthToken').default} */
 const schema = parseSchema(schemaJson)
 
-registerSerializer(schema, {
-    Date: {
-        serialize(buffer, value) {
-            const yearMonth = value.year * 12 + (value.month - 1)
-            const day = value.day - 1
+const DateType = {
+    argument: 'none',
+    serialize(buffer, value) {
+        const yearMonth = value.year * 12 + (value.month - 1)
+        const day = value.day - 1
 
-            buffer.writeUnsigned(yearMonth, 17)
-            buffer.writeUnsigned(day, 5)
+        buffer.writeUInt(yearMonth, 17)
+        buffer.writeUInt(day, 5)
+    },
+    deserialize(buffer) {
+        const yearMonth = buffer.readUInt(17)
+        const day = buffer.readUInt(5)
+
+        return {
+            year: Math.floor(yearMonth / 12),
+            month: yearMonth % 12 + 1,
+            day: day + 1
         }
     }
+}
+
+registerSerializer(schema, {
+    Date: DateType
 })
 
 registerDeserializer(schema, {
-    Date: {
-        deserialize(buffer) {
-            const yearMonth = buffer.readUnsigned(17)
-            const day = buffer.readUnsigned(5)
-
-            return {
-                year: Math.floor(yearMonth / 12),
-                month: yearMonth % 12 + 1,
-                day: day + 1
-            }
-        }
-    }
+    Date: DateType
 })
 
 
@@ -59,7 +61,7 @@ schema.AuthTokenPayload.serialize({
     }
 }, serializerBuffer)
 
-serializerBuffer.clearBitBuffer()
+serializerBuffer.alignToByte()
 
 schema.AuthTokenSignature.serialize({
     hmac256: sign(serializerBuffer.toBytes())
@@ -78,7 +80,7 @@ const deserializerBuffer = new DeserializerBuffer(serialized)
 const payload = schema.AuthTokenPayload.deserialize(deserializerBuffer)
 console.log('Auth token payload:', prettyObject(payload))
 
-deserializerBuffer.clearBitBuffer()
+deserializerBuffer.alignToByte()
 
 const payloadBytes = serialized.subarray(0, deserializerBuffer.position)
 const signature = schema.AuthTokenSignature.deserialize(deserializerBuffer)

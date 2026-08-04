@@ -1,13 +1,23 @@
 /**
  *
  * @param {DeserializerBuffer} buffer
- * @param {Deserializer.InstantiatedType} type
- * @return {any}
+ * @param {DeserializerTypes.InstantiatedPrimitiveSizeType} type
+ * @return {number}
+ */
+export function deserializerPrimitiveSize(buffer, type) {
+    return type.element._deserialize(buffer, type.argument)
+}
+
+/**
+ *
+ * @param {DeserializerBuffer} buffer
+ * @param {DeserializerTypes.InstantiatedSizeType} type
+ * @return {number}
  */
 export function deserializeSize(buffer, type) {
     const { element } = type
     if (typeof element === 'object') {
-        return element._deserialize(buffer, type.argument)
+        return deserializerPrimitiveSize(buffer, type)
     } else {
         return element
     }
@@ -16,7 +26,7 @@ export function deserializeSize(buffer, type) {
 /**
  *
  * @param {DeserializerBuffer} buffer
- * @param {Deserializer.InstantiatedFieldType} type
+ * @param {DeserializerTypes.InstantiatedFieldType} type
  * @param {number} dimension
  * @return {any}
  */
@@ -29,7 +39,7 @@ export function deserializeField(buffer, type, dimension = type.dimensions?.leng
     }
 
     if (isArray) {
-        const length = deserializeSize(buffer, type.dimensions[dimension - 1])
+        const length = deserializeSize(buffer, type.dimensions[dimension - 1].sizeType)
         return Array.from({ length }, () => deserializeField(buffer, type, dimension - 1))
     } else {
         return type.element._deserialize(buffer, type.argument)

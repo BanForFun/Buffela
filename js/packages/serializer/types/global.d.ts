@@ -1,13 +1,15 @@
 import type * as parser from "@buffela/parser";
 import type * as serializer from "./index.d.ts";
 
-declare namespace Serializer {
-    type EnumType = parser.EnumType<Serializer>
-    type ObjectType = parser.ObjectType<Serializer>
-    type Field = parser.Field<Serializer>
-    type InstantiatedType = parser.InstantiatedType<Serializer>
-    type InstantiatedFieldType = parser.InstantiatedFieldType<Serializer>
-    type Schema = parser.Schema<Serializer, Serializable>
+declare namespace SerializerTypes {
+    type EnumType = parser.EnumType<SerializerExtensions>
+    type ObjectType = parser.ObjectType<SerializerExtensions>
+    type Field = parser.Field<SerializerExtensions>
+    type InstantiatedFieldType = parser.InstantiatedFieldType<SerializerExtensions>
+    type InstantiatedPrimitiveSizeType = parser.InstantiatedPrimitiveSizeType<SerializerExtensions>
+    type InstantiatedConstSizeType = parser.InstantiatedConstSizeType
+    type InstantiatedSizeType = parser.InstantiatedSizeType<SerializerExtensions>
+    type Schema = parser.Schema<SerializerExtensions, Serializable>
     type EnumEntry = parser.EnumEntry
 }
 
@@ -16,9 +18,14 @@ declare global {
     type Serializable = serializer.Serializable<unknown>
     type SerializerBuffer = serializer.SerializerBuffer
 
-    type Serialize = (buffer: SerializerBuffer, value: any, arg: Serializer.InstantiatedType | null) => void
+    type SerializeCallback = (
+        buffer: SerializerBuffer,
+        value: any,
+        arg: SerializerTypes.InstantiatedSizeType | null
+    ) => void
 
-    interface Serializer {
-        _serialize: Serialize
+    interface SerializerExtensions {
+        _serialize: SerializeCallback
     }
 }
+

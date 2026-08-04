@@ -1,139 +1,101 @@
 const {
     sentinelTypes,
-    constSizedTypes,
     sizedTypes,
     fixedSizeTypes
 } = require('./buffelaTypes.js')
 
-// Patterns ============================================================================================================
+const Pattern = require('../utils/patternUtils')
+const Schema = require('../utils/jsonSchemaUtils')
 
-function enumPattern(...options) {
-    return `(${options.join('|')})`
-}
 
-function anchoredPattern(...parts) {
-    return `^${parts.join('')}$`
-}
-
-function excludePattern(pattern, exclude) {
-    return `${pattern}(?<!^${exclude})`
-}
-
-const sentinelTypeNamePattern = enumPattern(...sentinelTypes)
-const sizedTypeNamePattern = enumPattern(...sizedTypes)
-const constSizedTypeNamePattern = enumPattern(...constSizedTypes)
-
-const constSizePattern =  "\\d+"
-const sizePattern = enumPattern(
-    constSizePattern,
-    "UByte",
-    "UShort",
-    "Int",
-    `Unsigned\\(${constSizePattern}\\)`
-)
-const optionalPattern = "\\??"
-const arrayPattern = `(\\[${sizePattern}\\]${optionalPattern})*`
+const sizedTypeNamePattern = Pattern.oneOf(...sizedTypes)
 
 const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
 const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
-const reservedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes, ...fixedSizeTypes)
-const rootTypeNamePattern = excludePattern(typeNamePattern, reservedTypeNamePattern)
+const reservedTypeNamePattern = Pattern.oneOf(...sentinelTypes, ...sizedTypes, ...fixedSizeTypes)
+const rootTypeNamePattern = Pattern.exclude(typeNamePattern, reservedTypeNamePattern)
 
-const parameterizedTypeNamePattern = enumPattern(...sentinelTypes, ...sizedTypes, ...constSizedTypes)
-const simpleTypeNamePattern = excludePattern(typeNamePattern, parameterizedTypeNamePattern)
+const optionalSuffixPattern = "\\??"
+const constSizeSuffixPattern =  "(\\(\\d*\\))?"
 
-// Schemata ============================================================================================================
+const sizePattern = Pattern.oneOf(
+    constSizeSuffixPattern,
+    "UByte",
+    "UShort",
+    `${typeNamePattern}(?<=Int)${constSizeSuffixPattern}`
+)
 
-function ifThen(heuristic, full) {
-    return { "if": heuristic, "then": full }
-}
+const arraySuffixPattern = `(\\[${sizePattern}\\]${optionalSuffixPattern})*`
 
-function when(cases, fallback) {
-    return cases.reduceRight((fallback, schema) => {
-        return { ...schema, "else": fallback }
-    }, fallback)
-}
-
-function fail(message) {
-    return { "not": {}, "errorMessage": message }
-}
 
 function buildSchema(fieldSchema, typeSchema) {
     return {
         "$defs": {
             //Note: If an alias definition is optional, using it as explicitly optional has no additional effect
-            "AliasDefinition": fieldSchema,
+            "AliasDefinition": fieldSchema, //TODO: Maybe force training parenthesis for clarity
             "EnumDefinition": {
                 "type": "array",
                 "uniqueItems": true,
                 "minItems": 1,
                 "items": {
                     "type": "string",
-                    "pattern": anchoredPattern(enumValuePattern),
-                    "errorMessage": "Must begin with capital letter and can only contain capital letters, numbers and underscores"
+                    "pattern": Pattern.anchored(enumValuePattern),
+                    "errorMessage": "Must be capitalized and can contain uppercase letters, numbers and underscores"
                 }
             },
             "ObjectDefinition": {
                 "type": "object",
                 "patternProperties": {
-                    [anchoredPattern(fieldNamePattern)]: fieldSchema,
-                    [anchoredPattern(typeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" }
+                    [Pattern.anchored(fieldNamePattern)]: fieldSchema,
+                    [Pattern.anchored(typeNamePattern)]: { "$ref": "#/$defs/ObjectDefinition" }
                 },
                 "additionalProperties": false,
             }
         },
         "type": "object",
         "patternProperties": {
-            [anchoredPattern(rootTypeNamePattern)]: typeSchema
+            [Pattern.anchored(rootTypeNamePattern)]: typeSchema
         },
         "additionalProperties": false
     }
 }
 
-const typeDefinitionSchemata = [
-    ifThen({ "type": "string" }, { "$ref": "#/$defs/AliasDefinition" }),
-    ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
-    ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
-]
-
 function fieldSchema(namePattern, suffixPattern, suffixMessage) {
-    return ifThen({
+    return Schema.ifThen({
         "type": "string",
         "pattern": `^${namePattern}([^a-zA-Z]|$)`
     }, {
         "type": "string",
-        "pattern": anchoredPattern(namePattern, suffixPattern),
+        "pattern": Pattern.anchored(namePattern + suffixPattern),
         "errorMessage": suffixMessage
     })
 }
 
 const fieldSchemata = [
     fieldSchema(
-        simpleTypeNamePattern, `${optionalPattern}${arrayPattern}`,
-        "Expected a size e.g. [10] or [UByte]"
+        typeNamePattern, `${constSizeSuffixPattern}${optionalSuffixPattern}${arraySuffixPattern}`,
+        "Expected a size or array dimensions e.g. (10), [10] or [UByte]"
     ),
 
     fieldSchema(
-        sentinelTypeNamePattern, `(\\(${constSizePattern}\\))?${optionalPattern}${arrayPattern}`,
-        "Expected a constant size e.g. (10)"
-    ),
-
-    fieldSchema(
-        sizedTypeNamePattern, `\\(${sizePattern}\\)${optionalPattern}${arrayPattern}`,
+        sizedTypeNamePattern, `\\(${sizePattern}\\)${optionalSuffixPattern}${arraySuffixPattern}`,
         "Expected a size e.g. (10) or (UByte)"
-    ),
-
-    fieldSchema(
-        constSizedTypeNamePattern, `\\(${constSizePattern}\\)${optionalPattern}${arrayPattern}`,
-        "Expected a constant size e.g. (10)"
     )
 ]
 
+const typeDefinitionSchemata = [
+    Schema.ifThen({ "type": "string" }, { "$ref": "#/$defs/AliasDefinition" }),
+    Schema.ifThen({ "type": "array" }, { "$ref": "#/$defs/EnumDefinition" }),
+    Schema.ifThen({ "type": "object" }, { "$ref": "#/$defs/ObjectDefinition" })
+]
+
+
+
 const readerSchema = buildSchema(
-    when(fieldSchemata, fail("Expected field type")),
-    when(typeDefinitionSchemata, fail("Expected enum, object or alias definition")),
+    Schema.when(fieldSchemata, Schema.fail("Expected field type")),
+    Schema.when(typeDefinitionSchemata, Schema.fail("Expected enum, object or alias definition")),
 )
 
 // Some editors *cough* IntelliJ *cough* do not support if/then, we need to simplify the schema
@@ -146,7 +108,6 @@ const editorSchema = buildSchema({
             "pattern": "[]",
             "enum": [
                 ...fixedSizeTypes,
-                ...constSizedTypes.map(t => `${t}(N)`),
                 ...sentinelTypes,
                 ...sentinelTypes.map(t => `${t}(N)`),
                 ...sizedTypes.map(t => `${t}(N)`),

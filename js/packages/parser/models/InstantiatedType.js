@@ -1,3 +1,41 @@
+class DefinitionParser {
+    #definition;
+    #pattern = /((?<number>\d+)|[A-Z][a-zA-Z\d]*)?/y;
+
+    constructor(definition) {
+        this.#definition = definition;
+    }
+
+    consumeName() {
+        const matches = this.#pattern.exec(this.#definition);
+        const fullMatch = matches[0]
+        if (!fullMatch) return null;
+
+        const { number } = matches.groups;
+        return number ? +number : fullMatch;
+    }
+
+    tryConsume(character) {
+        const consumed = this.#definition[this.#pattern.lastIndex] === character
+        if (consumed) this.#pattern.lastIndex++
+
+        return consumed;
+    }
+
+    get completed() {
+        return this.#pattern.lastIndex === this.#definition.length
+    }
+}
+
+class Dimension {
+    sizeType;
+    optional = false;
+
+    constructor(sizeType) {
+        this.sizeType = sizeType;
+    }
+}
+
 export default class InstantiatedType {
     element;
     argument = null;
@@ -8,66 +46,88 @@ export default class InstantiatedType {
         this.element = element;
     }
 
-    #handleQuestionMark() {
-        if (this.dimensions.length === 0) {
+    #consumeSuffix(schema, parser, isAlias) {
+        if (parser.tryConsume('?')) {
+            // Don't assign tryConsume to optional; For aliases we want the type to be optional if either
+            // the definition or the usage is
             this.optional = true
+        }
+
+        while(parser.tryConsume('[')) {
+            const sizeType = InstantiatedType.#parseNested(schema, parser, isAlias)
+            if (!sizeType) throw new Error("Expected type")
+
+            const dimension = new Dimension(sizeType)
+            this.dimensions.push(dimension)
+
+            if (!parser.tryConsume(']'))
+                throw new Error("Expected closing square brackets")
+
+            dimension.optional = parser.tryConsume('?')
+        }
+    }
+
+    static #parseArgumentType(schema, parser, isAlias) {
+        if (!parser.tryConsume('('))
+            return undefined // No parenthesis at all, not even empty
+
+        const type = InstantiatedType.#parseNested(schema, parser, isAlias)
+
+        if (!parser.tryConsume(')'))
+            throw new Error('Expected closing parenthesis')
+
+        return type
+    }
+
+    static #parseElementType(schema, typeName, forcePrimitive, hasArgument) {
+        if (typeof typeName === 'number')
+            return new InstantiatedType(typeName)
+
+        if (!forcePrimitive) {
+            const aliasDefinition = schema.lookupAlias(typeName)
+            if (aliasDefinition)
+                return InstantiatedType.#parse(schema, aliasDefinition, true)
+
+            const complexType = schema[typeName]
+            if (complexType)
+                return new InstantiatedType(complexType)
+        }
+
+        const primitive = schema.lookupPrimitive(typeName)
+        if (hasArgument) {
+            primitive.usedWithArgument = true
         } else {
-            this.dimensions[this.dimensions.length - 1].optional = true
-        }
-    }
-
-    #parseSuffix(schema, definition, pattern, isAlias) {
-        const stack = []
-        while (pattern.lastIndex < definition.length) {
-            const character = definition[pattern.lastIndex++]
-
-            if (character === '(') {
-                this.argument = InstantiatedType.#parseNested(schema, definition, pattern, isAlias)
-                stack.push(')')
-            } else if (character === '[') {
-                this.dimensions.push(InstantiatedType.#parseNested(schema, definition, pattern, isAlias))
-                stack.push(']')
-            } else if (character === '?') {
-                this.#handleQuestionMark()
-            } else if (stack.length === 0) {
-                pattern.lastIndex--; //Didn't actually consume any characters, roll back index
-                return
-            } else if (character === stack[stack.length - 1]) {
-                stack.pop()
-            } else {
-                throw new Error(`Unexpected character '${character}'`)
-            }
+            primitive.usedWithoutArgument = true
         }
 
-        if (stack.length > 0) throw new Error('Non matching brackets')
+        return new InstantiatedType(primitive)
     }
 
-    static #parseElementType(schema, definition, pattern, isAlias) {
-        const match = pattern.exec(definition);
-        if (!match) throw new Error('Invalid type prefix');
+    static #parseNested(schema, parser, isAlias) {
+        const typeName = parser.consumeName()
+        if (typeName == null) return null
 
-        const { 0: name, groups: { number } } = match;
-        if (number) return new InstantiatedType(+number);
+        // Type -> undefined
+        // Type() -> null
+        // Type(Size) -> Size
+        const argumentType = InstantiatedType.#parseArgumentType(schema, parser, isAlias)
+        const forcePrimitive = isAlias || argumentType !== undefined
+        const hasArgument = argumentType != null
 
-        const alias = isAlias ? null : schema.lookupAlias(name);
-        if (alias) return InstantiatedType.#parse(schema, alias, true)
+        const elementType = InstantiatedType.#parseElementType(schema, typeName, forcePrimitive, hasArgument)
+        elementType.#consumeSuffix(schema, parser, isAlias)
+        if (argumentType !== undefined)
+            elementType.argument = argumentType
 
-        const element = schema.lookupType(name)
-        return new InstantiatedType(element)
-    }
-
-    static #parseNested(schema, definition, pattern, isAlias) {
-        const type = InstantiatedType.#parseElementType(schema, definition, pattern, isAlias);
-        type.#parseSuffix(schema, definition, pattern, isAlias);
-
-        return type;
+        return elementType
     }
 
     static #parse(schema, definition, isAlias) {
-        const pattern = /(?<number>\d+)|[A-Z][a-zA-Z\d]*/y
-        const type = InstantiatedType.#parseNested(schema, definition, pattern, isAlias);
+        const parser = new DefinitionParser(definition)
+        const type = InstantiatedType.#parseNested(schema, parser, isAlias)
+        if (!type) throw new Error('Invalid type prefix')
 
-        if (pattern.lastIndex !== definition.length)
+        if (!parser.completed)
             throw new Error('Invalid type suffix')
 
         return type;

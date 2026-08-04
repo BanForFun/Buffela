@@ -1,5 +1,8 @@
-const { printSerializeField, printSerializeSize} = require("./fieldSerializationUtils");
 const { isConstantType } = require("./instantiatedTypeUtils");
+const {
+    printSerializeField,
+    printSerializeSize
+} = require("./fieldSerializationUtils");
 
 /**
  *
