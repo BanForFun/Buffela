@@ -1,31 +1,4 @@
-class DefinitionParser {
-    #definition;
-    #pattern = /((?<number>\d+)|[A-Z][a-zA-Z\d]*)?/y;
-
-    constructor(definition) {
-        this.#definition = definition;
-    }
-
-    consumeName() {
-        const matches = this.#pattern.exec(this.#definition);
-        const fullMatch = matches[0]
-        if (!fullMatch) return null;
-
-        const { number } = matches.groups;
-        return number ? +number : fullMatch;
-    }
-
-    tryConsume(character) {
-        const consumed = this.#definition[this.#pattern.lastIndex] === character
-        if (consumed) this.#pattern.lastIndex++
-
-        return consumed;
-    }
-
-    get completed() {
-        return this.#pattern.lastIndex === this.#definition.length
-    }
-}
+import TypeDefinitionParser from './TypeDefinitionParser';
 
 class Dimension {
     sizeType;
@@ -80,7 +53,7 @@ export default class InstantiatedType {
     }
 
     static #parseElementType(schema, typeName, forcePrimitive, hasArgument) {
-        if (typeof typeName === 'number')
+        if (typeof typeName !== 'string')
             return new InstantiatedType(typeName)
 
         if (!forcePrimitive) {
@@ -123,7 +96,7 @@ export default class InstantiatedType {
     }
 
     static #parse(schema, definition, forcePrimitive) {
-        const parser = new DefinitionParser(definition)
+        const parser = new TypeDefinitionParser(definition)
         const type = InstantiatedType.#parseNested(schema, parser, forcePrimitive)
         if (!type) throw new Error('Invalid type prefix')
 
