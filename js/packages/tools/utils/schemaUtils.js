@@ -1,5 +1,39 @@
 const nativeTypes = require("../constants/nativeTypes");
 
+function printSchemaTypeImports() {
+    if (options.serializerEnabled) printer.line(
+        'import type { Serializable as _Serializable, Serializer as _Serializer } from "@buffela/serializer"'
+    )
+
+    if (options.deserializerEnabled) printer.line(
+        'import type { Deserializable as _Deserializable, Deserializer as _Deserializer } from "@buffela/deserializer"'
+    )
+
+    printer.line()
+}
+
+function combineExtensions(extensions) {
+    if (!extensions.length) return '{}'
+    return extensions.join(' & ')
+}
+
+function printSchemaTypeUtils() {
+    const typeExtensions = [], primitiveExtensions = []
+
+    if (options.serializerEnabled) {
+        typeExtensions.push('_Serializable<T>')
+        primitiveExtensions.push('_Serializer<T>')
+    }
+
+    if (options.deserializerEnabled) {
+        typeExtensions.push('_Deserializable<T>')
+        primitiveExtensions.push('_Deserializer<T>')
+    }
+
+    printer.line(`type _TypeSchema<T> = Partial<${combineExtensions(typeExtensions)}>`)
+    printer.line(`type _Primitive<T> = Partial<${combineExtensions(primitiveExtensions)}>`)
+    printer.line()
+}
 
 /**
  * @param {import('@buffela/parser').ObjectType} objectType
@@ -57,7 +91,9 @@ function printTypeSchema(type) {
     }
 }
 
-function printSchema() {
+function printSchemaType() {
+    printSchemaTypeUtils()
+
     printer.blockStart(`type _Schema = {`)
 
     for (const name in schema) {
@@ -80,4 +116,5 @@ function printSchema() {
 
 }
 
-module.exports = { printSchema }
+
+module.exports = { printSchemaType, printSchemaTypeImports }

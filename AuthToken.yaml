@@ -15,7 +15,7 @@ User:
   Anonymous: {}
 
   Registered:
-    verified: Boolean()
+    verified: Boolean
 
     Viewer:
       birthDate: Date

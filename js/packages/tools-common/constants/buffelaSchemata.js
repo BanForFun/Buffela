@@ -1,32 +1,25 @@
-const {
-    sentinelTypes,
-    sizedTypes,
-    fixedSizeTypes
-} = require('./buffelaTypes.js')
+const {optConstSizeTypes, varSizeTypes, fixedSizeTypes} = require('./buffelaTypes.js')
 
 const Pattern = require('../utils/patternUtils')
 const Schema = require('../utils/jsonSchemaUtils')
-
-
-const sizedTypeNamePattern = Pattern.oneOf(...sizedTypes)
 
 const enumValuePattern = '[A-Z][A-Z_\\d]+'
 const fieldNamePattern = '[a-z][a-zA-Z\\d]*'
 const typeNamePattern = '[A-Z][a-zA-Z\\d]*'
 
-const reservedTypeNamePattern = Pattern.oneOf(...sentinelTypes, ...sizedTypes, ...fixedSizeTypes)
-const rootTypeNamePattern = Pattern.exclude(typeNamePattern, reservedTypeNamePattern)
-
-const optionalSuffixPattern = "\\??"
-const constSizeSuffixPattern =  "(\\(\\d*\\))?"
+const fixedSizeTypeNamePattern = Pattern.oneOf(...fixedSizeTypes)
+const varSizeTypeNamePattern = Pattern.oneOf(...varSizeTypes)
+const optConstSizeTypeNamePattern = Pattern.excludeBehind(typeNamePattern, ...varSizeTypes, ...fixedSizeTypes)
+const standardTypeNamePattern = Pattern.oneOf(...varSizeTypes, ...optConstSizeTypes, ...fixedSizeTypes)
+const rootTypeNamePattern = Pattern.excludeAhead(typeNamePattern, standardTypeNamePattern)
 
 const sizePattern = Pattern.oneOf(
-    constSizeSuffixPattern,
+    "\\d+",
     "UByte",
     "UShort",
-    `${typeNamePattern}(?<=Int)${constSizeSuffixPattern}`
+    `${typeNamePattern}(?<=Int)(\\(\\d+\\))?` // Do not allow empty parenthesis, only primitives are allowed anyway
 )
-
+const optionalSuffixPattern = "\\??"
 const arraySuffixPattern = `(\\[${sizePattern}\\]${optionalSuffixPattern})*`
 
 
@@ -34,7 +27,7 @@ function buildSchema(fieldSchema, typeSchema) {
     return {
         "$defs": {
             //Note: If an alias definition is optional, using it as explicitly optional has no additional effect
-            "AliasDefinition": fieldSchema, //TODO: Maybe force training parenthesis for clarity
+            "AliasDefinition": fieldSchema,
             "EnumDefinition": {
                 "type": "array",
                 "uniqueItems": true,
@@ -75,13 +68,18 @@ function fieldSchema(namePattern, suffixPattern, suffixMessage) {
 
 const fieldSchemata = [
     fieldSchema(
-        typeNamePattern, `${constSizeSuffixPattern}${optionalSuffixPattern}${arraySuffixPattern}`,
-        "Expected a size or array dimensions e.g. (10), [10] or [UByte]"
+        fixedSizeTypeNamePattern, `${optionalSuffixPattern}${arraySuffixPattern}`,
+        "Expected array dimensions e.g. [10] or [UByte]"
     ),
 
     fieldSchema(
-        sizedTypeNamePattern, `\\(${sizePattern}\\)${optionalSuffixPattern}${arraySuffixPattern}`,
+        varSizeTypeNamePattern, `\\(${sizePattern}\\)${optionalSuffixPattern}${arraySuffixPattern}`,
         "Expected a size e.g. (10) or (UByte)"
+    ),
+
+    fieldSchema(
+        optConstSizeTypeNamePattern, `(\\(\\d*\\))?${optionalSuffixPattern}${arraySuffixPattern}`,
+        "Expected a constant size e.g. (10) and/or array dimensions e.g. [10] or [UByte]"
     )
 ]
 
@@ -108,10 +106,10 @@ const editorSchema = buildSchema({
             "pattern": "[]",
             "enum": [
                 ...fixedSizeTypes,
-                ...sentinelTypes,
-                ...sentinelTypes.map(t => `${t}(N)`),
-                ...sizedTypes.map(t => `${t}(N)`),
-                ...sizedTypes.map(t => `${t}(Int)`)
+                ...optConstSizeTypes,
+                ...optConstSizeTypes.map(t => `${t}(N)`),
+                ...varSizeTypes.map(t => `${t}(N)`),
+                ...varSizeTypes.map(t => `${t}(Int)`)
             ]
         },
     ]

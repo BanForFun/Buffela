@@ -13,7 +13,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="packages/tools-common/test/Test.yaml" />
+                    <option name="path" value="packages/tools-common/test/buffela/gr/elaevents/features/chat/database/Test.yaml" />
                   </Item>
                 </list>
               </option>

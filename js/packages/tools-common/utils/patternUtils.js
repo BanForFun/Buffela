@@ -6,12 +6,19 @@ function anchored(pattern) {
     return `^${pattern}$`
 }
 
-function exclude(superPattern, excludePattern) {
-    return `(?!${excludePattern}$)${superPattern}`
+function excludeAhead(superPattern, ...excludePatterns) {
+    const excludePrefix = excludePatterns.map(p => `(?!${p}$)`).join('')
+    return excludePrefix + superPattern
+}
+
+function excludeBehind(superPattern, ...excludePatterns) {
+    const excludeSuffix = excludePatterns.map(p => `(?<!^${p})`).join('')
+    return superPattern + excludeSuffix
 }
 
 module.exports = {
     oneOf,
     anchored,
-    exclude
+    excludeAhead,
+    excludeBehind
 }

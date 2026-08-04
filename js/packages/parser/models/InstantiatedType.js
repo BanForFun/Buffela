@@ -46,7 +46,7 @@ export default class InstantiatedType {
         this.element = element;
     }
 
-    #consumeSuffix(schema, parser, isAlias) {
+    #consumeSuffix(schema, parser) {
         if (parser.tryConsume('?')) {
             // Don't assign tryConsume to optional; For aliases we want the type to be optional if either
             // the definition or the usage is
@@ -54,7 +54,7 @@ export default class InstantiatedType {
         }
 
         while(parser.tryConsume('[')) {
-            const sizeType = InstantiatedType.#parseNested(schema, parser, isAlias)
+            const sizeType = InstantiatedType.#parseNested(schema, parser, true)
             if (!sizeType) throw new Error("Expected type")
 
             const dimension = new Dimension(sizeType)
@@ -67,11 +67,11 @@ export default class InstantiatedType {
         }
     }
 
-    static #parseArgumentType(schema, parser, isAlias) {
+    static #parseArgumentType(schema, parser) {
         if (!parser.tryConsume('('))
             return undefined // No parenthesis at all, not even empty
 
-        const type = InstantiatedType.#parseNested(schema, parser, isAlias)
+        const type = InstantiatedType.#parseNested(schema, parser, true)
 
         if (!parser.tryConsume(')'))
             throw new Error('Expected closing parenthesis')
@@ -103,28 +103,28 @@ export default class InstantiatedType {
         return new InstantiatedType(primitive)
     }
 
-    static #parseNested(schema, parser, isAlias) {
+    static #parseNested(schema, parser, _forcePrimitive) {
         const typeName = parser.consumeName()
         if (typeName == null) return null
 
         // Type -> undefined
         // Type() -> null
         // Type(Size) -> Size
-        const argumentType = InstantiatedType.#parseArgumentType(schema, parser, isAlias)
-        const forcePrimitive = isAlias || argumentType !== undefined
+        const argumentType = InstantiatedType.#parseArgumentType(schema, parser)
+        const forcePrimitive = _forcePrimitive || argumentType !== undefined
         const hasArgument = argumentType != null
 
         const elementType = InstantiatedType.#parseElementType(schema, typeName, forcePrimitive, hasArgument)
-        elementType.#consumeSuffix(schema, parser, isAlias)
+        elementType.#consumeSuffix(schema, parser)
         if (argumentType !== undefined)
             elementType.argument = argumentType
 
         return elementType
     }
 
-    static #parse(schema, definition, isAlias) {
+    static #parse(schema, definition, forcePrimitive) {
         const parser = new DefinitionParser(definition)
-        const type = InstantiatedType.#parseNested(schema, parser, isAlias)
+        const type = InstantiatedType.#parseNested(schema, parser, forcePrimitive)
         if (!type) throw new Error('Invalid type prefix')
 
         if (!parser.completed)

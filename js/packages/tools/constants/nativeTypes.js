@@ -10,8 +10,6 @@ const nativeTypes = {
     "Float":            "number",
     "Double":           "number",
     "UInt":             "number",
-    "Signed":           "number",
-    "Unsigned":         "number",
     "ULong":            "BigInt",
     "UByteArray":       "Uint8Array",
     "UShortArray":      "Uint16Array",

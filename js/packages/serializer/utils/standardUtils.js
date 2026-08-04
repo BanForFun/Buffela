@@ -66,7 +66,7 @@ function serializeBooleanArray(buffer, values, sizeType) {
  *
  * @type {Object.<string, SerializeCallback>}
  */
-export const nullarySerializers = {
+export const standardSerializers = {
     Byte: (buffer, value) => buffer.writeByte(value),
     UByte: (buffer, value) => buffer.writeUByte(value),
     Short: (buffer, value) => buffer.writeShort(value),
@@ -76,23 +76,11 @@ export const nullarySerializers = {
     Float: (buffer, value) => buffer.writeFloat(value),
     Double: (buffer, value) => buffer.writeDouble(value),
     Boolean: (buffer, value) => buffer.writeBoolean(value),
-}
 
-/**
- *
- * @type {Object.<string, SerializeCallback>}
- */
-export const variadicSerializers = {
     Int: serializeInt,
     UInt: serializeUInt,
     String: serializeString,
-}
 
-/**
- *
- * @type {Object.<string, SerializeCallback>}
- */
-export const unarySerializers = {
     Bytes: serializeTypedArray,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,

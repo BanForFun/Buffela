@@ -10,13 +10,13 @@ const fixedSizeTypes = [
     "ULong",
 ]
 
-const sentinelTypes = [
+const optConstSizeTypes = [
     "String",
     "Int",
     "UInt"
 ]
 
-const sizedTypes = [
+const varSizeTypes = [
     "UByteArray",
     "UShortArray",
     "UIntArray",
@@ -32,7 +32,7 @@ const sizedTypes = [
 ]
 
 module.exports = {
-    sentinelTypes,
-    sizedTypes,
+    optConstSizeTypes,
+    varSizeTypes,
     fixedSizeTypes
 }

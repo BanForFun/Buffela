@@ -5,18 +5,17 @@ import type {
     AbsoluteEnumEntry as _AbsoluteEnumEntry,
     AbsoluteSubtypeSchema as _AbsoluteSubtypeSchema,
 } from "@buffela/parser"
-import type { 
-    Serializable as _Serializable, 
-    Serializer as _Serializer 
-} from "@buffela/serializer"
-import type { 
-    Deserializable as _Deserializable, 
-    Deserializer as _Deserializer 
-} from "@buffela/deserializer"
 
-import type Date from "./primitives/Date.ts"
-type _TypeSchema<T> = Partial<_Serializable<T> & _Deserializable<T>>
-type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
+import type { Serializable as _Serializable, Serializer as _Serializer } from "@buffela/serializer"
+import type { Deserializable as _Deserializable, Deserializer as _Deserializer } from "@buffela/deserializer"
+
+namespace _Primitives {
+    export interface Date {
+        year: number;
+        month: number;
+        day: number;
+    }
+}
 
 export type Gender = _RelativeSchemaNode<0, "Gender">
 
@@ -37,7 +36,7 @@ export type User = {
     } & (
         {
             _type: _RelativeSchemaNode<2, "Viewer">,
-            birthDate: Date,
+            birthDate: _Primitives.Date,
             gender: Gender,
             phone: (Phone | null),
         } | {
@@ -58,28 +57,24 @@ export type AuthTokenSignature = {
     hmac256: Uint8Array,
 }
 
+type _TypeSchema<T> = Partial<_Serializable<T> & _Deserializable<T>>
+type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
+
 type _Schema = {
     readonly Gender: _TypeSchema<Gender> & {
         readonly FEMALE: _AbsoluteEnumEntry<["Gender", "FEMALE"]>
         readonly MALE: _AbsoluteEnumEntry<["Gender", "MALE"]>
     }
-
     readonly Phone: _TypeSchema<Phone> & {}
-
     readonly User: _TypeSchema<User> & {
         readonly Anonymous: _AbsoluteSubtypeSchema<["User", "Anonymous"]> & {}
-
         readonly Registered: _AbsoluteSubtypeSchema<["User", "Registered"]> & {
             readonly Viewer: _AbsoluteSubtypeSchema<["User", "Registered", "Viewer"]> & {}
-
             readonly Organizer: _AbsoluteSubtypeSchema<["User", "Registered", "Organizer"]> & {}
         }
     }
-
     readonly AuthTokenPayload: _TypeSchema<AuthTokenPayload> & {}
-
     readonly AuthTokenSignature: _TypeSchema<AuthTokenSignature> & {}
-
     primitiveTypes: {
         Date?: _Primitive<Date>
     }

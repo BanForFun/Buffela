@@ -57,7 +57,7 @@ function deserializeBooleanArray(buffer, arg) {
  *
  * @type {Object.<string, DeserializeCallback>}
  */
-export const nullaryDeserializers = {
+export const standardDeserializers = {
     Byte: (buffer) => buffer.readByte(),
     UByte: (buffer) => buffer.readUByte(),
     Short: (buffer) => buffer.readShort(),
@@ -67,23 +67,11 @@ export const nullaryDeserializers = {
     Float: (buffer) => buffer.readFloat(),
     Double: (buffer) => buffer.readDouble(),
     Boolean: (buffer) => buffer.readBoolean(),
-}
 
-/**
- *
- * @type {Object.<string, DeserializeCallback>}
- */
-export const variadicDeserializers = {
     String: deserializeString,
     Int: deserializeInt,
     UInt: deserializerUInt,
-}
 
-/**
- *
- * @type {Object.<string, DeserializeCallback>}
- */
-export const unaryDeserializers = {
     Bytes: typedArrayDeserializer(Uint8Array),
     ByteArray: typedArrayDeserializer(Int8Array),
     UByteArray: typedArrayDeserializer(Uint8Array),

@@ -56,7 +56,7 @@ function Printer(stream) {
      * @param {string} [string]
      */
     this.blockStart = function(string) {
-        print('\n')
+        if (isBlockEmpty) print('\n')
 
         printIndented(string)
 
@@ -71,13 +71,13 @@ function Printer(stream) {
     this.blockEnd = function(string = "") {
         indent--
 
-        if (isBlockEmpty)
+        if (isBlockEmpty) {
             print(string)
-        else
+        } else {
             printIndented(string)
+        }
 
         print('\n')
-
         isBlockEmpty = false
     }
 
@@ -88,10 +88,11 @@ function Printer(stream) {
     this.blockEndStart = function(string) {
         indent--
 
-        if (isBlockEmpty)
+        if (isBlockEmpty) {
             print(string)
-        else
+        } else {
             printIndented(string)
+        }
 
         indent++
         isBlockEmpty = true

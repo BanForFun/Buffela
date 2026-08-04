@@ -1,14 +1,10 @@
-import {nullaryDeserializers, variadicDeserializers, unaryDeserializers} from "./standardUtils.js";
+import {standardDeserializers} from "./standardUtils.js";
 import DeserializerBuffer from "../models/DeserializerBuffer.js";
 import {deserializeEnum} from "./enumUtils.js";
 import {deserializeObject} from "./objectUtils.js";
 import {deserializerPrimitiveSize} from "./typeUtils.js";
 
-const standardNames = new Set([
-    ...Object.keys(nullaryDeserializers),
-    ...Object.keys(variadicDeserializers),
-    ...Object.keys(unaryDeserializers),
-])
+const standardNames = new Set(Object.keys(standardDeserializers))
 
 class InstantiatedPrimitiveSizeAdapter {
     /**
@@ -84,6 +80,9 @@ export function registerDeserializer(schema, customDeserializers) {
     schema.objectExtensions._deserialize = deserializeObject
 
     for (const name in customDeserializers) {
+        if (name in standardDeserializers)
+            throw new Error(`Standard ${name} deserializer cannot be overridden`)
+
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const deserializer = customDeserializers[name]
@@ -99,36 +98,12 @@ export function registerDeserializer(schema, customDeserializers) {
         }
     }
 
-    for (const name in nullaryDeserializers) {
+    for (const name in standardDeserializers) {
         if (name in customDeserializers) continue
 
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
-            if (primitive.usedWithArgument)
-                throw new Error(`Type '${name}' does not take arguments`)
-
-            primitive._deserialize = nullaryDeserializers[name]
-        }
-    }
-
-    for (const name in variadicDeserializers) {
-        if (name in customDeserializers) continue
-
-        const primitive = schema.primitiveTypes[name]
-        if (primitive) {
-            primitive._deserialize = variadicDeserializers[name]
-        }
-    }
-
-    for (const name in unaryDeserializers) {
-        if (name in customDeserializers) continue
-
-        const primitive = schema.primitiveTypes[name]
-        if (primitive) {
-            if (primitive.usedWithoutArgument)
-                throw new Error(`Type '${name}' needs an argument`)
-
-            primitive._deserialize = unaryDeserializers[name]
+            primitive._deserialize = standardDeserializers[name]
         }
     }
 }

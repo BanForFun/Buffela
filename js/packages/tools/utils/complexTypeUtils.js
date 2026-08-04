@@ -1,17 +1,36 @@
 const nativeTypes = require("../constants/nativeTypes");
 
+function printComplexTypeImports() {
+    printer.line(`import type { 
+    RelativeSchemaNode as _RelativeSchemaNode, 
+    AbsoluteEnumEntry as _AbsoluteEnumEntry,
+    AbsoluteSubtypeSchema as _AbsoluteSubtypeSchema,
+} from "@buffela/parser"`)
+
+    printer.line()
+}
+
+function printComplexTypeUtils() {
+    if (options.primitives) {
+        printer.blockStart("namespace _Primitives {")
+        printer.lines(options.primitives.split('\n'))
+        printer.blockEnd("}")
+        printer.line()
+    }
+}
+
 /**
  *
  * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @returns {string}
  */
 function printFieldType(type) {
-    const { element: { name }, dimensions } = type;
+    const { element: { name, kind }, dimensions } = type;
 
     const arrayPrefix = dimensions.map(d => d.optional ? "(" : "").join("")
     const arraySuffix = dimensions.map(d => d.optional ? "[] | null)" : "[]").join("")
 
-    const nativeName = nativeTypes[name] ?? name
+    const nativeName = nativeTypes[name] ?? (kind === 'primitive' ? `_Primitives.${name}` : name)
     const nativeType = type.optional ? `(${nativeName} | null)` : nativeName
 
     return arrayPrefix + nativeType + arraySuffix
@@ -61,7 +80,9 @@ function printObjectType(objectType) {
     return false;
 }
 
-function printSchemaTypes() {
+function printComplexTypes() {
+    printComplexTypeUtils()
+
     for (
         /** @type {import('@buffela/parser').TypeName} */
         const name in schema
@@ -69,14 +90,15 @@ function printSchemaTypes() {
         const type = schema[name]
 
         if (type.kind === "enum") {
-            printer.line()
             printer.line(`export type ${name} = _RelativeSchemaNode<0, "${name}">`)
         } else if (type.kind === "object") {
             printer.blockStart(`export type ${name} = {`)
             const isLeaf = printObjectType(type)
             printer.blockEnd(isLeaf ? '}' : ')')
         }
+
+        printer.line()
     }
 }
 
-module.exports = { printSchemaTypes}
+module.exports = { printComplexTypes, printComplexTypeImports }

@@ -1,1 +1,5 @@
-import type Date from "./primitives/Date.ts"
+export interface Date {
+    year: number;
+    month: number;
+    day: number;
+}

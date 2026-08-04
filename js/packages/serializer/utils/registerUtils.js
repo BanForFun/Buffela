@@ -1,14 +1,10 @@
-import {nullarySerializers, unarySerializers, variadicSerializers} from "./standardUtils.js";
+import {standardSerializers} from "./standardUtils.js";
 import SerializerBuffer from "../models/SerializerBuffer.js";
 import {serializeEnum} from "./enumUtils.js";
 import {serializeObject} from "./objectUtils.js";
 import {serializePrimitiveSize} from "./typeUtils.js"
 
-const standardNames = new Set([
-    ...Object.keys(nullarySerializers),
-    ...Object.keys(variadicSerializers),
-    ...Object.keys(unarySerializers),
-])
+const standardNames = new Set(Object.keys(standardSerializers))
 
 class InstantiatedPrimitiveSizeAdapter {
     /**
@@ -85,6 +81,9 @@ export function registerSerializer(schema, customSerializers) {
     schema.objectExtensions._serialize = serializeObject
 
     for (const name in customSerializers) {
+        if (name in standardSerializers)
+            throw new Error(`Standard ${name} serializer cannot be overridden`)
+
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const serializer = customSerializers[name]
@@ -100,36 +99,12 @@ export function registerSerializer(schema, customSerializers) {
         }
     }
 
-    for (const name in nullarySerializers) {
+    for (const name in standardSerializers) {
         if (name in customSerializers) continue
 
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
-            if (primitive.usedWithArgument)
-                throw new Error(`Type '${name}' does not take arguments`)
-
-            primitive._serialize = nullarySerializers[name]
-        }
-    }
-
-    for (const name in variadicSerializers) {
-        if (name in customSerializers) continue
-
-        const primitive = schema.primitiveTypes[name]
-        if (primitive) {
-            primitive._serialize = variadicSerializers[name]
-        }
-    }
-
-    for (const name in unarySerializers) {
-        if (name in customSerializers) continue
-
-        const primitive = schema.primitiveTypes[name]
-        if (primitive) {
-            if (primitive.usedWithoutArgument)
-                throw new Error(`Type '${name}' needs an argument`)
-
-            primitive._serialize = unarySerializers[name]
+            primitive._serialize = standardSerializers[name]
         }
     }
 }
