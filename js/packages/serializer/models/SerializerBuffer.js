@@ -54,20 +54,24 @@ class SerializerBuffer {
         this.#bitBuffer = 0
     }
 
-    writeByte(byte) {
-        this.#buffer.writeInt8(byte)
+    toBytes() {
+        this.#flushBits()
+        return this.#buffer.toBuffer()
     }
 
-    writeUByte(uByte) {
-        this.#buffer.writeUInt8(uByte)
-    }
+    writeUInt(uInt, bitLength = null) {
+        if (bitLength == null) {
+            this.#buffer.writeUInt32LE(uInt)
+        } else {
+            if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
 
-    writeShort(short) {
-        this.#buffer.writeInt16LE(short)
-    }
+            const maxValue = Math.pow(2, bitLength) - 1
 
-    writeUShort(uShort) {
-        this.#buffer.writeUInt16LE(uShort)
+            if (uInt < 0 || uInt > maxValue)
+                throw new Error('Value out of range')
+
+            this.#writeTruncated(uInt, bitLength)
+        }
     }
 
     writeInt(int, bitLength = null) {
@@ -91,19 +95,28 @@ class SerializerBuffer {
         }
     }
 
-    writeUInt(uInt, bitLength = null) {
-        if (bitLength == null) {
-            this.#buffer.writeUInt32LE(uInt)
-        } else {
-            if (bitLength > 31) throw new Error('Bit fields cannot be larger that 31 bits')
+    writeBoolean(boolean) {
+        this.#writeTruncated(boolean ? 1 : 0, 1)
+    }
 
-            const maxValue = Math.pow(2, bitLength) - 1
+    writeString(string) {
+        this.#buffer.writeString(string)
+    }
 
-            if (uInt < 0 || uInt > maxValue)
-                throw new Error('Value out of range')
+    writeByte(byte) {
+        this.#buffer.writeInt8(byte)
+    }
 
-            this.#writeTruncated(uInt, bitLength)
-        }
+    writeUByte(uByte) {
+        this.#buffer.writeUInt8(uByte)
+    }
+
+    writeShort(short) {
+        this.#buffer.writeInt16LE(short)
+    }
+
+    writeUShort(uShort) {
+        this.#buffer.writeUInt16LE(uShort)
     }
 
     writeLong(long) {
@@ -122,21 +135,8 @@ class SerializerBuffer {
         this.#buffer.writeDoubleLE(double)
     }
 
-    writeBoolean(boolean) {
-        this.#writeTruncated(boolean ? 1 : 0, 1)
-    }
-
     writeBytes(bytes) {
         this.#buffer.writeBuffer(bytes)
-    }
-
-    writeString(string) {
-        this.#buffer.writeString(string)
-    }
-
-    toBytes() {
-        this.#flushBits()
-        return this.#buffer.toBuffer()
     }
 }
 

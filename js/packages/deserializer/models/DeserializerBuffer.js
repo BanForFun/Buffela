@@ -33,36 +33,6 @@ export default class DeserializerBuffer {
         this.#bitCount = 0
     }
 
-    readByte() {
-        return this.#buffer.readInt8()
-    }
-
-    readUByte() {
-        return this.#buffer.readUInt8()
-    }
-
-    readShort() {
-        return this.#buffer.readInt16LE()
-    }
-
-    readUShort() {
-        return this.#buffer.readUInt16LE()
-    }
-
-    readInt(bitLength = null) {
-        if (bitLength == null) {
-            return this.#buffer.readInt32LE();
-        } else {
-            let result = this.readUInt(bitLength)
-
-            const prefixLength = 32 - bitLength
-            result <<= prefixLength
-            result >>= prefixLength
-
-            return result;
-        }
-    }
-
     readUInt(bitLength = null) {
         if (bitLength == null) {
             return this.#buffer.readUInt32LE();
@@ -85,6 +55,46 @@ export default class DeserializerBuffer {
         }
     }
 
+    readInt(bitLength = null) {
+        if (bitLength == null) {
+            return this.#buffer.readInt32LE();
+        } else {
+            let result = this.readUInt(bitLength)
+
+            const prefixLength = 32 - bitLength
+            result <<= prefixLength
+            result >>= prefixLength
+
+            return result;
+        }
+    }
+
+    readBoolean() {
+        return !!this.readUInt(1)
+    }
+
+    readString(length = null) {
+        return length != null
+            ? this.#buffer.readString(length)
+            : this.#buffer.readStringNT()
+    }
+
+    readByte() {
+        return this.#buffer.readInt8()
+    }
+
+    readUByte() {
+        return this.#buffer.readUInt8()
+    }
+
+    readShort() {
+        return this.#buffer.readInt16LE()
+    }
+
+    readUShort() {
+        return this.#buffer.readUInt16LE()
+    }
+
     readLong() {
         return this.#buffer.readBigInt64LE()
     }
@@ -101,17 +111,7 @@ export default class DeserializerBuffer {
         return this.#buffer.readDoubleLE()
     }
 
-    readBoolean() {
-        return !!this.readUInt(1)
-    }
-
     readBytes(length) {
         return this.#buffer.readBuffer(length)
-    }
-
-    readString(length = null) {
-        return length != null
-            ? this.#buffer.readString(length)
-            : this.#buffer.readStringNT()
     }
 }
