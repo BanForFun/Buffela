@@ -113,8 +113,17 @@ export interface Schema<E extends Extensions, C extends Extensions> {
     primitiveTypes: Record<string, PrimitiveType<E>>
 }
 
-export interface CustomPrimitiveConfiguration {
-    argument: 'none' | 'optional' | 'required'
+type CustomPrimitiveArgumentTypes = {
+    none: undefined
+    number: number
+    'number?': number | undefined
+}
+
+export type CustomPrimitiveArgumentConfig = keyof CustomPrimitiveArgumentTypes
+export type CustomPrimitiveArgumentType<A extends CustomPrimitiveArgumentConfig> = CustomPrimitiveArgumentTypes[A]
+
+export interface CustomPrimitiveConfig<A extends CustomPrimitiveArgumentConfig> {
+    argument: A
 }
 
 export interface SimplifiedSchema {

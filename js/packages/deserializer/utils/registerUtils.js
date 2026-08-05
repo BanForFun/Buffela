@@ -1,3 +1,5 @@
+import {validateCustomPrimitiveConfiguration} from "@buffela/parser/internal";
+
 import {standardDeserializers} from "./standardUtils.js";
 import DeserializerBuffer from "../models/DeserializerBuffer.js";
 import {deserializeEnum} from "./enumUtils.js";
@@ -59,12 +61,7 @@ export function registerDeserializer(schema, customDeserializers) {
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const deserializer = customDeserializers[name]
-
-            if (deserializer.argument === 'none' && primitive.usedWithArgument)
-                throw new Error(`Type '${name}' does not take arguments`)
-
-            if (deserializer.argument === 'required' && primitive.usedWithoutArgument)
-                throw new Error(`Type '${name}' needs an argument`)
+            validateCustomPrimitiveConfiguration(name, deserializer, primitive)
 
             primitive._doDeserialize = deserializer.deserialize
             primitive._deserialize = deserializeCustomPrimitive

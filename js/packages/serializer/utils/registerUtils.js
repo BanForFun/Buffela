@@ -1,3 +1,5 @@
+import {validateCustomPrimitiveConfiguration} from "@buffela/parser/internal";
+
 import {standardSerializers} from "./standardUtils.js";
 import SerializerBuffer from "../models/SerializerBuffer.js";
 import {serializeEnum} from "./enumUtils.js";
@@ -60,12 +62,7 @@ export function registerSerializer(schema, customSerializers) {
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const serializer = customSerializers[name]
-
-            if (serializer.argument === 'none' && primitive.usedWithArgument)
-                throw new Error(`Type '${name}' does not take arguments`)
-
-            if (serializer.argument === 'required' && primitive.usedWithoutArgument)
-                throw new Error(`Type '${name}' needs an argument`)
+            validateCustomPrimitiveConfiguration(name, serializer, primitive)
 
             primitive._doSerialize = serializer.serialize
             primitive._serialize = serializeCustomPrimitive
