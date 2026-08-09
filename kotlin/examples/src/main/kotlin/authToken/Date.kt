@@ -9,13 +9,13 @@ fun SerializerBuffer.writeDate(date: Date) {
     val yearMonth = date.year * 12 + (date.month - 1)
     val day = date.day - 1
 
-    writeUnsigned(yearMonth.toUInt(), 17)
-    writeUnsigned(day.toUInt(), 5)
+    writeUInt(yearMonth.toUInt(), 17)
+    writeUInt(day.toUInt(), 5)
 }
 
 fun DeserializerBuffer.readDate(): Date {
-    val yearMonth = readUnsigned(17).toInt()
-    val day = readUnsigned(5).toInt()
+    val yearMonth = readUInt(17).toInt()
+    val day = readUInt(5).toInt()
 
     return Date(
         year = yearMonth / 12,
