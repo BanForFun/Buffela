@@ -97,9 +97,11 @@ export type EnumType<E extends Extensions> = SchemaNode & DataType<'enum', E> & 
     entries: EnumEntry[]
 }
 
-export type PrimitiveType<E extends Extensions> = DataType<'primitive', E> & {
-    usedWithArgument: boolean
-    usedWithoutArgument: boolean
+export type PrimitiveType<E extends Extensions> = DataType<'primitive', E>
+
+export interface PrimitiveDeclaration {
+    parameterType: string,
+    optional: boolean
 }
 
 export type RootType<E extends Extensions> = EnumType<E> | ObjectType<E>
@@ -111,19 +113,8 @@ export interface Schema<E extends Extensions, C extends Extensions> {
     objectExtensions: E
     enumExtensions: E
     primitiveTypes: Record<string, PrimitiveType<E>>
-}
-
-type CustomPrimitiveArgumentTypes = {
-    none: undefined
-    number: number
-    'number?': number | undefined
-}
-
-export type CustomPrimitiveArgumentConfig = keyof CustomPrimitiveArgumentTypes
-export type CustomPrimitiveArgumentType<A extends CustomPrimitiveArgumentConfig> = CustomPrimitiveArgumentTypes[A]
-
-export interface CustomPrimitiveConfig<A extends CustomPrimitiveArgumentConfig> {
-    argument: A
+    primitiveAliases: Record<string, string>
+    primitiveDeclarations: Record<string, PrimitiveDeclaration>
 }
 
 export interface SimplifiedSchema {

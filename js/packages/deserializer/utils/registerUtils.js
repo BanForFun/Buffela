@@ -1,11 +1,7 @@
-import {validateCustomPrimitiveConfiguration} from "@buffela/parser/internal";
-
 import {standardDeserializers} from "./standardUtils.js";
 import DeserializerBuffer from "../models/DeserializerBuffer.js";
 import {deserializeEnum} from "./enumUtils.js";
 import {deserializeObject} from "./objectUtils.js";
-
-const standardNames = new Set(Object.keys(standardDeserializers))
 
 /**
  *
@@ -38,17 +34,6 @@ function deserializeComplexType(bytes) {
  * @param {Object.<string, CustomDeserializer>} customDeserializers
  */
 export function registerDeserializer(schema, customDeserializers) {
-    const customNames = new Set(Object.keys(customDeserializers))
-    const missingNames = Array.from(
-        new Set(Object.keys(schema.primitiveTypes))
-            .difference(standardNames)
-            .difference(customNames)
-    )
-
-    if (missingNames.length > 0) {
-        throw new Error('Unknown type(s): ' + missingNames.join(', '))
-    }
-
     schema.complexExtensions.deserialize = deserializeComplexType
 
     schema.enumExtensions._deserialize = deserializeEnum
@@ -61,8 +46,6 @@ export function registerDeserializer(schema, customDeserializers) {
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const deserializer = customDeserializers[name]
-            validateCustomPrimitiveConfiguration(name, deserializer, primitive)
-
             primitive._doDeserialize = deserializer.deserialize
             primitive._deserialize = deserializeCustomPrimitive
         }

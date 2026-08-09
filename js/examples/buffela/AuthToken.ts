@@ -58,7 +58,7 @@ export type AuthTokenSignature = {
 }
 
 type _TypeSchema<T> = Partial<_Serializable<T> & _Deserializable<T>>
-type _Primitive<T> = Partial<_Serializer<T> & _Deserializer<T>>
+type _Primitive<T, A> = Partial<_Serializer<T, A> & _Deserializer<T, A>>
 
 type _Schema = {
     readonly Gender: _TypeSchema<Gender> & {
@@ -76,7 +76,7 @@ type _Schema = {
     readonly AuthTokenPayload: _TypeSchema<AuthTokenPayload> & {}
     readonly AuthTokenSignature: _TypeSchema<AuthTokenSignature> & {}
     primitiveTypes: {
-        Date?: _Primitive<_Primitives.Date>
+        Date?: _Primitive<_Primitives.Date, undefined>
     }
 }
 

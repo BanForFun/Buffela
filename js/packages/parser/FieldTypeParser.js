@@ -1,4 +1,4 @@
-export default class DefinitionParser {
+export default class FieldTypeParser {
     #definition;
     #pattern = /((?<number>\d+)|[A-Z][a-zA-Z\d]*)?/y;
 

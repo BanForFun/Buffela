@@ -11,10 +11,6 @@
       "types": "./types/index.d.ts",
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
-    },
-    "./internal": {
-      "import": "./dist/internal.js",
-      "require": "./dist/internal.cjs"
     }
   },
   "files": [
@@ -24,7 +20,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsup index.js internal.js --format cjs,esm --clean --out-dir dist",
+    "build": "tsup index.js --format cjs,esm --clean --out-dir dist",
     "prepublishOnly": "cp ../../../README.md ."
   },
   "repository": {

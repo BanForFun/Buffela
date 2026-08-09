@@ -1,4 +1,4 @@
-import {inspectSymbol} from "../constants/symbols.js";
+import {inspectSymbol} from "./constants/symbols.js";
 
 export default class SchemaNode {
     #inspectType = "BuffelaNode"

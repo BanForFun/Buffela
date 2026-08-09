@@ -4,16 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed custom primitive type definition generation">
-      <change afterPath="$PROJECT_DIR$/packages/parser/internal.js" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added optional type support">
+      <change afterPath="$PROJECT_DIR$/packages/parser/RootTypeParser.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/parser/primitiveDeclarationParser.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/buffela/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/internal.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/EnumType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/InstantiatedType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/ObjectType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/Schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/SchemaNode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/models/TypeDefinitionParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/FieldTypeParser.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/jsonSchemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/jsonSchemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,6 +54,65 @@
     <commands />
     <urls />
   </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000410037506" />
+      <entry key="S2" value="1.0740040226395486" />
+      <entry key="S5" value="2.3955584985942444" />
+      <entry key="S10" value="4.7571336143096765" />
+      <entry key="S30" value="9.042332044569145" />
+      <entry key="S60" value="11.975920078841048" />
+      <entry key="M2" value="15.378715199590756" />
+      <entry key="M5" value="26.509522421655184" />
+      <entry key="M10" value="51.80111069167098" />
+      <entry key="M15" value="75.55277819200369" />
+      <entry key="M30" value="128.60835840858942" />
+      <entry key="H1" value="205.72536056297105" />
+      <entry key="H2" value="344.89064366331047" />
+      <entry key="H4" value="545.3672747781351" />
+      <entry key="D1" value="930.3601170790598" />
+      <entry key="W1" value="1035.0002685282643" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="9.06819036968934E-239" />
+      <entry key="MS500" value="2.4632252384941546E-48" />
+      <entry key="S2" value="1.2527835191423347E-12" />
+      <entry key="S5" value="1.7344045835316322E-5" />
+      <entry key="S10" value="0.004164618330571008" />
+      <entry key="S30" value="0.16096691109242559" />
+      <entry key="S60" value="0.40996638689318043" />
+      <entry key="M2" value="0.7312883136265288" />
+      <entry key="M5" value="1.511578895775775" />
+      <entry key="M10" value="2.8258785531145283" />
+      <entry key="M15" value="3.827106193810095" />
+      <entry key="M30" value="5.5798087342637395" />
+      <entry key="H1" value="7.372747894714057" />
+      <entry key="H2" value="10.148264352801316" />
+      <entry key="H4" value="14.252394479221595" />
+      <entry key="D1" value="22.36689543804505" />
+      <entry key="W1" value="24.594907002035914" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="3.0812092557847316E-7" />
+      <entry key="MS500" value="0.04985911774439314" />
+      <entry key="S2" value="0.5461838822787266" />
+      <entry key="S5" value="2.133790788622041" />
+      <entry key="S10" value="4.617559823906177" />
+      <entry key="S30" value="9.134521773852578" />
+      <entry key="S60" value="12.333856118271354" />
+      <entry key="M2" value="16.072633626142963" />
+      <entry key="M5" value="27.993626858499447" />
+      <entry key="M10" value="54.600380974746535" />
+      <entry key="M15" value="79.35482942283367" />
+      <entry key="M30" value="134.168441595876" />
+      <entry key="H1" value="213.0835761611996" />
+      <entry key="H2" value="355.0272399205578" />
+      <entry key="H4" value="559.610553674822" />
+      <entry key="D1" value="952.7244436439896" />
+      <entry key="W1" value="1059.5947681304683" />
+    </decayedShown>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -51,45 +127,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.15.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
-    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/buffela-schema.json&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/node_modules/typescript/lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.debug parser.executor": "Debug",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "24.14.1",
+    "javascript.nodejs.core.library.typings.version": "24.13.3",
+    "javascript.preferred.runtime.type.id": "node",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/buffela-schema.json",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_interpreter_path": "node",
+    "nodejs_package_manager_path": "npm",
+    "npm.build.executor": "Run",
+    "npm.common > build.executor": "Run",
+    "npm.deserializer > build.executor": "Run",
+    "npm.parser > build.executor": "Run",
+    "npm.serializer > build.executor": "Run",
+    "npm.tools-common > build.executor": "Run",
+    "npm.tools-kotlin > build.executor": "Run",
+    "npm.tools-types > build.executor": "Run",
+    "settings.editor.selected.configurable": "settings.json.schema",
+    "to.speed.mode.migration.done": "true",
+    "ts.external.directory.path": "/Users/jpeg/Documents/Projects/Buffela/js/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/packages/tools-common" />
@@ -99,59 +176,19 @@
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/parser" />
       <recent name="$PROJECT_DIR$/packages/tools-common/test/buffela/gr/elaevents/features/chat/database" />
       <recent name="$PROJECT_DIR$/packages/tools-common/test/buffela" />
       <recent name="$PROJECT_DIR$/packages/tools-common/test" />
       <recent name="$PROJECT_DIR$/packages/tools/test/buffela/nested/more" />
-      <recent name="$PROJECT_DIR$/packages/tools/test/buffela/nested" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.parser &gt; build">
-    <configuration name="debug parser" type="NodeJSConfigurationType" path-to-js-file="packages/parser/debug.js" working-dir="$PROJECT_DIR$">
+  <component name="RunManager" selected="npm.build">
+    <configuration name="Complex" type="NodeJSConfigurationType" path-to-js-file="complex.js" working-dir="$PROJECT_DIR$/examples/buffela">
       <method v="2" />
     </configuration>
-    <configuration name="common &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/common/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="deserializer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/deserializer/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="parser &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/parser/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="serializer &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/serializer/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="build" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="tools-common &gt; build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/packages/tools-common/package.json" />
+    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
         <script value="build" />
@@ -161,22 +198,9 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Node.js.debug parser" />
-      <item itemvalue="npm.common &gt; build" />
-      <item itemvalue="npm.deserializer &gt; build" />
-      <item itemvalue="npm.parser &gt; build" />
-      <item itemvalue="npm.serializer &gt; build" />
-      <item itemvalue="npm.tools-common &gt; build" />
+      <item itemvalue="Node.js.Complex" />
+      <item itemvalue="npm.build" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="npm.parser &gt; build" />
-        <item itemvalue="npm.tools-common &gt; build" />
-        <item itemvalue="npm.serializer &gt; build" />
-        <item itemvalue="npm.common &gt; build" />
-        <item itemvalue="npm.deserializer &gt; build" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -267,6 +291,9 @@
       <workItem from="1785794929723" duration="10126000" />
       <workItem from="1785805072875" duration="7179000" />
       <workItem from="1785841333529" duration="30068000" />
+      <workItem from="1786103145147" duration="2955000" />
+      <workItem from="1786137769250" duration="10555000" />
+      <workItem from="1786283758535" duration="19951000" />
     </task>
     <task id="LOCAL-00039" summary="Implemented deserializer">
       <option name="closed" value="true" />

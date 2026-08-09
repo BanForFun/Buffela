@@ -1,4 +1,4 @@
-import TypeDefinitionParser from './TypeDefinitionParser';
+import FieldTypeParser from './FieldTypeParser.js';
 
 class Dimension {
     sizeType;
@@ -28,7 +28,7 @@ export default class InstantiatedType {
 
         while(parser.tryConsume('[')) {
             const sizeType = InstantiatedType.#parseNested(schema, parser, true)
-            if (!sizeType) throw new Error("Expected type")
+            if (!sizeType) throw new Error("Expected size")
 
             const dimension = new Dimension(sizeType)
             this.dimensions.push(dimension)
@@ -40,9 +40,12 @@ export default class InstantiatedType {
         }
     }
 
+    // Type -> undefined
+    // Type() -> null
+    // Type(Size) -> Size
     static #parseArgumentType(schema, parser) {
         if (!parser.tryConsume('('))
-            return undefined // No parenthesis at all, not even empty
+            return undefined
 
         const type = InstantiatedType.#parseNested(schema, parser, true)
 
@@ -52,12 +55,12 @@ export default class InstantiatedType {
         return type
     }
 
-    static #parseElementType(schema, typeName, forcePrimitive, hasArgument) {
+    static #parseElementType(schema, typeName, forcePrimitive) {
         if (typeof typeName !== 'string')
             return new InstantiatedType(typeName)
 
         if (!forcePrimitive) {
-            const aliasDefinition = schema.lookupAlias(typeName)
+            const aliasDefinition = schema.primitiveAliases[typeName]
             if (aliasDefinition)
                 return InstantiatedType.#parse(schema, aliasDefinition, true)
 
@@ -67,12 +70,6 @@ export default class InstantiatedType {
         }
 
         const primitive = schema.lookupPrimitive(typeName)
-        if (hasArgument) {
-            primitive.usedWithArgument = true
-        } else {
-            primitive.usedWithoutArgument = true
-        }
-
         return new InstantiatedType(primitive)
     }
 
@@ -80,14 +77,10 @@ export default class InstantiatedType {
         const typeName = parser.consumeName()
         if (typeName == null) return null
 
-        // Type -> undefined
-        // Type() -> null
-        // Type(Size) -> Size
         const argumentType = InstantiatedType.#parseArgumentType(schema, parser)
         const forcePrimitive = _forcePrimitive || argumentType !== undefined
-        const hasArgument = argumentType != null
 
-        const elementType = InstantiatedType.#parseElementType(schema, typeName, forcePrimitive, hasArgument)
+        const elementType = InstantiatedType.#parseElementType(schema, typeName, forcePrimitive)
         elementType.#consumeSuffix(schema, parser)
         if (argumentType !== undefined)
             elementType.argument = argumentType
@@ -96,7 +89,7 @@ export default class InstantiatedType {
     }
 
     static #parse(schema, definition, forcePrimitive) {
-        const parser = new TypeDefinitionParser(definition)
+        const parser = new FieldTypeParser(definition)
         const type = InstantiatedType.#parseNested(schema, parser, forcePrimitive)
         if (!type) throw new Error('Invalid type prefix')
 

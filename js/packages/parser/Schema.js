@@ -1,18 +1,24 @@
 import EnumType from "./EnumType.js";
 import ObjectType from "./ObjectType.js";
 import SchemaNode from "./SchemaNode.js";
+import RootTypeParser from "./RootTypeParser.js";
 import InstantiatedType from "./InstantiatedType.js";
+import { parsePrimitiveDeclaration } from "./primitiveDeclarationParser.js";
 
 const primitivePrototype = { kind: 'primitive' }
 
 function createPrimitive(name) {
     const primitive = Object.create(primitivePrototype)
     primitive.name = name
-    primitive.usedWithArgument = false
-    primitive.usedWithoutArgument = false
 
     return primitive
 }
+
+const aliasParser = new RootTypeParser()
+aliasParser.addParser(parsePrimitiveDeclaration)
+aliasParser.addParser(function (schema, name, definition) {
+    schema.primitiveAliases[name] = definition;
+});
 
 export default class Schema {
     #definition;
@@ -29,6 +35,8 @@ export default class Schema {
         Object.defineProperty(this, 'enumExtensions', { value: enumExtensions })
 
         Object.defineProperty(this, 'primitiveTypes', { value: {} })
+        Object.defineProperty(this, 'primitiveDeclarations', { value: {} })
+        Object.defineProperty(this, 'primitiveAliases', { value: {} })
 
         this.#hoistTypes()
         this.#linkTypes()
@@ -48,19 +56,20 @@ export default class Schema {
         return this.primitiveTypes[name] ??= createPrimitive(name)
     }
 
-    lookupAlias(name) {
-        const definition = this.#definition[name];
-        return typeof definition === 'string' ? definition : null;
-    }
-
     #hoistTypes() {
         for (const name in this.#definition) {
-            const member = this.#definition[name];
-            if (typeof member !== 'object') continue;
+            const definition = this.#definition[name];
+            switch (typeof definition) {
+                case 'object':
+                    this[name] = Array.isArray(definition)
+                        ? new EnumType(this, [], name, definition)
+                        : new ObjectType(this, [], name, definition)
 
-            this[name] = Array.isArray(member)
-                ? new EnumType(this, [], name, member)
-                : new ObjectType(this, [], name, member)
+                    break;
+                case 'string':
+                    aliasParser.parse(this, name, definition)
+                    break;
+            }
         }
     }
 

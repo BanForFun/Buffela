@@ -12,8 +12,22 @@ function fail(message) {
     return { "not": {}, "errorMessage": message }
 }
 
+function oneOf(schemas) {
+    return { "oneOf": schemas }
+}
+
+function suggestions(strings) {
+    return {
+        "type": "string",
+        "pattern": "[]",
+        "enum": strings
+    }
+}
+
 module.exports = {
     ifThen,
     when,
-    fail
+    fail,
+    oneOf,
+    suggestions
 }

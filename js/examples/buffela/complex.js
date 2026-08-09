@@ -13,7 +13,6 @@ const schemaJson = require('./AuthToken.json')
 const schema = parseSchema(schemaJson)
 
 const DateType = {
-    argument: 'none',
     serialize(buffer, value) {
         const yearMonth = value.year * 12 + (value.month - 1)
         const day = value.day - 1

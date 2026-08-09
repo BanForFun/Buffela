@@ -1,11 +1,7 @@
-import {validateCustomPrimitiveConfiguration} from "@buffela/parser/internal";
-
 import {standardSerializers} from "./standardUtils.js";
 import SerializerBuffer from "../models/SerializerBuffer.js";
 import {serializeEnum} from "./enumUtils.js";
 import {serializeObject} from "./objectUtils.js";
-
-const standardNames = new Set(Object.keys(standardSerializers))
 
 /**
  *
@@ -39,17 +35,6 @@ function serializeComplexType(value, buffer) {
  * @param {Object.<string, CustomSerializer>} customSerializers
  */
 export function registerSerializer(schema, customSerializers) {
-    const customNames = new Set(Object.keys(customSerializers))
-    const missingNames = Array.from(
-        new Set(Object.keys(schema.primitiveTypes))
-            .difference(standardNames)
-            .difference(customNames)
-    )
-
-    if (missingNames.length > 0) {
-        throw new Error('Unknown type(s): ' + missingNames.join(', '))
-    }
-
     schema.complexExtensions.serialize = serializeComplexType
 
     schema.enumExtensions._serialize = serializeEnum
@@ -62,8 +47,6 @@ export function registerSerializer(schema, customSerializers) {
         const primitive = schema.primitiveTypes[name]
         if (primitive) {
             const serializer = customSerializers[name]
-            validateCustomPrimitiveConfiguration(name, serializer, primitive)
-
             primitive._doSerialize = serializer.serialize
             primitive._serialize = serializeCustomPrimitive
         }

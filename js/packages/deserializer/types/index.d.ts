@@ -1,10 +1,4 @@
-import {
-    Extensions,
-    SimplifiedSchema,
-    CustomPrimitiveConfig,
-    CustomPrimitiveArgumentConfig,
-    CustomPrimitiveArgumentType
-} from "@buffela/parser"
+import {Extensions, SimplifiedSchema} from "@buffela/parser"
 
 declare class DeserializerBuffer {
     constructor(bytes: Uint8Array)
@@ -32,8 +26,8 @@ export interface Deserializable<T> {
     deserialize: (bytes: DeserializerBuffer | Uint8Array) => T
 }
 
-export interface Deserializer<T, A extends CustomPrimitiveArgumentConfig> extends CustomPrimitiveConfig<A> {
-    deserialize: (buffer: DeserializerBuffer, argument: CustomPrimitiveArgumentType<A>) => T
+export interface Deserializer<T, A> {
+    deserialize: (buffer: DeserializerBuffer, argument: A) => T
 }
 
 type PrimitiveDeserializers<S extends Record<string, Extensions>> = {

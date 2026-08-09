@@ -1,4 +1,3 @@
-const nativeTypes = require("../constants/nativeTypes");
 
 function printSchemaTypeImports() {
     if (options.serializerEnabled) printer.line(
@@ -22,16 +21,16 @@ function printSchemaTypeUtils() {
 
     if (options.serializerEnabled) {
         typeExtensions.push('_Serializable<T>')
-        primitiveExtensions.push('_Serializer<T>')
+        primitiveExtensions.push('_Serializer<T, A>')
     }
 
     if (options.deserializerEnabled) {
         typeExtensions.push('_Deserializable<T>')
-        primitiveExtensions.push('_Deserializer<T>')
+        primitiveExtensions.push('_Deserializer<T, A>')
     }
 
     printer.line(`type _TypeSchema<T> = Partial<${combineExtensions(typeExtensions)}>`)
-    printer.line(`type _Primitive<T> = Partial<${combineExtensions(primitiveExtensions)}>`)
+    printer.line(`type _Primitive<T, A> = Partial<${combineExtensions(primitiveExtensions)}>`)
     printer.line()
 }
 
@@ -103,9 +102,8 @@ function printSchemaType() {
     }
 
     printer.blockStart('primitiveTypes: {')
-    for (const name in schema.primitiveTypes) {
-        if (name in nativeTypes) continue;
-        printer.line(`${name}?: _Primitive<_Primitives.${name}>`)
+    for (const name in schema.primitiveDeclarations) {
+        printer.line(`${name}?: _Primitive<_Primitives.${name}, undefined>`)
     }
     printer.blockEnd('}')
 
