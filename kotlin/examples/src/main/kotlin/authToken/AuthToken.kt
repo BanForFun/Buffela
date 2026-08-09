@@ -171,7 +171,7 @@ sealed class User: _Serializable {
         
         class Organizer: Registered {
             val roles: Array<String>
-            override val userId: String get() = this._userId
+            override val userId get() = _userId as String
             val email: String
             
             constructor(

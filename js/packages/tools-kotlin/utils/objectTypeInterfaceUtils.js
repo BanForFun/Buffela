@@ -28,7 +28,7 @@ function printObjectFields(type) {
 
         if (field.override) {
             const prefix = field.final ? "override val" : "open override val"
-            printer.line(`${prefix} ${name}: ${fieldType} get() = this._${name}`)
+            printer.line(`${prefix} ${name} get() = _${name} as ${fieldType}`)
         } else if (field.final) {
             printer.line(`val ${name}: ${fieldType}`)
         } else {
