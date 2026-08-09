@@ -18,8 +18,8 @@ import kotlin.math.min
 class DeserializerBuffer(bytes: ByteArray) {
     private val buffer: Buffer = Buffer().apply { write(bytes) }
 
-    private val initialSize = bytes.size
-    val position get() = initialSize - buffer.size.toInt() //buffer.size is the number of remaining bytes
+    val length = bytes.size
+    val position get() = length - buffer.size.toInt() //buffer.size is the number of remaining bytes
 
     private var bitBuffer: Int = 0
     private var bitCount = 0
@@ -57,19 +57,10 @@ class DeserializerBuffer(bytes: ByteArray) {
         return result
     }
 
-    fun clearBitBuffer() {
+    fun alignToByte() {
         this.bitCount = 0
     }
 
-    fun readUnsigned(bitLength: Int): UInt {
-        return readTruncated(bitLength).toUInt()
-    }
-
-    fun readSigned(bitLength: Int): Int {
-        val result = readTruncated(bitLength)
-        val prefixLength = 32 - bitLength
-        return (result shl prefixLength) shr prefixLength
-    }
 
     fun readByte(): Byte {
         return this.buffer.readByte()
@@ -91,8 +82,18 @@ class DeserializerBuffer(bytes: ByteArray) {
         return this.buffer.readIntLe()
     }
 
+    fun readInt(bitLength: Int): Int {
+        val result = readTruncated(bitLength)
+        val prefixLength = 32 - bitLength
+        return (result shl prefixLength) shr prefixLength
+    }
+
     fun readUInt(): UInt {
         return this.buffer.readUIntLe()
+    }
+
+    fun readUInt(bitLength: Int): UInt {
+        return readTruncated(bitLength).toUInt()
     }
 
     fun readLong(): Long {

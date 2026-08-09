@@ -2,11 +2,9 @@ const nativeTypes = require("../constants/nativeTypes");
 
 function printSerializerImports() {
     printer.line('import gr.elaevents.buffela.serialization.utils.assertLength')
-}
-
-function printSerializerAliases() {
-    printer.line('typealias _Serializable = gr.elaevents.buffela.serialization.Serializable')
-    printer.line('typealias _SerializerBuffer = gr.elaevents.buffela.serialization.SerializerBuffer')
+    printer.line('import gr.elaevents.buffela.serialization.utils.assertSize')
+    printer.line('import gr.elaevents.buffela.serialization.Serializable as _Serializable')
+    printer.line('import gr.elaevents.buffela.serialization.SerializerBuffer as _SerializerBuffer')
 }
 
 /**
@@ -20,13 +18,13 @@ function printSerializePrimitive(primitive, ...args) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedSizeType} type
  * @param {string} size
  */
 function printSerializeSize(type, size) {
     const { element } = type
     if (typeof element !== 'object') {
-        printer.line(`assertLength(${element}, ${size})`)
+        printer.line(`assertSize(${element}, ${size})`)
         return;
     }
 
@@ -97,13 +95,17 @@ function printSerializeElement(type, fieldName) {
             printSerializeSize(argument, `${fieldName}.size`)
             printSerializePrimitive(element.name, fieldName)
             break;
-        case 'Unsigned':
-        case 'Signed':
-            printSerializePrimitive(element.name, fieldName, argument.element.toString())
+        case 'Int':
+        case 'UInt':
+            if (argument) {
+                printSerializePrimitive(element.name, fieldName, argument.element.toString())
+            } else {
+                printSerializePrimitive(element.name, fieldName)
+            }
             break;
         case 'String':
             if (argument) {
-                printSerializeSize(argument, `${fieldName}.length`)
+                printer.line(`assertLength(${argument.element}, ${fieldName}.length)`)
                 printSerializePrimitive(element.name, fieldName)
                 break;
             } else {
@@ -133,7 +135,7 @@ function printSerializeNotNullField(type, fieldName, dimension) {
         return
     }
 
-    const sizeType = type.dimensions[dimension - 1]
+    const sizeType = type.dimensions[dimension - 1].sizeType
     printSerializeSize(sizeType, `${fieldName}.size`)
 
     const itemName = `item${dimension}`;
@@ -165,7 +167,6 @@ function printSerializeField(type, fieldName, dimension = type.dimensions.length
 
 module.exports = {
     printSerializerImports,
-    printSerializerAliases,
     printSerializeField,
     printSerializeSize
 }

@@ -1,5 +1,4 @@
 const {deserializeField, deserializeSize} = require("./fieldDeserializationUtils");
-const { isConstantType } = require("./instantiatedTypeUtils");
 
 /**
  *
@@ -17,6 +16,7 @@ function printFieldDeserializers(type) {
         }
 
         if (prefix) {
+            printer.line()
             printer.line(`${prefix} fun ${name}(buffer: _DeserializerBuffer) = ${deserializeField(field.type)}`)
         }
     }
@@ -27,7 +27,9 @@ function printFieldDeserializers(type) {
  * @param {import('@buffela/parser').ObjectType} type
  */
 function printDeserializerConstructor(type) {
-    const prefix = type.isLeaf ? "internal constructor" : "constructor"
+    printer.line()
+
+    const prefix = type.isLeaf ? "internal constructor" : "protected constructor"
     const suffix = type.isRoot ? '' : ': super(buffer)'
     printer.blockStart(`${prefix}(buffer: _DeserializerBuffer)${suffix} {`)
 
@@ -66,10 +68,11 @@ function leafTypeClass(type) {
 function printDeserializerObject(type) {
     if (!type.isRoot) return;
 
+    printer.line()
     printer.blockStart(`companion object Deserializer: _Deserializer<${type.name}> {`)
     printer.blockStart(`override fun deserialize(buffer: _DeserializerBuffer): ${type.name} {`)
 
-    if (isConstantType(type.leafIndexType)) {
+    if (!type.leafIndexType) {
         printer.line(`return ${leafTypeClass(type.leaves[0])}(buffer)`)
     } else {
         printer.blockStart(`return when(val index = ${deserializeSize(type.leafIndexType)}) {`)

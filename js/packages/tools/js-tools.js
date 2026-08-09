@@ -17,8 +17,15 @@ const {
     Printer
 } = require('@buffela/tools-common')
 
-const { printComplexTypeImports, printComplexTypes } = require("./utils/complexTypeUtils");
-const { printSchemaType, printSchemaTypeImports } = require("./utils/schemaUtils");
+const {
+    printComplexTypeImports,
+    printComplexTypes
+} = require("./utils/complexTypeUtils");
+
+const {
+    printSchemaType,
+    printSchemaTypeImports
+} = require("./utils/schemaUtils");
 
 yargs()
     .command({

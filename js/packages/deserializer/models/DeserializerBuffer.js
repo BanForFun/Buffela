@@ -2,6 +2,7 @@ import { SmartBuffer } from 'smart-buffer';
 
 export default class DeserializerBuffer {
     #buffer
+    length
 
     #bitBuffer = 0
     #bitCount = 0
@@ -12,6 +13,7 @@ export default class DeserializerBuffer {
 
     constructor(bytes) {
         this.#buffer = SmartBuffer.fromBuffer(Buffer.from(bytes))
+        this.length = bytes.byteLength
     }
 
     #loadBits() {

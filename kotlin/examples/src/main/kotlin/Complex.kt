@@ -34,7 +34,7 @@ fun main() {
 
     payload.serialize(serializerBuffer)
 
-    serializerBuffer.clearBitBuffer()
+    serializerBuffer.alignToByte()
 
     val signature = AuthTokenSignature(hmac256 = sign(serializerBuffer.toBytes()))
     signature.serialize(serializerBuffer)
@@ -50,7 +50,7 @@ fun main() {
     val deserializedPayload = AuthTokenPayload.deserialize(deserializerBuffer)
     println("Deserialized payload: $deserializedPayload")
 
-    deserializerBuffer.clearBitBuffer()
+    deserializerBuffer.alignToByte()
 
     val serializedPayload = serialized.sliceArray(0 until deserializerBuffer.position)
     val deserializedSignature = AuthTokenSignature.deserialize(deserializerBuffer)

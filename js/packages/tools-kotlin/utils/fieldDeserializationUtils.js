@@ -2,11 +2,8 @@ const nativeTypes = require("../constants/nativeTypes");
 
 function printDeserializerImports() {
     printer.line('import gr.elaevents.buffela.deserialization.utils.invalidSubtype')
-}
-
-function printDeserializerAliases() {
-    printer.line('typealias _Deserializer<T> = gr.elaevents.buffela.deserialization.Deserializer<T>')
-    printer.line('typealias _DeserializerBuffer = gr.elaevents.buffela.deserialization.DeserializerBuffer')
+    printer.line('import gr.elaevents.buffela.deserialization.Deserializer as _Deserializer')
+    printer.line('import gr.elaevents.buffela.deserialization.DeserializerBuffer as _DeserializerBuffer')
 }
 
 /**
@@ -21,7 +18,7 @@ function deserializePrimitive(primitive, ...args) {
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').InstantiatedSizeType} type
  * @returns {number|string}
  */
 function deserializeSize(type) {
@@ -77,12 +74,11 @@ function deserializeElement(type) {
             return deserializePrimitiveArray(type, 'Boolean')
         case 'Bytes':
             return `buffer.readBytes(${deserializeSize(argument)})`
-        case 'Signed':
-        case 'Unsigned':
-            return deserializePrimitive(element.name, argument.element.toString())
+        case 'Int':
+        case 'UInt':
         case 'String':
             if (argument) {
-                return `buffer.readString(${deserializeSize(argument)})`
+                return deserializePrimitive(element.name, argument.element.toString())
             } else {
                 return deserializePrimitive(element.name)
             }
@@ -105,7 +101,7 @@ function deserializeNotNullField(type, dimension) {
         return deserializeElement(type)
     }
 
-    const sizeType = type.dimensions[dimension - 1]
+    const sizeType = type.dimensions[dimension - 1].sizeType
     const size = deserializeSize(sizeType)
     return `Array(${size}) { _ -> ${deserializeField(type,dimension - 1)} }`
 }
@@ -128,7 +124,6 @@ function deserializeField(type, dimension = type.dimensions?.length) {
 
 module.exports = {
     printDeserializerImports,
-    printDeserializerAliases,
     deserializeSize,
     deserializeField
 }

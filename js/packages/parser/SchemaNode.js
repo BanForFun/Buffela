@@ -1,7 +1,7 @@
 import {inspectSymbol} from "./constants/symbols.js";
 
 export default class SchemaNode {
-    #inspectType = "BuffelaNode"
+    #inspectType = "SchemaNode"
 
     constructor(parentPath, name) {
         Object.defineProperty(this, 'name', { value: name })

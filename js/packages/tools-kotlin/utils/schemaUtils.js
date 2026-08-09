@@ -1,5 +1,5 @@
-const {printSerializerImports, printSerializerAliases} = require("./fieldSerializationUtils");
-const {printDeserializerImports, printDeserializerAliases} = require("./fieldDeserializationUtils");
+const {printSerializerImports} = require("./fieldSerializationUtils");
+const {printDeserializerImports} = require("./fieldDeserializationUtils");
 const {printEnumTypeClass} = require("./enumTypeUtils");
 const {printRootObjectTypeClass} = require("./objectTypeUtils");
 
@@ -9,19 +9,14 @@ function printTypes() {
     if (options.package)
         printer.line(`package ${options.package}\n`)
 
+    if (options.imports)
+        printer.line(options.imports)
+
     if (options.serializerEnabled)
         printSerializerImports()
 
     if (options.deserializerEnabled)
         printDeserializerImports()
-
-    printer.line()
-
-    if (options.serializerEnabled)
-        printSerializerAliases()
-
-    if (options.deserializerEnabled)
-        printDeserializerAliases()
 
     for (
         /** @type {import('@buffela/parser').TypeName} */

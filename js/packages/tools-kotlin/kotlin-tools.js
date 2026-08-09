@@ -14,7 +14,8 @@ const {
     getNestedDirPath,
     Printer,
     editorSchema,
-    processFiles
+    processFiles,
+    tryReadFileSync
 } = require('@buffela/tools-common')
 
 const { printTypes } = require("./utils/schemaUtils");
@@ -67,6 +68,9 @@ yargs()
                 if (!existsDirSync(outputDirPath))
                     throw new Error(`Invalid kotlin output directory '${outputDirPath}'`)
 
+                const importsFilePath = path.join(outputDirPath, schemaFile.name + ".imports.kt")
+                const importsFileContents = tryReadFileSync(importsFilePath) ?? ""
+
                 const outputFilePath = path.join(outputDirPath, schemaFile.name + ".kt")
                 const outputFileStream = fs.createWriteStream(outputFilePath)
 
@@ -75,11 +79,12 @@ yargs()
                 global.options = {
                     serializerEnabled: argv.serializer,
                     deserializerEnabled: argv.deserializer,
+                    imports: importsFileContents,
                     package: argv.package ?? autoDetectPackage(outputDirPath)
                 }
 
                 printTypes()
-                outputFilePath.end()
+                outputFileStream.end()
             })
         }
     })

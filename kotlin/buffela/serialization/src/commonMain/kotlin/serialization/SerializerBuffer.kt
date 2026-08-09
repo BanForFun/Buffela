@@ -65,39 +65,17 @@ class SerializerBuffer {
 
             this.writeLSBits(remainingValue, available)
             this.flushBits()
-            this.clearBitBuffer()
+            this.alignToByte()
 
             remainingValue = remainingValue ushr available
             remainingLength -= available
         }
     }
 
-    fun clearBitBuffer() {
+    fun alignToByte() {
         this.flushBits()
         this.bitCount = 0
         this.bitBuffer = 0
-    }
-
-    fun writeSigned(value: Int, bitLength: Int) {
-        if (bitLength > 31) throw IllegalArgumentException("Bit fields cannot be larger than 31 bits")
-
-        val minValue = -(1 shl bitLength - 1)
-        val maxValue = (1 shl bitLength) - 1
-
-        if (value !in minValue..maxValue)
-            throw IllegalArgumentException("Value out of range")
-
-        this.writeTruncated(value, bitLength)
-    }
-
-    fun writeUnsigned(value: UInt, bitLength: Int) {
-        if (bitLength > 31) throw IllegalArgumentException("Bit fields cannot be larger than 31 bits")
-
-        val maxValue = (1u shl bitLength) - 1u
-        if (value !in 0u..maxValue)
-            throw IllegalArgumentException("Value out of range")
-
-        this.writeTruncated(value.toInt(), bitLength)
     }
 
     fun writeByte(byte: Byte) {
@@ -120,8 +98,30 @@ class SerializerBuffer {
         this.buffer.writeIntLe(int)
     }
 
+    fun writeInt(int: Int, bitLength: Int) {
+        if (bitLength > 31) throw IllegalArgumentException("Bit fields cannot be larger than 31 bits")
+
+        val minValue = -(1 shl bitLength - 1)
+        val maxValue = (1 shl bitLength) - 1
+
+        if (int !in minValue..maxValue)
+            throw IllegalArgumentException("Value out of range")
+
+        this.writeTruncated(int, bitLength)
+    }
+
     fun writeUInt(uInt: UInt) {
         this.buffer.writeUIntLe(uInt)
+    }
+
+    fun writeUInt(uInt: UInt, bitLength: Int) {
+        if (bitLength > 31) throw IllegalArgumentException("Bit fields cannot be larger than 31 bits")
+
+        val maxValue = (1u shl bitLength) - 1u
+        if (uInt !in 0u..maxValue)
+            throw IllegalArgumentException("Value out of range")
+
+        this.writeTruncated(uInt.toInt(), bitLength)
     }
 
     fun writeLong(long: Long) {

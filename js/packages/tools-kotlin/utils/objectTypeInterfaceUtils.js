@@ -1,4 +1,5 @@
 const nativeTypes = require("../constants/nativeTypes");
+const { isEmpty } = require('./objectUtils')
 
 /**
  *
@@ -26,15 +27,18 @@ function printObjectFields(type) {
         const fieldType = nativeType(field.type)
 
         if (field.override) {
-            const prefix = field.final ? "val" : "open val"
-            printer.line(`override ${prefix} ${name} get() = super.${name} as ${fieldType}`)
+            const prefix = field.final ? "override val" : "open override val"
+            printer.line(`${prefix} ${name}: ${fieldType} get() = this._${name}`)
         } else if (field.final) {
             printer.line(`val ${name}: ${fieldType}`)
         } else {
-            printer.line(`private val _${name}: ${fieldType}`)
+            printer.line(`protected val _${name}: ${fieldType}`)
             printer.line(`open val ${name} get() = this._${name}`)
         }
     }
+
+    if (!isEmpty(type.ownFields))
+        printer.line()
 }
 
 /**

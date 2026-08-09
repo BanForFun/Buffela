@@ -3,6 +3,7 @@ import {Extensions, SimplifiedSchema} from "@buffela/parser"
 declare class DeserializerBuffer {
     constructor(bytes: Uint8Array)
 
+    readonly length: number
     readonly position: number
 
     alignToByte(): void

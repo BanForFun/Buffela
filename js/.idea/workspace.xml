@@ -5,32 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added optional type support">
-      <change afterPath="$PROJECT_DIR$/packages/parser/RootTypeParser.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/packages/parser/primitiveDeclarationParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../AuthToken.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../AuthToken.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectUtils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/AndroidProjectSystem.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/deserialization_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/deserialization_jvm_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/serialization_4_0_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/.idea/artifacts/serialization_jvm_4_0_3.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.json" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/internal.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/EnumType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/InstantiatedType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/ObjectType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/ObjectType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/Schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/SchemaNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/models/TypeDefinitionParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/FieldTypeParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/types/index.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/constants/buffelaSchemata.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/jsonSchemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/jsonSchemaUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/validationUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/SchemaNode.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/constants/nativeTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/constants/nativeTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/enumTypeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeSerializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/deserialization/src/commonMain/kotlin/deserialization/DeserializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/SerializerBuffer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/utils/ValidationUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/buffela/serialization/src/commonMain/kotlin/serialization/utils/ValidationUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Complex.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/AuthToken.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +132,7 @@
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Node.js.Complex.executor": "Run",
     "Node.js.debug parser.executor": "Debug",
     "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -153,6 +155,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_interpreter_path": "node",
     "nodejs_package_manager_path": "npm",
+    "npm.Build All.executor": "Run",
     "npm.build.executor": "Run",
     "npm.common > build.executor": "Run",
     "npm.deserializer > build.executor": "Run",
@@ -163,7 +166,7 @@
     "npm.tools-types > build.executor": "Run",
     "settings.editor.selected.configurable": "settings.json.schema",
     "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/Users/jpeg/Documents/Projects/Buffela/js/node_modules/typescript/lib",
+    "ts.external.directory.path": "/home/jpeg/Projects/Buffela/js/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -183,11 +186,11 @@
       <recent name="$PROJECT_DIR$/packages/tools/test/buffela/nested/more" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.build">
+  <component name="RunManager" selected="npm.Build All">
     <configuration name="Complex" type="NodeJSConfigurationType" path-to-js-file="complex.js" working-dir="$PROJECT_DIR$/examples/buffela">
       <method v="2" />
     </configuration>
-    <configuration name="build" type="js.build_tools.npm" nameIsGenerated="true">
+    <configuration name="Build All" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
@@ -199,7 +202,7 @@
     </configuration>
     <list>
       <item itemvalue="Node.js.Complex" />
-      <item itemvalue="npm.build" />
+      <item itemvalue="npm.Build All" />
     </list>
   </component>
   <component name="SharedIndexes">

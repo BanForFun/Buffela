@@ -11,8 +11,6 @@ const nativeTypes = {
     "Double":           "Double",
     "UInt":             "UInt",
     "ULong":            "ULong",
-    "Signed":           "Int",
-    "Unsigned":         "UInt",
     "UByteArray":       "UByteArray",
     "UShortArray":      "UShortArray",
     "UIntArray":        "UIntArray",

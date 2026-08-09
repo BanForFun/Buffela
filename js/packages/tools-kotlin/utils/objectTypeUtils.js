@@ -20,6 +20,8 @@ const {
  * @param {Record<string, import('@buffela/parser').Field>} superFields
  */
 function printObjectTypeClass(type, superClass, superFields) {
+    printer.line()
+
     const prefix = type.isLeaf ? "class" : "sealed class"
     const suffix = superClass ? `: ${superClass}` : ''
     printer.blockStart(`${prefix} ${type.name}${suffix} {`)
