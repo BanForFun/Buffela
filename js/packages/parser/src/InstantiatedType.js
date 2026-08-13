@@ -9,6 +9,10 @@ class Dimension {
     }
 }
 
+const KIND_ANY = 0
+const KIND_CONCRETE = 1
+const KIND_PRIMITIVE = 2
+
 export default class InstantiatedType {
     element;
     argument = null;
@@ -27,7 +31,7 @@ export default class InstantiatedType {
         }
 
         while(parser.tryConsume('[')) {
-            const sizeType = InstantiatedType.#parseNested(schema, parser, true)
+            const sizeType = InstantiatedType.#parseNested(schema, parser, KIND_PRIMITIVE)
             if (!sizeType) throw new Error("Expected size")
 
             const dimension = new Dimension(sizeType)
@@ -47,7 +51,7 @@ export default class InstantiatedType {
         if (!parser.tryConsume('('))
             return undefined
 
-        const type = InstantiatedType.#parseNested(schema, parser, true)
+        const type = InstantiatedType.#parseNested(schema, parser, KIND_PRIMITIVE)
 
         if (!parser.tryConsume(')'))
             throw new Error('Expected closing parenthesis')
@@ -55,32 +59,37 @@ export default class InstantiatedType {
         return type
     }
 
-    static #parseElementType(schema, typeName, forcePrimitive) {
+    static #parseElementType(schema, typeName, kind) {
         if (typeof typeName !== 'string')
             return new InstantiatedType(typeName)
 
-        if (!forcePrimitive) {
-            const aliasDefinition = schema.primitiveAliases[typeName]
-            if (aliasDefinition)
-                return InstantiatedType.#parse(schema, aliasDefinition, true)
+        switch(kind) {
+            case KIND_ANY:
+                const aliasDefinition = schema.primitiveAliases[typeName]
+                if (aliasDefinition)
+                    return InstantiatedType.#parse(schema, aliasDefinition, KIND_CONCRETE)
 
-            const complexType = schema[typeName]
-            if (complexType)
-                return new InstantiatedType(complexType)
+                //Fallthrough
+            case KIND_CONCRETE:
+                const complexType = schema[typeName]
+                if (complexType)
+                    return new InstantiatedType(complexType)
+
+                //Fallthrough
+            case KIND_PRIMITIVE:
+                const primitiveType = schema.lookupPrimitive(typeName)
+                return new InstantiatedType(primitiveType)
         }
-
-        const primitive = schema.lookupPrimitive(typeName)
-        return new InstantiatedType(primitive)
     }
 
-    static #parseNested(schema, parser, _forcePrimitive) {
+    static #parseNested(schema, parser, _kind) {
         const typeName = parser.consumeName()
         if (typeName == null) return null
 
         const argumentType = InstantiatedType.#parseArgumentType(schema, parser)
-        const forcePrimitive = _forcePrimitive || argumentType !== undefined
+        const kind = argumentType !== undefined ? KIND_PRIMITIVE : _kind
 
-        const elementType = InstantiatedType.#parseElementType(schema, typeName, forcePrimitive)
+        const elementType = InstantiatedType.#parseElementType(schema, typeName, kind)
         elementType.#consumeSuffix(schema, parser)
         if (argumentType !== undefined)
             elementType.argument = argumentType
@@ -88,9 +97,9 @@ export default class InstantiatedType {
         return elementType
     }
 
-    static #parse(schema, definition, forcePrimitive) {
+    static #parse(schema, definition, kind) {
         const parser = new FieldTypeParser(definition)
-        const type = InstantiatedType.#parseNested(schema, parser, forcePrimitive)
+        const type = InstantiatedType.#parseNested(schema, parser, kind)
         if (!type) throw new Error('Invalid type prefix')
 
         if (!parser.completed)
@@ -100,6 +109,6 @@ export default class InstantiatedType {
     }
 
     static parse(schema, definition) {
-        return InstantiatedType.#parse(schema, definition, false)
+        return InstantiatedType.#parse(schema, definition, KIND_ANY)
     }
 }

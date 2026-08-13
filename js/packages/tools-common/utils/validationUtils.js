@@ -9,7 +9,14 @@ const ajv = new Ajv({ allErrors: true })
 AjvErrors(ajv)
 
 const typeNamePattern = /^[A-Z][a-zA-Z\d]*/
-const userTypeConfigurations = [true, "primitive"]
+const userTypeConfigurations = [true, "concrete"]
+
+function isConcreteType(definition) {
+    if (typeof definition === 'object') return true
+    if (typeof definition === 'string') return definition.startsWith("Primitive(")
+
+    return false
+}
 
 ajv.addKeyword({
     type: "string",
@@ -44,14 +51,11 @@ ajv.addKeyword({
             return false
         }
 
-        if (schema === 'primitive' && (
-            typeof typeDefinition !== 'string' ||
-            !typeDefinition.startsWith("Primitive(")
-        )) {
+        if (schema === 'concrete' && !isConcreteType(typeDefinition)) {
             validate.errors = [
                 {
                     keyword: "userType",
-                    message: `Type '${typeName}' is not a primitive type`
+                    message: `Type '${typeName}' is not a concrete type`
                 }
             ]
             return false

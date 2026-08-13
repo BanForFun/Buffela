@@ -118,7 +118,7 @@ const aliasSchemata = [
         userPrimitiveNamePattern, `${optionalSuffixPattern}${arraySuffixPattern}`,
         "Expected array dimensions e.g. [10] or [UByte]",
         {
-            userType: "primitive"
+            userType: "concrete"
         }
     )
 ]
