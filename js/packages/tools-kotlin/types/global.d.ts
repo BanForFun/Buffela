@@ -5,7 +5,7 @@ declare global {
     let schema: Schema<Extensions, Extensions>;
     let printer: Printer;
     let options: {
-        imports: string;
+        primitives: Record<string, string>;
         serializerEnabled: boolean;
         deserializerEnabled: boolean;
         package: string;

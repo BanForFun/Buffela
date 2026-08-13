@@ -4,9 +4,9 @@ const process = require("node:process");
 const fs = require("node:fs");
 const path = require("node:path");
 
+const yaml = require('yaml')
 const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
-
 const { parseSchema } = require("@buffela/parser");
 const {
     readSchemaFile,
@@ -68,8 +68,8 @@ yargs()
                 if (!existsDirSync(outputDirPath))
                     throw new Error(`Invalid kotlin output directory '${outputDirPath}'`)
 
-                const importsFilePath = path.join(outputDirPath, schemaFile.name + ".imports.kt")
-                const importsFileContents = tryReadFileSync(importsFilePath) ?? ""
+                const primitivesFilePath = path.join(outputDirPath, schemaFile.name + ".primitives.yaml")
+                const primitivesFileContents = tryReadFileSync(primitivesFilePath)
 
                 const outputFilePath = path.join(outputDirPath, schemaFile.name + ".kt")
                 const outputFileStream = fs.createWriteStream(outputFilePath)
@@ -79,7 +79,7 @@ yargs()
                 global.options = {
                     serializerEnabled: argv.serializer,
                     deserializerEnabled: argv.deserializer,
-                    imports: importsFileContents,
+                    primitives: primitivesFileContents ? yaml.parse(primitivesFileContents) : {},
                     package: argv.package ?? autoDetectPackage(outputDirPath)
                 }
 

@@ -4,7 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed kotlin field overriding" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Enforced primitive declaration">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,60 +37,60 @@
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
       <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000000410037506" />
-      <entry key="S2" value="1.0740040226395486" />
-      <entry key="S5" value="2.3955584985942444" />
-      <entry key="S10" value="4.7571336143096765" />
-      <entry key="S30" value="9.042332044569145" />
-      <entry key="S60" value="11.975920078841048" />
-      <entry key="M2" value="15.378715199590756" />
-      <entry key="M5" value="26.509522421655184" />
-      <entry key="M10" value="51.80111069167098" />
-      <entry key="M15" value="75.55277819200369" />
-      <entry key="M30" value="128.60835840858942" />
-      <entry key="H1" value="205.72536056297105" />
-      <entry key="H2" value="344.89064366331047" />
-      <entry key="H4" value="545.3672747781351" />
-      <entry key="D1" value="930.3601170790598" />
-      <entry key="W1" value="1035.0002685282643" />
+      <entry key="MS500" value="1.0000975021010772" />
+      <entry key="S2" value="1.161674781092815" />
+      <entry key="S5" value="1.7291845921404383" />
+      <entry key="S10" value="2.2074997215792083" />
+      <entry key="S30" value="2.9124740429355453" />
+      <entry key="S60" value="4.428054289368955" />
+      <entry key="M2" value="7.847209935489612" />
+      <entry key="M5" value="19.208979190698816" />
+      <entry key="M10" value="47.06425405778077" />
+      <entry key="M15" value="76.36029338713679" />
+      <entry key="M30" value="149.3136025232708" />
+      <entry key="H1" value="250.50673447139403" />
+      <entry key="H2" value="407.2190026811342" />
+      <entry key="H4" value="624.1303434539763" />
+      <entry key="D1" value="1047.544090341464" />
+      <entry key="W1" value="1164.6508049190513" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="9.06819036968934E-239" />
-      <entry key="MS500" value="2.4632252384941546E-48" />
-      <entry key="S2" value="1.2527835191423347E-12" />
-      <entry key="S5" value="1.7344045835316322E-5" />
-      <entry key="S10" value="0.004164618330571008" />
-      <entry key="S30" value="0.16096691109242559" />
-      <entry key="S60" value="0.40996638689318043" />
-      <entry key="M2" value="0.7312883136265288" />
-      <entry key="M5" value="1.511578895775775" />
-      <entry key="M10" value="2.8258785531145283" />
-      <entry key="M15" value="3.827106193810095" />
-      <entry key="M30" value="5.5798087342637395" />
-      <entry key="H1" value="7.372747894714057" />
-      <entry key="H2" value="10.148264352801316" />
-      <entry key="H4" value="14.252394479221595" />
-      <entry key="D1" value="22.36689543804505" />
-      <entry key="W1" value="24.594907002035914" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="9.603979476921572E-172" />
+      <entry key="S2" value="1.7604058610887055E-43" />
+      <entry key="S5" value="7.911250248654586E-18" />
+      <entry key="S10" value="2.812694481925576E-9" />
+      <entry key="S30" value="0.0014115865856387426" />
+      <entry key="S60" value="0.03757412250945438" />
+      <entry key="M2" value="0.19610106425921053" />
+      <entry key="M5" value="0.6694386531701465" />
+      <entry key="M10" value="1.5649589018006735" />
+      <entry key="M15" value="2.533557486398044" />
+      <entry key="M30" value="4.912285006371395" />
+      <entry key="H1" value="7.714496979719906" />
+      <entry key="H2" value="11.260876513016319" />
+      <entry key="H4" value="15.922286696760034" />
+      <entry key="D1" value="25.018716053109408" />
+      <entry key="W1" value="27.54018023074069" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="3.0812092557847316E-7" />
-      <entry key="MS500" value="0.04985911774439314" />
-      <entry key="S2" value="0.5461838822787266" />
-      <entry key="S5" value="2.133790788622041" />
-      <entry key="S10" value="4.617559823906177" />
-      <entry key="S30" value="9.134521773852578" />
-      <entry key="S60" value="12.333856118271354" />
-      <entry key="M2" value="16.072633626142963" />
-      <entry key="M5" value="27.993626858499447" />
-      <entry key="M10" value="54.600380974746535" />
-      <entry key="M15" value="79.35482942283367" />
-      <entry key="M30" value="134.168441595876" />
-      <entry key="H1" value="213.0835761611996" />
-      <entry key="H2" value="355.0272399205578" />
-      <entry key="H4" value="559.610553674822" />
-      <entry key="D1" value="952.7244436439896" />
-      <entry key="W1" value="1059.5947681304683" />
+      <entry key="MS100" value="0.9265880618903709" />
+      <entry key="MS500" value="0.9849031493501299" />
+      <entry key="S2" value="1.1253828172663236" />
+      <entry key="S5" value="1.6662578735602203" />
+      <entry key="S10" value="2.155139813951424" />
+      <entry key="S30" value="2.8891743119661912" />
+      <entry key="S60" value="4.451005645455059" />
+      <entry key="M2" value="8.033080580443825" />
+      <entry key="M5" value="19.86641034303982" />
+      <entry key="M10" value="48.61130983004124" />
+      <entry key="M15" value="78.87335485618007" />
+      <entry key="M30" value="154.20526863322584" />
+      <entry key="H1" value="258.20426537701053" />
+      <entry key="H2" value="418.4663267181124" />
+      <entry key="H4" value="640.0422902656636" />
+      <entry key="D1" value="1072.559926704968" />
+      <entry key="W1" value="1192.1905284403422" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -138,7 +145,7 @@
     "npm.tools-types > build.executor": "Run",
     "settings.editor.selected.configurable": "settings.json.schema",
     "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/home/jpeg/Projects/Buffela/js/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Users/jpeg/Documents/Projects/Buffela/js/node_modules/typescript/lib",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -269,6 +276,7 @@
       <workItem from="1786103145147" duration="2955000" />
       <workItem from="1786137769250" duration="10555000" />
       <workItem from="1786283758535" duration="19951000" />
+      <workItem from="1786620604646" duration="3475000" />
     </task>
     <task id="LOCAL-00041" summary="Added kotlin utils">
       <option name="closed" value="true" />

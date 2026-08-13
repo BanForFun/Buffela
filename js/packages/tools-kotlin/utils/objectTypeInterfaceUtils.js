@@ -3,15 +3,31 @@ const { isEmpty } = require('./objectUtils')
 
 /**
  *
- * @param {import('@buffela/parser').InstantiatedType} type
+ * @param {import('@buffela/parser').DataType} type
+ * @return {string}
+ */
+function dataTypeName(type) {
+    if (type.kind === "primitive") {
+        const nativeName = nativeTypes[type.name]
+        if (nativeName) return "kotlin." + nativeName
+
+        const importedName = options.primitives[type.name]
+        if (importedName) return importedName
+    }
+
+    return `${options.package}.${type.name}`
+}
+
+/**
+ *
+ * @param {import('@buffela/parser').InstantiatedFieldType} type
  * @return {string}
  */
 function nativeType(type) {
-    const { name } = type.element;
     const prefix = type.dimensions.map(() => "Array<").join("")
     const suffix = type.dimensions.map(d => d.optional ? ">?" : ">").join("")
 
-    const nativeName = nativeTypes[name] ?? name
+    const nativeName = dataTypeName(type.element)
     const nativeType = type.optional ? `${nativeName}?` : nativeName
 
     return prefix + nativeType + suffix
