@@ -14,19 +14,26 @@ function existsDirSync(path) {
 }
 
 /**
- * Returns the nested directory of relativeTo that filePath is in.
- * Returns empty string if filePath is not inside relativeTo.
+ * Returns the nested directory of rootDirPath that filePath is in.
+ * Returns empty string if filePath is not inside rootDirPath.
  * @param {string} filePath
- * @param {string} [relativeTo]
+ * @param {string} [rootDirPath]
  * @returns {string}
  */
-function getNestedDirPath(filePath, relativeTo = "") {
-    const dirPath = path.dirname(path.resolve(filePath))
-    const relativeDirPath = path.relative(relativeTo, dirPath)
+function getNestedDirPath(filePath, rootDirPath) {
+    const dirPath = path.dirname(filePath)
+    const relativeDirPath = path.relative(rootDirPath, dirPath)
     if (relativeDirPath.startsWith("..")) return ""
 
     return relativeDirPath
 }
+
+/**
+ * @typedef {object} FileLocation
+ * @property {string} inputFile
+ * @property {string} outputRootDir
+ * @property {string} outputSubDir
+ */
 
 /**
  * Reads a text file if it exists
@@ -46,44 +53,98 @@ function tryReadFileSync(filePath) {
 
 /**
  *
+ * @param {string[]} rootDirPaths
  * @param {string} inputExpr
  * @param {boolean} watch
- * @param {(filePath: String) => void} callback
+ * @param {(fileLocation: FileLocation) => void} callback
  * @returns {Promise<void>}
  */
-async function processFiles(inputExpr, watch, callback) {
+async function processFiles(rootDirPaths, inputExpr, watch, callback) {
+    /*
+    Note: The callback is deliberately synchronous so that the console output doesn't get mixed between root directories
+     */
+
     if (watch) {
-        let watcher;
+        let watcherPaths
+        let watcherConfig
+
         if (inputExpr.startsWith("*")) {
             const extension = inputExpr.substring(1)
-            watcher = chokidar.watch(".", {
+            watcherPaths = rootDirPaths
+            watcherConfig = {
                 ignored: (file, stats) => stats?.isFile() && !file.endsWith(extension)
-            })
+            }
         } else {
-            watcher = chokidar.watch(inputExpr)
+            watcherPaths = rootDirPaths.map(dirPath => path.join(dirPath, inputExpr))
+            watcherConfig = {}
         }
 
-        watcher
-            .on("add", (path) => callback(path))
-            .on("change", (path) => callback(path))
-            .on("error", (error) => console.error(error))
+        const watchers = []
+        const handleError = (error) => {
+            console.error(error)
 
+            for (const watcher of watchers) {
+                watcher.close()
+            }
+        }
+
+        for (let i = 0; i < watcherPaths.length; i++) {
+            const watcher = chokidar.watch(watcherPaths[i], watcherConfig)
+            watchers[i] = watcher
+
+            const rootDirPath = rootDirPaths[i]
+            const absoluteRootDirPath = path.resolve(rootDirPath)
+
+            const handleAddOrChange = (filePath) => {
+                callback({
+                    inputFile: filePath,
+                    outputPath: rootDirPath,
+                    outputSubDir: getNestedDirPath(filePath, absoluteRootDirPath)
+                })
+            }
+
+            watcher
+                .on("add", handleAddOrChange)
+                .on("change", handleAddOrChange)
+                .on("error", handleError)
+        }
     } else {
         if (inputExpr.startsWith("*")) {
             const extension = inputExpr.substring(1)
-            for await (const entry of readdirp(".", {
-                fileFilter: file => file.basename.endsWith(extension)
-            })) {
-                callback(entry.path)
+            for (const rootDirPath of rootDirPaths) {
+                const absoluteRootDirPath = path.resolve(rootDirPath)
+
+                for await (const entry of readdirp(rootDirPath, {
+                    fileFilter: file => file.basename.endsWith(extension)
+                })) {
+                    callback({
+                        inputFile: path.join(rootDirPath, entry.path),
+                        outputRootDir: rootDirPath,
+                        outputSubDir: getNestedDirPath(entry.fullPath, absoluteRootDirPath)
+                    })
+                }
             }
         } else {
-            const stats = fs.statSync(inputExpr)
-            if (stats.isDirectory()) {
-                for await (const entry of readdirp(inputExpr)) {
-                    callback(entry.fullPath)
+            for (const rootDirPath of rootDirPaths) {
+                const absoluteRootDirPath = path.resolve(rootDirPath)
+
+                const inputPath = path.join(rootDirPath, inputExpr)
+                const stats = fs.statSync(inputPath)
+                if (stats.isDirectory()) {
+                    for await (const entry of readdirp(inputPath)) {
+                        callback({
+                            inputFile: path.join(inputPath, entry.path),
+                            outputRootDir: rootDirPath,
+                            outputSubDir: getNestedDirPath(entry.fullPath, absoluteRootDirPath)
+                        })
+                    }
+                } else {
+                    callback({
+                        inputFile: inputPath,
+                        outputRootDir: rootDirPath,
+                        outputSubDir: getNestedDirPath(inputPath, absoluteRootDirPath)
+                    })
                 }
-            } else {
-                callback(inputExpr)
             }
         }
     }
@@ -92,6 +153,5 @@ async function processFiles(inputExpr, watch, callback) {
 module.exports = {
     existsDirSync,
     processFiles,
-    getNestedDirPath,
     tryReadFileSync
 }

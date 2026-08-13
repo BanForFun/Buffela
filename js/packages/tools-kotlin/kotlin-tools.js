@@ -9,9 +9,8 @@ const yargs = require('yargs')
 const { hideBin } = require("yargs/helpers");
 const { parseSchema } = require("@buffela/parser");
 const {
-    readSchemaFile,
+    readSchemaFileSync,
     existsDirSync,
-    getNestedDirPath,
     Printer,
     editorSchema,
     processFiles,
@@ -23,18 +22,25 @@ const { autoDetectPackage } = require("./utils/packageUtils");
 
 yargs()
     .command({
-        command: 'compile <schema> [outputDirPath]',
+        command: 'compile <schemaFile> [outputDir]',
         describe: 'Compiles a buffela schema into kotlin code',
         builder: (yargs) => yargs
-            .positional('schema', {
-                describe: 'Schema path',
+            .option('rootDirs', {
+                alias: 'r',
+                describe: 'The directory paths that are in scope',
+                type: 'array',
+                default: ['.'],
+                defaultDescription: '(The current working directory)'
+            })
+            .positional('schemaFile', {
+                describe: 'Schema path, relative to each root directory',
                 type: 'string'
             })
-            .positional('outputDirPath', {
-                describe: 'Output directory',
+            .positional('outputDir', {
+                describe: 'Output directory path, relative to each root directory',
                 type: 'string',
                 default: '.',
-                defaultDescription: '(Current directory)'
+                defaultDescription: '(The root directory)'
             })
             .option('watch', {
                 alias: 'w',
@@ -59,17 +65,19 @@ yargs()
                 default: true
             }),
         handler: (argv) => {
-            processFiles(argv.schema, argv.watch, (filePath) => {
-                console.log("Compiling", filePath)
-                const schemaFile = readSchemaFile(filePath)
+            processFiles(argv.rootDirs, argv.schemaFile, argv.watch, (paths) => {
+                console.log("Compiling", paths.inputFile)
+
+                const schemaFile = readSchemaFileSync(paths.inputFile)
                 if (schemaFile == null) return
 
-                const outputDirPath = path.join(argv.outputDirPath, getNestedDirPath(filePath))
+                const outputDirPath = path.join(paths.outputRootDir, argv.outputDir, paths.outputSubDir)
                 if (!existsDirSync(outputDirPath))
-                    throw new Error(`Invalid kotlin output directory '${outputDirPath}'`)
+                    throw new Error(`Invalid output directory '${outputDirPath}'`)
 
                 const primitivesFilePath = path.join(outputDirPath, schemaFile.name + ".primitives.yaml")
                 const primitivesFileContents = tryReadFileSync(primitivesFilePath)
+                const primitives = primitivesFileContents ? yaml.parse(primitivesFileContents) : {}
 
                 const outputFilePath = path.join(outputDirPath, schemaFile.name + ".kt")
                 const outputFileStream = fs.createWriteStream(outputFilePath)
@@ -79,7 +87,7 @@ yargs()
                 global.options = {
                     serializerEnabled: argv.serializer,
                     deserializerEnabled: argv.deserializer,
-                    primitives: primitivesFileContents ? yaml.parse(primitivesFileContents) : {},
+                    primitives: primitives,
                     package: argv.package ?? autoDetectPackage(outputDirPath)
                 }
 

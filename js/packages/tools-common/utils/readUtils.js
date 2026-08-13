@@ -7,7 +7,7 @@ const { validateSchema } = require("./validationUtils");
  * @param {string} filePath
  * @returns {{ schema: object | null, name: string } | null}
  */
-function readSchemaFile(filePath) {
+function readSchemaFileSync(filePath) {
     if (filePath.endsWith(".yaml")) {
         const content = fs.readFileSync(filePath, "utf8")
         const schema = validateSchema(content)
@@ -23,4 +23,4 @@ function readSchemaFile(filePath) {
     return null
 }
 
-module.exports = { readSchemaFile }
+module.exports = { readSchemaFileSync }

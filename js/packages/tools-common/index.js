@@ -1,11 +1,11 @@
 const Printer = require('./models/Printer')
-const { readSchemaFile } = require('./utils/readUtils')
+const { readSchemaFileSync } = require('./utils/readUtils')
 const { existsDirSync, processFiles, getNestedDirPath, tryReadFileSync } = require('./utils/fileUtils')
 const { editorSchema } = require("./constants/buffelaSchemata");
 
 module.exports = {
     Printer,
-    readSchemaFile,
+    readSchemaFileSync,
     existsDirSync,
     getNestedDirPath,
     processFiles,

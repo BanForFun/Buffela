@@ -1,15 +1,24 @@
-declare function readSchemaFile(filePath: string): {
+declare function readSchemaFileSync(filePath: string): {
     schema: object;
     name: string;
 } | null;
 
 declare function existsDirSync(path: string): boolean;
 
-type FileProcessor = (filePath: string, workingDirectory: string) => void;
+type FileProcessor = (location: FileLocation) => void;
 
-declare function processFiles(matchExpression: string, watch: Boolean, callback: FileProcessor): Promise<void>
+interface FileLocation {
+    inputFile: string;
+    outputRootDir: string;
+    outputSubDir: string;
+}
 
-declare function getNestedDirPath(filePath: string, relativeTo?: string): string;
+declare function processFiles(
+    rootDirPaths: string[],
+    matchExpression: string,
+    watch: Boolean,
+    callback: FileProcessor
+): Promise<void>
 
 declare function tryReadFileSync(filePath: string): string | null;
 
@@ -27,10 +36,9 @@ declare const editorSchema: object;
 
 export {
     Printer,
-    readSchemaFile,
+    readSchemaFileSync,
     existsDirSync,
     processFiles,
-    getNestedDirPath,
     tryReadFileSync,
     editorSchema
 };
