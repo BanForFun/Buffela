@@ -4,6 +4,10 @@ function printDeserializerImports() {
     printer.line('import gr.elaevents.buffela.deserialization.utils.invalidSubtype')
     printer.line('import gr.elaevents.buffela.deserialization.Deserializer as _Deserializer')
     printer.line('import gr.elaevents.buffela.deserialization.DeserializerBuffer as _DeserializerBuffer')
+
+    for (const name in options.primitives) {
+        printer.line(`import ${options.primitives[name]}.read${name}`)
+    }
 }
 
 /**

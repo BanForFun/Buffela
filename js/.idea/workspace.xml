@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Enforced primitive declaration">
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed kotlin type resolution when nested types conflicted with root types">
+      <change afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/Date.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/kotlin-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/types/global.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldDeserializationUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/fieldSerializationUtils.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/objectTypeInterfaceUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/utils/schemaUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/Date.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../kotlin/examples/src/main/kotlin/authToken/DateType.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,61 +36,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0000975021010772" />
-      <entry key="S2" value="1.161674781092815" />
-      <entry key="S5" value="1.7291845921404383" />
-      <entry key="S10" value="2.2074997215792083" />
-      <entry key="S30" value="2.9124740429355453" />
-      <entry key="S60" value="4.428054289368955" />
-      <entry key="M2" value="7.847209935489612" />
-      <entry key="M5" value="19.208979190698816" />
-      <entry key="M10" value="47.06425405778077" />
-      <entry key="M15" value="76.36029338713679" />
-      <entry key="M30" value="149.3136025232708" />
-      <entry key="H1" value="250.50673447139403" />
-      <entry key="H2" value="407.2190026811342" />
-      <entry key="H4" value="624.1303434539763" />
-      <entry key="D1" value="1047.544090341464" />
-      <entry key="W1" value="1164.6508049190513" />
+      <entry key="MS100" value="1.1303082201051402" />
+      <entry key="MS500" value="1.6652645205408023" />
+      <entry key="S2" value="1.9047627673396277" />
+      <entry key="S5" value="2.1727571621633253" />
+      <entry key="S10" value="3.286595812228333" />
+      <entry key="S30" value="9.485500954403054" />
+      <entry key="S60" value="16.55054923463849" />
+      <entry key="M2" value="24.43163729612222" />
+      <entry key="M5" value="34.05044657090468" />
+      <entry key="M10" value="39.433594225893614" />
+      <entry key="M15" value="41.98970112641429" />
+      <entry key="M30" value="53.972342870961775" />
+      <entry key="H1" value="110.12653517189781" />
+      <entry key="H2" value="254.47105646440897" />
+      <entry key="H4" value="495.87026574494746" />
+      <entry key="D1" value="1051.5002169226043" />
+      <entry key="W1" value="1220.5593868337237" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="9.603979476921572E-172" />
-      <entry key="S2" value="1.7604058610887055E-43" />
-      <entry key="S5" value="7.911250248654586E-18" />
-      <entry key="S10" value="2.812694481925576E-9" />
-      <entry key="S30" value="0.0014115865856387426" />
-      <entry key="S60" value="0.03757412250945438" />
-      <entry key="M2" value="0.19610106425921053" />
-      <entry key="M5" value="0.6694386531701465" />
-      <entry key="M10" value="1.5649589018006735" />
-      <entry key="M15" value="2.533557486398044" />
-      <entry key="M30" value="4.912285006371395" />
-      <entry key="H1" value="7.714496979719906" />
-      <entry key="H2" value="11.260876513016319" />
-      <entry key="H4" value="15.922286696760034" />
-      <entry key="D1" value="25.018716053109408" />
-      <entry key="W1" value="27.54018023074069" />
+      <entry key="MS100" value="1.494068307874248E-233" />
+      <entry key="MS500" value="2.7219120655640466E-47" />
+      <entry key="S2" value="2.2841179422766544E-12" />
+      <entry key="S5" value="2.2065378851559444E-5" />
+      <entry key="S10" value="0.004805960572467299" />
+      <entry key="S30" value="0.2295790176324014" />
+      <entry key="S60" value="0.7482200887678503" />
+      <entry key="M2" value="1.4545473980192385" />
+      <entry key="M5" value="2.229311611729333" />
+      <entry key="M10" value="2.5831929694039126" />
+      <entry key="M15" value="2.7223210366850426" />
+      <entry key="M30" value="3.129211421205533" />
+      <entry key="H1" value="4.754232251223624" />
+      <entry key="H2" value="8.445100381720628" />
+      <entry key="H4" value="14.09113312791456" />
+      <entry key="D1" value="26.559067456261424" />
+      <entry key="W1" value="30.304759079408818" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9265880618903709" />
-      <entry key="MS500" value="0.9849031493501299" />
-      <entry key="S2" value="1.1253828172663236" />
-      <entry key="S5" value="1.6662578735602203" />
-      <entry key="S10" value="2.155139813951424" />
-      <entry key="S30" value="2.8891743119661912" />
-      <entry key="S60" value="4.451005645455059" />
-      <entry key="M2" value="8.033080580443825" />
-      <entry key="M5" value="19.86641034303982" />
-      <entry key="M10" value="48.61130983004124" />
-      <entry key="M15" value="78.87335485618007" />
-      <entry key="M30" value="154.20526863322584" />
-      <entry key="H1" value="258.20426537701053" />
-      <entry key="H2" value="418.4663267181124" />
-      <entry key="H4" value="640.0422902656636" />
-      <entry key="D1" value="1072.559926704968" />
-      <entry key="W1" value="1192.1905284403422" />
+      <entry key="MS100" value="1.034655215803854" />
+      <entry key="MS500" value="1.6256904049757601" />
+      <entry key="S2" value="1.8921660210232205" />
+      <entry key="S5" value="2.1523917385325797" />
+      <entry key="S10" value="3.2499831178124787" />
+      <entry key="S30" value="9.649616370811126" />
+      <entry key="S60" value="17.23017000722779" />
+      <entry key="M2" value="25.825763470800442" />
+      <entry key="M5" value="36.239280744066775" />
+      <entry key="M10" value="41.991233851958604" />
+      <entry key="M15" value="44.69335242692254" />
+      <entry key="M30" value="57.090159720213926" />
+      <entry key="H1" value="114.87134929148023" />
+      <entry key="H2" value="262.9067797811729" />
+      <entry key="H4" value="509.9527723526397" />
+      <entry key="D1" value="1078.0563336740668" />
+      <entry key="W1" value="1250.8636589193677" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -276,15 +276,7 @@
       <workItem from="1786103145147" duration="2955000" />
       <workItem from="1786137769250" duration="10555000" />
       <workItem from="1786283758535" duration="19951000" />
-      <workItem from="1786620604646" duration="3475000" />
-    </task>
-    <task id="LOCAL-00041" summary="Added kotlin utils">
-      <option name="closed" value="true" />
-      <created>1771691502093</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1771691502093</updated>
+      <workItem from="1786620604646" duration="6074000" />
     </task>
     <task id="LOCAL-00042" summary="Added kotlin code generator">
       <option name="closed" value="true" />
@@ -670,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786316999404</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="Fixed kotlin type resolution when nested types conflicted with root types">
+      <option name="closed" value="true" />
+      <created>1786625382152</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1786625382152</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -688,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Updated readme and examples" />
     <MESSAGE value="Improved generated kotlin code readability" />
     <MESSAGE value="Merge with v4" />
     <MESSAGE value="Fixed older changes link" />
@@ -713,6 +712,7 @@
     <MESSAGE value="Fixed custom primitive type definition generation" />
     <MESSAGE value="Fixed kotlin code generation" />
     <MESSAGE value="Fixed kotlin field overriding" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed kotlin field overriding" />
+    <MESSAGE value="Fixed kotlin type resolution when nested types conflicted with root types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed kotlin type resolution when nested types conflicted with root types" />
   </component>
 </project>

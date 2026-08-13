@@ -5,6 +5,10 @@ function printSerializerImports() {
     printer.line('import gr.elaevents.buffela.serialization.utils.assertSize')
     printer.line('import gr.elaevents.buffela.serialization.Serializable as _Serializable')
     printer.line('import gr.elaevents.buffela.serialization.SerializerBuffer as _SerializerBuffer')
+
+    for (const name in options.primitives) {
+        printer.line(`import ${options.primitives[name]}.write${name}`)
+    }
 }
 
 /**
