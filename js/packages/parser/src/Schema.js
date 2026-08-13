@@ -3,22 +3,23 @@ import ObjectType from "./ObjectType.js";
 import SchemaNode from "./SchemaNode.js";
 import RootTypeParser from "./RootTypeParser.js";
 import InstantiatedType from "./InstantiatedType.js";
-import { parsePrimitiveDeclaration } from "./primitiveDeclarationParser.js";
-
-const primitivePrototype = { kind: 'primitive' }
-
-function createPrimitive(name) {
-    const primitive = Object.create(primitivePrototype)
-    primitive.name = name
-
-    return primitive
-}
+import PrimitiveType from "./PrimitiveType.js";
 
 const aliasParser = new RootTypeParser()
-aliasParser.addParser(parsePrimitiveDeclaration)
+
+aliasParser.addParser(function(schema, name, definition, next) {
+    const match = /^Primitive\(([A-Z][a-zA-Z]*)?(\?)?\)$/.exec(definition)
+    if (!match) return next()
+
+    schema.primitiveDeclarations[name] = {
+        parameterType: match[1] ?? null,
+        optional: !!match[2]
+    }
+})
+
 aliasParser.addParser(function (schema, name, definition) {
     schema.primitiveAliases[name] = definition;
-});
+})
 
 export default class Schema {
     #definition;
@@ -53,7 +54,7 @@ export default class Schema {
     }
 
     lookupPrimitive(name) {
-        return this.primitiveTypes[name] ??= createPrimitive(name)
+        return this.primitiveTypes[name] ??= PrimitiveType(name)
     }
 
     #hoistTypes() {
