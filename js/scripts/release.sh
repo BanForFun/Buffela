@@ -3,7 +3,7 @@
 set -e
 
 root_dir="$PWD"
-pnpm -r -w exec node "$root_dir/scripts/version.js" "$1"
+pnpm -r --include-workspace-root exec node "$root_dir/scripts/version.js" "$1"
 pnpm -r run build
 
 git add .
