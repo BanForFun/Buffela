@@ -96,20 +96,24 @@ features/
     src/
       main/
         buffela/
-          FeatureA.buffela.yaml
+          featureA/
+            FeatureA.buffela.yaml
         kotlin/
+          featureA/
   featureB/
     src/
       main/
         buffela/
-          FeatureB.buffela.yaml
+          featureB/
+            FeatureB.buffela.yaml
         kotlin/
+          featureB/
 ```
 
 You could use the command:
 
 ```shell
-npx @buffela/tools-kotlin compile . ../kotlin --packageRoot=com.example.app.featureA --rootDirs "./features/*/src/main/buffela"
+npx @buffela/tools-kotlin compile . ../kotlin --packageRoot=com.example.app --rootDirs "./features/*/src/main/buffela"
 # Note: The directories glob is expanded by your shell at the time you run the command, 
 # meaning that if you add a new feature directory you'll need to run the command again
 ```
