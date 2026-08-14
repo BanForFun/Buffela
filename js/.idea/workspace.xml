@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Bump version to 5.0.0-alpha.1">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added .DS_Store to gitignore">
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,61 +31,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="2.2687413898350797" />
-      <entry key="MS500" value="5.162101726064446" />
-      <entry key="S2" value="7.715867880320512" />
-      <entry key="S5" value="8.84850023120705" />
-      <entry key="S10" value="9.378030509110683" />
-      <entry key="S30" value="10.862764574045483" />
-      <entry key="S60" value="14.261781914018794" />
-      <entry key="M2" value="19.98096721940102" />
-      <entry key="M5" value="34.41978156243378" />
-      <entry key="M10" value="64.26849635929909" />
-      <entry key="M15" value="92.70870226741879" />
-      <entry key="M30" value="153.61792821244097" />
-      <entry key="H1" value="221.88462210490147" />
-      <entry key="H2" value="330.11762600386885" />
-      <entry key="H4" value="579.7419913770744" />
-      <entry key="D1" value="1838.2581914678424" />
-      <entry key="W1" value="2479.9231128215365" />
+      <entry key="MS100" value="8.07281135762156E-198" />
+      <entry key="MS500" value="5.220229911085051E-40" />
+      <entry key="S2" value="4.626555191874637E-10" />
+      <entry key="S5" value="5.934530401398662E-4" />
+      <entry key="S10" value="0.09160128695096593" />
+      <entry key="S30" value="5.720519964531618" />
+      <entry key="S60" value="19.849615623334312" />
+      <entry key="M2" value="40.43971334154277" />
+      <entry key="M5" value="71.33146996418594" />
+      <entry key="M10" value="107.36668025346655" />
+      <entry key="M15" value="138.25527902810927" />
+      <entry key="M30" value="203.41658453993773" />
+      <entry key="H1" value="275.78032438613707" />
+      <entry key="H2" value="386.6117580522341" />
+      <entry key="H4" value="637.2564956322884" />
+      <entry key="D1" value="1898.469433999468" />
+      <entry key="W1" value="2542.3880886072866" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="9.423781916417977E-107" />
-      <entry key="S2" value="3.11570482463299E-27" />
-      <entry key="S5" value="2.4970228854470524E-11" />
-      <entry key="S10" value="4.997021998597821E-6" />
-      <entry key="S30" value="0.017096363918704525" />
-      <entry key="S60" value="0.13075309927013698" />
-      <entry key="M2" value="0.361786075823605" />
-      <entry key="M5" value="0.7033217953918511" />
-      <entry key="M10" value="1.0736254251438522" />
-      <entry key="M15" value="1.3954424542784551" />
-      <entry key="M30" value="2.0935053740523" />
-      <entry key="H1" value="3.038934397523184" />
-      <entry key="H2" value="5.875930661713427" />
-      <entry key="H4" value="14.376969918684495" />
-      <entry key="D1" value="53.16365206871662" />
-      <entry key="W1" value="71.26561818339933" />
+      <entry key="MS100" value="1.0018865943924313" />
+      <entry key="MS500" value="1.285190928967106" />
+      <entry key="S2" value="1.7307754128485207" />
+      <entry key="S5" value="1.8820913651971765" />
+      <entry key="S10" value="1.939197191872765" />
+      <entry key="S30" value="1.9795425839319942" />
+      <entry key="S60" value="2.004943123985286" />
+      <entry key="M2" value="2.118719998772355" />
+      <entry key="M5" value="2.4561050929458887" />
+      <entry key="M10" value="2.865518569108537" />
+      <entry key="M15" value="3.2090013712804817" />
+      <entry key="M30" value="3.9488525291989927" />
+      <entry key="H1" value="4.932154080791278" />
+      <entry key="H2" value="7.771859377401394" />
+      <entry key="H4" value="16.249146566496986" />
+      <entry key="D1" value="55.08460016287484" />
+      <entry key="W1" value="73.25047049697466" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="2.161783894036849" />
-      <entry key="MS500" value="5.09843991255215" />
-      <entry key="S2" value="7.680998160332612" />
-      <entry key="S5" value="8.824852214702585" />
-      <entry key="S10" value="9.363149428190177" />
-      <entry key="S30" value="10.873292684175627" />
-      <entry key="S60" value="14.387098110913895" />
-      <entry key="M2" value="20.337595645278768" />
-      <entry key="M5" value="35.11653369879037" />
-      <entry key="M10" value="65.33131462695975" />
-      <entry key="M15" value="94.09142634765946" />
-      <entry key="M30" value="155.69926264712032" />
-      <entry key="H1" value="224.91445004032096" />
-      <entry key="H2" value="335.98626693510533" />
-      <entry key="H4" value="594.1115687164305" />
-      <entry key="D1" value="1891.417226535336" />
-      <entry key="W1" value="2551.1878222013056" />
+      <entry key="MS100" value="0.001994169292190402" />
+      <entry key="MS500" value="0.31022477755779404" />
+      <entry key="S2" value="1.117289572220176" />
+      <entry key="S5" value="1.565926419383148" />
+      <entry key="S10" value="1.857255071375707" />
+      <entry key="S30" value="7.635653510844873" />
+      <entry key="S60" value="21.817297395716476" />
+      <entry key="M2" value="42.53555997523262" />
+      <entry key="M5" value="73.77370756143911" />
+      <entry key="M10" value="110.21843166219489" />
+      <entry key="M15" value="141.449830988659" />
+      <entry key="M30" value="207.35236108049426" />
+      <entry key="H1" value="280.70281117784094" />
+      <entry key="H2" value="394.37601445249055" />
+      <entry key="H4" value="653.4980936662023" />
+      <entry key="D1" value="1953.5493870086298" />
+      <entry key="W1" value="2615.6376452038025" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -275,15 +275,7 @@
       <workItem from="1786620604646" duration="19698000" />
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
-      <workItem from="1786700234299" duration="11662000" />
-    </task>
-    <task id="LOCAL-00054" summary="Moved docs directory">
-      <option name="closed" value="true" />
-      <created>1772230506609</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1772230506609</updated>
+      <workItem from="1786700234299" duration="11805000" />
     </task>
     <task id="LOCAL-00055" summary="Fixed readme">
       <option name="closed" value="true" />
@@ -669,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786724785731</updated>
     </task>
-    <option name="localTasksCounter" value="103" />
+    <task id="LOCAL-00103" summary="Added .DS_Store to gitignore">
+      <option name="closed" value="true" />
+      <created>1786725111892</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1786725111892</updated>
+    </task>
+    <option name="localTasksCounter" value="104" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,7 +687,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed readme tabs" />
     <MESSAGE value="Release 4.0.4" />
     <MESSAGE value="Added kotlin output package auto detection" />
     <MESSAGE value="Added compiler watch mode" />
@@ -712,6 +711,7 @@
     <MESSAGE value="Synchronized all package versions to the workspace version" />
     <MESSAGE value="Bumped version" />
     <MESSAGE value="Bump version to 5.0.0-alpha.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 5.0.0-alpha.1" />
+    <MESSAGE value="Added .DS_Store to gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added .DS_Store to gitignore" />
   </component>
 </project>
