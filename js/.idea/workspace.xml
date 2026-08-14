@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Synchronized all package versions to the workspace version">
-      <change afterPath="$PROJECT_DIR$/scripts/release.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scripts/version.js" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Bump version to 5.0.0-alpha.1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,61 +31,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000181458605195" />
-      <entry key="MS500" value="1.1129119380768253" />
-      <entry key="S2" value="1.7769499237188517" />
-      <entry key="S5" value="2.964117080495992" />
-      <entry key="S10" value="4.813300656715647" />
-      <entry key="S30" value="9.668037960417823" />
-      <entry key="S60" value="14.122115401100386" />
-      <entry key="M2" value="20.967083719656642" />
-      <entry key="M5" value="45.08592725465786" />
-      <entry key="M10" value="82.2074908319935" />
-      <entry key="M15" value="110.04233159471119" />
-      <entry key="M30" value="161.90824522628722" />
-      <entry key="H1" value="218.12265450829605" />
-      <entry key="H2" value="318.8301464629208" />
-      <entry key="H4" value="566.1209982423496" />
-      <entry key="D1" value="1815.2433258421383" />
-      <entry key="W1" value="2448.0433860225635" />
+      <entry key="MS100" value="2.2687413898350797" />
+      <entry key="MS500" value="5.162101726064446" />
+      <entry key="S2" value="7.715867880320512" />
+      <entry key="S5" value="8.84850023120705" />
+      <entry key="S10" value="9.378030509110683" />
+      <entry key="S30" value="10.862764574045483" />
+      <entry key="S60" value="14.261781914018794" />
+      <entry key="M2" value="19.98096721940102" />
+      <entry key="M5" value="34.41978156243378" />
+      <entry key="M10" value="64.26849635929909" />
+      <entry key="M15" value="92.70870226741879" />
+      <entry key="M30" value="153.61792821244097" />
+      <entry key="H1" value="221.88462210490147" />
+      <entry key="H2" value="330.11762600386885" />
+      <entry key="H4" value="579.7419913770744" />
+      <entry key="D1" value="1838.2581914678424" />
+      <entry key="W1" value="2479.9231128215365" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="0.0" />
-      <entry key="S2" value="5.3240293795964795E-111" />
-      <entry key="S5" value="7.771344784452191E-45" />
-      <entry key="S10" value="8.815523118030033E-23" />
-      <entry key="S30" value="4.4505741073797774E-8" />
-      <entry key="S60" value="2.1099136816856595E-4" />
-      <entry key="M2" value="0.014690521078006624" />
-      <entry key="M5" value="0.2149064933346207" />
-      <entry key="M10" value="0.6160851337077443" />
-      <entry key="M15" value="0.9337706519102595" />
-      <entry key="M30" value="1.5498163434969914" />
-      <entry key="H1" value="2.3962492198487255" />
-      <entry key="H2" value="5.261320210099684" />
-      <entry key="H4" value="13.880430700871488" />
-      <entry key="D1" value="52.481746893263924" />
-      <entry key="W1" value="70.32660044660302" />
+      <entry key="MS500" value="9.423781916417977E-107" />
+      <entry key="S2" value="3.11570482463299E-27" />
+      <entry key="S5" value="2.4970228854470524E-11" />
+      <entry key="S10" value="4.997021998597821E-6" />
+      <entry key="S30" value="0.017096363918704525" />
+      <entry key="S60" value="0.13075309927013698" />
+      <entry key="M2" value="0.361786075823605" />
+      <entry key="M5" value="0.7033217953918511" />
+      <entry key="M10" value="1.0736254251438522" />
+      <entry key="M15" value="1.3954424542784551" />
+      <entry key="M30" value="2.0935053740523" />
+      <entry key="H1" value="3.038934397523184" />
+      <entry key="H2" value="5.875930661713427" />
+      <entry key="H4" value="14.376969918684495" />
+      <entry key="D1" value="53.16365206871662" />
+      <entry key="W1" value="71.26561818339933" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9395229732136907" />
-      <entry key="MS500" value="1.0345751391232754" />
-      <entry key="S2" value="1.6427013627529627" />
-      <entry key="S5" value="2.8545870390644836" />
-      <entry key="S10" value="4.72181630861984" />
-      <entry key="S30" value="9.603548249036646" />
-      <entry key="S60" value="14.079583123400516" />
-      <entry key="M2" value="20.955660388079767" />
-      <entry key="M5" value="45.280801928243065" />
-      <entry key="M10" value="82.80208582968204" />
-      <entry key="M15" value="110.95566059496674" />
-      <entry key="M30" value="163.44269916123156" />
-      <entry key="H1" value="220.50877972370833" />
-      <entry key="H2" value="324.08381950336224" />
-      <entry key="H4" value="579.9938561065218" />
-      <entry key="D1" value="1867.7204428601906" />
-      <entry key="W1" value="2518.3690790355154" />
+      <entry key="MS100" value="2.161783894036849" />
+      <entry key="MS500" value="5.09843991255215" />
+      <entry key="S2" value="7.680998160332612" />
+      <entry key="S5" value="8.824852214702585" />
+      <entry key="S10" value="9.363149428190177" />
+      <entry key="S30" value="10.873292684175627" />
+      <entry key="S60" value="14.387098110913895" />
+      <entry key="M2" value="20.337595645278768" />
+      <entry key="M5" value="35.11653369879037" />
+      <entry key="M10" value="65.33131462695975" />
+      <entry key="M15" value="94.09142634765946" />
+      <entry key="M30" value="155.69926264712032" />
+      <entry key="H1" value="224.91445004032096" />
+      <entry key="H2" value="335.98626693510533" />
+      <entry key="H4" value="594.1115687164305" />
+      <entry key="D1" value="1891.417226535336" />
+      <entry key="W1" value="2551.1878222013056" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -284,15 +275,7 @@
       <workItem from="1786620604646" duration="19698000" />
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
-      <workItem from="1786700234299" duration="11339000" />
-    </task>
-    <task id="LOCAL-00053" summary="Renamed Buffer to Bytes and fixed BooleanArray js mapping">
-      <option name="closed" value="true" />
-      <created>1772230420455</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1772230420455</updated>
+      <workItem from="1786700234299" duration="11662000" />
     </task>
     <task id="LOCAL-00054" summary="Moved docs directory">
       <option name="closed" value="true" />
@@ -678,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786713273044</updated>
     </task>
-    <option name="localTasksCounter" value="102" />
+    <task id="LOCAL-00102" summary="Bump version to 5.0.0-alpha.1">
+      <option name="closed" value="true" />
+      <created>1786724785731</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1786724785731</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -696,7 +687,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed editor files" />
     <MESSAGE value="Fixed readme tabs" />
     <MESSAGE value="Release 4.0.4" />
     <MESSAGE value="Added kotlin output package auto detection" />
@@ -719,8 +709,9 @@
     <MESSAGE value="Replaced kotlin compiler --package option with --packageRoot to support compact directory structures" />
     <MESSAGE value="Tooling now creates the output directory if it doesn't exist" />
     <MESSAGE value="Updated readme" />
-    <MESSAGE value="Bumped version" />
     <MESSAGE value="Synchronized all package versions to the workspace version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Synchronized all package versions to the workspace version" />
+    <MESSAGE value="Bumped version" />
+    <MESSAGE value="Bump version to 5.0.0-alpha.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 5.0.0-alpha.1" />
   </component>
 </project>
