@@ -9,7 +9,6 @@ const { hideBin } = require("yargs/helpers");
 const { parseSchema } = require("@buffela/parser");
 const {
     readSchemaFileSync,
-    existsDirSync,
     processFiles,
     tryReadFileSync,
     Printer
@@ -88,8 +87,7 @@ yargs()
 
                 if (argv.jsonDir) {
                     const jsonOutputDirPath = path.join(outputDirPath, argv.jsonDir, paths.outputSubDir)
-                    if (!existsDirSync(jsonOutputDirPath))
-                        throw new Error(`Invalid json output directory '${jsonOutputDirPath}'`)
+                    fs.mkdirSync(jsonOutputDirPath, { recursive: true })
 
                     const jsonOutputFilePath = path.join(jsonOutputDirPath, schemaFile.name + ".json")
                     const jsonOutputFileStream = fs.createWriteStream(jsonOutputFilePath)
@@ -99,18 +97,17 @@ yargs()
                 }
 
                 if (argv.typeDefDir) {
-                    const tdOutputDirPath = path.join(outputDirPath, argv.typeDefDir, paths.outputSubDir)
-                    if (!existsDirSync(tdOutputDirPath))
-                        throw new Error(`Invalid type definition output directory '${tdOutputDirPath}'`)
+                    const typeDefOutputDirPath = path.join(outputDirPath, argv.typeDefDir, paths.outputSubDir)
+                    fs.mkdirSync(typeDefOutputDirPath, { recursive: true })
 
-                    const primitivesFilePath = path.join(tdOutputDirPath, schemaFile.name + ".primitives.ts")
+                    const primitivesFilePath = path.join(typeDefOutputDirPath, schemaFile.name + ".primitives.ts")
                     const primitivesFileContents = tryReadFileSync(primitivesFilePath)
 
-                    const tdOutputFilePath = path.join(tdOutputDirPath, schemaFile.name + ".ts")
-                    const tdOutputFileStream = fs.createWriteStream(tdOutputFilePath)
+                    const typeDefOutputFilePath = path.join(typeDefOutputDirPath, schemaFile.name + ".ts")
+                    const typeDefOutputFileStream = fs.createWriteStream(typeDefOutputFilePath)
 
                     global.schema = parseSchema(schemaFile.schema)
-                    global.printer = new Printer(tdOutputFileStream)
+                    global.printer = new Printer(typeDefOutputFileStream)
                     global.options = {
                         serializerEnabled: argv.serializer,
                         deserializerEnabled: argv.deserializer,
@@ -125,7 +122,7 @@ yargs()
                     printComplexTypes()
                     printSchemaType()
 
-                    tdOutputFileStream.end()
+                    typeDefOutputFileStream.end()
                 }
             })
         }

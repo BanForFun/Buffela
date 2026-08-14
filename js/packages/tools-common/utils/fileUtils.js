@@ -1,4 +1,4 @@
-const fs = require('node:fs');
+const fs = require("node:fs");
 const path = require("node:path");
 
 const { readdirp } = require("readdirp");
@@ -38,11 +38,12 @@ function getNestedDirPath(filePath, rootDirPath) {
 /**
  * Reads a text file if it exists
  * @param {string} filePath
+ * @param {BufferEncoding} [encoding]
  * @returns {string | null}
  */
-function tryReadFileSync(filePath) {
+function tryReadFileSync(filePath, encoding = "utf8") {
     try {
-        return fs.readFileSync(filePath, 'utf8');
+        return fs.readFileSync(filePath, encoding);
     } catch(err) {
         if (err.code === 'ENOENT')
             return null;

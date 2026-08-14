@@ -20,7 +20,7 @@ declare function processFiles(
     callback: FileProcessor
 ): Promise<void>
 
-declare function tryReadFileSync(filePath: string): string | null;
+declare function tryReadFileSync(filePath: string, encoding?: BufferEncoding): string | null;
 
 declare class Printer {
     constructor(stream: WritableStream);

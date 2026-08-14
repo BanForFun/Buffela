@@ -72,8 +72,7 @@ yargs()
                 if (schemaFile == null) return
 
                 const outputDirPath = path.join(paths.outputRootDir, argv.outputDir, paths.outputSubDir)
-                if (!existsDirSync(outputDirPath))
-                    throw new Error(`Invalid output directory '${outputDirPath}'`)
+                fs.mkdirSync(outputDirPath, { recursive: true })
 
                 const primitivesFilePath = path.join(outputDirPath, schemaFile.name + ".primitives.yaml")
                 const primitivesFileContents = tryReadFileSync(primitivesFilePath)
