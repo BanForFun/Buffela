@@ -1,7 +1,7 @@
 const path = require("node:path");
 const fs = require("node:fs");
 
-const { validateSchema } = require("./validationUtils");
+const { validateSchema } = require("./schemaValidationUtils");
 
 /**
  * @param {string} filePath

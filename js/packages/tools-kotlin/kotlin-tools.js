@@ -18,7 +18,7 @@ const {
 } = require('@buffela/tools-common')
 
 const { printTypes } = require("./utils/schemaUtils");
-const { autoDetectPackage } = require("./utils/packageUtils");
+const { autoDetectPackage, joinPackageSegments } = require("./utils/packageUtils");
 
 yargs()
     .command({
@@ -48,11 +48,11 @@ yargs()
                 type: 'boolean',
                 default: false
             })
-            .option('package', {
+            .option('packageRoot', {
                 alias: 'p',
-                describe: 'The package name for the generated code',
+                describe: 'The root package name for the generated code',
                 type: 'string',
-                defaultDescription: '(Auto detect)'
+                default: ''
             })
             .option('serializer', {
                 describe: 'Generate serializer methods',
@@ -88,7 +88,7 @@ yargs()
                     serializerEnabled: argv.serializer,
                     deserializerEnabled: argv.deserializer,
                     primitives: primitives,
-                    package: argv.package ?? autoDetectPackage(outputDirPath)
+                    package: joinPackageSegments(argv.packageRoot, autoDetectPackage(outputDirPath))
                 }
 
                 printTypes()
