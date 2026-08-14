@@ -1,4 +1,42 @@
-# Buffela migration guide
+# Migration guide
+
+## Version 5
+
+### Buffela Schema
+
+- `Unsigned` type was merged with `UInt` e.g. `Unsigned(10)` is now `UInt(10)`
+- `Signed` type was merged with `Int` e.g. `Signed(10)` is now `Int(10)`
+- Custom primitives now need to be declared using the syntax `PRIMITIVE: Primitive()`
+
+### JS Tooling
+
+- Changed the output behavior
+- Replaced `--json` option with `--jsonDir`
+- Replaced `--types` option with `--typeDefDir`
+
+See the new [tooling guide](./tooling.md) for more details
+
+### Kotlin Tooling
+
+- Changed the output behavior
+- Replaced `--package` option with `--packageRoot`
+
+See the new [tooling guide](./tooling.md) for more details
+
+### Typescript/JSDoc
+
+- Changed the way custom primitive types are declared. See the 'Custom Primitives' section of the readme for more details
+
+### SerializerBuffer
+
+- `writeString()` no longer accepts a second parameter to make the string null terminated. You can achieve the same effect by calling `writeByte(0)` right after
+- `clearBitBuffer()` renamed to `alignToByte()`
+
+### DeserializerBuffer
+
+- `clearBitBuffer()` renamed to `alignToByte()`
+
+
 
 ## Version 4
 
@@ -27,7 +65,7 @@
 - Buffer was renamed to Bytes
 - Type fields are no longer allowed. They are now automatically generated
 
-### JS tools
+### JS Tooling
 
 - `buffela-to-types` was replaced by `buffela-js`, dropping JSON input support
 - `buffela-to-json` was replaced by `buffela-js`, dropping JSON input support
@@ -39,7 +77,7 @@
 - `serializeCalf()` and `deserializeCalf()` were removed. Instead you must call `registerSerializer(schema, {})` and `registerDeserializer(schema, {})` directly after parsing the schema. Then you can use `schema.ROOT_TYPE.serialize()` and `schema.ROOT_TYPE.deserialize()`
 - Type fields are now automatically generated with the name `X_type` (e.g. `User_type`.)
 
-### Kotlin tools
+### Kotlin Tooling
 
 - `buffela-kotlin generate` is now `buffela-kotlin compile` , dropping JSON input support
 

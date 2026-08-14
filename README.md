@@ -13,7 +13,7 @@ Gender:
   - MALE
 
 Phone:
-  countryCode: Unsigned(10)
+  countryCode: UInt(10)
   number: String
 
 User:
@@ -48,12 +48,15 @@ Buffela supports all the types you would expect (strings, booleans, numbers), al
 
 
 
-## What's new in Version 4
+## What's new in Version 5
 
-- Simplified subtype instance creation and checking in JavaScript
-- Optimized JavaScript de/serialization
+- Added mechanism to create reusable custom primitives and import them in multiple schemas
+- Added watch mode to the compilers
+- Added compile time validation of referenced schema types
+- Added automatic package detection to the kotlin compiler
+- Fixed kotlin behavior when a nested type was shadowing a root type or a primitive
 
-Warning! This version is not backwards compatible with packets generated using older versions.
+This version is binary compatible with packets generated using older versions.
 
 **[Breaking API Changes](./docs/migration.md)**
 
@@ -148,9 +151,9 @@ gr.elaevents.buffela:serialization
 gr.elaevents.buffela:deserialization
 ```
 
-[Serialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization/4.0.3)
+[Serialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization/5.0.0-alpha01)
 
-[Deserialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization/4.0.3)
+[Deserialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization/5.0.0-alpha01)
 
 You can skip installing either package if you're interested in only serializing or only deserializing.
 
@@ -160,37 +163,37 @@ You can skip installing either package if you're interested in only serializing 
 
 ### Javascript/Typescript
 
-Install the developer tools as a dev dependency
+Install the tooling as a dev dependency
 
 ```shell
 npm i -D @buffela/tools
 ```
 
-Run the compiler
+Run the validator
 
 ```shell
-buffela-js YOUR_SCHEMA OUTPUT_DIR
+buffela-js SCHEMA_FILE
 ```
 
-This will generate a .json and a .ts file in the specified directory with the same name as your schema file
+This will generate a .json and a .ts file alongside your schema file, as long as your schema file is not in a parent directory. In that case it will generate them in the current working directory. To understand this behavior or to explore all tooling options, refer to the [tooling guide](./docs/tooling.md).
 
-If you don't want type safety you can skip generating the .ts file by setting the `types` option to an empty string like this: `--types=`
+If you don't want type safety you can skip generating the .ts file by setting the `typeDefDir` option to an empty string like this: `--typeDefDir=`
 
 
 
 ### Kotlin
 
-You can run the kotlin compiler through npm
+You can run the kotlin compiler through npm:
 
 > Don't know what npm is? Bless your innocent soul xD. Install nvm (https://github.com/nvm-sh/nvm) and then run `nvm install --lts`. Now you should have node and npm with it.
 
 ```shell
-npx @buffela/tools-kotlin compile YOUR_SCHEMA OUTPUT_DIR --package=YOUR_PACKAGE
+npx @buffela/tools-kotlin compile SCHEMA_FILE
 ```
 
 > The first time around it will ask you to download the package, press Enter to proceed.
 
-This will create a .kt file in the specified directory with the same name as your buffela schema.
+This will create a .kt file alongside your schema file, as long as your schema file is not in a parent directory. In that case it will generate it in the current working directory. To understand this behavior or to explore all compiler options, refer to the [tooling guide](./docs/tooling.md).
 
 
 
@@ -305,7 +308,7 @@ fun main() {
 
 We provide a JSON schema for in-editor validation of your buffela schemata. 
 
-Note that while your editor highlights all errors, the error messages are not very descriptive. If you need more detailed errors, you can run the compiler for your language of choice.
+Note that while your editor highlights all syntax errors, the error messages it provides are not very descriptive. If you need more detailed errors, you can run the compiler for your language of choice.
 
 ### Javascript/Typescript
 
@@ -365,7 +368,7 @@ Root types can be either *object types* or *enumeration types*.
 
 Enumeration types represent single-choice types. 
 
-They are arrays that can only contain unique values. 
+They are yaml arrays that can only contain unique values. 
 
 Their values must (1) be in all uppercase and (2) only contain letters, numbers and underscores.
 
@@ -383,7 +386,7 @@ Gender:
 
 Object types represent a collection of fields.
 
-They are objects that contain key-values pairs.
+They are yaml objects.
 
 The keys are the field names, and they must (1) start with a lowercase letter and (2) only contain letters and numbers.
 
@@ -427,8 +430,8 @@ These are the supported fixed-size primitive types along with their mapping to t
 | **UInt**     | number          | UInt        | 32         | Integers from 0 to 4,294,967,295                             |
 | **Long**     | BigInt          | Long        | 64         | Integers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 |
 | **ULong**    | BigInt          | ULong       | 64         | Integers from 0 to 18,446,744,073,709,551,615                |
-| **Float**    | number          | Float       | 32         | Decimals from 3.4 E-38 to 3.4 E +38                          |
-| **Double**   | number          | Double      | 64         | Decimals from 1.7 E -308 to 1.7 E +308                       |
+| **Float**    | number          | Float       | 32         | Decimals from 3.4E-38 to 3.4E+38                             |
+| **Double**   | number          | Double      | 64         | Decimals from 1.7E -308 to 1.7E+308                          |
 
  Here is an example:
 
@@ -442,18 +445,27 @@ verified: Boolean
 
 These are the supported constant-sized primitive types along with their mapping to the supported languages and their size in bits.
 
-| Buffela Type    | Javascript Type | Kotlin Type | Bit Length | Description                           |
-| --------------- | --------------- | ----------- | ---------- | ------------------------------------- |
-| **Signed(N)**   | number          | Int         | N          | Integers from -2^(N-1) to 2^(N-1) - 1 |
-| **Unsigned(N)** | number          | UInt        | N          | Integers from 0 to 2^N - 1            |
+| Buffela Type | Javascript Type | Kotlin Type | Bit Length | Description                           |
+| ------------ | --------------- | ----------- | ---------- | ------------------------------------- |
+| **Int(N)**   | number          | Int         | N          | Integers from -2^(N-1) to 2^(N-1) - 1 |
+| **UInt(N)**  | number          | UInt        | N          | Integers from 0 to 2^N - 1            |
 
-N must always be <= 31.
+N must always be <= 31
 
 Here is an example:
 
 ```yaml
-countryCode: Unsigned(10)
+countryCode: UInt(10)
 ```
+
+> **Optimization note**
+>
+> Prefer using the fixed-size types instead of using N values of 8 or 16:
+>
+> - [U]Int(8) -> [U]Byte
+> - [U]Int(16) -> [U]Short
+>
+> Warning: This is NOT a binary compatible change
 
 
 
@@ -490,14 +502,14 @@ These are the supported typed array primitive types along with their mapping to 
 
 Typed array types require a parameter that specifies the length. 
 
-You must either pass a constant length (e.g. 10) or, if your array needs to have a variable length, you must pass the numeric type that will be used to store the length. Said type will constrain the maximum length of your array. The following types are accepted: UByte, UShort, Int and Unsigned(N).
+You must either pass a constant length (e.g. 10) or, if your array needs to have a variable length, you must pass the numeric type that will be used to store the length. Said type will constrain the maximum length of your array. The following types are accepted: UByte, UShort, Int and UInt.
 
 All of these examples are valid:
 
 ```yaml
 vector: FloatArray(10) # This array must have a length of exactly 10 floats
 vector: FloatArray(UByte) # This array can have a length of up to 255 floats
-vector: FloatArray(Unsigned(10)) # This array can have a length of up to 1023 floats
+vector: FloatArray(UInt(10)) # This array can have a length of up to 1023 floats
 ```
 
 
@@ -517,7 +529,7 @@ All of these examples are valid:
 ```yaml
 roles: String[10] # This array must have a length of exactly 10 strings
 roles: String[UByte] # This array can have a length of up to 255 strings
-roles: String[Unsigned(10)] # This array can have a length of up to 1023 strings
+roles: String[UInt(10)] # This array can have a length of up to 1023 strings
 ```
 
 Don't get confused by typed arrays, you can also make them higher-dimensional:
@@ -525,6 +537,10 @@ Don't get confused by typed arrays, you can also make them higher-dimensional:
 ```yaml
 spaceTemperature: FloatArray(10)[10][10] # This represents a 10x10x10 cube of floats
 ```
+
+> **Optimization note**
+>
+> Prefer using the primitive arrays where available e.g. Float[*SIZE*] -> FloatArray(*SIZE*)
 
 
 
@@ -544,41 +560,54 @@ In our example, we store dates (specifically the birth date of registered viewer
 
 A custom type consists of a serializer and a deserializer. We will have to make use of the SerializerBuffer and DeserializerBuffer APIs.
 
-| SerializerBuffer Methods                        | DeserializerBuffer Methods         |
-| ----------------------------------------------- | ---------------------------------- |
-| **writeByte**(byte)                             | **readByte**()                     |
-| **writeUByte**(uByte)                           | **readUByte**()                    |
-| **writeShort**(short)                           | **readShort**()                    |
-| **writeUShort**(uShort)                         | **readUShort**()                   |
-| **writeInt**(int)                               | **readInt**()                      |
-| **writeUInt**(uInt)                             | **readUInt**()                     |
-| **writeLong**(long)                             | **readLong**()                     |
-| **writeULong**(uLong)                           | **readULong**()                    |
-| **writeFloat**(float)                           | **readFloat**()                    |
-| **writeDouble**(double)                         | **readDouble**()                   |
-| **writeBoolean**(boolean)                       | **readBoolean**()                  |
-| **writeString**(string, nullTerminated = false) | **readString**(length = untilNull) |
-| **writeBytes**(bytes)                           | **readBytes**(length)              |
-| **writeSigned**(value, bitLength)               | **readSigned**(bitLength)          |
-| **writeUnsigned**(value, bitLength)             | **readUnsigned**(bitLength)        |
+| SerializerBuffer Methods        | DeserializerBuffer Methods |
+| ------------------------------- | -------------------------- |
+| **writeByte**(byte)             | **readByte**()             |
+| **writeUByte**(uByte)           | **readUByte**()            |
+| **writeShort**(short)           | **readShort**()            |
+| **writeUShort**(uShort)         | **readUShort**()           |
+| **writeInt**(int, bitLength?)   | **readInt**(bitLength?)    |
+| **writeUInt**(uInt, bitLength?) | **readUInt**(bitLength?)   |
+| **writeLong**(long)             | **readLong**()             |
+| **writeULong**(uLong)           | **readULong**()            |
+| **writeFloat**(float)           | **readFloat**()            |
+| **writeDouble**(double)         | **readDouble**()           |
+| **writeBoolean**(boolean)       | **readBoolean**()          |
+| **writeString**(string)         | **readString**(length?)    |
+| **writeBytes**(bytes)           | **readBytes**(length)      |
 
 There are also some read-only properties:
 
 - `SerializerBuffer.length`: How many bytes have been written to the buffer thus far
-- `DeserializeBuffer.position`: How many bytes have been read from the buffer thus far
+- `DeserializerBuffer.length`: How many bytes were initially loaded into the buffer
+- `DeserializerBuffer.position`: How many bytes have been read from the buffer thus far
 
 
 
 #### JSDoc/Typescript
 
-For JSDoc or Typescript we need to create a folder called *primitives* alongside our schema type definition file. Inside the *primitives* folder we will create a .ts file named after our new type (in this case 'Date.ts'), write the interface, and make it the default export:
+You need to create a file called '*SCHEMA*.primitives.ts' in the directory where the generated '*SCHEMA*.ts' file will live:
+
+##### Method 1: Define and export the interface
 
 ```ts
-export default interface Date {
+export interface Date {
     year: number;
     month: number;
     day: number;
 }
+```
+
+##### Method 2: Re-export the interface from another file or library
+
+```typescript
+export type { Date } from "SOME_OTHER_FILE_OR_LIBRARY"
+```
+
+Or, using default exports:
+
+```typescript
+export type { default as Date } from "SOME_OTHER_DIRECTORY_OR_LIBRARY/Date.ts"
 ```
 
 
@@ -594,8 +623,8 @@ registerSerializer(schema, {
             const yearMonth = value.year * 12 + (value.month - 1)
             const day = value.day - 1
 
-            buffer.writeUnsigned(yearMonth, 17)
-            buffer.writeUnsigned(day, 5)
+            buffer.writeUInt(yearMonth, 17)
+            buffer.writeUInt(day, 5)
         }
     }
 })
@@ -607,8 +636,8 @@ Same story for the deserializer in our `registerDeserializer` call:
 registerDeserializer(schema, {
     Date: {
         deserialize(buffer) {
-            const yearMonth = buffer.readUnsigned(17)
-            const day = buffer.readUnsigned(5)
+            const yearMonth = buffer.readUInt(17)
+            const day = buffer.readUInt(5)
 
             return {
                 year: Math.floor(yearMonth / 12),
@@ -620,36 +649,54 @@ registerDeserializer(schema, {
 })
 ```
 
+You could also define both the serializer and deserializer in a common object (if you, for example, want to export the primitive for use on other schemas as well):
+
+```javascript
+const DatePrimitive = {
+    serialize(buffer, value) {
+        // ...
+    },
+    deserialize(buffer) {
+        // ...
+    }
+}
+
+registerSerializer(schema, {
+    Date: DatePrimitive
+})
+
+registerDeserializer(schema, {
+    Date: DatePrimitive
+})
+```
+
 
 
 #### Kotlin
 
-In Kotlin, custom types are data classes. The custom classes must be defined in the same package as the generated code. We begin by defining the class:
+##### Method 1: Package-private primitives
+
+Create a kotlin file in the same package as your compiled schema:
 
 ```kotlin
-data class Date(val year: Int, val month: Int, val day: Int)
-```
+package YOUR_SCHEMA_PACKAGE
 
-Then we extend SerializerBuffer with a method called write*Type* (in this case writeDate):
-
-```kotlin
 import gr.elaevents.buffela.serialization.SerializerBuffer
+import gr.elaevents.buffela.deserialization.DeserializerBuffer
+
+data class Date(val year: Int, val month: Int, val day: Int)
 
 fun SerializerBuffer.writeDate(date: Date) {
     val yearMonth = date.year * 12 + (date.month - 1)
     val day = date.day - 1
 
-    writeUnsigned(yearMonth.toUInt(), 17)
-    writeUnsigned(day.toUInt(), 5)
+    writeUInt(yearMonth.toUInt(), 17)
+    writeUInt(day.toUInt(), 5)
 }
-```
 
-Similarly, extend DeserializerBuffer with read*Type* (readDate):
-
-```kotlin
 fun DeserializerBuffer.readDate(): Date {
-    val yearMonth = readUnsigned(17).toInt()
-    val day = readUnsigned(5).toInt()
+    val yearMonth = readUInt(17).toInt()
+    val day = readUInt(5).toInt()
 
     return Date(
         year = yearMonth / 12,
@@ -659,11 +706,65 @@ fun DeserializerBuffer.readDate(): Date {
 }
 ```
 
+##### Method 2: Importing primitives
+
+```kotlin
+package SOME_PACKAGE
+
+import gr.elaevents.buffela.serialization.SerializerBuffer
+import gr.elaevents.buffela.deserialization.DeserializerBuffer
+
+data class Date( /* See method 1 example */ )
+
+fun SerializerBuffer.writeDate(date: Date) { /* See method 1 example */ }
+fun DeserializerBuffer.readDate(): Date { /* See method 1 example */ }
+```
+
+Create a file called '*SCHEMA*.primitives.yaml' in the directory where the generated '*SCHEMA*.kt' file will live.
+
+For each primitive define a key, and provide the package where the class, serializer, and deserializer live as a value.
+
+```yaml
+Date: SOME_PACKAGE
+```
+
+##### Method 3: Using external types as primitives
+
+Imagine that the Date class was provided by a third party library. You can still use it as a primitive!
+
+```kotlin
+package SOME_PACKAGE
+
+import gr.elaevents.buffela.serialization.SerializerBuffer
+import gr.elaevents.buffela.deserialization.DeserializerBuffer
+
+object LIBRARY_PRIMITIVES {
+    typealias Date = LIBRARY.Date
+  
+    fun SerializerBuffer.writeDate(date: Date) { /* See method 1 example */ }
+    fun DeserializerBuffer.readDate(): Date { /* See method 1 example */ }
+}
+```
+
+Create a file called '*SCHEMA*.primitives.yaml' in the directory where the generated '*SCHEMA*.kt' file will live.
+
+For each primitive define a key, and provide the object where the type alias, serializer and deserializer live as a value.
+
+```yaml
+Date: SOME_PACKAGE.LIBRARY_PRIMITIVES
+```
+
 
 
 #### Schema
 
-Now we can finally use our type, so simply change
+Now we can finally use our type, so we declare the new primitive at the top of the schema:
+
+```yaml
+Date: Primitive() # Note the '()', it is required
+```
+
+And simple change:
 
 ```yaml
 birthDate: String
@@ -677,9 +778,9 @@ birthDate: Date
 
 
 
-### Type aliases
+### Aliases
 
-You may find yourself using a type with a specific parameter or array length over and over again in your schema. That is why aliases exist. Simply define a type alias in your schema to any primitive or root type:
+You may find yourself using a type with a specific parameter or array length over and over again in your schema. That is why aliases exist. Simply define a type alias in your schema to any primitive type:
 
 ```yaml
 Uuid: String(36)
@@ -761,8 +862,6 @@ if (user is User.Registered) {
     // Do something
 }
 ```
-
-
 
 
 
@@ -853,7 +952,7 @@ val body = Body.deserialize(buffer)
 
 ### Bit buffer
 
-Buffela uses bit packing internally to minimize the output size, but that means that the boundary between consecutive types inside the buffer may not be byte-aligned. To ensure that the next serialize()/deserialize() call begins at a byte boundary, you can call the clearBitBuffer() method on the SerializerBuffer/DeserializerBuffer. This is useful when trying to isolate the bytes belonging to a specific type in order to hash or sign them. Note that if you clear the bit buffer between two serialize() calls, then you must also clear it between the deserialize() calls and vice versa.
+Buffela uses bit packing internally to minimize the output size, but that means that the boundary between consecutive types inside the buffer may not be byte-aligned. To ensure that the next `serialize()`/`deserialize()` call begins at a byte boundary, you can call the `alignToByte()` method on the `SerializerBuffer`/`DeserializerBuffer`. This is useful when trying to isolate the bytes belonging to a specific type in order to hash or sign them. Note that if you call `alignToByte()` between two `serialize()` calls, then you must also do it between the `deserialize()` calls and vice versa.
 
 
 
@@ -875,8 +974,8 @@ schema.AuthTokenPayload.serialize({ ... }, buffer)
 const payloadBytes = buffer.toBytes()
 const hmac256 = sign(payloadBytes)
 
-// Align to byte
-buffer.clearBitBuffer()
+// Align to next byte
+buffer.alignToByte()
 
 // Write the signature into the buffer
 schema.AuthTokenSignature.serialize({ hmac256 }, buffer)
@@ -894,8 +993,8 @@ const payload = schema.AuthTokenPayload.deserialize(buffer)
 // The deserializer has only read the payload, all bytes up to the current position must be the payload
 const payloadBytes = bytes.subarray(0, buffer.position)
 
-// Align to byte
-buffer.clearBitBuffer()
+// Align to next byte
+buffer.alignToByte()
 
 // Continue to deserialize the signature
 const signature = schema.AuthTokenSignature.deserialize(buffer)
@@ -921,8 +1020,8 @@ payload.serialize(buffer)
 val payloadBytes = payload.toBytes()
 val hmac256 = sign(payloadBytes)
 
-// Align to byte
-buffer.clearBitBuffer()
+// Align to next byte
+buffer.alignToByte()
 
 // Write the signature into the buffer
 val signature = AuthTokenSignature(hmac256 = hmac256)
@@ -941,8 +1040,8 @@ val payload = AuthTokenPayload.deserialize(buffer)
 // The deserializer has only read the payload, all bytes up to the current position must be the payload
 val payloadBytes = bytes.sliceArray(0 until buffer.position)
 
-// Align to byte
-buffer.clearBitBuffer()
+// Align to next byte
+buffer.alignToByte()
 
 // Continue to deserialize the signature
 val signature = AuthTokenSignature.deserialize(buffer)
