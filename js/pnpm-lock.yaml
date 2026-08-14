@@ -7,10 +7,6 @@ settings:
 importers:
 
   .:
-    dependencies:
-      protobufjs:
-        specifier: ^8.0.0
-        version: 8.7.2
     devDependencies:
       '@types/node':
         specifier: ^24.10.13
@@ -21,6 +17,25 @@ importers:
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
+
+  examples:
+    dependencies:
+      '@buffela/deserializer':
+        specifier: workspace:*
+        version: link:../packages/deserializer
+      '@buffela/parser':
+        specifier: workspace:*
+        version: link:../packages/parser
+      '@buffela/serializer':
+        specifier: workspace:*
+        version: link:../packages/serializer
+      protobufjs:
+        specifier: ^8.0.0
+        version: 8.7.2
+    devDependencies:
+      '@buffela/tools':
+        specifier: workspace:*
+        version: link:../packages/tools
 
   packages/deserializer:
     dependencies:

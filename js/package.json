@@ -16,8 +16,5 @@
     "@types/node": "^24.10.13",
     "tsup": "^8.5.0",
     "typescript": "^6.0.3"
-  },
-  "dependencies": {
-    "protobufjs": "^8.0.0"
   }
 }

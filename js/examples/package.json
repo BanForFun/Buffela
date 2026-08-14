@@ -1,0 +1,22 @@
+{
+  "name": "examples",
+  "private": "true",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@buffela/tools": "workspace:*"
+  },
+  "dependencies": {
+    "protobufjs": "^8.0.0",
+    "@buffela/parser": "workspace:*",
+    "@buffela/serializer": "workspace:*",
+    "@buffela/deserializer": "workspace:*"
+  }
+}
