@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed kotlin tooling example 1">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-common/utils/fileUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,61 +32,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.1564451264091571E-4" />
-      <entry key="MS500" value="0.33146516852497937" />
-      <entry key="S2" value="3.3484407007704573" />
-      <entry key="S5" value="5.618842104690787" />
-      <entry key="S10" value="6.699321875438246" />
-      <entry key="S30" value="7.613857786103063" />
-      <entry key="S60" value="8.78809801917701" />
-      <entry key="M2" value="11.951164827581797" />
-      <entry key="M5" value="25.13015768650443" />
-      <entry key="M10" value="56.50872864680695" />
-      <entry key="M15" value="90.8890777078129" />
-      <entry key="M30" value="182.31547704323165" />
-      <entry key="H1" value="299.9159909890289" />
-      <entry key="H2" value="448.426155809734" />
-      <entry key="H4" value="717.9053994946312" />
-      <entry key="D1" value="2020.3518638468943" />
-      <entry key="W1" value="2695.1131231919703" />
+      <entry key="MS100" value="1.1870734390076773E-8" />
+      <entry key="MS500" value="0.05280905664121033" />
+      <entry key="S2" value="2.1154864115951613" />
+      <entry key="S5" value="4.675993290067512" />
+      <entry key="S10" value="6.111451505403521" />
+      <entry key="S30" value="7.384298926338267" />
+      <entry key="S60" value="8.654602912058786" />
+      <entry key="M2" value="11.860045720984864" />
+      <entry key="M5" value="25.05334186254775" />
+      <entry key="M10" value="56.42229690193903" />
+      <entry key="M15" value="90.79637573988919" />
+      <entry key="M30" value="182.2224773360124" />
+      <entry key="H1" value="299.8394871790548" />
+      <entry key="H2" value="448.3689589638336" />
+      <entry key="H4" value="717.8596135459063" />
+      <entry key="D1" value="2020.3303879009964" />
+      <entry key="W1" value="2695.109030526703" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0" />
-      <entry key="S5" value="1.0" />
-      <entry key="S10" value="1.0" />
-      <entry key="S30" value="1.0000000000254348" />
-      <entry key="S60" value="1.000007132230743" />
-      <entry key="M2" value="1.0037786065736296" />
-      <entry key="M5" value="1.1718521733428446" />
-      <entry key="M10" value="1.7451221729354298" />
-      <entry key="M15" value="2.363600346248822" />
-      <entry key="M30" value="3.8705193582762973" />
-      <entry key="H1" value="5.716698964227669" />
-      <entry key="H2" value="8.957055300925255" />
-      <entry key="H4" value="17.359276766445888" />
-      <entry key="D1" value="57.00732367335327" />
-      <entry key="W1" value="76.04494907025482" />
+      <entry key="MS100" value="1.00010264848819" />
+      <entry key="MS500" value="1.1593200784149078" />
+      <entry key="S2" value="1.6317825521319222" />
+      <entry key="S5" value="1.8321987347115245" />
+      <entry key="S10" value="1.912249272244996" />
+      <entry key="S30" value="1.9698498624447685" />
+      <entry key="S60" value="1.9848165803109963" />
+      <entry key="M2" value="1.996125510731372" />
+      <entry key="M5" value="2.1682701508432762" />
+      <entry key="M10" value="2.7424529577889123" />
+      <entry key="M15" value="3.3611896010965077" />
+      <entry key="M30" value="4.868544993987846" />
+      <entry key="H1" value="6.715240725039435" />
+      <entry key="H2" value="9.95591282672938" />
+      <entry key="H4" value="18.358169641528747" />
+      <entry key="D1" value="58.00671769663164" />
+      <entry key="W1" value="77.04483359216259" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.05079003509358728" />
-      <entry key="MS500" value="0.836276684930906" />
-      <entry key="S2" value="4.153124848423963" />
-      <entry key="S5" value="6.528953525034712" />
-      <entry key="S10" value="7.651967767783792" />
-      <entry key="S30" value="8.597446999107001" />
-      <entry key="S60" value="9.779570845323262" />
-      <entry key="M2" value="12.950187093601604" />
-      <entry key="M5" value="26.297976431185727" />
-      <entry key="M10" value="58.2483056341974" />
-      <entry key="M15" value="93.24589778123473" />
-      <entry key="M30" value="186.17745251355063" />
-      <entry key="H1" value="305.624524851436" />
-      <entry key="H2" value="457.3760185454184" />
-      <entry key="H4" value="735.2573399558092" />
-      <entry key="D1" value="2077.3545218658965" />
-      <entry key="W1" value="2771.1571453551433" />
+      <entry key="MS100" value="1.0786200850763216E-4" />
+      <entry key="MS500" value="0.2925557454346588" />
+      <entry key="S2" value="3.255654368191716" />
+      <entry key="S5" value="6.265585597235759" />
+      <entry key="S10" value="7.892751299647925" />
+      <entry key="S30" value="9.308082651668132" />
+      <entry key="S60" value="10.615824382602348" />
+      <entry key="M2" value="13.843826868203706" />
+      <entry key="M5" value="27.214534195045776" />
+      <entry key="M10" value="59.15768362660564" />
+      <entry key="M15" value="94.14977203748866" />
+      <entry key="M30" value="187.08197269711312" />
+      <entry key="H1" value="306.54630980093043" />
+      <entry key="H2" value="458.31755259253515" />
+      <entry key="H4" value="736.210383572922" />
+      <entry key="D1" value="2078.332429363067" />
+      <entry key="W1" value="2772.152935694641" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -102,49 +103,49 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "Node.js.Complex.executor": "Run",
-    "Node.js.debug parser.executor": "Debug",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "SHELLCHECK.PATH": "I do mind",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "master",
-    "javascript.nodejs.core.library.configured.version": "24.14.1",
-    "javascript.nodejs.core.library.typings.version": "24.13.3",
-    "javascript.preferred.runtime.type.id": "node",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/Users/jpeg/Documents/Projects/Buffela/js/examples/buffela",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.jshint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.jshint": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "npm.Build All.executor": "Run",
-    "npm.build.executor": "Run",
-    "npm.common > build.executor": "Run",
-    "npm.deserializer > build.executor": "Run",
-    "npm.parser > build.executor": "Run",
-    "npm.serializer > build.executor": "Run",
-    "npm.tools-common > build.executor": "Run",
-    "npm.tools-kotlin > build.executor": "Run",
-    "npm.tools-types > build.executor": "Run",
-    "settings.editor.selected.configurable": "settings.json.schema",
-    "to.speed.mode.migration.done": "true",
-    "ts.external.directory.path": "/Users/jpeg/Documents/Projects/Buffela/js/node_modules/typescript/lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Node.js.Complex.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.debug parser.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;I do mind&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.14.1&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jpeg/Documents/Projects/Buffela/js/examples/buffela&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.Build All.executor&quot;: &quot;Run&quot;,
+    &quot;npm.build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.deserializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.parser &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.serializer &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-common &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-kotlin &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;npm.tools-types &gt; build.executor&quot;: &quot;Run&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.json.schema&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Users/jpeg/Documents/Projects/Buffela/js/node_modules/typescript/lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/examples/buffela" />
@@ -277,6 +278,7 @@
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
       <workItem from="1786700234299" duration="15009000" />
+      <workItem from="1786729919043" duration="198000" />
     </task>
     <task id="LOCAL-00062" summary="Fixed optional byte being serialized twice for dimension types">
       <option name="closed" value="true" />

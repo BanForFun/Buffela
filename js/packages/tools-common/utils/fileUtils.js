@@ -99,7 +99,7 @@ async function processFiles(rootDirPaths, inputExpr, watch, callback) {
             const handleAddOrChange = (filePath) => {
                 callback({
                     inputFile: filePath,
-                    outputPath: rootDirPath,
+                    outputRootDir: rootDirPath,
                     outputSubDir: getNestedDirPath(filePath, absoluteRootDirPath)
                 })
             }
