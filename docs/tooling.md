@@ -56,16 +56,16 @@ Say you have the following directory structure:
 
 ```
 features/
-	featureA/
-		buffela/
-			schemas/
-				FeatureA.buffela.yaml
+  featureA/
+    buffela/
+      schemas/
+        FeatureA.buffela.yaml
       json/
       types/
   featureB/
-		buffela/
-			schemas/
-				FeatureB.buffela.yaml
+    buffela/
+      schemas/
+        FeatureB.buffela.yaml
       json/
       types/
 ```
@@ -74,7 +74,8 @@ You could use the command:
 
 ```shell
 buffela-js . ../ --jsonDir=./json --typeDefDir=./types --rootDirs "./features/*/buffela/schemas"
-# Note: The directories glob is expanded by your shell at the time you run the command, meaning that if you add a new feature directory you'll need to run the command again
+# Note: The directories glob is expanded by your shell at the time you run the command, 
+# meaning that if you add a new feature directory you'll need to run the command again
 ```
 
 
@@ -91,17 +92,17 @@ Say you have the following directory structure:
 
 ```
 features/
-	featureA/
+  featureA/
     src/
       main/
         buffela/
-        	FeatureA.buffela.yaml
+          FeatureA.buffela.yaml
         kotlin/
   featureB/
     src/
       main/
         buffela/
-        	FeatureB.buffela.yaml
+          FeatureB.buffela.yaml
         kotlin/
 ```
 
@@ -109,7 +110,8 @@ You could use the command:
 
 ```shell
 npx @buffela/tools-kotlin compile . ../kotlin --packageRoot=com.example.app.featureA --rootDirs "./features/*/src/main/buffela"
-# Note: The directories glob is expanded by your shell at the time you run the command, meaning that if you add a new feature directory you'll need to run the command again
+# Note: The directories glob is expanded by your shell at the time you run the command, 
+# meaning that if you add a new feature directory you'll need to run the command again
 ```
 
 ### Example 2
@@ -118,41 +120,40 @@ Say you have the following directory structure:
 
 ```
 features/
-	featureA/
+  featureA/
     src/
       main/
         buffela/
-        	com/
-        		example/
-        			app/
-        				featureA/
-        					FeatureA.buffela.yaml
+          com/
+            example/
+              app/
+                featureA/
+                  FeatureA.buffela.yaml
         kotlin/
-        	com/
-        		example/
-        			app/
-        				featureA/
+          com/
+            example/
+              app/
+                featureA/
   featureB/
     src/
       main/
         buffela/
-        	com/
-        		example/
-        			app/
-        				featureB/
-        					FeatureB.buffela.yaml
+          com/
+            example/
+              app/
+                featureB/
+                  FeatureB.buffela.yaml
         kotlin/
-        	com/
-        		example/
-        			app/
-        				featureB/
+          com/
+            example/
+              app/
+                featureB/
 ```
 
 You could use the command:
 
 ```shell
 npx @buffela/tools-kotlin compile . ../kotlin --rootDirs "./features/*/src/main/buffela"
-# Note: The directories glob is expanded by your shell at the time you run the command, meaning that if you add a new feature directory you'll need to run the command again
+# Note: The directories glob is expanded by your shell at the time you run the command, 
+# meaning that if you add a new feature directory you'll need to run the command again
 ```
-
-### 

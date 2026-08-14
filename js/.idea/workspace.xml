@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added .DS_Store to gitignore">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-    </list>
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed root package not set to private" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -31,61 +29,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="8.07281135762156E-198" />
-      <entry key="MS500" value="5.220229911085051E-40" />
-      <entry key="S2" value="4.626555191874637E-10" />
-      <entry key="S5" value="5.934530401398662E-4" />
-      <entry key="S10" value="0.09160128695096593" />
-      <entry key="S30" value="5.720519964531618" />
-      <entry key="S60" value="19.849615623334312" />
-      <entry key="M2" value="40.43971334154277" />
-      <entry key="M5" value="71.33146996418594" />
-      <entry key="M10" value="107.36668025346655" />
-      <entry key="M15" value="138.25527902810927" />
-      <entry key="M30" value="203.41658453993773" />
-      <entry key="H1" value="275.78032438613707" />
-      <entry key="H2" value="386.6117580522341" />
-      <entry key="H4" value="637.2564956322884" />
-      <entry key="D1" value="1898.469433999468" />
-      <entry key="W1" value="2542.3880886072866" />
+      <entry key="MS100" value="1.9189942444884331" />
+      <entry key="MS500" value="4.169613259985793" />
+      <entry key="S2" value="6.0016353211264954" />
+      <entry key="S5" value="6.568159083086771" />
+      <entry key="S10" value="6.778465629126172" />
+      <entry key="S30" value="7.277264917830395" />
+      <entry key="S60" value="10.289948884107929" />
+      <entry key="M2" value="22.579102598190797" />
+      <entry key="M5" value="59.40205017062158" />
+      <entry key="M10" value="103.72012330899769" />
+      <entry key="M15" value="139.01709490834017" />
+      <entry key="M30" value="211.87968737285945" />
+      <entry key="H1" value="291.4360386408556" />
+      <entry key="H2" value="406.9053588645894" />
+      <entry key="H4" value="659.5293349786657" />
+      <entry key="D1" value="1925.1914070218165" />
+      <entry key="W1" value="2572.570814932343" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="1.0018865943924313" />
-      <entry key="MS500" value="1.285190928967106" />
-      <entry key="S2" value="1.7307754128485207" />
-      <entry key="S5" value="1.8820913651971765" />
-      <entry key="S10" value="1.939197191872765" />
-      <entry key="S30" value="1.9795425839319942" />
-      <entry key="S60" value="2.004943123985286" />
-      <entry key="M2" value="2.118719998772355" />
-      <entry key="M5" value="2.4561050929458887" />
-      <entry key="M10" value="2.865518569108537" />
-      <entry key="M15" value="3.2090013712804817" />
-      <entry key="M30" value="3.9488525291989927" />
-      <entry key="H1" value="4.932154080791278" />
-      <entry key="H2" value="7.771859377401394" />
-      <entry key="H4" value="16.249146566496986" />
-      <entry key="D1" value="55.08460016287484" />
-      <entry key="W1" value="73.25047049697466" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="2.4895804636851125E-168" />
+      <entry key="S2" value="2.0418806144424326E-42" />
+      <entry key="S5" value="3.186812806776938E-17" />
+      <entry key="S10" value="7.979577542186099E-9" />
+      <entry key="S30" value="0.0031721288807295815" />
+      <entry key="S60" value="0.08025924033187819" />
+      <entry key="M2" value="0.4239064842470152" />
+      <entry key="M5" value="1.290403532241315" />
+      <entry key="M10" value="2.0770288353438615" />
+      <entry key="M15" value="2.589381863833956" />
+      <entry key="M30" value="3.5471864336709023" />
+      <entry key="H1" value="4.6745863364383275" />
+      <entry key="H2" value="7.566206827357438" />
+      <entry key="H4" value="16.032719463478543" />
+      <entry key="D1" value="54.96163466311721" />
+      <entry key="W1" value="73.227088514952" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.001994169292190402" />
-      <entry key="MS500" value="0.31022477755779404" />
-      <entry key="S2" value="1.117289572220176" />
-      <entry key="S5" value="1.565926419383148" />
-      <entry key="S10" value="1.857255071375707" />
-      <entry key="S30" value="7.635653510844873" />
-      <entry key="S60" value="21.817297395716476" />
-      <entry key="M2" value="42.53555997523262" />
-      <entry key="M5" value="73.77370756143911" />
-      <entry key="M10" value="110.21843166219489" />
-      <entry key="M15" value="141.449830988659" />
-      <entry key="M30" value="207.35236108049426" />
-      <entry key="H1" value="280.70281117784094" />
-      <entry key="H2" value="394.37601445249055" />
-      <entry key="H4" value="653.4980936662023" />
-      <entry key="D1" value="1953.5493870086298" />
-      <entry key="W1" value="2615.6376452038025" />
+      <entry key="MS100" value="1.7996838006536398" />
+      <entry key="MS500" value="4.105842711145158" />
+      <entry key="S2" value="5.978597028014443" />
+      <entry key="S5" value="6.558110336671744" />
+      <entry key="S10" value="6.773288476759617" />
+      <entry key="S30" value="7.27850339357713" />
+      <entry key="S60" value="10.367503054634554" />
+      <entry key="M2" value="22.99741176956619" />
+      <entry key="M5" value="60.68447983493439" />
+      <entry key="M10" value="105.78675004241518" />
+      <entry key="M15" value="141.59451411347126" />
+      <entry key="M30" value="215.41496463679078" />
+      <entry key="H1" value="296.1013778058197" />
+      <entry key="H2" value="414.4641207280414" />
+      <entry key="H4" value="675.554584660352" />
+      <entry key="D1" value="1980.148401244566" />
+      <entry key="W1" value="2645.7969893149207" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -275,31 +273,7 @@
       <workItem from="1786620604646" duration="19698000" />
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
-      <workItem from="1786700234299" duration="11805000" />
-    </task>
-    <task id="LOCAL-00055" summary="Fixed readme">
-      <option name="closed" value="true" />
-      <created>1772233885107</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1772233885107</updated>
-    </task>
-    <task id="LOCAL-00056" summary="Fixed custom primitive type definitions">
-      <option name="closed" value="true" />
-      <created>1772296233056</created>
-      <option name="number" value="00056" />
-      <option name="presentableId" value="LOCAL-00056" />
-      <option name="project" value="LOCAL" />
-      <updated>1772296233056</updated>
-    </task>
-    <task id="LOCAL-00057" summary="Fixed js-tools missing shebang">
-      <option name="closed" value="true" />
-      <created>1773769818419</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1773769818419</updated>
+      <workItem from="1786700234299" duration="12472000" />
     </task>
     <task id="LOCAL-00058" summary="Simplified javascript type system and refactored code">
       <option name="closed" value="true" />
@@ -669,7 +643,31 @@
       <option name="project" value="LOCAL" />
       <updated>1786725111892</updated>
     </task>
-    <option name="localTasksCounter" value="104" />
+    <task id="LOCAL-00104" summary="Fixed root package not set to private">
+      <option name="closed" value="true" />
+      <created>1786725199619</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1786725199619</updated>
+    </task>
+    <task id="LOCAL-00105" summary="Fixed root package not set to private">
+      <option name="closed" value="true" />
+      <created>1786725260258</created>
+      <option name="number" value="00105" />
+      <option name="presentableId" value="LOCAL-00105" />
+      <option name="project" value="LOCAL" />
+      <updated>1786725260258</updated>
+    </task>
+    <task id="LOCAL-00106" summary="Fixed root package not set to private">
+      <option name="closed" value="true" />
+      <created>1786725408872</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1786725408872</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -687,8 +685,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Release 4.0.4" />
-    <MESSAGE value="Added kotlin output package auto detection" />
     <MESSAGE value="Added compiler watch mode" />
     <MESSAGE value="Fixed compiler crashing on validation error" />
     <MESSAGE value="Modified TypeScript primitive type importing" />
@@ -712,6 +708,8 @@
     <MESSAGE value="Bumped version" />
     <MESSAGE value="Bump version to 5.0.0-alpha.1" />
     <MESSAGE value="Added .DS_Store to gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added .DS_Store to gitignore" />
+    <MESSAGE value="Fixed package scoping" />
+    <MESSAGE value="Fixed root package not set to private" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed root package not set to private" />
   </component>
 </project>
