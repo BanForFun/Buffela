@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed javascript example" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed kotlin tooling example 1">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,61 +31,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.017378874639894" />
-      <entry key="MS500" value="1.7300909536090419" />
-      <entry key="S2" value="3.8206136003820634" />
-      <entry key="S5" value="4.949009850796374" />
-      <entry key="S10" value="5.543780444405217" />
-      <entry key="S30" value="8.110086418159224" />
-      <entry key="S60" value="12.51582542841471" />
-      <entry key="M2" value="22.9249417800951" />
-      <entry key="M5" value="50.927398936327606" />
-      <entry key="M10" value="90.38489827780806" />
-      <entry key="M15" value="127.31469079466648" />
-      <entry key="M30" value="216.0290101084302" />
-      <entry key="H1" value="322.12977117571893" />
-      <entry key="H2" value="458.92563909443646" />
-      <entry key="H4" value="721.8383927024238" />
-      <entry key="D1" value="2010.5269864998381" />
-      <entry key="W1" value="2675.432431261063" />
+      <entry key="MS100" value="1.1564451264091571E-4" />
+      <entry key="MS500" value="0.33146516852497937" />
+      <entry key="S2" value="3.3484407007704573" />
+      <entry key="S5" value="5.618842104690787" />
+      <entry key="S10" value="6.699321875438246" />
+      <entry key="S30" value="7.613857786103063" />
+      <entry key="S60" value="8.78809801917701" />
+      <entry key="M2" value="11.951164827581797" />
+      <entry key="M5" value="25.13015768650443" />
+      <entry key="M10" value="56.50872864680695" />
+      <entry key="M15" value="90.8890777078129" />
+      <entry key="M30" value="182.31547704323165" />
+      <entry key="H1" value="299.9159909890289" />
+      <entry key="H2" value="448.426155809734" />
+      <entry key="H4" value="717.9053994946312" />
+      <entry key="D1" value="2020.3518638468943" />
+      <entry key="W1" value="2695.1131231919703" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="3.013988171940568E-199" />
-      <entry key="S2" value="3.8736879729701765E-50" />
-      <entry key="S5" value="2.6016603897882306E-20" />
-      <entry key="S10" value="2.2805372236791734E-10" />
-      <entry key="S30" value="9.697864756033926E-4" />
-      <entry key="S60" value="0.044040301077358256" />
-      <entry key="M2" value="0.29692319351142704" />
-      <entry key="M5" value="0.9846457431701287" />
-      <entry key="M10" value="1.7835692512828822" />
-      <entry key="M15" value="2.440031478330657" />
-      <entry key="M30" value="3.8398533929763574" />
-      <entry key="H1" value="5.455257317847783" />
-      <entry key="H2" value="8.557381959022091" />
-      <entry key="H4" value="16.9651760313154" />
-      <entry key="D1" value="56.347830388695016" />
-      <entry key="W1" value="75.10995836802455" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0000000000254348" />
+      <entry key="S60" value="1.000007132230743" />
+      <entry key="M2" value="1.0037786065736296" />
+      <entry key="M5" value="1.1718521733428446" />
+      <entry key="M10" value="1.7451221729354298" />
+      <entry key="M15" value="2.363600346248822" />
+      <entry key="M30" value="3.8705193582762973" />
+      <entry key="H1" value="5.716698964227669" />
+      <entry key="H2" value="8.957055300925255" />
+      <entry key="H4" value="17.359276766445888" />
+      <entry key="D1" value="57.00732367335327" />
+      <entry key="W1" value="76.04494907025482" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9965596464222876" />
-      <entry key="MS500" value="1.7235651945041828" />
-      <entry key="S2" value="3.8169460585464665" />
-      <entry key="S5" value="4.947084270650175" />
-      <entry key="S10" value="5.542677467105796" />
-      <entry key="S30" value="8.110038841578897" />
-      <entry key="S60" value="12.55646808638031" />
-      <entry key="M2" value="23.213861359187405" />
-      <entry key="M5" value="51.90101189679363" />
-      <entry key="M10" value="92.15787796359521" />
-      <entry key="M15" value="129.74395884137803" />
-      <entry key="M30" value="219.8579591758977" />
-      <entry key="H1" value="327.57581468894557" />
-      <entry key="H2" value="467.47539340359805" />
-      <entry key="H4" value="738.7960127502813" />
-      <entry key="D1" value="2066.870131306278" />
-      <entry key="W1" value="2750.5414631187896" />
+      <entry key="MS100" value="0.05079003509358728" />
+      <entry key="MS500" value="0.836276684930906" />
+      <entry key="S2" value="4.153124848423963" />
+      <entry key="S5" value="6.528953525034712" />
+      <entry key="S10" value="7.651967767783792" />
+      <entry key="S30" value="8.597446999107001" />
+      <entry key="S60" value="9.779570845323262" />
+      <entry key="M2" value="12.950187093601604" />
+      <entry key="M5" value="26.297976431185727" />
+      <entry key="M10" value="58.2483056341974" />
+      <entry key="M15" value="93.24589778123473" />
+      <entry key="M30" value="186.17745251355063" />
+      <entry key="H1" value="305.624524851436" />
+      <entry key="H2" value="457.3760185454184" />
+      <entry key="H4" value="735.2573399558092" />
+      <entry key="D1" value="2077.3545218658965" />
+      <entry key="W1" value="2771.1571453551433" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -274,23 +276,7 @@
       <workItem from="1786620604646" duration="19698000" />
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
-      <workItem from="1786700234299" duration="13915000" />
-    </task>
-    <task id="LOCAL-00060" summary="Fixed typed array unnecessary copy during serialization">
-      <option name="closed" value="true" />
-      <created>1776618103822</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1776618103822</updated>
-    </task>
-    <task id="LOCAL-00061" summary="Improved examples">
-      <option name="closed" value="true" />
-      <created>1776618117429</created>
-      <option name="number" value="00061" />
-      <option name="presentableId" value="LOCAL-00061" />
-      <option name="project" value="LOCAL" />
-      <updated>1776618117429</updated>
+      <workItem from="1786700234299" duration="15009000" />
     </task>
     <task id="LOCAL-00062" summary="Fixed optional byte being serialized twice for dimension types">
       <option name="closed" value="true" />
@@ -668,7 +654,23 @@
       <option name="project" value="LOCAL" />
       <updated>1786726843039</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Fixed kotlin tooling example #1">
+      <option name="closed" value="true" />
+      <created>1786727382088</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1786727382088</updated>
+    </task>
+    <task id="LOCAL-00110" summary="Fixed kotlin tooling example 1">
+      <option name="closed" value="true" />
+      <created>1786727583293</created>
+      <option name="number" value="00110" />
+      <option name="presentableId" value="LOCAL-00110" />
+      <option name="project" value="LOCAL" />
+      <updated>1786727583293</updated>
+    </task>
+    <option name="localTasksCounter" value="111" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -686,8 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Modified TypeScript primitive type importing" />
-    <MESSAGE value="Removed writeString nt parameter" />
     <MESSAGE value="Added javascript support for custom parameterized types" />
     <MESSAGE value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
     <MESSAGE value="Prohibited trailing empty parenthesis on all standard types" />
@@ -711,6 +711,8 @@
     <MESSAGE value="Fixed root package not set to private" />
     <MESSAGE value="Fixed tooling guide indentation" />
     <MESSAGE value="Fixed javascript example" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed javascript example" />
+    <MESSAGE value="Fixed kotlin tooling example #1" />
+    <MESSAGE value="Fixed kotlin tooling example 1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed kotlin tooling example 1" />
   </component>
 </project>
