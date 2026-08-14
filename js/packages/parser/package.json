@@ -1,6 +1,6 @@
 {
   "name": "@buffela/parser",
-  "version": "4.0.4",
+  "version": "5.0.0-alpha.1",
   "description": "Parser for the buffela data format schema",
   "type": "module",
   "types": "types/index.d.ts",
@@ -43,6 +43,5 @@
   "bugs": {
     "url": "https://github.com/BanForFun/Buffela/issues"
   },
-  "homepage": "https://github.com/BanForFun/Buffela#readme",
-  "dependencies": {}
+  "homepage": "https://github.com/BanForFun/Buffela#readme"
 }

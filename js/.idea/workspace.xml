@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Tooling now creates the output directory if it doesn't exist">
-      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docs/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/changelog.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docs/migration.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/migration.md" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Synchronized all package versions to the workspace version">
+      <change afterPath="$PROJECT_DIR$/scripts/release.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/scripts/version.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/deserializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools-kotlin/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools-kotlin/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/tools/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,61 +40,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.267961846918771" />
-      <entry key="MS500" value="2.0535824966690983" />
-      <entry key="S2" value="5.4439201636274825" />
-      <entry key="S5" value="10.25805806374527" />
-      <entry key="S10" value="14.479681533937246" />
-      <entry key="S30" value="20.775833524801676" />
-      <entry key="S60" value="25.851919954708976" />
-      <entry key="M2" value="34.62964850125075" />
-      <entry key="M5" value="58.45577878749843" />
-      <entry key="M10" value="87.40429029743487" />
-      <entry key="M15" value="105.64416926387085" />
-      <entry key="M30" value="135.79772736755677" />
-      <entry key="H1" value="189.9470600423475" />
-      <entry key="H2" value="334.7274754038109" />
-      <entry key="H4" value="634.2714661266924" />
-      <entry key="D1" value="1715.5488965341067" />
-      <entry key="W1" value="2168.9806920815304" />
+      <entry key="MS100" value="1.0000181458605195" />
+      <entry key="MS500" value="1.1129119380768253" />
+      <entry key="S2" value="1.7769499237188517" />
+      <entry key="S5" value="2.964117080495992" />
+      <entry key="S10" value="4.813300656715647" />
+      <entry key="S30" value="9.668037960417823" />
+      <entry key="S60" value="14.122115401100386" />
+      <entry key="M2" value="20.967083719656642" />
+      <entry key="M5" value="45.08592725465786" />
+      <entry key="M10" value="82.2074908319935" />
+      <entry key="M15" value="110.04233159471119" />
+      <entry key="M30" value="161.90824522628722" />
+      <entry key="H1" value="218.12265450829605" />
+      <entry key="H2" value="318.8301464629208" />
+      <entry key="H4" value="566.1209982423496" />
+      <entry key="D1" value="1815.2433258421383" />
+      <entry key="W1" value="2448.0433860225635" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="1.7149561930790497E-107" />
-      <entry key="S2" value="2.420172524775231E-27" />
-      <entry key="S5" value="3.1883992003489023E-11" />
-      <entry key="S10" value="7.880329813505576E-6" />
-      <entry key="S30" value="0.0325053824815839" />
-      <entry key="S60" value="0.2828659530948492" />
-      <entry key="M2" value="0.9079293019066972" />
-      <entry key="M5" value="2.2345981494135567" />
-      <entry key="M10" value="3.4450078813312217" />
-      <entry key="M15" value="4.085600790882834" />
-      <entry key="M30" value="5.078345325914701" />
-      <entry key="H1" value="7.355860458490392" />
-      <entry key="H2" value="13.669798135647683" />
-      <entry key="H4" value="24.760699084484855" />
-      <entry key="D1" value="56.57047602400578" />
-      <entry key="W1" value="68.6242349095049" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="5.3240293795964795E-111" />
+      <entry key="S5" value="7.771344784452191E-45" />
+      <entry key="S10" value="8.815523118030033E-23" />
+      <entry key="S30" value="4.4505741073797774E-8" />
+      <entry key="S60" value="2.1099136816856595E-4" />
+      <entry key="M2" value="0.014690521078006624" />
+      <entry key="M5" value="0.2149064933346207" />
+      <entry key="M10" value="0.6160851337077443" />
+      <entry key="M15" value="0.9337706519102595" />
+      <entry key="M30" value="1.5498163434969914" />
+      <entry key="H1" value="2.3962492198487255" />
+      <entry key="H2" value="5.261320210099684" />
+      <entry key="H4" value="13.880430700871488" />
+      <entry key="D1" value="52.481746893263924" />
+      <entry key="W1" value="70.32660044660302" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2505051969977241" />
-      <entry key="MS500" value="2.0473484164573272" />
-      <entry key="S2" value="5.438755198998842" />
-      <entry key="S5" value="10.253965844951923" />
-      <entry key="S10" value="14.473411379801842" />
-      <entry key="S30" value="20.76260315200182" />
-      <entry key="S60" value="26.069359878393286" />
-      <entry key="M2" value="35.47019607190047" />
-      <entry key="M5" value="60.6369889182648" />
-      <entry key="M10" value="90.8103797681312" />
-      <entry key="M15" value="109.69921299724656" />
-      <entry key="M30" value="140.85727519789458" />
-      <entry key="H1" value="197.29044637119412" />
-      <entry key="H2" value="348.38651508659797" />
-      <entry key="H4" value="659.0218883219841" />
-      <entry key="D1" value="1772.1146868163103" />
-      <entry key="W1" value="2237.604079993552" />
+      <entry key="MS100" value="0.9395229732136907" />
+      <entry key="MS500" value="1.0345751391232754" />
+      <entry key="S2" value="1.6427013627529627" />
+      <entry key="S5" value="2.8545870390644836" />
+      <entry key="S10" value="4.72181630861984" />
+      <entry key="S30" value="9.603548249036646" />
+      <entry key="S60" value="14.079583123400516" />
+      <entry key="M2" value="20.955660388079767" />
+      <entry key="M5" value="45.280801928243065" />
+      <entry key="M10" value="82.80208582968204" />
+      <entry key="M15" value="110.95566059496674" />
+      <entry key="M30" value="163.44269916123156" />
+      <entry key="H1" value="220.50877972370833" />
+      <entry key="H2" value="324.08381950336224" />
+      <entry key="H4" value="579.9938561065218" />
+      <entry key="D1" value="1867.7204428601906" />
+      <entry key="W1" value="2518.3690790355154" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -156,11 +162,11 @@
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/scripts" />
       <recent name="$PROJECT_DIR$/packages/parser/src" />
       <recent name="$PROJECT_DIR$/packages/parser" />
       <recent name="$PROJECT_DIR$/packages/tools-common/test/buffela/gr/elaevents/features/chat/database" />
       <recent name="$PROJECT_DIR$/packages/tools-common/test/buffela" />
-      <recent name="$PROJECT_DIR$/packages/tools-common/test" />
     </key>
   </component>
   <component name="RunManager" selected="npm.Build All">
@@ -174,6 +180,7 @@
         <script value="build" />
       </scripts>
       <node-interpreter value="project" />
+      <package-manager value="pnpm" />
       <envs />
       <method v="2" />
     </configuration>
@@ -277,31 +284,7 @@
       <workItem from="1786620604646" duration="19698000" />
       <workItem from="1786646901929" duration="6069000" />
       <workItem from="1786663150044" duration="4599000" />
-      <workItem from="1786700234299" duration="3329000" />
-    </task>
-    <task id="LOCAL-00050" summary="Added more examples">
-      <option name="closed" value="true" />
-      <created>1772016646072</created>
-      <option name="number" value="00050" />
-      <option name="presentableId" value="LOCAL-00050" />
-      <option name="project" value="LOCAL" />
-      <updated>1772016646072</updated>
-    </task>
-    <task id="LOCAL-00051" summary="Simplified typescript and package configurations">
-      <option name="closed" value="true" />
-      <created>1772065292495</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1772065292495</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Consolidated examples into single files">
-      <option name="closed" value="true" />
-      <created>1772065341372</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1772065341372</updated>
+      <workItem from="1786700234299" duration="11339000" />
     </task>
     <task id="LOCAL-00053" summary="Renamed Buffer to Bytes and fixed BooleanArray js mapping">
       <option name="closed" value="true" />
@@ -671,7 +654,31 @@
       <option name="project" value="LOCAL" />
       <updated>1786707689828</updated>
     </task>
-    <option name="localTasksCounter" value="99" />
+    <task id="LOCAL-00099" summary="Updated readme">
+      <option name="closed" value="true" />
+      <created>1786709086112</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1786709086112</updated>
+    </task>
+    <task id="LOCAL-00100" summary="Bumped version">
+      <option name="closed" value="true" />
+      <created>1786709478497</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1786709478497</updated>
+    </task>
+    <task id="LOCAL-00101" summary="Synchronized all package versions to the workspace version">
+      <option name="closed" value="true" />
+      <created>1786713273044</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1786713273044</updated>
+    </task>
+    <option name="localTasksCounter" value="102" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,9 +696,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Actually fixed enum and subtype size type calculation" />
-    <MESSAGE value="Added better serializer error reporting" />
-    <MESSAGE value="Fixed kotlin serialization bug when overriding a nullable field" />
     <MESSAGE value="Removed editor files" />
     <MESSAGE value="Fixed readme tabs" />
     <MESSAGE value="Release 4.0.4" />
@@ -714,6 +718,9 @@
     <MESSAGE value="Refactored code" />
     <MESSAGE value="Replaced kotlin compiler --package option with --packageRoot to support compact directory structures" />
     <MESSAGE value="Tooling now creates the output directory if it doesn't exist" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tooling now creates the output directory if it doesn't exist" />
+    <MESSAGE value="Updated readme" />
+    <MESSAGE value="Bumped version" />
+    <MESSAGE value="Synchronized all package versions to the workspace version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Synchronized all package versions to the workspace version" />
   </component>
 </project>

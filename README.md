@@ -151,9 +151,9 @@ gr.elaevents.buffela:serialization
 gr.elaevents.buffela:deserialization
 ```
 
-[Serialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization/5.0.0-alpha01)
+[Serialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/serialization/5.0.0-alpha.1)
 
-[Deserialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization/5.0.0-alpha01)
+[Deserialization library on maven central](https://central.sonatype.com/artifact/gr.elaevents.buffela/deserialization/5.0.0-alpha.1)
 
 You can skip installing either package if you're interested in only serializing or only deserializing.
 

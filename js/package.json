@@ -1,15 +1,12 @@
 {
   "name": "buffela",
-  "version": "1.0.0",
+  "version": "5.0.0-alpha.1",
   "description": "",
-  "private": "true",
-  "workspaces": [
-    "packages/*"
-  ],
+  "packageManager": "pnpm@11.21.0",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run build -ws",
-    "publish": "npm run build -ws && npm publish -ws"
+    "build": "pnpm -r run build",
+    "release": "./scripts/release.sh"
   },
   "keywords": [],
   "author": "",
