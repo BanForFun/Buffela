@@ -1,6 +1,6 @@
 {
   "name": "@buffela/serializer",
-  "version": "5.0.0-alpha.1",
+  "version": "5.0.0-alpha.2",
   "description": "Serializer for the buffela data format",
   "type": "module",
   "types": "types/index.d.ts",
