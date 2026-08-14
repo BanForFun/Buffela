@@ -112,8 +112,8 @@ export interface Schema<E extends Extensions, C extends Extensions> {
     complexExtensions: E & C
     objectExtensions: E
     enumExtensions: E
+    instantiatedAliases: Record<string, string>
     primitiveTypes: Record<string, PrimitiveType<E>>
-    primitiveAliases: Record<string, string>
     primitiveDeclarations: Record<string, PrimitiveDeclaration>
 }
 

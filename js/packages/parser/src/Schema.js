@@ -18,7 +18,7 @@ aliasParser.addParser(function(schema, name, definition, next) {
 })
 
 aliasParser.addParser(function (schema, name, definition) {
-    schema.primitiveAliases[name] = definition;
+    schema.instantiatedAliases[name] = definition;
 })
 
 export default class Schema {
@@ -35,9 +35,10 @@ export default class Schema {
         Object.defineProperty(this, 'objectExtensions', { value: objectExtensions })
         Object.defineProperty(this, 'enumExtensions', { value: enumExtensions })
 
+        Object.defineProperty(this, 'instantiatedAliases', { value: {} })
+
         Object.defineProperty(this, 'primitiveTypes', { value: {} })
         Object.defineProperty(this, 'primitiveDeclarations', { value: {} })
-        Object.defineProperty(this, 'primitiveAliases', { value: {} })
 
         this.#hoistTypes()
         this.#linkTypes()

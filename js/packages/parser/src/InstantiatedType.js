@@ -52,7 +52,6 @@ export default class InstantiatedType {
             return undefined
 
         const type = InstantiatedType.#parseNested(schema, parser, KIND_PRIMITIVE)
-
         if (!parser.tryConsume(')'))
             throw new Error('Expected closing parenthesis')
 
@@ -65,7 +64,7 @@ export default class InstantiatedType {
 
         switch(kind) {
             case KIND_ANY:
-                const aliasDefinition = schema.primitiveAliases[typeName]
+                const aliasDefinition = schema.instantiatedAliases[typeName]
                 if (aliasDefinition)
                     return InstantiatedType.#parse(schema, aliasDefinition, KIND_CONCRETE)
 

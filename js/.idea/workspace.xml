@@ -4,19 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Added tooling multiple root directory support">
-      <change afterPath="$PROJECT_DIR$/packages/parser/src/PrimitiveType.js" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Allowed aliases to reference complex root types">
+      <change beforePath="$PROJECT_DIR$/../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/changelog.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/changelog.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/migration.md" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/migration.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/EnumType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/EnumType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/FieldTypeParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/FieldTypeParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/InstantiatedType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/ObjectType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/ObjectType.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/RootTypeParser.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/RootTypeParser.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/Schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/SchemaNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/primitiveDeclarationParser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/src/InstantiatedType.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/InstantiatedType.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/src/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/Schema.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,61 +37,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.3316557126790691" />
-      <entry key="MS500" value="3.5654153045068777" />
-      <entry key="S2" value="5.534281135555739" />
-      <entry key="S5" value="7.545226938726464" />
-      <entry key="S10" value="9.560786005201523" />
-      <entry key="S30" value="15.02977377742309" />
-      <entry key="S60" value="19.976884878208832" />
-      <entry key="M2" value="26.137434965573046" />
-      <entry key="M5" value="38.06603980076423" />
-      <entry key="M10" value="56.17702961677557" />
-      <entry key="M15" value="75.44330928668002" />
-      <entry key="M30" value="130.75192236589584" />
-      <entry key="H1" value="227.19786606478075" />
-      <entry key="H2" value="395.58088384273447" />
-      <entry key="H4" value="680.241964419675" />
-      <entry key="D1" value="1530.460659041192" />
-      <entry key="W1" value="1844.0325636595037" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0000000019206112" />
+      <entry key="S2" value="1.009330740626235" />
+      <entry key="S5" value="1.233887960614995" />
+      <entry key="S10" value="1.7460165020493643" />
+      <entry key="S30" value="2.8069929849041255" />
+      <entry key="S60" value="3.3128300456468747" />
+      <entry key="M2" value="3.629486482703698" />
+      <entry key="M5" value="3.916085363075295" />
+      <entry key="M10" value="6.548244449394226" />
+      <entry key="M15" value="14.312331432826797" />
+      <entry key="M30" value="56.40142696463876" />
+      <entry key="H1" value="158.73021640669836" />
+      <entry key="H2" value="347.9192468942236" />
+      <entry key="H4" value="661.2457381301791" />
+      <entry key="D1" value="1633.090487144654" />
+      <entry key="W1" value="2008.9699728525597" />
     </decayedCancelled>
     <decayedSelected>
-      <entry key="MS100" value="4.621613424927766E-217" />
-      <entry key="MS500" value="5.407029303084499E-44" />
-      <entry key="S2" value="1.524894088470418E-11" />
-      <entry key="S5" value="4.7129829900621656E-5" />
-      <entry key="S10" value="0.006865116889071999" />
-      <entry key="S30" value="0.19005646418850758" />
-      <entry key="S60" value="0.43595465840995945" />
-      <entry key="M2" value="0.660271877857584" />
-      <entry key="M5" value="0.8763657127969995" />
-      <entry key="M10" value="1.5756469719332267" />
-      <entry key="M15" value="2.833774568074173" />
-      <entry key="M30" value="6.679300265031728" />
-      <entry key="H1" value="11.881738598423814" />
-      <entry key="H2" value="18.278866838198287" />
-      <entry key="H4" value="26.67872414212618" />
-      <entry key="D1" value="48.07553924733311" />
-      <entry key="W1" value="55.55760644782232" />
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="1.0443851560202856E-187" />
+      <entry key="S10" value="3.481051178175575E-94" />
+      <entry key="S30" value="1.2184087350999988E-31" />
+      <entry key="S60" value="6.862844638629397E-16" />
+      <entry key="M2" value="5.655630280651686E-8" />
+      <entry key="M5" value="0.0035056397669509056" />
+      <entry key="M10" value="0.1553718390017205" />
+      <entry key="M15" value="0.5908518545851955" />
+      <entry key="M30" value="2.794860673094993" />
+      <entry key="H1" value="7.944087657488191" />
+      <entry key="H2" value="16.139994141519033" />
+      <entry key="H4" value="26.91415231846382" />
+      <entry key="D1" value="53.660276495806045" />
+      <entry key="W1" value="63.156171927932434" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.2862380352124754" />
-      <entry key="MS500" value="3.540607681620592" />
-      <entry key="S2" value="5.524027653098279" />
-      <entry key="S5" value="7.538177675415451" />
-      <entry key="S10" value="9.556217737127458" />
-      <entry key="S30" value="15.182343882226002" />
-      <entry key="S60" value="20.373624991600227" />
-      <entry key="M2" value="26.76777589736554" />
-      <entry key="M5" value="38.924985263273385" />
-      <entry key="M10" value="57.738010829589" />
-      <entry key="M15" value="78.26159129731643" />
-      <entry key="M30" value="137.41447795523985" />
-      <entry key="H1" value="239.0636163557091" />
-      <entry key="H2" value="413.845642504425" />
-      <entry key="H4" value="706.9087593535319" />
-      <entry key="D1" value="1578.5318523248468" />
-      <entry key="W1" value="1899.5894263067403" />
+      <entry key="MS100" value="0.9794202975869268" />
+      <entry key="MS500" value="0.9958497550045287" />
+      <entry key="S2" value="1.0082795877513082" />
+      <entry key="S5" value="1.2333541733336035" />
+      <entry key="S10" value="1.7456130772992744" />
+      <entry key="S30" value="2.806753030107672" />
+      <entry key="S60" value="3.3126830966847445" />
+      <entry key="M2" value="3.629404411750916" />
+      <entry key="M5" value="3.9195271028231176" />
+      <entry key="M10" value="6.702851296122074" />
+      <entry key="M15" value="14.901110207600546" />
+      <entry key="M30" value="59.19073255163082" />
+      <entry key="H1" value="166.66527311714557" />
+      <entry key="H2" value="364.0484609705272" />
+      <entry key="H4" value="688.1492478058565" />
+      <entry key="D1" value="1686.7463011066727" />
+      <entry key="W1" value="2072.1253597988357" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -131,7 +126,7 @@
     &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
     &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/jpeg/Documents/Projects/buffalo/js/packages/tools-common/buffela-schema.json&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/jpeg/Documents/Projects/Buffela/js/examples/buffela&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -157,8 +152,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/examples/buffela" />
+      <recent name="$PROJECT_DIR$/packages/tools-common" />
       <recent name="$PROJECT_DIR$/packages/serializer/types" />
       <recent name="$PROJECT_DIR$/packages/parser/types" />
       <recent name="$PROJECT_DIR$/packages/tools-kotlin" />
@@ -283,23 +278,8 @@
       <workItem from="1786137769250" duration="10555000" />
       <workItem from="1786283758535" duration="19951000" />
       <workItem from="1786620604646" duration="19698000" />
-      <workItem from="1786646901929" duration="3942000" />
-    </task>
-    <task id="LOCAL-00044" summary="Fixed kotlin bit packing">
-      <option name="closed" value="true" />
-      <created>1771946067080</created>
-      <option name="number" value="00044" />
-      <option name="presentableId" value="LOCAL-00044" />
-      <option name="project" value="LOCAL" />
-      <updated>1771946067080</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Added kotlin benchmark">
-      <option name="closed" value="true" />
-      <created>1771947029542</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1771947029542</updated>
+      <workItem from="1786646901929" duration="6069000" />
+      <workItem from="1786663150044" duration="4145000" />
     </task>
     <task id="LOCAL-00046" summary="Disabled alias recursion">
       <option name="closed" value="true" />
@@ -677,7 +657,23 @@
       <option name="project" value="LOCAL" />
       <updated>1786650027667</updated>
     </task>
-    <option name="localTasksCounter" value="93" />
+    <task id="LOCAL-00093" summary="Refactored code">
+      <option name="closed" value="true" />
+      <created>1786650859522</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1786650859522</updated>
+    </task>
+    <task id="LOCAL-00094" summary="Allowed aliases to reference complex root types">
+      <option name="closed" value="true" />
+      <created>1786665206925</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1786665206925</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -695,7 +691,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fixed older changes link" />
     <MESSAGE value="Fixed lies in readme" />
     <MESSAGE value="Fixed enum and subtype size type calculation" />
     <MESSAGE value="Actually fixed enum and subtype size type calculation" />
@@ -712,7 +707,6 @@
     <MESSAGE value="Added javascript support for custom parameterized types" />
     <MESSAGE value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
     <MESSAGE value="Prohibited trailing empty parenthesis on all standard types" />
-    <MESSAGE value="Refactored code" />
     <MESSAGE value="Reordered methods" />
     <MESSAGE value="Fixed custom primitive type definition generation" />
     <MESSAGE value="Fixed kotlin code generation" />
@@ -720,6 +714,8 @@
     <MESSAGE value="Fixed kotlin type resolution when nested types conflicted with root types" />
     <MESSAGE value="Fixed kotlin custom primitive importing" />
     <MESSAGE value="Added tooling multiple root directory support" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added tooling multiple root directory support" />
+    <MESSAGE value="Refactored code" />
+    <MESSAGE value="Allowed aliases to reference complex root types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allowed aliases to reference complex root types" />
   </component>
 </project>
