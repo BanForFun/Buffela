@@ -64,7 +64,7 @@ export default class InstantiatedType {
 
         switch(kind) {
             case KIND_ANY:
-                const aliasDefinition = schema.instantiatedAliases[typeName]
+                const aliasDefinition = schema.concreteTypeAliases[typeName]
                 if (aliasDefinition)
                     return InstantiatedType.#parse(schema, aliasDefinition, KIND_CONCRETE)
 
