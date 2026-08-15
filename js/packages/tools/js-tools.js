@@ -26,7 +26,7 @@ const {
 
 yargs()
     .command({
-        command: '* <schemaFile> [outputDir]',
+        command: 'convert <schemaFile> [outputDir]',
         describe: 'Converts buffela schemata to JSON and generates type definitions',
         builder: (yargs) => yargs
             .option('rootDirs', {

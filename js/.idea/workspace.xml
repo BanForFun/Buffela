@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Refactored code">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/AuthToken.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/buffela/complex.js" beforeDir="false" afterPath="$PROJECT_DIR$/examples/buffela/complex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/src/Schema.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/Schema.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/src/SchemaNode.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/src/SchemaNode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/parser/types/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/packages/parser/types/index.d.ts" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Renamed instanceOf to isInstance and added isEntry to enum types">
       <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/complexTypeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/complexTypeUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/utils/schemaUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,61 +31,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.1273081299701306" />
-      <entry key="MS500" value="2.2647448144036337" />
-      <entry key="S2" value="5.581911325551922" />
-      <entry key="S5" value="8.095912932123767" />
-      <entry key="S10" value="9.775010940845705" />
-      <entry key="S30" value="11.953591168464547" />
-      <entry key="S60" value="13.039567835858914" />
-      <entry key="M2" value="14.87328333620411" />
-      <entry key="M5" value="23.17885112294092" />
-      <entry key="M10" value="44.580635840037246" />
-      <entry key="M15" value="67.99777129266398" />
-      <entry key="M30" value="130.4756399962831" />
-      <entry key="H1" value="242.78100810716703" />
-      <entry key="H2" value="428.57345433515815" />
-      <entry key="H4" value="735.6011987016553" />
-      <entry key="D1" value="2163.3867021753413" />
-      <entry key="W1" value="2939.738051155484" />
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0000000010088017" />
+      <entry key="S5" value="1.0011324101782344" />
+      <entry key="S10" value="1.130233612111747" />
+      <entry key="S30" value="4.319864052336636" />
+      <entry key="S60" value="9.481250738257234" />
+      <entry key="M2" value="16.45447394398784" />
+      <entry key="M5" value="29.318639906976248" />
+      <entry key="M10" value="51.266873800264385" />
+      <entry key="M15" value="74.5886904316425" />
+      <entry key="M30" value="137.5206478983811" />
+      <entry key="H1" value="250.53256298099674" />
+      <entry key="H2" value="437.41636260519743" />
+      <entry key="H4" value="745.6064107370514" />
+      <entry key="D1" value="2176.962039072095" />
+      <entry key="W1" value="2956.0732566548945" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="2.2910228475411925E-167" />
-      <entry key="S2" value="2.1877986754727958E-42" />
-      <entry key="S5" value="2.1677187894782306E-17" />
-      <entry key="S10" value="4.655876705281436E-9" />
-      <entry key="S30" value="0.001669810382247999" />
-      <entry key="S60" value="0.040863317129377116" />
-      <entry key="M2" value="0.20222217292571937" />
-      <entry key="M5" value="0.5615117108839692" />
-      <entry key="M10" value="1.0273169882343096" />
-      <entry key="M15" value="1.4806506023747754" />
-      <entry key="M30" value="2.71159110272871" />
-      <entry key="H1" value="4.946247245716091" />
-      <entry key="H2" value="8.858952201783834" />
-      <entry key="H4" value="17.208875775287055" />
-      <entry key="D1" value="59.45759893645971" />
-      <entry key="W1" value="81.35775311592788" />
+      <entry key="MS500" value="6.01029222586958E-286" />
+      <entry key="S2" value="4.951353082149397E-72" />
+      <entry key="S5" value="3.005311954045205E-29" />
+      <entry key="S10" value="5.482072558845976E-15" />
+      <entry key="S30" value="1.7632541978972837E-5" />
+      <entry key="S60" value="0.004199112429441704" />
+      <entry key="M2" value="0.06482472977128843" />
+      <entry key="M5" value="0.35622434392445884" />
+      <entry key="M10" value="0.8182515908905703" />
+      <entry key="M15" value="1.2722550399137906" />
+      <entry key="M30" value="2.5135353437983876" />
+      <entry key="H1" value="4.762184526021367" />
+      <entry key="H2" value="8.692557206734023" />
+      <entry key="H4" value="17.046495144040442" />
+      <entry key="D1" value="59.36372352688312" />
+      <entry key="W1" value="81.33939029329312" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.9882265703442824" />
-      <entry key="MS500" value="2.210400148670813" />
-      <entry key="S2" value="5.551109021704222" />
-      <entry key="S5" value="8.075042997510986" />
-      <entry key="S10" value="9.740578700703821" />
-      <entry key="S30" value="11.90483197596424" />
-      <entry key="S60" value="13.041373177841333" />
-      <entry key="M2" value="15.04842562222367" />
-      <entry key="M5" value="23.72202555385049" />
-      <entry key="M10" value="45.589713487898806" />
-      <entry key="M15" value="69.45886992958447" />
-      <entry key="M30" value="133.1675763963676" />
-      <entry key="H1" value="247.71066237306036" />
-      <entry key="H2" value="437.41960724893084" />
-      <entry key="H4" value="752.7996851989785" />
-      <entry key="D1" value="2222.838923853655" />
-      <entry key="W1" value="3021.094741239087" />
+      <entry key="MS100" value="0.10013373469870276" />
+      <entry key="MS500" value="0.6311260160560578" />
+      <entry key="S2" value="0.8913104969049569" />
+      <entry key="S5" value="0.9561500666197551" />
+      <entry key="S10" value="1.1074557580882665" />
+      <entry key="S30" value="4.311468059484147" />
+      <entry key="S60" value="9.477337564785143" />
+      <entry key="M2" value="16.508498537669674" />
+      <entry key="M5" value="29.662360255962355" />
+      <entry key="M10" value="52.07015797885735" />
+      <entry key="M15" value="75.8438510500757" />
+      <entry key="M30" value="140.0158164275123" />
+      <entry key="H1" value="255.27869800698014" />
+      <entry key="H2" value="446.09632390006436" />
+      <entry key="H4" value="762.6425961116946" />
+      <entry key="D1" value="2236.3203907423544" />
+      <entry key="W1" value="3037.41158371456" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -287,15 +278,7 @@
       <workItem from="1786663150044" duration="4599000" />
       <workItem from="1786700234299" duration="15009000" />
       <workItem from="1786729919043" duration="198000" />
-      <workItem from="1786790206630" duration="5687000" />
-    </task>
-    <task id="LOCAL-00063" summary="Updated readme and examples">
-      <option name="closed" value="true" />
-      <created>1776631500229</created>
-      <option name="number" value="00063" />
-      <option name="presentableId" value="LOCAL-00063" />
-      <option name="project" value="LOCAL" />
-      <updated>1776631500229</updated>
+      <workItem from="1786790206630" duration="5884000" />
     </task>
     <task id="LOCAL-00064" summary="Refactored code">
       <option name="closed" value="true" />
@@ -681,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786790492338</updated>
     </task>
-    <option name="localTasksCounter" value="112" />
+    <task id="LOCAL-00112" summary="Renamed instanceOf to isInstance and added isEntry to enum types">
+      <option name="closed" value="true" />
+      <created>1786798050328</created>
+      <option name="number" value="00112" />
+      <option name="presentableId" value="LOCAL-00112" />
+      <option name="project" value="LOCAL" />
+      <updated>1786798050328</updated>
+    </task>
+    <option name="localTasksCounter" value="113" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -699,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added javascript support for custom parameterized types" />
     <MESSAGE value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
     <MESSAGE value="Prohibited trailing empty parenthesis on all standard types" />
     <MESSAGE value="Reordered methods" />
@@ -724,6 +714,7 @@
     <MESSAGE value="Fixed kotlin tooling example #1" />
     <MESSAGE value="Fixed kotlin tooling example 1" />
     <MESSAGE value="Refactored code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactored code" />
+    <MESSAGE value="Renamed instanceOf to isInstance and added isEntry to enum types" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed instanceOf to isInstance and added isEntry to enum types" />
   </component>
 </project>
