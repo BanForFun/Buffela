@@ -1,4 +1,4 @@
-const {printSerializeField, printSerializeSize} = require("./fieldSerializationUtils");
+const {serializeField, serializeSize} = require("./fieldSerializationUtils");
 
 /**
  *
@@ -18,7 +18,7 @@ function printFieldSerializers(type) {
         if (prefix) {
             printer.line()
             printer.blockStart(`${prefix} fun ${name}(buffer: _SerializerBuffer) {`)
-            printSerializeField(field.type, `this.${name}`)
+            serializeField(field.type, `this.${name}`)
             printer.blockEnd('}')
         }
     }
@@ -45,7 +45,7 @@ function printObjectSerializer(type) {
         if (field.override) continue;
 
         if (field.final) {
-            printSerializeField(field.type, `this.${name}`)
+            serializeField(field.type, `this.${name}`)
         } else {
             printer.line(`this.${name}(buffer)`)
         }
@@ -63,7 +63,7 @@ function printLeafIndexSerializer(type) {
 
     printer.line()
     printer.blockStart(`protected fun serializeLeafIndex(buffer: _SerializerBuffer, index: Int) {`)
-    printSerializeSize(type.leafIndexType, 'index')
+    serializeSize(type.leafIndexType, 'index')
     printer.blockEnd('}')
 }
 

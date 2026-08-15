@@ -878,7 +878,7 @@ User:
     [...]
 
     Organizer:
-        userId: String
+      userId: String
 ```
 
 With this mechanism you can safely override the length parameter or an array's i-th dimension length (e.g. String -> String(10), Int[10] -> Int[UByte]). The only rule is that all type overrides should map to the same native type in your language of choice.

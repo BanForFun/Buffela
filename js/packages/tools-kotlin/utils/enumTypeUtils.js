@@ -1,4 +1,4 @@
-const {printSerializeSize} = require("./fieldSerializationUtils");
+const {serializeSize} = require("./fieldSerializationUtils");
 const {deserializeSize} = require("./fieldDeserializationUtils");
 
 /**
@@ -18,7 +18,7 @@ function printEnumTypeClass(type) {
     printer.blockStart(`override fun serialize(buffer: _SerializerBuffer) {`)
 
     if (type.entryIndexType) {
-        printSerializeSize(type.entryIndexType, 'this.ordinal')
+        serializeSize(type.entryIndexType, 'this.ordinal')
     }
 
     printer.blockEnd('}')
