@@ -118,6 +118,7 @@ yargs()
 
                     printComplexTypeImports()
                     printSchemaTypeImports()
+                    printer.line()
 
                     printComplexTypes()
                     printSchemaType()

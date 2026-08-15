@@ -87,6 +87,6 @@ assertSigned(payloadBytes, signature.hmac256)
 
 console.log('Signature is valid')
 
-if (schema.User.Registered.instanceOf(payload.user) && payload.user.verified) {
+if (schema.User.Registered.isInstance(payload.user) && payload.user.verified) {
     console.log('User is registered and verified')
 }

@@ -7,8 +7,6 @@ function printSchemaTypeImports() {
     if (options.deserializerEnabled) printer.line(
         'import type { Deserializable as _Deserializable, Deserializer as _Deserializer } from "@buffela/deserializer"'
     )
-
-    printer.line()
 }
 
 function combineExtensions(extensions) {
@@ -36,17 +34,16 @@ function printSchemaTypeUtils() {
 
 /**
  * @param {import('@buffela/parser').ObjectType} objectType
- * @param {string} name
  */
-function printObjectSubtypeSchema(objectType, name) {
+function printObjectSubtypeSchema(objectType) {
     const path = objectType.path.map(t => `"${t.name}"`).join(", ")
-    printer.blockStart(`readonly ${name}: _AbsoluteSubtypeSchema<[${path}]> & {`)
+    printer.blockStart(`readonly ${objectType.name}: _Buffela.PolymorphicObjectType<[${path}]> & {`)
 
     for (
         /** @type {import('@buffela/parser').TypeName} */
         const subtypeName in objectType
     ) {
-        printObjectSubtypeSchema(objectType[subtypeName], subtypeName)
+        printObjectSubtypeSchema(objectType[subtypeName])
     }
 
     printer.blockEnd('}')
@@ -56,26 +53,45 @@ function printObjectSubtypeSchema(objectType, name) {
  * @param {import('@buffela/parser').ObjectType} objectType
  */
 function printObjectTypeSchema(objectType) {
+    const types = [`_TypeSchema<${objectType.name}>`]
+
+    if (!objectType.isLeaf) {
+        types.push(`_Buffela.PolymorphicObjectType<["${objectType.name}"]>`)
+    }
+
+    printer.blockStart(`readonly ${objectType.name}: ${types.join(' & ')} & {`)
+
     for (
         /** @type {import('@buffela/parser').TypeName} */
         const subtypeName in objectType
     ) {
-        printObjectSubtypeSchema(objectType[subtypeName], subtypeName)
+        printObjectSubtypeSchema(objectType[subtypeName])
     }
+
+    printer.blockEnd('}')
 }
 
 /**
  * @param {import('@buffela/parser').EnumType} enumType
  */
 function printEnumTypeSchema(enumType) {
+    const types = [
+        `_TypeSchema<${enumType.name}>`,
+        `_Buffela.EnumType<["${enumType.name}"]>`
+    ]
+
+    printer.blockStart(`readonly ${enumType.name}: ${types.join(' & ')} & {`)
+
     for (
         /** @type {import('@buffela/parser').EnumValue} */
         const value in enumType
     ) {
         const entry = enumType[value];
         const path = entry.path.map(t => `"${t.name}"`).join(", ")
-        printer.line(`readonly ${value}: _AbsoluteEnumEntry<[${path}]>`)
+        printer.line(`readonly ${value}: _Buffela.EnumEntry<[${path}]>`)
     }
+
+    printer.blockEnd('}')
 }
 
 /**
@@ -96,9 +112,7 @@ function printSchemaType() {
     printer.blockStart(`type _Schema = {`)
 
     for (const name in schema) {
-        printer.blockStart(`readonly ${name}: _TypeSchema<${name}> & {`)
         printTypeSchema(schema[name])
-        printer.blockEnd('}')
     }
 
     printer.blockStart('primitiveTypes: {')

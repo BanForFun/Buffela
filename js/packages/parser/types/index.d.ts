@@ -1,3 +1,29 @@
+export namespace SchemaTypes {
+    interface SchemaNodeByName<N> {
+        name: N
+    }
+
+    interface SchemaNodeByPath<P> {
+        path: { [K in keyof P]: SchemaNodeByName<P[K]> }
+    }
+
+    export type AbsoluteSchemaNode<P extends string[]> = SchemaNodeByPath<Omit<P, keyof any[]>>
+
+    export type RelativeSchemaNode<D extends number, N extends string> = SchemaNodeByPath<{ [K in D]: N }>
+
+    export interface EnumEntry<P extends string[]> extends AbsoluteSchemaNode<P> {
+
+    }
+
+    export interface EnumType<P extends string[]> extends AbsoluteSchemaNode<P> {
+        isEntry(value: unknown): value is AbsoluteSchemaNode<P>
+    }
+
+    export interface PolymorphicObjectType<P extends string[]> extends AbsoluteSchemaNode<P> {
+        isInstance(value: unknown): value is { _type: AbsoluteSchemaNode<P>}
+    }
+}
+
 export interface Extensions {
 
 }
@@ -8,28 +34,6 @@ interface SchemaNode {
     name: string
     fullName: string
     path: SchemaNode[]
-}
-
-interface SchemaNodeByName<N> {
-    name: N
-}
-
-interface SchemaNodeByPath<P> {
-    path: { [K in keyof P]: SchemaNodeByName<P[K]> }
-}
-
-type AbsoluteSchemaNode<P extends string[]> =
-    SchemaNodeByPath<Omit<P, keyof any[]>>
-
-export type RelativeSchemaNode<D extends number, N extends string> =
-    SchemaNodeByPath<{ [K in D]: N }>
-
-export interface AbsoluteEnumEntry<P extends string[]> extends AbsoluteSchemaNode<P> {
-
-}
-
-export interface AbsoluteSubtypeSchema<P extends string[]> extends AbsoluteSchemaNode<P> {
-    instanceOf(value: unknown): value is { _type: AbsoluteSchemaNode<P>}
 }
 
 type DataType<K extends string, E extends Extensions> = E & {

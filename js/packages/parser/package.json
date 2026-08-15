@@ -15,7 +15,7 @@
   },
   "files": [
     "dist",
-    "types/index.d.ts",
+    "types/*",
     "README.md"
   ],
   "scripts": {

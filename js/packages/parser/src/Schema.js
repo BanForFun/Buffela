@@ -28,8 +28,20 @@ export default class Schema {
         this.#definition = definition;
 
         const complexExtensions = Object.create(SchemaNode.prototype)
-        const objectExtensions = Object.create(complexExtensions, { kind: { value: 'object' } })
-        const enumExtensions = Object.create(complexExtensions, { kind: { value: 'enum' } })
+
+        const objectExtensions = Object.create(complexExtensions, {
+            kind: { value: 'object' },
+            isInstance: { value: function(value) {
+                return this.isChild(value?._type)
+            } }
+        })
+
+        const enumExtensions = Object.create(complexExtensions, {
+            kind: { value: 'enum' },
+            isEntry: { value: function(value) {
+                return this.isChild(value)
+            } }
+        })
 
         Object.defineProperty(this, 'complexExtensions', { value: complexExtensions })
         Object.defineProperty(this, 'objectExtensions', { value: objectExtensions })
