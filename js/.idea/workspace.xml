@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Renamed instanceOf to isInstance and added isEntry to enum types">
-      <change beforePath="$PROJECT_DIR$/packages/tools/js-tools.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/tools/js-tools.js" afterDir="false" />
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Renamed js tools default command to 'convert'">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/typeUtils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,61 +33,61 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0" />
-      <entry key="MS500" value="1.0" />
-      <entry key="S2" value="1.0000000010088017" />
-      <entry key="S5" value="1.0011324101782344" />
-      <entry key="S10" value="1.130233612111747" />
-      <entry key="S30" value="4.319864052336636" />
-      <entry key="S60" value="9.481250738257234" />
-      <entry key="M2" value="16.45447394398784" />
-      <entry key="M5" value="29.318639906976248" />
-      <entry key="M10" value="51.266873800264385" />
-      <entry key="M15" value="74.5886904316425" />
-      <entry key="M30" value="137.5206478983811" />
-      <entry key="H1" value="250.53256298099674" />
-      <entry key="H2" value="437.41636260519743" />
-      <entry key="H4" value="745.6064107370514" />
-      <entry key="D1" value="2176.962039072095" />
-      <entry key="W1" value="2956.0732566548945" />
+      <entry key="MS100" value="1.5176576659630931" />
+      <entry key="MS500" value="2.075840388180664" />
+      <entry key="S2" value="3.1523004045010583" />
+      <entry key="S5" value="4.216727232779066" />
+      <entry key="S10" value="5.164028776120957" />
+      <entry key="S30" value="6.243107525189284" />
+      <entry key="S60" value="6.599440168959778" />
+      <entry key="M2" value="6.793836483259954" />
+      <entry key="M5" value="6.916074420867908" />
+      <entry key="M10" value="6.959361108628371" />
+      <entry key="M15" value="7.046191490977026" />
+      <entry key="M30" value="11.407864190022588" />
+      <entry key="H1" value="52.36081836525957" />
+      <entry key="H2" value="194.46724631527388" />
+      <entry key="H4" value="497.42033020324203" />
+      <entry key="D1" value="2048.214731229912" />
+      <entry key="W1" value="2954.3686617815983" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
-      <entry key="MS500" value="6.01029222586958E-286" />
-      <entry key="S2" value="4.951353082149397E-72" />
-      <entry key="S5" value="3.005311954045205E-29" />
-      <entry key="S10" value="5.482072558845976E-15" />
-      <entry key="S30" value="1.7632541978972837E-5" />
-      <entry key="S60" value="0.004199112429441704" />
-      <entry key="M2" value="0.06482472977128843" />
-      <entry key="M5" value="0.35622434392445884" />
-      <entry key="M10" value="0.8182515908905703" />
-      <entry key="M15" value="1.2722550399137906" />
-      <entry key="M30" value="2.5135353437983876" />
-      <entry key="H1" value="4.762184526021367" />
-      <entry key="H2" value="8.692557206734023" />
-      <entry key="H4" value="17.046495144040442" />
-      <entry key="D1" value="59.36372352688312" />
-      <entry key="W1" value="81.33939029329312" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="4.91576546980826E-296" />
+      <entry key="S30" value="3.663226044165851E-99" />
+      <entry key="S60" value="6.052459592865121E-50" />
+      <entry key="M2" value="2.4610923642003955E-25" />
+      <entry key="M5" value="1.52573277090222E-10" />
+      <entry key="M10" value="1.6934184920899473E-5" />
+      <entry key="M15" value="9.590158972197699E-4" />
+      <entry key="M30" value="0.06900980648700471" />
+      <entry key="H1" value="0.7890765300670041" />
+      <entry key="H2" value="3.5383762456890917" />
+      <entry key="H4" value="10.875852919828818" />
+      <entry key="D1" value="55.07981905855429" />
+      <entry key="W1" value="80.4736992634769" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.10013373469870276" />
-      <entry key="MS500" value="0.6311260160560578" />
-      <entry key="S2" value="0.8913104969049569" />
-      <entry key="S5" value="0.9561500666197551" />
-      <entry key="S10" value="1.1074557580882665" />
-      <entry key="S30" value="4.311468059484147" />
-      <entry key="S60" value="9.477337564785143" />
-      <entry key="M2" value="16.508498537669674" />
-      <entry key="M5" value="29.662360255962355" />
-      <entry key="M10" value="52.07015797885735" />
-      <entry key="M15" value="75.8438510500757" />
-      <entry key="M30" value="140.0158164275123" />
-      <entry key="H1" value="255.27869800698014" />
-      <entry key="H2" value="446.09632390006436" />
-      <entry key="H4" value="762.6425961116946" />
-      <entry key="D1" value="2236.3203907423544" />
-      <entry key="W1" value="3037.41158371456" />
+      <entry key="MS100" value="1.4095759138216801" />
+      <entry key="MS500" value="2.039849609252975" />
+      <entry key="S2" value="3.1368835169551526" />
+      <entry key="S5" value="4.208066680047123" />
+      <entry key="S10" value="5.158582699075883" />
+      <entry key="S30" value="6.240866050655582" />
+      <entry key="S60" value="6.598248851551928" />
+      <entry key="M2" value="6.793221552029901" />
+      <entry key="M5" value="6.915823598289641" />
+      <entry key="M10" value="6.95925148164492" />
+      <entry key="M15" value="7.047052985545851" />
+      <entry key="M30" value="11.476322270185157" />
+      <entry key="H1" value="53.14719887002104" />
+      <entry key="H2" value="198.0004657290992" />
+      <entry key="H4" value="508.2895852442664" />
+      <entry key="D1" value="2103.289561613068" />
+      <entry key="W1" value="3034.8413084547615" />
     </decayedShown>
   </component>
   <component name="ProblemsViewState">
@@ -278,15 +280,7 @@
       <workItem from="1786663150044" duration="4599000" />
       <workItem from="1786700234299" duration="15009000" />
       <workItem from="1786729919043" duration="198000" />
-      <workItem from="1786790206630" duration="5884000" />
-    </task>
-    <task id="LOCAL-00064" summary="Refactored code">
-      <option name="closed" value="true" />
-      <created>1776636054285</created>
-      <option name="number" value="00064" />
-      <option name="presentableId" value="LOCAL-00064" />
-      <option name="project" value="LOCAL" />
-      <updated>1776636054285</updated>
+      <workItem from="1786790206630" duration="7390000" />
     </task>
     <task id="LOCAL-00065" summary="Improved generated kotlin code readability">
       <option name="closed" value="true" />
@@ -672,7 +666,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786798050328</updated>
     </task>
-    <option name="localTasksCounter" value="113" />
+    <task id="LOCAL-00113" summary="Renamed js tools default command to 'convert'">
+      <option name="closed" value="true" />
+      <created>1786798196096</created>
+      <option name="number" value="00113" />
+      <option name="presentableId" value="LOCAL-00113" />
+      <option name="project" value="LOCAL" />
+      <updated>1786798196097</updated>
+    </task>
+    <option name="localTasksCounter" value="114" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -690,7 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Removed the ability to override standard primitives and fixed type resolution when there's both a complex type and a custom primitive with the same name" />
     <MESSAGE value="Prohibited trailing empty parenthesis on all standard types" />
     <MESSAGE value="Reordered methods" />
     <MESSAGE value="Fixed custom primitive type definition generation" />
@@ -715,6 +716,7 @@
     <MESSAGE value="Fixed kotlin tooling example 1" />
     <MESSAGE value="Refactored code" />
     <MESSAGE value="Renamed instanceOf to isInstance and added isEntry to enum types" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed instanceOf to isInstance and added isEntry to enum types" />
+    <MESSAGE value="Renamed js tools default command to 'convert'" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed js tools default command to 'convert'" />
   </component>
 </project>

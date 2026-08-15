@@ -19,7 +19,7 @@ export function serializeSize(buffer, type, value) {
     if (typeof element === 'object') {
         serializePrimitiveSize(buffer, type, value)
     } else if (value !== element) {
-        throw new Error(`Expected size '${element}' (got '${value}')`)
+        throw new Error(`Expected length '${element}' (got '${value}')`)
     }
 }
 

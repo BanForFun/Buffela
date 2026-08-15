@@ -12,7 +12,7 @@ function serializeString(buffer, value, sizeType) {
         buffer.writeByte(0)
     } else {
         if (value.length !== sizeType.element)
-            throw new Error(`Expected length '${sizeType.element}' (got '${value.length}')`)
+            throw new Error(`Expected string length '${sizeType.element}' (got '${value.length}')`)
 
         buffer.writeString(value)
     }
