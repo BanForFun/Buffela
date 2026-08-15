@@ -1,6 +1,6 @@
 {
   "name": "@buffela/tools-kotlin",
-  "version": "5.0.0-alpha.2",
+  "version": "5.0.0-alpha.3",
   "description": "Kotlin developer tools for the buffela data format",
   "bin": {
     "buffela-kotlin": "dist/kotlin-tools.js"

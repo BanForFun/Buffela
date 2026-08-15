@@ -2,7 +2,7 @@
 
 ## Common options
 
-This section applies to both the kotlin and the javascript tooling.
+This section applies to both the kotlin 'compile' command and the javascript 'convert' command.
 
 ### Input
 

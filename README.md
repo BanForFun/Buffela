@@ -134,9 +134,11 @@ npm i -D typescript
 Set up a simple tsconfig.json inside your project folder (don't worry it's for your editor, I won't have you compile anything)
 
 ```json
-"compilerOptions": {
+{
+  "compilerOptions": {
     "moduleResolution": "nodenext",
     "skipLibCheck": true
+  }
 }
 ```
 
@@ -169,15 +171,13 @@ Install the tooling as a dev dependency
 npm i -D @buffela/tools
 ```
 
-Run the validator
+Run the converter
 
 ```shell
-buffela-js SCHEMA_FILE
+buffela-js convert SCHEMA_FILE
 ```
 
 This will generate a .json and a .ts file alongside your schema file, as long as your schema file is not in a parent directory. In that case it will generate them in the current working directory. To understand this behavior or to explore all tooling options, refer to the [tooling guide](./docs/tooling.md).
-
-If you don't want type safety you can skip generating the .ts file by setting the `typeDefDir` option to an empty string like this: `--typeDefDir=`
 
 
 
@@ -346,16 +346,16 @@ Going back to our example:
 
 ```yaml
 Gender:
-  [...]
+  # [...]
 
 User:
-  [...]
+  # [...]
 
 AuthTokenPayload:
-  [...]
+  # [...]
   
 AuthTokenSignature:
-  [...]
+  # [...]
 ```
 
 `Gender`, `User`, `AuthTokenPayload` and `AuthTokenSignature` are all root types. 
@@ -654,10 +654,10 @@ You could also define both the serializer and deserializer in a common object (i
 ```javascript
 const DatePrimitive = {
     serialize(buffer, value) {
-        // ...
+        // [...]
     },
     deserialize(buffer) {
-        // ...
+        // [...]
     }
 }
 
@@ -684,7 +684,11 @@ package YOUR_SCHEMA_PACKAGE
 import gr.elaevents.buffela.serialization.SerializerBuffer
 import gr.elaevents.buffela.deserialization.DeserializerBuffer
 
-data class Date(val year: Int, val month: Int, val day: Int)
+data class Date(
+  val year: Int, 
+  val month: Int, 
+  val day: Int
+)
 
 fun SerializerBuffer.writeDate(date: Date) {
     val yearMonth = date.year * 12 + (date.month - 1)
@@ -714,10 +718,17 @@ package SOME_PACKAGE
 import gr.elaevents.buffela.serialization.SerializerBuffer
 import gr.elaevents.buffela.deserialization.DeserializerBuffer
 
-data class Date( /* See method 1 example */ )
+data class Date(
+  // See method 1 example
+)
 
-fun SerializerBuffer.writeDate(date: Date) { /* See method 1 example */ }
-fun DeserializerBuffer.readDate(): Date { /* See method 1 example */ }
+fun SerializerBuffer.writeDate(date: Date) { 
+  // See method 1 example
+}
+
+fun DeserializerBuffer.readDate(): Date { 
+  // See method 1 example
+}
 ```
 
 Create a file called '*SCHEMA*.primitives.yaml' in the directory where the generated '*SCHEMA*.kt' file will live.
@@ -741,8 +752,13 @@ import gr.elaevents.buffela.deserialization.DeserializerBuffer
 object LIBRARY_PRIMITIVES {
     typealias Date = LIBRARY.Date
   
-    fun SerializerBuffer.writeDate(date: Date) { /* See method 1 example */ }
-    fun DeserializerBuffer.readDate(): Date { /* See method 1 example */ }
+    fun SerializerBuffer.writeDate(date: Date) { 
+      // See method 1 example
+    }
+  
+    fun DeserializerBuffer.readDate(): Date { 
+      // See method 1 example
+    }
 }
 ```
 
@@ -780,7 +796,7 @@ birthDate: Date
 
 ### Aliases
 
-You may find yourself using a type with a specific parameter or array length over and over again in your schema. That is why aliases exist. Simply define a type alias in your schema to any primitive type:
+You may find yourself using a type with a specific parameter or array length over and over again in your schema. That is why aliases exist. Simply define a type alias in your schema to any primitive or complex type:
 
 ```yaml
 Uuid: String(36)
@@ -802,18 +818,18 @@ Sometimes you may need an object that can take multiple forms. In our example we
 
 ```yaml
 User:
-  [...]
+  # [...]
 
   Anonymous: {}
 
   Registered:
-    [...]
+    # [...]
 
     Viewer: 
-      [...]
+      # [...]
 
     Organizer:
-      [...]
+      # [...]
 ```
 
 In our example, `Anonymous` and `Registered` are subtypes of `User`. A subtype inherits all fields from its parent type, and can have other subtypes of its own. In the compiled representation the structure is flattened, meaning that all fields live in the same level.
@@ -833,15 +849,15 @@ const schema = parseSchema(...)
 
 const user = {
     _type: schema.User.Registered.Viewer,
-    [...]
+    // [...]
 }
 ```
 
-To check if an object is a subtype of a type you can use the `instanceOf()` function:
+To check if an object is a subtype of a type you can use the `isInstance()` function:
 
 ```javascript
-if (schema.User.Registered.instanceOf(user)) {
-    // Do something
+if (schema.User.Registered.isInstance(user)) {
+    // [...]
 }
 ```
 
@@ -850,16 +866,14 @@ if (schema.User.Registered.instanceOf(user)) {
 In **Kotlin**, subtypes are just nested classes. So to create a registered viewer you would do:
 
 ```kotlin
-val user = User.Registered.Viewer(
-    [...]
-)
+val user = User.Registered.Viewer(/* [...] */)
 ```
 
 To check if an object is a subtype of a type you can use the `is` operator:
 
 ```kotlin
 if (user is User.Registered) {
-    // Do something
+    // [...]
 }
 ```
 
@@ -872,10 +886,10 @@ You may need to override the type of a field only for specific subtypes. To do t
 ```yaml
 User:
   userId: Uuid # Resolves to String(36)
-  [...]
+  # [...]
 
   Registered:
-    [...]
+    # [...]
 
     Organizer:
       userId: String
@@ -907,7 +921,7 @@ If you're using buffela for client-server communication you may want to add a ve
 const buffer = new SerializerBuffer()
 
 schema.Header.serialize({ version: 2 }, buffer)
-schema.Body.serialize({ ... }, buffer)
+schema.Body.serialize({ /* [...] */ }, buffer)
 
 const bytes = buffer.toBytes()
 ```
@@ -932,7 +946,7 @@ val buffer = SerializerBuffer()
 val header = Header(version = 2)
 header.serialize(buffer)
 
-val body = Body(...)
+val body = Body(/* [...] */)
 body.serialize(buffer)
 
 val bytes = buffer.toBytes()
@@ -968,7 +982,7 @@ In our example, we want to serialize our payload, then read it back as bytes in 
 const buffer = new SerializerBuffer()
 
 // Write the payload into the buffer
-schema.AuthTokenPayload.serialize({ ... }, buffer)
+schema.AuthTokenPayload.serialize({ /* [...] */ }, buffer)
 
 // Read the serialized payload and sign it
 const payloadBytes = buffer.toBytes()
@@ -1013,7 +1027,7 @@ View the [complete example](./js/examples/buffela/complex.js)
 val buffer = SerializerBuffer()
 
 // Write the payload into the buffer
-val payload = AuthTokenPayload(...)
+val payload = AuthTokenPayload(/* [...] */)
 payload.serialize(buffer)
 
 // Read the serialized payload and sign it

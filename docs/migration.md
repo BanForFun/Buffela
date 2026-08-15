@@ -8,8 +8,9 @@
 - `Signed` type was merged with `Int` e.g. `Signed(10)` is now `Int(10)`
 - Custom primitives now need to be declared using the syntax `PRIMITIVE: Primitive()`
 
-### JS Tooling
+### Javascript Tooling
 
+- The default command was renamed to `convert`
 - Changed the output behavior
 - Replaced `--json` option with `--jsonDir`
 - Replaced `--types` option with `--typeDefDir`
@@ -22,6 +23,10 @@ See the new [tooling guide](./tooling.md) for more details
 - Replaced `--package` option with `--packageRoot`
 
 See the new [tooling guide](./tooling.md) for more details
+
+### Javascript
+
+- The `instanceOf()` method of object types was renamed to `isInstance()` and you can now use it on the root abstract type too
 
 ### Typescript/JSDoc
 
