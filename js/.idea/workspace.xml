@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Changed javascript assertion messages">
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/models/DeserializerBuffer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/registerUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/deserializer/utils/standardUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/models/SerializerBuffer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/enumUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/serializer/utils/standardUtils.js" afterDir="false" />
-    </list>
+    <list default="true" id="ab4048e1-434e-4ffb-9f53-085e6cb0fc0f" name="Changes" comment="Fixed javascript typed array serialization and deserialization" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -286,14 +277,6 @@
       <workItem from="1786700234299" duration="15009000" />
       <workItem from="1786729919043" duration="198000" />
       <workItem from="1786790206630" duration="8245000" />
-    </task>
-    <task id="LOCAL-00066" summary="Merge with v4">
-      <option name="closed" value="true" />
-      <created>1776639749302</created>
-      <option name="number" value="00066" />
-      <option name="presentableId" value="LOCAL-00066" />
-      <option name="project" value="LOCAL" />
-      <updated>1776639749302</updated>
     </task>
     <task id="LOCAL-00067" summary="Fixed older changes link">
       <option name="closed" value="true" />
@@ -679,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1786807578277</updated>
     </task>
-    <option name="localTasksCounter" value="115" />
+    <task id="LOCAL-00115" summary="Fixed javascript typed array serialization and deserialization">
+      <option name="closed" value="true" />
+      <created>1790270245990</created>
+      <option name="number" value="00115" />
+      <option name="presentableId" value="LOCAL-00115" />
+      <option name="project" value="LOCAL" />
+      <updated>1790270245990</updated>
+    </task>
+    <option name="localTasksCounter" value="116" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -697,7 +688,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Reordered methods" />
     <MESSAGE value="Fixed custom primitive type definition generation" />
     <MESSAGE value="Fixed kotlin code generation" />
     <MESSAGE value="Fixed kotlin field overriding" />
@@ -722,6 +712,7 @@
     <MESSAGE value="Renamed instanceOf to isInstance and added isEntry to enum types" />
     <MESSAGE value="Renamed js tools default command to 'convert'" />
     <MESSAGE value="Changed javascript assertion messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed javascript assertion messages" />
+    <MESSAGE value="Fixed javascript typed array serialization and deserialization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed javascript typed array serialization and deserialization" />
   </component>
 </project>
