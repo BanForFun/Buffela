@@ -1,5 +1,17 @@
 import { SmartBuffer } from 'smart-buffer';
 
+function toBuffer(arrayBuffer) {
+    if (Buffer.isBuffer(arrayBuffer)) {
+        return arrayBuffer
+    }
+
+    if (ArrayBuffer.isView(arrayBuffer)) {
+        return new Buffer(arrayBuffer.buffer, arrayBuffer.byteOffset, arrayBuffer.byteLength)
+    }
+
+    throw new Error('Expected ArrayBuffer')
+}
+
 class SerializerBuffer {
     #buffer = new SmartBuffer()
 
@@ -57,6 +69,10 @@ class SerializerBuffer {
     toBytes() {
         this.#flushBits()
         return this.#buffer.toBuffer()
+    }
+
+    _writeBuffer(buffer) {
+        this.#buffer.writeBuffer(buffer)
     }
 
     writeUInt(uInt, bitLength = null) {
@@ -136,7 +152,7 @@ class SerializerBuffer {
     }
 
     writeBytes(bytes) {
-        this.#buffer.writeBuffer(bytes)
+        this.#buffer.writeBuffer(toBuffer(bytes))
     }
 }
 

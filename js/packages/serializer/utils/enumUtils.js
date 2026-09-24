@@ -1,4 +1,4 @@
-import {serializePrimitiveSize} from "./typeUtils.js";
+import { serializePrimitiveSize } from "./typeUtils.js";
 
 /**
  * @this {SerializerTypes.EnumType}

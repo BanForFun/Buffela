@@ -22,7 +22,7 @@ function deserializeCustomPrimitive(buffer, arg) {
 function deserializeComplexType(bytes) {
     if (bytes instanceof DeserializerBuffer) {
         return this._deserialize(bytes, null)
-    } else if (Buffer.isBuffer(bytes)) {
+    } else {
         const buffer = new DeserializerBuffer(bytes)
         return this._deserialize(buffer, null)
     }

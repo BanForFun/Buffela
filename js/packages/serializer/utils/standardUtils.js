@@ -45,8 +45,19 @@ function serializeUInt(buffer, value, sizeType) {
  * @param {SerializerTypes.InstantiatedSizeType} sizeType
  */
 function serializeTypedArray(buffer, value, sizeType) {
-    serializeSize(buffer, sizeType, value.length);
-    buffer.writeBytes(Buffer.from(value.buffer))
+    serializeSize(buffer, sizeType, value.length)
+    buffer._writeBuffer(Buffer.from(value.buffer, value.byteOffset, value.byteLength))
+}
+
+/**
+ *
+ * @param {SerializerBuffer} buffer
+ * @param {Uint8Array} value
+ * @param {SerializerTypes.InstantiatedSizeType} sizeType
+ */
+function serializeBytes(buffer, value, sizeType) {
+    serializeSize(buffer, sizeType, value.byteLength)
+    buffer.writeBytes(value)
 }
 
 /**
@@ -56,7 +67,7 @@ function serializeTypedArray(buffer, value, sizeType) {
  * @param {SerializerTypes.InstantiatedSizeType} sizeType
  */
 function serializeBooleanArray(buffer, values, sizeType) {
-    serializeSize(buffer, sizeType, values.length);
+    serializeSize(buffer, sizeType, values.length)
     for (const bool of values) {
         buffer.writeBoolean(bool)
     }
@@ -80,8 +91,8 @@ export const standardSerializers = {
     Int: serializeInt,
     UInt: serializeUInt,
     String: serializeString,
+    Bytes: serializeBytes,
 
-    Bytes: serializeTypedArray,
     ByteArray: serializeTypedArray,
     UByteArray: serializeTypedArray,
     ShortArray: serializeTypedArray,

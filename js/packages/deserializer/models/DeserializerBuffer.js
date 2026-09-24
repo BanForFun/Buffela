@@ -1,5 +1,17 @@
 import { SmartBuffer } from 'smart-buffer';
 
+function toBuffer(arrayBuffer) {
+    if (Buffer.isBuffer(arrayBuffer)) {
+        return arrayBuffer
+    }
+
+    if (ArrayBuffer.isView(arrayBuffer)) {
+        return new Buffer(arrayBuffer.buffer, arrayBuffer.byteOffset, arrayBuffer.byteLength)
+    }
+
+    throw new Error('Expected ArrayBuffer')
+}
+
 export default class DeserializerBuffer {
     #buffer
     length
@@ -12,7 +24,7 @@ export default class DeserializerBuffer {
     }
 
     constructor(bytes) {
-        this.#buffer = SmartBuffer.fromBuffer(Buffer.from(bytes))
+        this.#buffer = SmartBuffer.fromBuffer(toBuffer(bytes))
         this.length = bytes.byteLength
     }
 

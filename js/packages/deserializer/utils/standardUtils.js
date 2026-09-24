@@ -32,14 +32,26 @@ function deserializerUInt(buffer, arg) {
 
 /**
  *
- * @param {{ new (buffer: Buffer): TypedArray, BYTES_PER_ELEMENT: number }} Constructor
+ * @param {{ new (buffer: ArrayBuffer, byteOffset: number, byteLength: number): TypedArray, BYTES_PER_ELEMENT: number }} Constructor
  * @returns {DeserializeCallback}
  */
 function typedArrayDeserializer(Constructor) {
     return (buffer, arg) => {
         const size = deserializeSize(buffer, arg)
-        return new Constructor(buffer.readBytes(size * Constructor.BYTES_PER_ELEMENT))
+        const bytes = buffer.readBytes(size * Constructor.BYTES_PER_ELEMENT)
+        return new Constructor(bytes.buffer, bytes.byteOffset, bytes.byteLength)
     }
+}
+
+/**
+ *
+ * @param {DeserializerBuffer} buffer
+ * @param {DeserializerTypes.InstantiatedSizeType} arg
+ * @returns {Uint8Array}
+ */
+function deserializeBytes(buffer, arg) {
+    const size = deserializeSize(buffer, arg)
+    return buffer.readBytes(size)
 }
 
 /**
@@ -71,8 +83,8 @@ export const standardDeserializers = {
     String: deserializeString,
     Int: deserializeInt,
     UInt: deserializerUInt,
+    Bytes: deserializeBytes,
 
-    Bytes: typedArrayDeserializer(Uint8Array),
     ByteArray: typedArrayDeserializer(Int8Array),
     UByteArray: typedArrayDeserializer(Uint8Array),
     ShortArray: typedArrayDeserializer(Int16Array),
